@@ -1,0 +1,31 @@
+sylius_grid:
+    grids:
+        toro_admin_page:
+            driver:
+                name: doctrine/orm
+                options:
+                    class: \Toro\Bundle\CmsBundle\Model\Page
+            sorting:
+                createdAt: desc
+            filters:
+                title:
+                    type: string
+                    label: Title
+            fields:
+                title:
+                    type: string
+                    label: Title
+                created_at:
+                    type: datetime
+                    label: Create at
+                    options:
+                        format: d-m-Y H:i
+            actions:
+                main:
+                    create:
+                        type: create
+                item:
+                    update:
+                        type: update
+                    delete:
+                        type: delete

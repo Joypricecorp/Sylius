@@ -1,0 +1,9 @@
+toro_cms:
+    routing:
+        Toro\Bundle\CmsBundle\Model\Page:
+            field: slug
+            prefix: /
+            defaults:
+                controller: toro.controller.page:viewAction
+                repository: toro.repository.page
+                template: ToroCmsBundle::show.html.twig
