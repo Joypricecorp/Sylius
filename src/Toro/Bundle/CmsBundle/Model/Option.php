@@ -3,12 +3,11 @@
 namespace Toro\Bundle\CmsBundle\Model;
 
 use Sylius\Component\Resource\Model\TimestampableTrait;
-use Toro\Bundle\AdminBundle\Model\BlameableTrait;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 abstract class Option implements OptionInterface
 {
     use TimestampableTrait;
-    use BlameableTrait;
 
     /**
      * @var integer
@@ -39,6 +38,16 @@ abstract class Option implements OptionInterface
      * @var string
      */
     protected $template;
+
+    /**
+     * @var UserInterface
+     */
+    private $createdBy;
+
+    /**
+     * @var UserInterface
+     */
+    private $updatedBy;
 
     /**
      * {@inheritdoc}
@@ -172,5 +181,45 @@ abstract class Option implements OptionInterface
 
         // outdated
         return $this->updatedAt->getTimestamp() > $this->compiledAt->getTimestamp();
+    }
+
+    /**
+     * Sets createdBy.
+     *
+     * @param  UserInterface $createdBy
+     */
+    public function setCreatedBy(UserInterface $createdBy)
+    {
+        $this->createdBy = $createdBy;
+    }
+
+    /**
+     * Returns createdBy.
+     *
+     * @return UserInterface
+     */
+    public function getCreatedBy()
+    {
+        return $this->createdBy;
+    }
+
+    /**
+     * Sets updatedBy.
+     *
+     * @param  UserInterface $updatedBy
+     */
+    public function setUpdatedBy(UserInterface $updatedBy)
+    {
+        $this->updatedBy = $updatedBy;
+    }
+
+    /**
+     * Returns updatedBy.
+     *
+     * @return UserInterface
+     */
+    public function getUpdatedBy()
+    {
+        return $this->updatedBy;
     }
 }

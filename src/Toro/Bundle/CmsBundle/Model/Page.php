@@ -6,14 +6,13 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Sylius\Component\Channel\Model\ChannelInterface;
 use Sylius\Component\Resource\Model\TimestampableTrait;
 use Sylius\Component\Resource\Model\TranslatableTrait;
-use Toro\Bundle\AdminBundle\Model\BlameableTrait;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 class Page implements PageInterface
 {
     use OptionableTrait;
     use RoutableTrait;
     use TimestampableTrait;
-    use BlameableTrait;
 
     use TranslatableTrait {
         __construct as private initializeTranslationsCollection;
@@ -33,6 +32,16 @@ class Page implements PageInterface
      * @var ChannelInterface
      */
     protected $channel;
+
+    /**
+     * @var UserInterface
+     */
+    private $createdBy;
+
+    /**
+     * @var UserInterface
+     */
+    private $updatedBy;
 
     public function __construct()
     {
@@ -127,5 +136,45 @@ class Page implements PageInterface
     public function setChannel(ChannelInterface $channel = null)
     {
         $this->channel = $channel;
+    }
+
+    /**
+     * Sets createdBy.
+     *
+     * @param  UserInterface $createdBy
+     */
+    public function setCreatedBy(UserInterface $createdBy)
+    {
+        $this->createdBy = $createdBy;
+    }
+
+    /**
+     * Returns createdBy.
+     *
+     * @return UserInterface
+     */
+    public function getCreatedBy()
+    {
+        return $this->createdBy;
+    }
+
+    /**
+     * Sets updatedBy.
+     *
+     * @param  UserInterface $updatedBy
+     */
+    public function setUpdatedBy(UserInterface $updatedBy)
+    {
+        $this->updatedBy = $updatedBy;
+    }
+
+    /**
+     * Returns updatedBy.
+     *
+     * @return UserInterface
+     */
+    public function getUpdatedBy()
+    {
+        return $this->updatedBy;
     }
 }
