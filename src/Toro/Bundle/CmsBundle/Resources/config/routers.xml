@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services
+                               http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <parameters>
+        <parameter key="toro.dynamic_router.class">Symfony\Cmf\Component\Routing\DynamicRouter</parameter>
+        <parameter key="toro.generator.class">Toro\Bundle\CmsBundle\Routing\ClassAwareGenerator</parameter>
+        <parameter key="toro.route_provider.class">Toro\Bundle\CmsBundle\Routing\RouteProvider</parameter>
+    </parameters>
+
+    <services>
+        <service id="toro.dynamic_router" class="%toro.dynamic_router.class%">
+            <argument type="service" id="router.request_context"/>
+            <argument type="service" id="toro.nested_matcher" />
+            <argument type="service" id="toro.route_generator" />
+            <argument>%toro.route_uri_filter_regexp%</argument>
+            <argument type="service" id="event_dispatcher" on-invalid="ignore"/>
+            <argument type="service" id="toro.route_provider"/>
+            <call method="addRouteEnhancer">
+                <argument type="service" id="toro.enhancer.controllers_by_class"/>
+                <argument>100</argument>
+            </call>
+            <call method="addRouteEnhancer">
+                <argument type="service" id="toro.enhancer.sylius_by_class"/>
+                <argument>100</argument>
+            </call>
+            <call method="addRouteEnhancer">
+                <argument type="service" id="toro.enhancer.template_by_class"/>
+                <argument>100</argument>
+            </call>
+        </service>
+        <service id="toro.nested_matcher" class="%cmf_routing.nested_matcher.class%">
+            <argument type="service" id="toro.route_provider" />
+            <argument type="service" id="cmf_routing.final_matcher"/>
+        </service>
+        <service id="toro.route_generator" class="%toro.generator.class%">
+            <argument type="service" id="toro.route_provider" />
+            <argument type="service" id="logger" on-invalid="ignore" />
+            <call method="setRouteConfig">
+                <argument>%toro.route_classes%</argument>
+            </call>
+        </service>
+        <service id="toro.route_provider" class="%toro.route_provider.class%">
+            <argument type="service" id="service_container"/>
+            <argument type="service" id="sylius.context.channel"/>
+            <argument type="service" id="sylius.context.locale"/>
+            <argument type="service" id="doctrine"/>
+            <argument>%toro.route_classes%</argument>
+            <call method="setRouteCollectionLimit"><argument>%toro.route_collection_limit%</argument></call>
+        </service>
+
+        <service id="toro.enhancer.controllers_by_class" class="%cmf_routing.enhancer.field_by_class.class%">
+            <argument>_toro_entity</argument>
+            <argument>_controller</argument>
+            <argument>%toro.controller_by_classes%</argument>
+        </service>
+        <service id="toro.enhancer.sylius_by_class" class="%cmf_routing.enhancer.field_by_class.class%">
+            <argument>_toro_entity</argument>
+            <argument>_sylius</argument>
+            <argument>%toro.by_classes%</argument>
+        </service>
+        <service id="toro.enhancer.template_by_class" class="%cmf_routing.enhancer.field_by_class.class%">
+            <argument>_toro_entity</argument>
+            <argument>template</argument>
+            <argument>%toro.template_by_classes%</argument>
+        </service>
+    </services>
+</container>

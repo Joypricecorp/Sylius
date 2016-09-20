@@ -1,0 +1,12 @@
+payum:
+    gateways:
+        paysbuy:
+            factory: paysbuy
+            sandbox: "%kernel.debug%"
+            psbID: 8051084553
+            username: plusmain_merchant@paysbuy.com
+            secureCode: f8a64c0f7141d10687b62d4ecb52721d
+
+sylius_payment:
+    gateways:
+        paysbuy: Paysbuy

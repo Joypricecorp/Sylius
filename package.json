@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "codemirror": "^5.16.0",
     "jquery": "^2.2.0",
     "semantic-ui-css": "^2.1.8"
   },

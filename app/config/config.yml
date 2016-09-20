@@ -2,9 +2,13 @@
 # (c) Paweł Jędrzejewski
 
 imports:
-    - { resource: "@SyliusCoreBundle/Resources/config/app/config.yml" }
-    - { resource: "@SyliusAdminBundle/Resources/config/app/config.yml" }
+    - { resource: "sylius/core/app/config.yml" }
+    - { resource: "sylius/admin/app/config.yml" }
     - { resource: "@SyliusShopBundle/Resources/config/app/config.yml" }
+    - { resource: "@IshmaelPaysbuyBundle/Resources/config/app/main.yml" }
+    - { resource: "@ToroMediaBundle/Resources/config/app.yml" }
+    - { resource: "@ToroCmsBundle/Resources/config/app/main.yml" }
+    - { resource: "toro/cms/admin/config.yml" }
 
     - { resource: "parameters.yml" }
     - { resource: "security.yml" }

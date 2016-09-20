@@ -73,8 +73,8 @@ sylius_sitemap:
         _format: xml
 
 # Have to be the last one!
-sylius_shop_static_content:
-    resource: "@SyliusShopBundle/Resources/config/routing/static_content.yml"
+#sylius_shop_static_content:
+#    resource: "@SyliusShopBundle/Resources/config/routing/static_content.yml"
 
 _liip_imagine:
     resource: "@LiipImagineBundle/Resources/config/routing.xml"

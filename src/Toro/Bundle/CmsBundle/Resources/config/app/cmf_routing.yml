@@ -1,0 +1,12 @@
+cmf_routing:
+    chain:
+        routers_by_id:
+            router.default: 100
+            toro.dynamic_router: 50
+            #cmf_routing.dynamic_router: 20
+    dynamic:
+        generic_controller: "cmf_content.controller:indexAction"
+        persistence:
+            orm:
+                enabled: true
+                manager_name: default

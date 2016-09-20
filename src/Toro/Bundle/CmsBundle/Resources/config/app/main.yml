@@ -1,0 +1,5 @@
+imports:
+    - { resource: cmf_routing.yml }
+    - { resource: toro_cms.yml }
+    - { resource: sylius_theme.yml }
+    - { resource: fixtures/pages.yml }
