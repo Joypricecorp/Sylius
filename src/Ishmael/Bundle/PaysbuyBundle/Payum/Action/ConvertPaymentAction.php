@@ -23,7 +23,7 @@ class ConvertPaymentAction implements ActionInterface
         /** @var OrderInterface $order */
         $order = $payment->getOrder();
 
-        $request->setResult([
+        $request->setResult(array_replace_recursive($payment->getDetails(), [
             'params' => [
                 'itm' => sprintf('Order containing %d items for a total of %01.2f', $order->getItems()->count(), $order->getTotal() / 100),
                 'curr_type' => $order->getCurrencyCode(),
@@ -35,7 +35,7 @@ class ConvertPaymentAction implements ActionInterface
                 // not support for now
                 'paypal_amt' => 1,
             ]
-        ]);
+        ]));
     }
 
     /**

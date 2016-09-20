@@ -31,6 +31,7 @@ class AuthorizeAction implements ApiAwareInterface, ActionInterface, GenericToke
         );
 
         $params = [
+            'notify_hash' => $notifyToken->getHash(),
             'params' => [
                 'resp_front_url' => $token->getTargetUrl(),
                 'resp_back_url' => $notifyToken->getTargetUrl(),

@@ -189,7 +189,6 @@ class Api
             foreach($request as $key => $value) {
                 $feedback[$key] = $value;
             }
-            $feedback['code'] = '02';
         }
 
         $model['feedback'] = $feedback;
