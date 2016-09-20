@@ -2,7 +2,10 @@
 
 namespace Toro\Bundle\MediaBundle\Twig;
 
+use Doctrine\ODM\PHPCR\DocumentManagerInterface;
 use Stfalcon\Bundle\TinymceBundle\Twig\Extension\StfalconTinymceExtension;
+use Symfony\Bridge\Doctrine\ManagerRegistry;
+use Symfony\Cmf\Bundle\MediaBundle\Doctrine\Phpcr\Directory;
 
 class FMElfinderExtension extends \Twig_Extension
 {
@@ -12,14 +15,32 @@ class FMElfinderExtension extends \Twig_Extension
     protected $twig;
 
     /**
+     * @var DocumentManagerInterface
+     */
+    private $manager;
+
+    /**
+     * @var string
+     */
+    private $rootFolder;
+
+    /**
      * @var StfalconTinymceExtension
      */
     protected $tinymce;
 
-    public function __construct(\Twig_Environment $twig, StfalconTinymceExtension $tinymce = null)
-    {
+    public function __construct(
+        \Twig_Environment $twig,
+        ManagerRegistry $registry,
+        $managerName,
+        $rootFolder,
+        StfalconTinymceExtension $tinymce = null
+    ) {
         $this->twig = $twig;
         $this->tinymce = $tinymce;
+
+        $this->manager = $registry->getManager($managerName);
+        $this->rootFolder = $rootFolder;
     }
 
     /**
@@ -42,7 +63,8 @@ class FMElfinderExtension extends \Twig_Extension
      *
      * @return mixed
      */
-    public function tinymce4($parameters = array(), $instance = 'default') {
+    public function tinymce4($parameters = array(), $instance = 'default')
+    {
 
         if (!is_string($instance)) {
             throw new \Twig_Error_Runtime('The function can be applied to strings only.');
@@ -53,17 +75,36 @@ class FMElfinderExtension extends \Twig_Extension
             $parameters
         );
 
-        // https://github.com/stfalcon/TinymceBundle/issues/180
-        $parameters['tinymce'] = array_merge(['asset_package_name' => 'toromce44'], $parameters['tinymce']);
+        if ($parameters['mediaPath']) {
+            $this->checkAndCreateFolder($parameters['mediaPath']);
+        }
 
         return $this->twig->render('ToroMediaBundle:Elfinder:_tinymce4.html.twig', array(
-                'instance' => $instance,
-                'width' => $parameters['width'],
-                'height' => $parameters['height'],
-                'title' => $parameters['title'],
-                'homeFolder' => $parameters['mediaPath'],
-            )
-        ) . $this->tinymce->tinymceInit($parameters['tinymce']);
+            'instance' => $instance,
+            'width' => $parameters['width'],
+            'height' => $parameters['height'],
+            'title' => $parameters['title'],
+            'homeFolder' => $parameters['mediaPath'],
+        ))
+        .$this->tinymce->tinymceInit($parameters['tinymce'])
+        ;
+    }
+
+    /**
+     * @param string $homeFolder
+     */
+    private function checkAndCreateFolder($homeFolder)
+    {
+        if ($this->manager->find(null, $dirname = $this->rootFolder.'/'.$homeFolder)) {
+            return;
+        }
+
+        $dir = new Directory();
+        $dir->setName($homeFolder);
+        $dir->setId($dirname);
+
+        $this->manager->persist($dir);
+        $this->manager->flush();
     }
 
     /**

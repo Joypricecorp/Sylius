@@ -3,7 +3,7 @@
 namespace Toro\Bundle\CmsBundle\Model;
 
 use Sylius\Component\Resource\Model\TimestampableTrait;
-use Sylius\Component\Resource\Model\TranslatableInterface;
+use Toro\Bundle\AdminBundle\Model\BlameableTrait;
 
 abstract class Option implements OptionInterface
 {
@@ -26,11 +26,6 @@ abstract class Option implements OptionInterface
     protected $templating;
 
     /**
-     * @var \DateTime
-     */
-    protected $templatingChangedAt;
-
-    /**
      * @var string
      */
     protected $compiled;
@@ -44,11 +39,6 @@ abstract class Option implements OptionInterface
      * @var string
      */
     protected $template;
-
-    public function __construct()
-    {
-        $this->templatingChangedAt = new \DateTime();
-    }
 
     /**
      * {@inheritdoc}
@@ -93,47 +83,8 @@ abstract class Option implements OptionInterface
     /**
      * {@inheritdoc}
      */
-    public function getTemplatingChangedAt()
-    {
-        return $this->templatingChangedAt;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setTemplatingChangedAt(\DateTime $templatingChangedAt)
-    {
-        $this->templatingChangedAt = $templatingChangedAt;
-    }
-
-    /**
-     * To support translatable model.
-     *
-     * @return string|void
-     */
-    private function getCurrentLocale()
-    {
-        if ($this->getOptionable() instanceof TranslatableInterface) {
-            /** @var TranslatableInterface $translatable */
-            $translatable = $this->getOptionable();
-
-            return $translatable->translate()->getLocale();
-        }
-
-        return;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function getCompiled()
     {
-        if ($currentLocale = $this->getCurrentLocale()) {
-            $data = json_decode($this->compiled, true) ?: [$currentLocale => ''];
-
-            return isset($data[$currentLocale]) ? $data[$currentLocale] : '';
-        }
-
         return $this->compiled;
     }
 
@@ -142,13 +93,6 @@ abstract class Option implements OptionInterface
      */
     public function setCompiled($compiled)
     {
-        if ($currentLocale = $this->getCurrentLocale()) {
-            $data = json_decode($this->compiled, true) ?: [];
-            $data[$currentLocale] = $compiled;
-
-            $compiled = json_encode($data);
-        }
-
         $this->compiled = $compiled;
     }
 
@@ -182,5 +126,51 @@ abstract class Option implements OptionInterface
     public function setTemplate($template)
     {
         $this->template = $template;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getTemplateStrategy()
+    {
+        if (array_key_exists('template_strategy', $this->data)) {
+            return $this->data['template_strategy'];
+        }
+
+        return null;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getTemplateVar($default = 'page')
+    {
+        if (array_key_exists('template_var', $this->data)) {
+            return $this->data['template_var'] ?: $default;
+        }
+
+        return $default;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function isNeedToCompile(): bool
+    {
+        if (!$this->getTemplateStrategy()) {
+            return false;
+        }
+
+        if (!$this->compiledAt) {
+            return true;
+        }
+
+        // cache gone
+        if ($this->compiled && !file_exists($this->compiled)) {
+            return true;
+        }
+
+        // outdated
+        return $this->updatedAt->getTimestamp() > $this->compiledAt->getTimestamp();
     }
 }

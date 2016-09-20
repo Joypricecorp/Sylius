@@ -27,16 +27,6 @@ interface OptionInterface extends ResourceInterface
     public function setTemplating($templating);
 
     /**
-     * @return \DateTime
-     */
-    public function getTemplatingChangedAt();
-
-    /**
-     * @param \DateTime $templatingChangedAt
-     */
-    public function setTemplatingChangedAt(\DateTime $templatingChangedAt);
-
-    /**
      * @return string
      */
     public function getCompiled();
@@ -59,6 +49,18 @@ interface OptionInterface extends ResourceInterface
     /**
      * @return string
      */
+    public function getTemplateStrategy();
+
+    /**
+     * @param string $default
+     *
+     * @return string
+     */
+    public function getTemplateVar($default = 'page');
+
+    /**
+     * @return string|null
+     */
     public function getTemplate();
 
     /**
@@ -75,4 +77,9 @@ interface OptionInterface extends ResourceInterface
      * @param OptionableInterface|null $optionable
      */
     public function setOptionable(OptionableInterface $optionable = null);
+
+    /**
+     * @return boolean
+     */
+    public function isNeedToCompile(): bool;
 }

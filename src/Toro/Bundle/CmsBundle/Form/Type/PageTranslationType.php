@@ -12,9 +12,18 @@ class PageTranslationType extends AbstractResourceType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title', TextType::class)
-            ->add('slug', TextType::class)
-            ->add('body', MceType::class)
+            ->add('title', TextType::class, [
+                'required' => true,
+                'label' => 'Title',
+            ])
+            ->add('slug', TextType::class, [
+                'required' => true,
+                'label' => 'Slug',
+            ])
+            ->add('body', MceType::class, [
+                'required' => true,
+                'label' => 'Body',
+            ])
         ;
     }
 }

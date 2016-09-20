@@ -44,23 +44,25 @@
         </service>
         <service id="toro.route_provider" class="%toro.route_provider.class%">
             <argument type="service" id="service_container"/>
+            <argument type="service" id="sylius.context.channel"/>
+            <argument type="service" id="sylius.context.locale"/>
             <argument type="service" id="doctrine"/>
             <argument>%toro.route_classes%</argument>
             <call method="setRouteCollectionLimit"><argument>%toro.route_collection_limit%</argument></call>
         </service>
 
         <service id="toro.enhancer.controllers_by_class" class="%cmf_routing.enhancer.field_by_class.class%">
-            <argument>_sylius_entity</argument>
+            <argument>_toro_entity</argument>
             <argument>_controller</argument>
             <argument>%toro.controller_by_classes%</argument>
         </service>
         <service id="toro.enhancer.sylius_by_class" class="%cmf_routing.enhancer.field_by_class.class%">
-            <argument>_sylius_entity</argument>
+            <argument>_toro_entity</argument>
             <argument>_sylius</argument>
             <argument>%toro.by_classes%</argument>
         </service>
         <service id="toro.enhancer.template_by_class" class="%cmf_routing.enhancer.field_by_class.class%">
-            <argument>_sylius_entity</argument>
+            <argument>_toro_entity</argument>
             <argument>template</argument>
             <argument>%toro.template_by_classes%</argument>
         </service>

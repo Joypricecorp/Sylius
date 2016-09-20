@@ -8,11 +8,11 @@
         <service id="toro.theme.device_detection" class="Toro\Bundle\CmsBundle\Theme\Detection\DeviceDetection">
             <argument type="service" id="mobile_detect.device_view"/>
         </service>
-        <service id="sylius.theme.locator.application_resource" class="Toro\Bundle\CmsBundle\Theme\Locator\ApplicationResourceLocator">
+        <service id="toro.theme.locator.application_resource" decorates="sylius.theme.locator.application_resource" class="Toro\Bundle\CmsBundle\Theme\Locator\ApplicationResourceLocator">
             <argument id="sylius.theme.filesystem" type="service"/>
             <argument id="toro.theme.device_detection" type="service"/>
         </service>
-        <service id="sylius.theme.locator.bundle_resource" class="Toro\Bundle\CmsBundle\Theme\Locator\BundleResourceLocator">
+        <service id="toro.theme.locator.bundle_resource" decorates="sylius.theme.locator.bundle_resource" class="Toro\Bundle\CmsBundle\Theme\Locator\BundleResourceLocator">
             <argument id="sylius.theme.filesystem" type="service"/>
             <argument id="kernel" type="service"/>
             <argument id="toro.theme.device_detection" type="service"/>

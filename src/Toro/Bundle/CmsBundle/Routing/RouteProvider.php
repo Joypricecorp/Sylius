@@ -5,6 +5,10 @@ namespace Toro\Bundle\CmsBundle\Routing;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\Common\Persistence\ObjectRepository;
 use Doctrine\Common\Util\ClassUtils;
+use Sylius\Component\Channel\Context\ChannelContextInterface;
+use Sylius\Component\Channel\Model\ChannelAwareInterface;
+use Sylius\Component\Locale\Context\LocaleContextInterface;
+use Sylius\Component\Resource\Model\TranslatableInterface;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
 use Symfony\Cmf\Bundle\RoutingBundle\Doctrine\DoctrineProvider;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -12,6 +16,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Exception\RouteNotFoundException;
 use Symfony\Component\Routing\Route;
 use Symfony\Component\Routing\RouteCollection;
+use Toro\Bundle\CmsBundle\Doctrine\ORM\PageFinderRepositoryInterface;
 
 class RouteProvider extends DoctrineProvider implements RouteProviderInterface
 {
@@ -19,6 +24,16 @@ class RouteProvider extends DoctrineProvider implements RouteProviderInterface
      * @var ContainerInterface
      */
     protected $container;
+
+    /**
+     * @var ChannelContextInterface
+     */
+    protected $channelContext;
+
+    /**
+     * @var LocaleContextInterface
+     */
+    protected $localeContext;
 
     /**
      * @var array
@@ -30,14 +45,16 @@ class RouteProvider extends DoctrineProvider implements RouteProviderInterface
      */
     protected $classRepositories = [];
 
-    /**
-     * @param ContainerInterface $container
-     * @param ManagerRegistry $managerRegistry
-     * @param array $routeConfigs
-     */
-    public function __construct(ContainerInterface $container, ManagerRegistry $managerRegistry, array $routeConfigs)
-    {
+    public function __construct(
+        ContainerInterface $container,
+        ChannelContextInterface $channelContext,
+        LocaleContextInterface $localeContext,
+        ManagerRegistry $managerRegistry,
+        array $routeConfigs
+    ) {
         $this->container = $container;
+        $this->channelContext = $channelContext;
+        $this->localeContext = $localeContext;
         $this->routeConfigs = $routeConfigs;
         $this->classRepositories = [];
 
@@ -193,8 +210,8 @@ class RouteProvider extends DoctrineProvider implements RouteProviderInterface
         if (null === $value) {
             $value = $this->getFieldValue($entity, $fieldName);
         }
-        
-        $defaults = ['_sylius_entity' => $entity, $fieldName => $value];
+
+        $defaults = ['_toro_entity' => $entity, $fieldName => $value];
 
         return new Route($this->routeConfigs[$className]['prefix'].'/'.$value, $defaults);
     }
@@ -208,6 +225,21 @@ class RouteProvider extends DoctrineProvider implements RouteProviderInterface
      */
     private function tryToFindEntity($identifier, RepositoryInterface $repository, $className)
     {
-        return $repository->findOneBy([$this->routeConfigs[$className]['field'] => $identifier]);
+        $criteria = [$this->routeConfigs[$className]['field'] => $identifier];
+        $reflex = new \ReflectionClass($className);
+
+        if ($reflex->implementsInterface(ChannelAwareInterface::class)) {
+            $criteria['channel'] = $this->channelContext->getChannel();
+        }
+
+        if ($reflex->implementsInterface(TranslatableInterface::class)) {
+            $criteria['locale'] = $this->localeContext->getLocaleCode();
+        }
+
+        if ($repository instanceof PageFinderRepositoryInterface) {
+            return $repository->findPageForDisplay($criteria);
+        }
+
+        return $repository->findOneBy($criteria);
     }
 }

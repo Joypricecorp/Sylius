@@ -26,13 +26,7 @@
             <gedmo:versioned/>
         </field>
 
-        <field name="templatingChangedAt" nullable="true" type="datetime">
-            <gedmo:timestampable on="change" field="templating"/>
-        </field>
-
-        <field name="compiled" nullable="true" type="text">
-            <gedmo:versioned/>
-        </field>
+        <field name="compiled" nullable="true" type="text"/>
 
         <field name="compiledAt" nullable="true" type="datetime">
             <gedmo:timestampable on="change" field="compiled"/>

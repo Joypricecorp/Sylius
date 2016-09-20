@@ -8,25 +8,22 @@ doctrine:
                 dbname:   "%database_name%_media"
                 user:     "%database_user%"
                 password: "%database_password%"
-                charset:  UTF8
-
-doctrine_cache:
-    providers:
-        phpcr_meta:
-            type: file_system
-        phpcr_nodes:
-            type: file_system
+                server_version: "%server_version%"
+                charset: utf8
+                default_table_options:
+                    charset: utf8
+                    collate: utf8_unicode_ci
 
 doctrine_phpcr:
     session:
         backend:
             type: doctrinedbal
-            #connection: media
+            connection: media
             profiling: "%kernel.debug%"
             logging: "%kernel.debug%"
             caches:
-                meta: doctrine_cache.providers.phpcr_meta
-                nodes: doctrine_cache.providers.phpcr_nodes
+                meta: doctrine.orm.default_metadata_cache
+                nodes: doctrine.orm.default_result_cache
         workspace: default
     odm:
         auto_mapping: true
@@ -54,35 +51,10 @@ liip_imagine:
             data_loader: cmf_media_doctrine_phpcr
             filters:
                 thumbnail: { size: [200, 200], mode: inset }
-
-# https://github.com/stfalcon/TinymceBundle/issues/180
-framework:
-    assets:
-        packages:
-            toromce44:
-                base_path: /bundles/toromedia/
-
-stfalcon_tinymce:
-    include_jquery: false
-    tinymce_jquery: false
-    use_callback_tinymce_init: false
-    selector: .mce_type
-    language: en
-    theme:
-        toro_mce:
-            file_browser_callback : elFinderBrowser
-            theme: modern
-            menubar: false
-            plugins:
-                - 'advlist autolink lists link image charmap print preview hr anchor pagebreak'
-                - 'searchreplace wordcount visualblocks visualchars code fullscreen'
-                - 'insertdatetime media nonbreaking save table contextmenu directionality'
-                - 'emoticons template paste textcolor colorpicker textpattern imagetools'
-            toolbar1: 'preview undo redo forecolor backcolor bold italic alignleft aligncenter alignright alignjustify bullist numlist outdent indent link image media emoticons code'
-            image_advtab: true
-        simple: {  }
-    tinymce_buttons: {  }
-    external_plugins: { }
+        strip:
+            data_loader: cmf_media_doctrine_phpcr
+            filters:
+                strip: ~
 
 fm_elfinder:
     instances:
@@ -103,7 +75,7 @@ fm_elfinder:
                         driver: cmf_media.adapter.elfinder.phpcr_driver
                         path: "%cmf_media.persistence.phpcr.media_basepath%"
                         upload_allow: ['image/png', 'image/jpg', 'image/jpeg', 'image/gif']
-                        upload_max_size: 20M
+                        upload_max_size: 10M
                         attributes:
                             - { pattern: '/sys\-(.*?)/', read: true, write: false, locked: true }
                         plugins:
@@ -112,6 +84,11 @@ fm_elfinder:
                                 enable: true
                                 targets: ['\','/',':','*','?','"','<','>','|', ' ']
                                 replace: "-"
+
+stfalcon_tinymce:
+    theme:
+        toromce:
+            file_browser_callback : elFinderBrowser
 
 # http://stackoverflow.com/questions/17296659
 services:

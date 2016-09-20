@@ -1,3 +1,5 @@
 sylius_theme:
     sources:
-        filesystem: ~
+        filesystem:
+            enabled: true
+            filename: theme.json

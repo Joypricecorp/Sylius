@@ -24,6 +24,9 @@
 
         <service id="toro.media.twig.fmelfinder_extension" lazy="true" class="Toro\Bundle\MediaBundle\Twig\FMElfinderExtension">
             <argument id="twig" type="service"/>
+            <argument id="doctrine_phpcr" type="service"/>
+            <argument>%cmf_media.persistence.phpcr.manager_name%</argument>
+            <argument>%cmf_media.persistence.phpcr.media_basepath%</argument>
             <argument id="twig.extension.stfalcon_tinymce" type="service" on-invalid="null"/>
             <tag name="twig.extension"/>
         </service>

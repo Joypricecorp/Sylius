@@ -31,6 +31,10 @@
             <gedmo:blameable on="update"/>
         </many-to-one>
 
+        <many-to-one field="channel" target-entity="Sylius\Component\Channel\Model\ChannelInterface">
+            <join-column nullable="false"/>
+        </many-to-one>
+
         <one-to-many field="routes" target-entity="Toro\Bundle\CmsBundle\Model\PageRouteInterface" mapped-by="routable" orphan-removal="true">
             <cascade>
                 <cascade-all />

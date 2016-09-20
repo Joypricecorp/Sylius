@@ -5,9 +5,23 @@ namespace Toro\Bundle\CmsBundle\Doctrine\ORM;
 use Doctrine\ORM\QueryBuilder;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 use Sylius\Component\Channel\Model\ChannelInterface;
+use Toro\Doctrine\ORM\Cache\CacheEnableTrait;
 
-class PageRepository extends EntityRepository
+class PageRepository extends EntityRepository implements PageFinderRepositoryInterface
 {
+    use CacheEnableTrait;
+
+    /**
+     * {@inheritdoc}
+     */
+    public function findPageForDisplay(array $criteria)
+    {
+        return $this->findOneBy($criteria);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function findOneBy(array $criteria, array $orderBy = null)
     {
         if (empty(array_intersect_key(array('slug', 'title'), array_keys($criteria)))) {
@@ -104,7 +118,18 @@ class PageRepository extends EntityRepository
 
                 unset($criteria['title']);
             }
+
+            if (isset($criteria['locale'])) {
+                $queryBuilder
+                    ->andWhere('LOWER(t.locale) = :locale')
+                    ->setParameter('locale', strtolower($criteria['locale']))
+                ;
+
+                unset($criteria['locale']);
+            }
         }
+
+        $this->useCache($queryBuilder);
 
         parent::applyCriteria($queryBuilder, $criteria);
     }

@@ -1,7 +1,3 @@
-elfinder:
-     resource: "@FMElfinderBundle/Resources/config/routing.yml"
-     prefix: /media
-
 cmf_media_file:
     resource: "@CmfMediaBundle/Resources/config/routing/file.xml"
 

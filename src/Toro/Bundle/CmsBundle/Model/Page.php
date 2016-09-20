@@ -3,8 +3,10 @@
 namespace Toro\Bundle\CmsBundle\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Sylius\Component\Channel\Model\ChannelInterface;
 use Sylius\Component\Resource\Model\TimestampableTrait;
 use Sylius\Component\Resource\Model\TranslatableTrait;
+use Toro\Bundle\AdminBundle\Model\BlameableTrait;
 
 class Page implements PageInterface
 {
@@ -27,6 +29,11 @@ class Page implements PageInterface
      */
     protected $published = true;
 
+    /**
+     * @var ChannelInterface
+     */
+    protected $channel;
+
     public function __construct()
     {
         $this->initializeTranslationsCollection();
@@ -43,7 +50,7 @@ class Page implements PageInterface
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function getSlug()
     {
@@ -51,9 +58,9 @@ class Page implements PageInterface
     }
 
     /**
-     * @param string $slug
+     * {@inheritdoc}
      */
-    public function setSlug($slug)
+    public function setSlug($slug = null)
     {
         $this->translate()->setSlug($slug);
     }
@@ -104,5 +111,21 @@ class Page implements PageInterface
     public function setPublished($published)
     {
         $this->published = $published;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getChannel()
+    {
+        return $this->channel;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setChannel(ChannelInterface $channel = null)
+    {
+        $this->channel = $channel;
     }
 }

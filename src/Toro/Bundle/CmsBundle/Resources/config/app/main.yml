@@ -2,5 +2,4 @@ imports:
     - { resource: cmf_routing.yml }
     - { resource: toro_cms.yml }
     - { resource: sylius_theme.yml }
-    - { resource: "@ToroCmsBundle/Resources/config/grids/page.yml" }
-    #- { resource: toro_widget.yml }
+    - { resource: fixtures/pages.yml }

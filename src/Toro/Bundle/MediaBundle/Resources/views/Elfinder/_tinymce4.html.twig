@@ -8,7 +8,7 @@
             resizable: 'yes'
         }, {
             setUrl: function (url) {
-                win.document.getElementById(field_name).value = url;
+                win.document.getElementById(field_name).value = url.replace("/media/image", "/media/cache/resolve/strip");
             }
         });
         return false;

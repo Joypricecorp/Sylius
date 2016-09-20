@@ -1,5 +1,5 @@
-{{ dump(_context) }}
+{% extends 'ToroCmsBundle::layout.html.twig' %}
 
-{{ page.options.compiled|raw }}
-
-<h1>test</h1>
+{% block content %}
+    {{ page.body|raw }}
+{% endblock %}

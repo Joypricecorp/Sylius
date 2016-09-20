@@ -4,38 +4,93 @@ namespace Toro\Bundle\CmsBundle\Controller;
 
 use FOS\RestBundle\View\View;
 use Sylius\Bundle\ResourceBundle\Controller\ResourceController;
-use Sylius\Component\Resource\ResourceActions;
+use Sylius\Component\Resource\Model\ResourceInterface;
+use Sylius\Component\Resource\Model\TimestampableInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Toro\Bundle\CmsBundle\Model\OptionableInterface;
 use Toro\Bundle\CmsBundle\Model\PageInterface;
 
 class PageController extends ResourceController
 {
-    public function viewAction(Request $request)
+    public function viewAction(Request $request, $entity = null)
     {
         // TODO: resource viewer
-        $configuration = $this->requestConfigurationFactory->create($this->metadata, $request);
 
-        /** @var PageInterface $page */
-        $page = $request->attributes->get('_sylius_entity');
+        /** @var OptionableInterface|TimestampableInterface|ResourceInterface $page */
+        $page = $entity ?: $request->attributes->get('_toro_entity');
 
-        $this->eventDispatcher->dispatch(ResourceActions::SHOW, $configuration, $page);
-
-        $view = View::create($page);
-        $template = $page->getOptions() ? $page->getOptions()->getTemplate() : null;
-
-        if ($configuration->isHtmlRequest()) {
-            $view
-                ->setTemplate($template ?: $request->attributes->get('template', 'ToroCmsBundle::show.html.twig'))
-                ->setTemplateVar($this->metadata->getName())
-                ->setData([
-                    //'configuration' => $configuration,
-                    //'metadata' => $this->metadata,
-                    //'resource' => $page,
-                    $this->metadata->getName() => $page,
-                ])
-            ;
+        if (!$page) {
+            throw new NotFoundHttpException("No page found");
         }
 
-        return $this->viewHandler->handle($configuration, $view);
+        $template = null;
+        $templateStrategy = null;
+        $templateContent = null;
+        $templateVar = $this->metadata->getName();
+
+        if ($option = $page->getOptions()) {
+            $template = $option->getTemplate();
+            $templateStrategy = $option->getTemplateStrategy();
+            $templateVar = $option->getTemplateVar($templateVar);
+        }
+
+        if ('blank' === $templateStrategy && empty($template)) {
+            $template = 'ToroCmsBundle::blank.html.twig';
+        }
+
+        if (!$template) {
+            $template = $request->attributes->get('template', 'ToroCmsBundle::show.html.twig');
+        }
+
+        if ($option) {
+            $twig = $this->get('twig');
+            $cache = $twig->getCache(false);
+
+            // compile template ondemand
+            if ($option->isNeedToCompile()) {
+                $templating = $option->getTemplating();;
+                $compiled = $twig->compileSource($templating);
+                $key = $cache->generateKey(null, get_class($page));
+
+                $cache->write($key, $compiled);
+                $option->setCompiled($key);
+
+                $this->get('toro.manager.option')->flush();
+            }
+
+            if ($key = $option->getCompiled()) {
+                $twig->getCache(false)->load($key);
+                $classes = get_declared_classes();
+                $class = end($classes);
+
+                /** @var \Twig_Template $compliedTemplate */
+                $compliedTemplate = new $class($twig);
+                $templateContent = $compliedTemplate->render([
+                    $page->getOptions()->getTemplateVar() => $page,
+                ]);
+            }
+        }
+
+        // FIXME: with some cool idea!
+        if ($page instanceof PageInterface && $request->getBaseUrl() !== '/app_dev.php') {
+            $page->setBody(
+                preg_replace('|/app_dev.php|', $request->getBaseUrl(), $page->getBody())
+            );
+        }
+
+        $view = View::create($page);
+
+        $view
+            ->setTemplate($template)
+            ->setData([
+                'template_strategy' => $templateStrategy,
+                'template_content' => $templateContent,
+                $templateVar => $page,
+            ])
+        ;
+
+        // TODO: support api request
+        return $this->get('fos_rest.view_handler')->handle($view);
     }
 }

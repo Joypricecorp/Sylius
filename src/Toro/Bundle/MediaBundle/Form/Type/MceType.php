@@ -13,13 +13,20 @@ class MceType extends AbstractType
     /**
      * {@inheritdoc}
      */
+    public function buildView(FormView $view, FormInterface $form, array $options)
+    {
+        $view->vars['tinymce'] = array(
+            'theme' => $options['theme'],
+        );
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'attr' => [
-                'class' => 'mce_type',
-                'data-theme' => 'toro_mce',
-            ],
+            'theme' => 'toromce',
         ]);
     }
 
@@ -36,6 +43,6 @@ class MceType extends AbstractType
      */
     public function getName()
     {
-        return 'mce_type';
+        return 'toromce';
     }
 }
