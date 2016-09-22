@@ -39,6 +39,7 @@ twig:
         resources:
             - 'CmfMediaBundle:Form:fields.html.twig'
             - 'ToroMediaBundle:Form:fields.html.twig'
+            - 'ToroMediaBundle:Form:tinymce.html.twig'
 
 liip_imagine:
     filter_sets:
@@ -86,9 +87,27 @@ fm_elfinder:
                                 replace: "-"
 
 stfalcon_tinymce:
+    include_jquery: false
+    tinymce_jquery: false
+    use_callback_tinymce_init: false
+    selector: .toromce
+    language: en
     theme:
         toromce:
             file_browser_callback : elFinderBrowser
+            theme: modern
+            menubar: false
+            convert_urls: false
+            plugins:
+                - 'advlist autolink lists link image charmap print preview hr anchor pagebreak'
+                - 'searchreplace wordcount visualblocks visualchars code fullscreen'
+                - 'insertdatetime media nonbreaking save table contextmenu directionality'
+                - 'emoticons template paste textcolor colorpicker textpattern'
+            toolbar1: 'preview undo redo forecolor backcolor bold italic alignleft aligncenter alignright alignjustify bullist numlist outdent indent link image media emoticons code'
+            image_advtab: true
+        simple: {  }
+    tinymce_buttons: {  }
+    external_plugins: {  }
 
 # http://stackoverflow.com/questions/17296659
 services:

@@ -5,11 +5,17 @@ namespace Toro\Bundle\CmsBundle\Doctrine\ORM;
 use Doctrine\ORM\QueryBuilder;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 use Sylius\Component\Channel\Model\ChannelInterface;
-use Toro\Doctrine\ORM\Cache\CacheEnableTrait;
 
 class PageRepository extends EntityRepository implements PageFinderRepositoryInterface
 {
-    use CacheEnableTrait;
+    protected function useCache(QueryBuilder $queryBuilder, $enabled = true)
+    {
+        $queryBuilder
+            ->getQuery()
+            ->useQueryCache($enabled)
+            ->useResultCache($enabled)
+        ;
+    }
 
     /**
      * {@inheritdoc}

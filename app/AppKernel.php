@@ -106,6 +106,12 @@ class AppKernel extends Kernel
             new \Sylius\Bundle\ShopBundle\SyliusShopBundle(),
             new \Ishmael\Bundle\PaysbuyBundle\IshmaelPaysbuyBundle(),
             //new \Ishmael\Bundle\DummyBundle\IshmaelDummyBundle(),
+
+            new \SunCat\MobileDetectBundle\MobileDetectBundle(),
+            new \FM\ElfinderBundle\FMElfinderBundle(),
+            new \Stfalcon\Bundle\TinymceBundle\StfalconTinymceBundle(),
+            new \Toro\Bundle\MediaBundle\ToroMediaBundle(),
+            new \Toro\Bundle\CmsBundle\ToroCmsBundle(),
         ];
 
         return array_merge(self::getSyliusBundles(), $bundles);

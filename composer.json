@@ -75,7 +75,11 @@
         "willdurand/hateoas-bundle": "^0.4|^1.0",
         "winzou/state-machine-bundle": "~0.2",
         "zendframework/zend-hydrator": "^1.0|^2.0",
-        "zendframework/zend-stdlib": "^2.0|^3.0"
+        "zendframework/zend-stdlib": "^2.0|^3.0",
+
+        "stfalcon/tinymce-bundle": "1.*",
+        "helios-ag/fm-elfinder-bundle": "~6",
+        "suncat/mobile-detect-bundle": "1.0.*"
     },
     "require-dev": {
         "akeneo/phpspec-skip-example-extension": "^2.0",
@@ -194,7 +198,8 @@
         }
     },
     "config": {
-        "bin-dir": "bin"
+        "bin-dir": "bin",
+        "component-dir": "web/assets"
     },
     "extra": {
         "branch-alias": {

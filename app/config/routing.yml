@@ -11,3 +11,9 @@ sylius_admin:
 sylius_api:
     resource: "@SyliusApiBundle/Resources/config/routing/main.yml"
     prefix: /api
+
+toro_media:
+    resource: "@ToroMediaBundle/Resources/config/routing.yml"
+
+elfinder:
+     resource: "@FMElfinderBundle/Resources/config/routing.yml"

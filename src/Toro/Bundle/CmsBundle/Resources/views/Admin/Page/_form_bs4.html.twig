@@ -1,0 +1,39 @@
+{{ form_errors(form) }}
+
+<div class="tab-base">
+    <ul class="nav nav-tabs">
+        <li class="active">
+            <a data-toggle="tab" href="#page-form-tab-content">{{ "Content"|trans }}</a>
+        </li>
+        <li>
+            <a data-toggle="tab" href="#page-form-tab-templating" data-code-mirror="page-templating"
+               data-code-mirror-id="{{ form.options.templating.vars.id }}"
+               data-code-mirror-mode="twig">
+                {{ "Template"|trans }}
+            </a>
+        </li>
+        <li>
+            <a data-toggle="tab" href="#page-form-tab-option" data-code-mirror="page-data"
+               data-code-mirror-id="{{ form.options.data.vars.id }}" data-code-mirror-mode="yaml">
+                {{ "Options"|trans }}
+            </a>
+        </li>
+    </ul>
+    <div class="tab-content no-pad">
+        <div id="page-form-tab-content" class="tab-pane tabbed-pane fade active in">
+            {{ form_row(form.translations) }}
+            <div class="pad-all">
+                {{ form_row(form.channel) }}
+                {{ form_row(form.published) }}
+            </div>
+        </div>
+        <div id="page-form-tab-templating" class="tab-pane fade">
+            {{ form_widget(form.options.templating) }}
+        </div>
+        <div id="page-form-tab-option" class="tab-pane fade">
+            {{ form_widget(form.options.data) }}
+        </div>
+    </div>
+</div>
+
+{{ toro_tinymce({mediaPath: 'pages'}) }}
