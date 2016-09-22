@@ -4,3 +4,11 @@ modify:
  - \Sylius\Bundle\AdminBundle\Menu\MainMenuBuilder
  - Gulpfile
  
+ install added
+ 
+ ```bash
+sf doctrine:database:drop --force --connection=media
+sf doctrine:database:create --connection=media
+sf doctrine:phpcr:init:dbal --force
+sf doctrine:phpcr:repository:init
+```
