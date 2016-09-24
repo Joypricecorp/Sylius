@@ -10,7 +10,7 @@ _profiler:
     prefix:   /_profiler
 
 _paysbuy:
-    resource: "@IshmaelPaysbuyBundle/Resources/config/routing.xml"
+    resource: "@LiverboolPaysbuyBundle/Resources/config/routing.xml"
     prefix:   /_paysbuy
 
 _main:

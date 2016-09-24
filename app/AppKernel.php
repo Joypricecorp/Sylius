@@ -102,8 +102,8 @@ class AppKernel extends Kernel
             new \Sylius\Bundle\AdminBundle\SyliusAdminBundle(),
             new \Sylius\Bundle\ApiBundle\SyliusApiBundle(),
             new \Sylius\Bundle\ShopBundle\SyliusShopBundle(),
-            new \Ishmael\Bundle\PaysbuyBundle\IshmaelPaysbuyBundle(),
-            //new \Ishmael\Bundle\DummyBundle\IshmaelDummyBundle(),
+            new \Liverbool\Bundle\PaysbuyBundle\LiverboolPaysbuyBundle(),
+            //new \Liverbool\Bundle\DummyBundle\LiverboolDummyBundle(),
 
             new \SunCat\MobileDetectBundle\MobileDetectBundle(),
             new \FM\ElfinderBundle\FMElfinderBundle(),
