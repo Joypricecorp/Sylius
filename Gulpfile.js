@@ -13,6 +13,12 @@ gulp.task('shop', function() {
     ;
 });
 
+gulp.task('web', function() {
+    gulp.src('src/Vcare/Bundle/WebBundle/Gulpfile.js', { read: false })
+        .pipe(chug())
+    ;
+});
+
 gulp.task('cms', function() {
     gulp.src('src/Toro/Bundle/CmsBundle/Gulpfile.js', { read: false })
         .pipe(chug())
@@ -33,4 +39,4 @@ gulp.task('cms-merge', function() {
     ;
 });
 
-gulp.task('default', ['admin', 'shop', 'cms']);
+gulp.task('default', ['admin', 'shop', 'cms', 'web']);

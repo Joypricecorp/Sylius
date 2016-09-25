@@ -1,0 +1,60 @@
+.jumbotron {
+    border-radius: 0;
+
+    ul {
+        padding-left: 0;
+        list-style: none;
+
+        li {
+
+            &:before {
+                font-family: FontAwesome;
+                content: "\f105";
+                color: #78797C;
+                margin-right: .5rem;
+            }
+        }
+    }
+
+    &__index {
+        background: #F9F8F7 !important;
+
+        h1 {
+            color: #F7941E;
+        }
+
+        p {
+            font-size: 1.2em;
+            color: #78797C;
+        }
+
+        img {
+            width: 100%;
+        }
+
+        &--bt {
+            margin-bottom: 0 !important;
+        }
+    }
+
+    &__btn {
+        display: block;
+        background: #F7941E;
+        color: #fff !important;
+        border: none;
+        border-radius: .2em;
+        padding: .5em 1.5em;
+        box-shadow: 0 .2em 0 0 #D37C1E;
+    }
+
+    &__faq {
+
+        h3 {
+            color: #F7941E;
+        }
+
+        a {
+            color: #78797C;
+        }
+    }
+}

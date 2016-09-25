@@ -14,7 +14,7 @@ interface PageInterface extends
     TranslatableInterface,
     RoutableInterface,
     OptionableInterface,
-    ChannelAwareInterface ,
+    ChannelAwareInterface,
     SlugAwareInterface
 {
     /**
@@ -46,4 +46,14 @@ interface PageInterface extends
      * @param boolean $published
      */
     public function setPublished($published);
+
+    /**
+     * @return boolean
+     */
+    public function isPartial(): bool;
+
+    /**
+     * @param boolean $partial
+     */
+    public function setPartial(bool $partial);
 }

@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="sylius.menu_builder.shop.locale" class="Vcare\Bundle\WebBundle\Menu\LocaleMenuBuilder">
+            <argument type="service" id="knp_menu.factory" />
+            <argument type="service" id="event_dispatcher" />
+            <argument type="service" id="sylius.context.locale" />
+            <argument type="service" id="sylius.locale_provider" />
+        </service>
+
+        <service id="sylius.menu.shop.locale" class="Knp\Menu\MenuItem" factory-service="sylius.menu_builder.shop.locale" factory-method="createMenu" scope="request">
+            <argument type="service" id="request" />
+            <tag name="knp_menu.menu" alias="sylius.shop.locale" />
+        </service>
+    </services>
+</container>

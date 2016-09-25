@@ -1,0 +1,24 @@
+{% extends 'VcareWebBundle:Account:layout.html.twig' %}
+
+{% import 'VcareWebBundle:Macros:buttons.html.twig' as buttons %}
+
+{% block account_header %}
+    <div class="account-menu__content--header page-header">
+        <h4>{{ 'sylius.account.order.details'|trans }}</h4>
+    </div>
+{% endblock %}
+
+{% block account_content %}
+    {% include 'VcareWebBundle:Account/Order:_detail.html.twig' %}
+
+    {% if order.isInvoiceAvailable %}
+        {{ buttons.btn(
+            path('sylius_account_order_invoice', {'number': order.number}),
+            'sylius.account.order.download_invoice',
+            'order-' ~ order.number ~ '-invoice',
+            'file',
+            'btn-info'
+        ) }}
+    {% endif %}
+
+{% endblock %}

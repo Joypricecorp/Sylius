@@ -1,0 +1,27 @@
+@mixin debug_mode ($mode) {
+    @if $IS_DEBUG == true {
+        $color: transparnt;
+
+        @if $mode == xl {
+            $color: transparnt;
+        }
+
+        @if $mode == lg {
+            $color: transparnt;
+        }
+
+        @if $mode == md {
+            $color: transparnt;
+        }
+
+        @if $mode == sm {
+            $color: transparnt;
+        }
+
+        @if $mode == xs {
+            $color: transparnt;
+        }
+
+        background: $color;
+    }
+}

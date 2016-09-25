@@ -1,0 +1,22 @@
+{% set product = item.vars.value.variant.product %}
+<tr>
+    <td class="variant">
+        {{ include('VcareWebBundle:Product:_variant.html.twig', {'variant': item.vars.value.variant}) }}
+    </td>
+    <td class="unit-price">{{ item.vars.value.unitPrice|sylius_price }}</td>
+    <td class="quantity">{{ form_widget(item.quantity, {attr: {'data-cart-dirty': true}}) }}</td>
+    <td class="price">
+        {% set regularPrice = item.vars.value|sylius_regular_price %}
+        {% if regularPrice != item.vars.value.total %}
+            <span class="regular-price">{{ regularPrice|sylius_price }}</span>
+            <span class="discount-price">{{ item.vars.value.total|sylius_price }}</span>
+        {% else %}
+            <span>{{ item.vars.value.total|sylius_price }}</span>
+        {% endif %}
+    </td>
+    <td class="remove">
+        <a href="{{ path('sylius_cart_item_remove', {'id': item.vars.value.id}) }}" class="btn btn-danger">
+            <i class="fa fa-trash-o"></i>
+        </a>
+    </td>
+</tr>

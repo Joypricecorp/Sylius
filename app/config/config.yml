@@ -6,6 +6,7 @@ imports:
     - { resource: "sylius/admin/app/config.yml" }
     - { resource: "@SyliusShopBundle/Resources/config/app/config.yml" }
     - { resource: "@LiverboolPaysbuyBundle/Resources/config/app/main.yml" }
+    - { resource: "@VcareWebBundle/Resources/config/app.yml" }
     - { resource: "@ToroMediaBundle/Resources/config/app.yml" }
     - { resource: "@ToroCmsBundle/Resources/config/app/main.yml" }
     - { resource: "toro/cms/admin/config.yml" }

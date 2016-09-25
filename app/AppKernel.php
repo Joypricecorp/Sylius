@@ -103,13 +103,14 @@ class AppKernel extends Kernel
             new \Sylius\Bundle\ApiBundle\SyliusApiBundle(),
             new \Sylius\Bundle\ShopBundle\SyliusShopBundle(),
             new \Liverbool\Bundle\PaysbuyBundle\LiverboolPaysbuyBundle(),
-            //new \Liverbool\Bundle\DummyBundle\LiverboolDummyBundle(),
 
             new \SunCat\MobileDetectBundle\MobileDetectBundle(),
             new \FM\ElfinderBundle\FMElfinderBundle(),
             new \Stfalcon\Bundle\TinymceBundle\StfalconTinymceBundle(),
             new \Toro\Bundle\MediaBundle\ToroMediaBundle(),
             new \Toro\Bundle\CmsBundle\ToroCmsBundle(),
+
+            new \Vcare\Bundle\WebBundle\VcareWebBundle(),
         ];
 
         return array_merge(self::getSyliusBundles(), $bundles);

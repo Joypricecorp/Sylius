@@ -1,0 +1,18 @@
+{% extends 'VcareWebBundle:Account:layout.html.twig' %}
+{% set is_mobile_view = is_mobile_view() %}
+
+{% block account_header %}
+    <div class="account-menu__content--header page-header">
+        <h4>{{ 'sylius.account.order.list'|trans }}</h4>
+    </div>
+{% endblock %}
+
+{% block account_content %}
+
+    {% if not is_mobile_view %}
+        {% include 'VcareWebBundle:Account/Order:_list.html.twig' %}
+    {% else %}
+        {% include 'VcareWebBundle:Account/Order/Mobile:_list.html.twig' %}
+    {% endif %}
+
+{% endblock %}

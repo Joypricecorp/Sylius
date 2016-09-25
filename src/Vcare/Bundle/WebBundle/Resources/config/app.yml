@@ -1,0 +1,5 @@
+liip_imagine:
+    filter_sets:
+        250x250:
+            filters:
+                thumbnail: { size: [250, 250], mode: inset }

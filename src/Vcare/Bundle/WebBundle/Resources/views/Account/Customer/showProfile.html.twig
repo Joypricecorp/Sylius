@@ -1,0 +1,19 @@
+{% extends 'VcareWebBundle:Account:layout.html.twig' %}
+
+{% block account_header %}
+    <div class="account-menu__content--header page-header">
+        <h4>{{ 'sylius.ui.welcome_to_your_space'|trans }}</h4>
+    </div>
+{% endblock %}
+
+{% block account_content %}
+    <div class="row">
+        <div class="col-md-6">{{ 'sylius.ui.enjoy_all_the_features_that_are_available_on_your_personal_space_to_view_track_and_manage_all_your_data'|trans }} </div>
+        <div class="col-md-6">
+            <div class="account-menu__content--sub-header"><strong>{{ customer.firstName}} {{ customer.lastName }}</strong></div>
+            <div class="account-menu__content--id">{{ 'sylius.ui.customer_id'|trans ~ ': ' ~ app.user.id }}</div>
+            <div class="account-menu__content--email">{{ 'sylius.ui.email'|trans ~ ': ' ~ customer.email }}</div>
+            <div class="account-menu__content--date">{{ 'sylius.ui.you_are_customer_since'|trans ~ ': ' ~ app.user.createdAt|date() }}</div>
+        </div>
+    </div>
+{% endblock %}

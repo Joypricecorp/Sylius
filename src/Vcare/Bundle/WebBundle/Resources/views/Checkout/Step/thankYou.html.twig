@@ -1,0 +1,14 @@
+{% extends 'VcareWebBundle::layout.html.twig' %}
+
+{% block content %}
+    <div class="checkout-thankyou">
+        <div class="checkout-thankyou__text" id="thanks">{{ 'sylius.ui.thank_you_for_your_order'|trans }}
+            <a href="{{ path('sylius_account_profile_show') }}">{{ order.customer.fullName }}</a>
+            <i class="fa fa-external-link"></i>
+        </div>
+
+        <a href="{{ path('sylius_account_profile_update') }}">{{ 'Go to your profile'|trans }}</a>
+        <span>|</span>
+        <a href="{{ path('sylius_account_order_index') }}">{{ 'Go to your orders'|trans }}</a>
+    </div>
+{% endblock %}

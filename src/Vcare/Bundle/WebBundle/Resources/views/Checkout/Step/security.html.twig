@@ -1,0 +1,93 @@
+{% extends 'VcareWebBundle::layout.html.twig' %}
+
+{% block content %}
+    <div class="checkout-login">
+        <div class="page-header">
+            <h3>{{ 'sylius.ui.sign_in_to_the_store_or_create_new_account'|trans|raw }}</h3>
+        </div>
+
+        {% include 'VcareWebBundle:Checkout:_progressBar.html.twig' %}
+
+        <div class="row">
+            <div class="col-md-6 col-xs-12 checkout-existing-customer">
+                <form action="{{ path('sylius_user_security_check') }}" method="post">
+                    <fieldset>
+                        <legend class="page-header">{{ 'sylius.ui.existing_customer'|trans }}</legend>
+                        <div class="form-group">
+                            <label for="username" class="control-label">{{ 'sylius.ui.email'|trans }}</label>
+                            <div class="controls">
+                                <input type="text" id="username" name="_username" class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="control-label">{{ 'sylius.ui.password'|trans }}</label>
+                            <div class="controls">
+                                <input type="password" id="password" name="_password" class="form-control"/>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary btn-block" name="login" value="login">
+                            <i class="fa fa-user"></i>
+                            {{ 'sylius.ui.login'|trans }}
+                        </button>
+                    </div>
+                </form>
+
+                <div class="user-login__form--social">
+                    {#{{ render(url('hwi_oauth_connect')) }}#}
+                    <a class="user-login__fb btn btn-fb"><i class="fa fa-facebook-official"></i>{{ 'Login with Facebook'|trans }}</a>
+                    <a class="user-login__ih btn btn-primary"><i class="user-login__ih--icon"></i>{{ 'Login with iHealth'|trans }}</a>
+                </div>
+
+            </div>
+
+            {% if guest_form is not empty %}
+                <div class="col-md-6 col-xs-12 checkout-guest-customer">
+                    <form action="{{ path(context.process.forwardRoute, {'stepName': context.currentStep.name}) }}"
+                          method="post" novalidate class="form-horizontal">
+                        <fieldset>
+                            <legend class="page-header">{{ 'sylius.ui.guest'|trans }}</legend>
+                            {{ form_widget(guest_form) }}
+                        </fieldset>
+                        <div class="form-actions">
+                            <input type="submit" class="btn btn-success btn-block" value="{{ 'sylius.checkout.security.proceed_order'|trans }}"/>
+                        </div>
+                    </form>
+                </div>
+            {% endif %}
+            <div class="col-md-6 checkout-new-customer">
+                <div class="col-md-6 col-xs-12">
+                    <form action="{{ path(context.process.forwardRoute, {'stepName': context.currentStep.name}) }}" method="post" novalidate class="form-horizontal row">
+
+                        <fieldset>
+                            <div class="col-xs-12">
+                                <div class="page-header">{{ 'sylius.ui.new_customer'|trans }}</div>
+                            </div>
+                            {{ form_errors(registration_form) }}
+
+                            <div class="row checkout-new-customer__name">
+                                <div class="checkout-new-customer__name--col col-md-6 col-xs-12">{{ form_row(registration_form.firstName) }}</div>
+                                <div class="checkout-new-customer__name--col col-md-6 col-xs-12">{{ form_row(registration_form.lastName) }}</div>
+                            </div>
+
+                            {{ form_row(registration_form.phoneNumber) }}
+                            {{ form_row(registration_form.email) }}
+                            {{ form_row(registration_form.user.plainPassword) }}
+                            {{ form_widget(registration_form._token) }}
+                        </fieldset>
+
+                        <div class="col-lg-10 col-xs-12 col-sm-10 checkout-new-customer__btn">
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-success btn-block" value="register">
+                                    <i class="fa fa-user"></i>{{ 'sylius.ui.register'|trans }}
+                                </button>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

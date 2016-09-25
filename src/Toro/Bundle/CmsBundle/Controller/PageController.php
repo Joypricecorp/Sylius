@@ -16,6 +16,7 @@ class PageController extends ResourceController
     public function viewAction(Request $request, $entity = null)
     {
         // TODO: resource viewer
+        // TODO: check page.partial
 
         /** @var OptionableInterface|TimestampableInterface|ResourceInterface $page */
         $page = $entity ?: $request->attributes->get('_toro_entity');

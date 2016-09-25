@@ -20,6 +20,10 @@ class PageType extends AbstractResourceType
                 'required' => false,
                 'label' => 'Published'
             ])
+            ->add('partial', CheckboxType::class, [
+                'required' => false,
+                'label' => 'Partial'
+            ])
             ->add('options', PageOptionType::class)
             ->add('translations', ResourceTranslationsType::class, [
                 'type' => PageTranslationType::class

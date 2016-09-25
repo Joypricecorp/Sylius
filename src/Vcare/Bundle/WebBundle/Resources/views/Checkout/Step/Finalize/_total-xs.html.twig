@@ -1,0 +1,70 @@
+<div class="finalize-xs-total">
+    <div class="finalize-xs-total__row row">
+        <div class="col-xs-4 finalize-xs-total__left">{{ 'sylius.ui.items_total'|trans }}</div>
+        <div class="col-xs-7">{{ order.itemsTotal|sylius_price }}</div>
+    </div>
+    <hr>
+    <div class="finalize-xs-total__row row">
+        <div class="col-xs-4 finalize-xs-total__left">{{ 'sylius.ui.taxes'|trans }}</div>
+        <div class="col-xs-7">
+            <ul>
+                {% for taxLabel, taxAmount in sylius_aggregate_adjustments(order.getAdjustmentsRecursively(taxAdjustment)) %}
+                    <li>{{ taxLabel }} {{ taxAmount|sylius_price }} </li>
+                {% else %}
+                    <li><span class="label label-info">{{ 'sylius.checkout.finalize.order.no_taxes'|trans }}</span></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <hr>
+    <div class="finalize-xs-total__row row">
+        <div class="col-xs-4 finalize-xs-total__left">{{ 'sylius.ui.tax_total'|trans }}</div>
+        <div class="col-xs-7">{{ order.getAdjustmentsTotalRecursively(taxAdjustment)|sylius_price }}</div>
+    </div>
+    <hr>
+    <div class="finalize-xs-total__row row">
+        <div class="col-xs-4 finalize-xs-total__left">{{ 'sylius.ui.shipping_charges'|trans }}</div>
+        <div class="col-xs-7">
+            <ul>
+                {% for adjustment in order.adjustments(shippingAdjustment) %}
+                    <li>{{ adjustment.label }} {{ adjustment.amount|sylius_price }} </li>
+                {% else %}
+                    <li>
+                        <span class="label label-info">{{ 'sylius.checkout.finalize.order.no_shipping_charges'|trans }}</span>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <hr>
+    <div class="finalize-xs-total__row row">
+        {% set shippingTotal = order.adjustmentsTotal(taxAdjustment) + order.adjustmentsTotal(shippingAdjustment) %}
+        <div class="col-xs-4 finalize-xs-total__left">{{ 'sylius.ui.shipping_total'|trans }}</div>
+        <div class="col-xs-7">{{ shippingTotal|sylius_price }}</div>
+    </div>
+    <hr>
+    {% if not order.adjustments(promotionAdjustment).isEmpty() %}
+        <div class="finalize-xs-total__row row">
+            <div class="col-xs-4 finalize-xs-total__left">{{ 'sylius.checkout.finalize.order.promotion_discount'|trans }}</div>
+            <div class="col-xs-7">
+                <ul>
+                    {% for adjustment in order.adjustments(promotionAdjustment) %}
+                        <li>{{ adjustment.label }} {{ adjustment.amount|sylius_price }} </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <hr>
+        <div class="finalize-xs-total__row row">
+            {% set promotionTotal = order.getPromotionsTotalRecursively() %}
+            <div class="col-xs-4 finalize-xs-total__left">{{ 'sylius.ui.promotion_total'|trans }}</div>
+            <div class="col-xs-3">{{ (-1 * promotionTotal)|sylius_price }}</div>
+        </div>
+    {% endif %}
+
+    <div class="finalize-xs-total__row finalize-xs-total__total row">
+        <div class="col-xs-4 finalize-xs-total__left">{{ 'sylius.ui.total'|trans }}</div>
+        <div class="col-xs-7">{{ order.total|sylius_price }}</div>
+    </div>
+    <hr>
+</div>

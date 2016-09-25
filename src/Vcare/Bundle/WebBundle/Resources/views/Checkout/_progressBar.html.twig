@@ -1,0 +1,43 @@
+{% set step = (context|default(null) ? context.currentStep.name : 'summary') %}
+
+{# TODO: insert link to previouse step #}
+<div class="row">
+      <div class="cart-step col-md-12">
+         <ul>
+            <li{% if step == 'summary' %} class="cart-step--active"{% endif %}>
+               <span>{{ '1.'|trans }}</span><span>{{ 'sylius.ui.cart_summary'|trans|raw }}</span>
+            </li>
+            <li{% if step == 'addressing' %} class="cart-step--active"{% endif %}>
+               <span>{{ '2.'|trans }}</span><span>{{ 'sylius.ui.addressing_step'|trans|raw }}</span>
+            </li>
+            <li{% if step == 'shipping' %} class="cart-step--active"{% endif %}>
+               <span>{{ '3.'|trans }}</span><span>{{ 'sylius.ui.shipping_method'|trans|raw }}</span>
+            </li>
+            <li{% if step == 'payment' %} class="cart-step--active"{% endif %}>
+               <span>{{ '4.'|trans }}</span><span>{{ 'sylius.ui.payment_method'|trans|raw }}</span>
+            </li>
+            <li{% if step == 'finalize' %} class="cart-step--active"{% endif %}>
+               <span>{{ '5.'|trans }}</span><span>{{ 'sylius.ui.order_summary'|trans|raw }}</span>
+            </li>
+         </ul>
+      </div>
+      <div class="cart-step-icon col-md-12">
+         <ul>
+            <li{% if step == 'summary' %} class="cart-step-icon--active"{% endif %}>
+               <span><i class="fa fa-list" aria-hidden="true"></i></span>
+            </li>
+            <li{% if step == 'addressing' %} class="cart-step-icon--active"{% endif %}>
+               <span><i class="fa fa-home" aria-hidden="true"></i></span>
+            </li>
+            <li{% if step == 'shipping' %} class="cart-step-icon--active"{% endif %}>
+               <span><i class="fa fa-truck" aria-hidden="true"></i></span>
+            </li>
+            <li{% if step == 'payment' %} class="cart-step-icon--active"{% endif %}>
+               <span><i class="fa fa-credit-card" aria-hidden="true"></i></span>
+            </li>
+            <li{% if step == 'finalize' %} class="cart-step-icon--active"{% endif %}>
+               <span><i class="fa fa-check-square-o" aria-hidden="true"></i></span>
+            </li>
+         </ul>
+      </div>
+</div>

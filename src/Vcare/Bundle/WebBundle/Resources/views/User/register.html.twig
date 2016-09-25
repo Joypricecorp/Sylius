@@ -1,0 +1,38 @@
+{% extends 'VcareWebBundle::layout.html.twig' %}
+
+{% form_theme form 'VcareWebBundle:Form:bootstrap_4_horizontal_layout.html.twig' %}
+
+{% block content %}
+    <div class="row user-register">
+        <div class="col-md-6 col-xs-12">
+            <div class="page-header">{{ 'sylius.ui.registration_create_an_account_in_store'|trans|raw }}</div>
+
+            {{ form_start(form, {'action': path('sylius_user_registration'), 'attr': {'class': 'ui form'}}) }}
+
+                {{ form_errors(form) }}
+
+                <div class="user-form">
+                    <div class="row">
+                        <div class="col-md-6 col-xs-12">{{ form_row(form.firstName) }}</div>
+                        <div class="col-md-6 col-xs-12">{{ form_row(form.lastName) }}</div>
+                    </div>
+                    {{ form_row(form.phoneNumber) }}
+                    {{ form_row(form.email) }}
+                    {{ form_row(form.user.plainPassword) }}
+                </div>
+
+                <div class="form-actions pull-right">
+                    <button class="btn btn-success" type="submit">
+                        <i class="fa fa-user"></i>
+                        {{ 'sylius.ui.register_button'|trans|raw }}
+                    </button>
+                </div>
+
+                {{ form_widget(form._token) }}
+
+            {{ form_end(form, {'render_rest': false}) }}
+        </div>
+
+        <div class="col-md-6"></div>
+    </div>
+{% endblock %}

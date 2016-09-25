@@ -10,17 +10,17 @@ var sourcemaps = require('gulp-sourcemaps');
 var uglify = require('gulp-uglify');
 var uglifycss = require('gulp-uglifycss');
 
-var rootPath = '../../../../web/assets/';
-var cmsRootPath = rootPath + 'cms/';
-console.log(process.env.GULP_ENV);
+var cmsRootPath = '../../../../web/assets/cms/';
+var nodeRoot = '../../../../node_modules/';
+
 var paths = {
     cms: {
         js: [
-            '../../../../node_modules/codemirror/lib/codemirror.js',
-            '../../../../node_modules/codemirror/mode/twig/twig.js',
-            '../../../../node_modules/codemirror/mode/xml/xml.js',
-            '../../../../node_modules/codemirror/mode/yaml/yaml.js',
-            '../../../../node_modules/codemirror/mode/javascript/javascript.js',
+            nodeRoot + 'codemirror/lib/codemirror.js',
+            nodeRoot + 'codemirror/mode/twig/twig.js',
+            nodeRoot + 'codemirror/mode/xml/xml.js',
+            nodeRoot + 'codemirror/mode/yaml/yaml.js',
+            nodeRoot + 'codemirror/mode/javascript/javascript.js',
             'Resources/private/js/**'
         ],
         sass: [
@@ -30,7 +30,7 @@ var paths = {
             'Resources/private/img/**'
         ],
         css: [
-            '../../../../node_modules/codemirror/lib/codemirror.css'
+            nodeRoot + 'codemirror/lib/codemirror.css'
         ]
     }
 };

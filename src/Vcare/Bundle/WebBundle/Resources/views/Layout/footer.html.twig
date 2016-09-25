@@ -1,0 +1,64 @@
+<footer class="footer">
+    {#<div class="row footer__ct">
+        <div class="col-xs-12 col-sm-12 col-md-6 footer__ship">
+            <strong>{{ 'Available Payments'|trans }}</strong>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 footer__payment">
+            <div class="footer__icon">
+                <i class="fa fa-cc-visa"></i>
+            </div>
+            <div class="footer__icon">
+                <i class="fa fa-cc-paypal"></i>
+            </div>
+            <div class="footer__icon">
+                <i class="fa fa-cc-mastercard"></i>
+            </div>
+            <div class="footer__icon">
+                <i class="fa fa-cc-discover"></i>
+            </div>
+            <div class="footer__icon">
+                <i class="fa fa-amazon"></i>
+            </div>
+        </div>
+    </div>#}
+
+    <div class="footer__sitemap">
+        <div class="container">
+            <div class="row footer__sitemap--ct">
+                <div class="col-xs-12 col-md-3 col-lg-2">
+                    <h4>{{ 'Products'|trans }}</h4>
+                    {#{{ render(url('route_web_menu_taxon', {code: 'category', template: 'VcareWebBundle:Footer:taxon.html.twig'})) }}#}
+                </div>
+                <div class="col-xs-12 col-md-3 col-lg-2">
+                    <h4>{{ 'Company'|trans }}</h4>
+                    <ul>
+                        <li><a href="/about-us">{{ 'About Us'|trans }}</a></li>
+                        <li><a href="/contact-us">{{ 'Contact Us'|trans }}</a></li>
+                    </ul>
+                </div>
+                <div class="col-xs-12 col-lg-3">
+                    <h4>{{ 'Contact'|trans }}</h4>
+                    <a href="mailto:support@vcareasia.com">support@vcareasia.com</a>
+                    <div class="footer__sitemap--add">
+                        <p>66(0) 2883 0871 – 9 (Thailand Support)</p>
+                        <p>Mon - Fri 8:30AM - 6.00PM Pst</p>
+                        <p>info@vcareasia.com</p>
+                        <p>(Thailand Support)</p>
+                        <a>www.vcareasia.com</a>
+                    </div>
+                    <div class="footer__sitemap--social">
+                        <h4>{{ 'Share'|trans }}</h4>
+                        <a href="#"><i class="fa fa-facebook"></i></a>
+                        <a href="#"><i class="fa fa-twitter"></i></a>
+                        <a href="#"><i class="fa fa-google-plus"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12 footer__lc">
+                <p>{{ '© 2016 Vcare Asia. All right reserved. Vcare Asia is trademark of Vcare Asia Inc.'|trans }}</p>
+                <p>{{ 'View our Privacy Policy or'|trans }} <a href="/terms-and-conditions">Terms and Conditions</a>.</p>
+            </div>
+        </div>
+    </div>
+</footer><!--footer-->

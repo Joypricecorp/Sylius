@@ -1,0 +1,49 @@
+{% import 'VcareWebBundle:Macros:buttons.html.twig' as buttons %}
+{% from 'VcareWebBundle:Account/Order:macros.html.twig' import state %}
+
+<div class="row account-menu__content--order">
+    {% if orders|length %}
+        <table class="table table-bordered account-menu__order-table">
+            <thead>
+                <tr>
+                    <td>{{ 'sylius.ui.placed_at'|trans }}</td>
+                    <td>{{ 'sylius.ui.number'|trans }}</td>
+                    <td>{{ 'sylius.ui.total'|trans }}</td>
+                    <td>{{ 'sylius.ui.state'|trans }}</td>
+                    <td>{{ 'sylius.ui.invoice'|trans }}</td>
+                    <td></td>
+                </tr>
+            </thead>
+            <tbody>
+            {% for order in orders %}
+                {% if order.number %}
+                    <tr class="order" id="order-{{ order.number }}">
+                        <td>{{ order.createdAt|date }}</td>
+                        <td>{{ order.number }}</td>
+                        <td class="account-menu__order-table--total">{{ order.total|sylius_money(order.currency) }}</td>
+                        <td>{{ state(order) }}</td>
+                        <td class="account-menu__order-table--invoice">
+                            {% if order.isInvoiceAvailable %}
+                                {{ buttons.btn(
+                                    path('sylius_account_order_invoice', {'number': order.number}),
+                                    '',
+                                    'order-' ~ order.number ~ '-invoice',
+                                    'file-pdf-o',
+                                    'btn-secondary'
+                                ) }}
+                            {% else %}
+                                -
+                            {% endif %}
+                        </td>
+                        <td class="account-menu__order-table--action">
+                            {{ buttons.show(path('sylius_account_order_show', {'number': order.number}), '', 'order-' ~ order.number ~ '-details') }}
+                        </td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>{{ 'sylius.account.order.empty'|trans }}</p>
+    {% endif %}
+</div>

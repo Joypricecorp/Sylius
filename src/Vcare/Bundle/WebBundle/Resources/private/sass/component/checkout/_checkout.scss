@@ -1,0 +1,87 @@
+@import "checkout-thankyou";
+
+.checkout {
+
+    h4 {
+        margin-bottom: 1rem;
+        padding: .3rem 0;
+        font-size: 1.5em;
+        color: $base-blue;
+    }
+
+    #checkout-billing-address-container {
+        display: none;
+    }
+
+    &__btn {
+        padding-top: 1em;
+    }
+
+    .form-control-label {
+        padding: 0 !important;
+    }
+}
+
+.checkout-login {
+    padding: 3rem 0;
+
+    legend {
+        color: $base-orange;
+    }
+
+    .form-control-label {
+        padding: 0 0 .5em 0;
+    }
+
+    form {
+        padding-bottom: 1em;
+    }
+}
+
+.shipping-content, .payment-content {
+    margin-bottom: 20rem;
+}
+
+.payment-content {
+    margin-bottom: 26rem;
+}
+
+.checkout-new-customer {
+    padding-left: 0;
+    padding-right: 0;
+
+    &__name {
+        margin-left: 0;
+        margin-right: 0;
+
+        &--col {
+            padding-left: 0;
+            padding-right: 0;
+        }
+    }
+
+    &__btn {
+
+        button {
+            width: 420px;
+        }
+    }
+}
+
+//finalize
+.card {
+
+    address {
+        padding-left: 1rem;
+    }
+}
+
+.layout-checkout {
+    .nav-main__menu {
+        display: none;
+    }
+
+    .nav-main {
+        margin-bottom: 10px;
+    }
+}

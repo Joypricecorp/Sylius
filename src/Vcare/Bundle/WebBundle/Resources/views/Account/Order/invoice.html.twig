@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="{{ sylius_locale() }}" class="{{ fullpage|default(false) ? 'full-page-yes' : 'full-page-no' }}">
+    <title>Vcare Asia</title>
+    <head>
+        {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('assets/web/css/style.css') }}" type="text/css"/>
+        {% endblock %}
+    </head>
+
+    <body>
+        {% set taxAdjustment = constant('Sylius\\Component\\Core\\Model\\AdjustmentInterface::TAX_ADJUSTMENT') %}
+        {% set shippingAdjustment = constant('Sylius\\Component\\Core\\Model\\AdjustmentInterface::SHIPPING_ADJUSTMENT') %}
+        {% set promotionAdjustment = constant('Sylius\\Component\\Core\\Model\\AdjustmentInterface::ORDER_PROMOTION_ADJUSTMENT') %}
+
+        <div class="invoice-box">
+            <table cellpadding="0" cellspacing="0">
+                <tr class="top">
+                    <td colspan="4">
+                        <table>
+                            <tr>
+                                <td class="title">
+                                    <img src="{{ asset('favicon.png') }}">
+                                </td>
+                                <td>
+                                    {{ 'sylius.ui.invoice'|trans }} #{{ order.number }}<br>
+                                    {{ 'sylius.ui.placed_at'|trans }}: {{ order.createdAt|localizeddate }}<br>
+                                    {{ ('sylius.account.order.shipment.' ~ order.lastShipment.state) |trans({'%at%': order.lastShipment.updatedAt|localizeddate}) }}
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+
+                <tr class="information">
+                    {% set address = order.shippingAddress %}
+                    <td colspan="4">
+                        <table>
+                            <tr>
+                                <td>
+                                    {% if address.company %}
+                                        <div class="account-menu__content--address-header">
+                                            {{ address.company }}
+                                        </div>
+                                    {% endif %}
+
+                                    <div class="account-menu__content--address-detail">
+                                        <p>{{ address.street }}</p>
+                                        <p>{{ address.city }}</p>
+
+                                        {% if address.provinceCode %}
+                                            <p>{{ address.provinceCode|sylius_province_abbreviation }}</p>
+                                        {% endif %}
+
+                                        <p>{{ address.countryCode|sylius_country_name|upper }} {{ address.postcode }}</p>
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <div class="account-menu__content--address-header">
+                                        {{ address.firstName }} {{ address.lastName }}
+                                    </div>
+
+                                    <div class="account-menu__content--address-detail">
+                                        {{ address.phoneNumber }}
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+
+                {# payment method #}
+                {% if order.payments|length %}
+                    <tr class="heading">
+                        <td colspan="3">
+                            {{ 'sylius.ui.payment_method'|trans }}
+                        </td>
+                        <td>
+                            {{ 'sylius.ui.amount'|trans }}
+                        </td>
+                    </tr>
+                    {% for payment in order.payments %}
+                        <tr class="item">
+                            <td colspan="3">
+                                {{ payment.method.code ~ ': ' ~ payment.method.gateway }}
+                            </td>
+                            <td>
+                                {{ payment.amount|sylius_money(order.currency) }}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                {% endif %}
+
+                {# product items #}
+                <tr class="heading">
+                    <td>
+                        {{ 'sylius.ui.product'|trans }}
+                    </td>
+                    <td class="account-menu__product-table--qty">
+                        {{ 'sylius.order_item.quantity'|trans }}
+                    </td>
+                    <td class="account-menu__product-table--price">
+                        {{ 'sylius.ui.price'|trans }}
+                    </td>
+                    <td class="account-menu__product-table--total">
+                        {{ 'sylius.ui.total'|trans }}
+                    </td>
+                </tr>
+
+                {% for item in order.items %}
+                    <tr class="item{% if loop.index == order.items|length %} last{% endif %}">
+                        <td>
+                            {{ item.product.name }}
+                        </td>
+                        <td class="account-menu__product-table--qty">
+                            {{ item.quantity }}
+                        </td>
+                        <td class="account-menu__product-table--price">
+                            {{ item.unitPrice|sylius_money(order.currency) }}
+                        </td>
+                        <td class="account-menu__product-table--total">
+                            {{ item.total|sylius_money(order.currency) }}
+                        </td>
+                    </tr>
+                {% endfor %}
+
+                {# items total #}
+                <tr class="total">
+                    <td colspan="3">
+                        <span class="pull-right">{{ 'sylius.ui.items_total'|trans }}:</span>
+                    </td>
+                    <td>
+                        {{ order.itemsTotal|sylius_money(order.currency) }}
+                    </td>
+                </tr>
+
+                {# tax total #}
+                <tr>
+                    <td colspan="3">
+                        <span class="pull-right">{{ 'sylius.ui.tax_total'|trans }}:</span>
+                    </td>
+                    <td>
+                        {{ order.getAdjustmentsTotalRecursively(taxAdjustment)|sylius_money(order.currency) }}
+                    </td>
+                </tr>
+
+                {# shipping total #}
+                <tr>
+                    <td colspan="3">
+                        <span class="pull-right">{{ 'sylius.ui.shipping_total'|trans }}:</span>
+                    </td>
+                    <td>
+                        {{ order.adjustmentsTotal(shippingAdjustment)|sylius_money(order.currency) }}
+                    </td>
+                </tr>
+
+                {# all total total #}
+                <tr class="total">
+                    <td colspan="3">
+                        <span class="pull-right">{{ 'sylius.ui.total'|trans }}:</span>
+                    </td>
+                    <td>
+                        {{ order.total|sylius_money(order.currency) }}
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </body>
+</html>

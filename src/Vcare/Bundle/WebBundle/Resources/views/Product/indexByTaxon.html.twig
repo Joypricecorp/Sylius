@@ -1,0 +1,20 @@
+{% extends 'VcareWebBundle::layout.html.twig' %}
+
+{% import 'VcareWebBundle:Macros:buttons.html.twig' as buttons %}
+{% from 'VcareWebBundle:Macros:misc.html.twig' import pagination %}
+{% from 'VcareWebBundle:Product:macros.html.twig' import list %}
+
+{% block content %}
+    <div class="product-taxon">
+        <div class="page-header">
+            <h1>{{ 'sylius.ui.products_categorized_under_taxon_taxon'|trans({'%taxon%': taxon.name})|raw }}</h1>
+        </div>
+        {{ pagination(products) }}
+
+        <div class="row">
+            {{ list(products) }}
+        </div>
+
+        {{ pagination(products) }}
+    </div>
+{% endblock %}

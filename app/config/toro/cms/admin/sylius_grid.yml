@@ -19,6 +19,11 @@ sylius_grid:
                     label: Published
                     options:
                         template: SyliusAdminBundle:Grid/Field:yesNo.html.twig
+                partial:
+                    type: twig
+                    label: Partial
+                    options:
+                        template: SyliusAdminBundle:Grid/Field:yesNo.html.twig
                 title:
                     type: string
                     label: Title

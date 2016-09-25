@@ -1,0 +1,17 @@
+{% set product = item.product %}
+
+<div class="finalize-xs">
+    <div class="finalize-xs__variant">{{ include('VcareWebBundle:Product:_variant.html.twig', {'variant': item.variant}) }}</div>
+    <div class="row finalize-xs__row">
+        <div class="col-xs-5 finalize-xs__left">{{ 'Quantity' }}</div>
+        <div class="col-xs-7">{{ item.quantity }}</div>
+    </div>
+    <div class="row finalize-xs__row">
+        <div class="col-xs-5 finalize-xs__left">{{ 'Unit Price' }}</div>
+        <div class="col-xs-7">{{ item.unitPrice|sylius_price }}</div>
+    </div>
+    <div class="row finalize-xs__row">
+        <div class="col-xs-5 finalize-xs__left">{{ 'Total' }}</div>
+        <div class="col-xs-7">{{ item.total|sylius_price }}</div>
+    </div>
+</div>

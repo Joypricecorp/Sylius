@@ -1,0 +1,17 @@
+.checkout-thankyou {
+    text-align: center;
+    padding: 5rem 0;
+
+    a {
+        color: $base-orange;
+    }
+
+    &__text {
+        font-size: 1.5rem;
+        padding-bottom: 10px;
+
+        i {
+            font-size: 1rem;
+        }
+    }
+}

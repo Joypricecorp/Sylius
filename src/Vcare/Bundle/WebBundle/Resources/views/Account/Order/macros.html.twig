@@ -1,0 +1,16 @@
+{% macro state(order) %}
+    {% set shipment = order.lastShipment %}
+
+    {% if shipment %}
+        {{ ('sylius.account.order.shipment.' ~ shipment.state) |trans({'%at%': shipment.updatedAt|date}) }}
+        {% if shipment.tracking %}
+            <div class="account-menu__content--shipment-state">
+                {{ 'sylius.ui.tracking_number'|trans}}
+                {{ shipment.tracking }}
+            </div>
+        {% endif %}
+    {% else %}
+        {{ 'sylius.account.order.placed_at'|trans({'%at%': order.createdAt|date}) }}
+    {% endif %}
+
+{% endmacro %}

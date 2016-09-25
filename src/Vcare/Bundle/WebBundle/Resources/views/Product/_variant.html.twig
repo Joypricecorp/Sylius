@@ -1,0 +1,15 @@
+{% set product = variant.product %}
+{% set product_picture = variant.image ? variant.image.path|imagine_filter('picture_small') : 'http://placehold.it/100x100' %}
+{% set product_url = path(product) %}
+
+<div class="media">
+    <a class="media-left" href="{{ product_url }}">
+        <img class="media-object" src="{{ product_picture }}">
+    </a>
+    <div class="media-body">
+        <h4 class="media-heading">{{ product.name }}</h4>
+        <ul class="list-unstyled">
+            <li><strong>{{ 'Code'|trans }}</strong>: {{ product.code }}</li>
+        </ul>
+    </div>
+</div>

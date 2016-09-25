@@ -1,0 +1,26 @@
+.cart-mobile {
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #f1f1f1;
+    background: #f5f5f5;
+
+    &__row {
+        padding: .2rem .5rem;
+    }
+
+    &__left {
+        font-size: 1rem;
+        font-weight: bold;
+    }
+
+    &__remove {
+        text-align: right;
+        padding-right: 1rem;
+    }
+}
+
+.cart-step {
+    display: none;
+    visibility: hidden;
+}

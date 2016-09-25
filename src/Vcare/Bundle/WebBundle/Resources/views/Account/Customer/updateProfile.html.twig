@@ -1,0 +1,36 @@
+{% extends 'VcareWebBundle:Account:layout.html.twig' %}
+
+{% form_theme form 'VcareWebBundle:Form:bootstrap_4_layout.html.twig' %}
+
+{% block account_header %}
+    <div class="account-menu__content--header page-header">
+        <h4>{{ 'sylius.ui.edit_your_personal_information'|trans }}</h4>
+    </div>
+{% endblock %}
+
+{% block account_content %}
+    <form action="{{ path('sylius_account_profile_update') }}" {{ form_enctype(form) }} method="POST" class="account-menu__content--form">
+        <div class="row">
+            <div class="col-md-6 col-xs-6">{{ form_row(form.firstName) }}</div>
+            <div class="col-md-6 col-xs-6">{{ form_row(form.lastName) }}</div>
+        </div>
+        {{ form_row(form.email) }}
+        {{ form_row(form.phoneNumber) }}
+        <div class="row">
+            <div class="col-md-6 col-xs-6">{{ form_row(form.birthday) }}</div>
+            <div class="col-md-6 col-xs-6">{{ form_row(form.gender) }}</div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-xs-12">{{ form_row(form.countryCode, {'label': 'sylius.ui.countries'|trans}) }}</div>
+            <div class="col-md-6 col-xs-12">{{ form_row(form.localeCode) }}</div>
+        </div>
+
+        {{ form_rest(form) }}
+
+        <div class="form-actions pull-right">
+            <a href="{{ cancel_url|default(app.request.headers.get('referer')) }}" class="btn btn-secondary">
+                <i class="fa fa-times"></i> {{ 'sylius.ui.cancel'|trans }}</a>
+            <button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o"></i> {{ 'sylius.ui.save_changes'|trans }}</button>
+        </div>
+    </form>
+{% endblock %}

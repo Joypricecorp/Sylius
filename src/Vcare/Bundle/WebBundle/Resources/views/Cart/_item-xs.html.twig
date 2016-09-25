@@ -1,0 +1,48 @@
+{% set product = item.vars.value.variant.product %}
+
+<div class="cart-mobile">
+    <div class="cart-mobile__variant cart-mobile__row">
+        {{ include('VcareWebBundle:Product:_variant.html.twig', {'variant': item.vars.value.variant}) }}
+    </div>
+
+    <div class="cart-mobile__unit-prc cart-mobile__row row">
+        <div class="col-xs-5 cart-mobile__left">
+            {{ 'sylius.ui.unit_price'|trans }}
+        </div>
+        <div class="col-xs-7">
+            {{ item.vars.value.unitPrice|sylius_price }}
+        </div>
+    </div>
+
+    <div class="cart-mobile__qty cart-mobile__row row">
+        <div class="col-xs-5 cart-mobile__left">
+            {{ 'sylius.cart.summary.quantity'|trans }}
+        </div>
+        <div class="col-xs-7">
+            {{ form_widget(item.quantity, {attr: {'data-cart-dirty': true}}) }}
+        </div>
+    </div>
+
+    <div class="cart-mobile__prc cart-mobile__row row">
+        <div class="col-xs-5 cart-mobile__left">
+            {{ 'sylius.ui.total'|trans }}
+        </div>
+        <div class="col-xs-7">
+
+            {% set regularPrice = item.vars.value|sylius_regular_price %}
+            {% if regularPrice != item.vars.value.total %}
+                <span class="regular-price">{{ regularPrice|sylius_price }}</span>
+                <span class="discount-price">{{ item.vars.value.total|sylius_price }}</span>
+            {% else %}
+                <span>{{ item.vars.value.total|sylius_price }}</span>
+            {% endif %}
+
+        </div>
+    </div>
+
+    <div class="cart-mobile__remove">
+        <a href="{{ path('sylius_cart_item_remove', {'id': item.vars.value.id}) }}" class="btn btn-danger">
+            <i class="fa fa-trash-o"></i>
+        </a>
+    </div>
+</div>

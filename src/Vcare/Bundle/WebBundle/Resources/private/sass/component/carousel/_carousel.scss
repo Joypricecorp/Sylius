@@ -1,0 +1,20 @@
+.carousel {
+
+    &__index {
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+        background: #eceeef;
+        color: #78797C;
+        min-height: 550px;
+        max-height: 550px;
+        margin-bottom: 2rem;
+
+        img {
+            width: 100%;
+        }
+    }
+}
+
+.carousel-control {
+    width: 8%;
+}

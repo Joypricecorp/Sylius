@@ -29,6 +29,11 @@ class Page implements PageInterface
     protected $published = true;
 
     /**
+     * @var boolean
+     */
+    protected $partial = true;
+
+    /**
      * @var ChannelInterface
      */
     protected $channel;
@@ -112,6 +117,22 @@ class Page implements PageInterface
     public function isPublished()
     {
         return $this->published;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function isPartial(): bool
+    {
+        return $this->partial;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setPartial(bool $partial)
+    {
+        $this->partial = $partial;
     }
 
     /**

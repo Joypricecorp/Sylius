@@ -1,0 +1,42 @@
+{% extends 'VcareWebBundle:Checkout:layout.html.twig' %}
+{% form_theme form 'VcareWebBundle:Form:bootstrap_4_layout.html.twig' %}
+
+{% block content %}
+    <div class="add-content">
+        {% include 'VcareWebBundle:Checkout:_progressBar.html.twig' %}
+        <div class="checkout">
+            <div class="page-header">{{ 'sylius.ui.addressing_step'|trans|raw }}</div>
+
+            <form method="post" action="{{ path(context.process.forwardRoute, {'stepName': context.currentStep.name}) }}" novalidate>
+                {{ form_errors(form) }}
+
+                <fieldset>
+                    <div class="row">
+                        <div class="col-xs-12 col-md-6" id="checkout-shipping-address-container">
+                            <h4>{{ 'sylius.ui.shipping_address'|trans }}</h4>
+                            {% include 'VcareWebBundle:Address:_form.html.twig' with {'form': form.shippingAddress} %}
+                            {{ form_row(form.differentBillingAddress, {'attr': {'class': 'address-trigger'}}) }}
+                        </div>
+                        <div class="col-xs-12 col-md-6" id="checkout-billing-address-container">
+                            <h4>{{ 'sylius.ui.billing_address'|trans }}</h4>
+                            {% include 'VcareWebBundle:Address:_form.html.twig' with {'form': form.billingAddress} %}
+                        </div>
+                    </div>
+                </fieldset>
+
+                {{ form_widget(form._token) }}
+
+                <div class="form-actions checkout__btn">
+                    <a href="{{ path('sylius_cart_summary') }}" class="btn btn-secondary btn-lg">
+                        <i class="fa fa-angle-left"></i>
+                        {{ 'sylius.ui.back'|trans }}
+                    </a>
+                    <button type="submit" class="btn btn-primary btn-lg">
+                        {{ 'sylius.checkout.forward'|trans }}
+                        <i class="fa fa-angle-right"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

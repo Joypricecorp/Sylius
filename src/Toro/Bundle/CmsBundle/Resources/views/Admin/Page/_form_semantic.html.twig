@@ -9,6 +9,7 @@
 <div class="ui bottom attached tab segment active" data-tab="content">
     {{ form_row(form.channel) }}
     {{ form_row(form.published) }}
+    {{ form_row(form.partial) }}
 
     <div class="ui styled fluid accordion">
         {% for locale, translationForm in form.translations %}

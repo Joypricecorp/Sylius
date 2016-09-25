@@ -1,0 +1,76 @@
+{% import 'VcareWebBundle:Macros:alerts.html.twig' as alerts %}
+
+{% macro cart_quantity(form) %}
+    <a id="down" onclick="updateSpinner(this);">-</a>
+    {{ form_widget(form.quantity, {'attr': {'empty_value': '1'}}) }}
+    <a id="up" onclick="updateSpinner(this);">+</a>
+
+    {{ form_widget(form._token) }}
+{% endmacro %}
+
+{% macro out_of_stock(product) %}
+    {% from 'VcareWebBundle:Product:macros.html.twig' import display_price %}
+    <div class="col-md-4 col-xs-12 product-show-box__shopping--price">
+        {{ display_price(product.firstVariant) }}
+    </div>
+    <div class="col-md-6 col-xs-12 product-show-box__shopping--out-of-stock">
+        {{ "sylius.ui.out_of_stock"|trans }}
+    </div>
+{% endmacro %}
+
+{% macro add_to_cart_single(product, form) %}
+    {% from 'VcareWebBundle:Product:macros.html.twig' import display_price %}
+    <div class="row">
+        <div class="col-xs-12 product-show-box__shopping--price">
+            {{ display_price(product.firstVariant) }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-5 col-xs-12 product-show-box__shopping--quantity">
+            {{ _self.cart_quantity(form) }}
+        </div>
+        <div class="col-md-6 col-xs-12 product-show-box__shopping--add-cart">
+            <button type="submit" class="btn btn-primary">
+                <i class="fa fa-cart-plus"></i>
+                {{ 'sylius.ui.add_to_cart'|trans|raw }}
+            </button>
+        </div>
+        {#<div class="col-md-3 col-xs-12 product-show-box__shopping--wishlist">#}
+            {#<button type="submit" class="btn btn-primary"><i class="fa fa-heart-o"></i>Add To Wishlist</button>#}
+        {#</div>#}
+    </div>
+{% endmacro %}
+
+{% macro add_to_cart_variants(product, form) %}
+    {% from 'VcareWebBundle:Product:macros.html.twig' import display_price %}
+    {{ display_price(product.firstVariant) }}
+{% endmacro %}
+
+{% macro add_to_cart(product) %}
+    {% set form = sylius_cart_form({'product': product}) %}
+
+    <form action="{{ path('sylius_cart_item_add', {'id': product.id}) }}" method="post">
+        {% if product.hasVariants %}
+            {{ _self.add_to_cart_variants(product, form) }}
+
+            <div class="row">
+                <div class="col-sm-4 hidden-sm-down"></div>
+                <div class="col-sm-4">{{ _self.cart_quantity(form) }}</div>
+                <div class="col-sm-4">
+                    <button type="submit" class="btn btn-primary">{{ 'Add To Cart'|trans|raw }}</button>
+                </div>
+            </div>
+
+        {% else %}
+            {{ _self.add_to_cart_single(product, form) }}
+        {% endif %}
+    </form>
+{% endmacro %}
+
+<div class="row">
+    {% if not product.hasVariants and not sylius_inventory_is_available(product.firstVariant) %}
+        {{ _self.out_of_stock(product) }}
+    {% else %}
+        {{ _self.add_to_cart(product) }}
+    {% endif %}
+</div>

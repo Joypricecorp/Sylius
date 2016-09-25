@@ -1,0 +1,124 @@
+.nav-main {
+
+    &__top {
+        background: #607D8B;
+        padding: .2rem 0;
+
+        a {
+            color: #fff;
+            font-size: .8rem;
+        }
+
+        &-links {}
+
+        &-user {
+            // align box to right side
+            float: right;
+
+            img {
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+            }
+
+            .nav-link {
+                padding-right: .5rem;
+                padding-left: .5rem;
+            }
+        }
+    }
+
+    &__menu {
+        border-bottom: 1px solid #E6E7E8;
+        background: #fff;
+        line-height: 55px;
+
+        &-brand {
+            font-size: 1.7rem;
+
+            // prevent box width resize when we increase font-size over column width
+            overflow: hidden;
+
+            a {
+                color: $base-orange !important;
+            }
+        }
+
+        &-cart {
+            text-align: right;
+
+            a {
+                color: #fff;
+            }
+        }
+
+        &-category {
+            a {
+                color: #78797C;
+                vertical-align: sub;
+
+                &:hover {
+                    color: $base-orange;
+                }
+
+                + a {
+                    padding-left: 1rem;
+                    padding-right: 1rem;
+                }
+            }
+        }
+    }
+
+    .navbar-nav {
+        .nav-item + .nav-item {
+            margin-left: 0;
+
+            // pipe (|) separate link
+            // Don't like :(
+            /*color: #fff;
+            border-radius: .2rem;
+            position: relative;
+            &:before {
+                content: "|";
+                position: absolute;
+                left: -5px;
+                top: 2px;
+            }*/
+        }
+
+        .nav-link + .nav-link {
+            margin-left: 1.5rem !important;
+        }
+
+        .dropdown-toggle {
+            cursor: default;
+        }
+
+        .dropdown-menu {
+            background: #607D8B;
+            border: none;
+            border-radius: 0;
+            right: 0;
+            left: auto;
+
+            i {
+                padding-right: .2rem;
+            }
+        }
+
+        .dropdown-item {
+            padding: .3rem .8rem;
+            &:hover {
+                background: #607D8B;
+                opacity: .8;
+            }
+        }
+    }
+
+    .navbar-fixed {
+        top: 0;
+        z-index: 9999;
+        position: fixed;
+        width: 100%;
+    }
+}

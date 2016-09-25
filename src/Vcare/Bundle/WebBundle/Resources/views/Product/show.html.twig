@@ -1,0 +1,123 @@
+{% extends 'VcareWebBundle::layout.html.twig' %}
+{% from 'VcareWebBundle:Product:macros.html.twig' import list %}
+{% set is_mobile_view = is_mobile_view() %}
+
+{% block head %}
+    {{ sylius_metadata_render(product, null, { 'defaults': {
+        'title': settings.title|default('sylius.meta.frontend_title'|trans),
+        'description': settings.meta_description|default('sylius.meta.frontend_description'|trans),
+        'keywords': settings.meta_description|default('sylius.meta.frontend_keywords'|trans)
+    } })|raw }}
+{% endblock %}
+
+{% block content %}
+    <div class="row product-show">
+        <div class="col-md-6 col-xs-12">
+            <div class="product-show-pictures">
+
+                <div class="product-show-pictures__preview preload_object magnify">
+                    {% set product_picture_l = product.image ? product.image.path|imagine_filter('picture_large') : 'http://placehold.it/400x500' %}
+                    {% set product_picture_xl = product.image ? product.image.path|imagine_filter('picture_extra_large') : 'http://placehold.it/400x500' %}
+
+                    <img src="{{ product_picture_l }}" class="zoom" data-magnify-src="{{ product_picture_xl }}">
+                </div>
+
+                {% if product.images|length > 1 %}
+                    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" data-interval="false">
+                        <div class="carousel-inner" role="listbox">
+                            {% for image in product.images %}
+                                {% if loop.index%4==1 %}
+                                    <div class="carousel-item product-show-pictures__item row {{ loop.first ? 'active' : '' }}">
+                                {% endif %}
+                                        <div class="product-show-pictures__item--list col-xs-4">
+                                            <a href="{{ image.path|imagine_filter('picture_large') }}" title="{{ product.name }}">
+                                                <input class="xl-image-path" type="hidden" value="{{ image.path|imagine_filter('picture_extra_large') }}">
+                                                <img src="{{ image.path|imagine_filter('picture_small') }}" alt="{{ product.name }}"/>
+                                            </a>
+                                        </div>
+                                {% if loop.index%4==0 or loop.last %}
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        {% if product.images|length > 4 %}
+                            <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                                <span class="icon-prev" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                                <span class="icon-next" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        {% endif %}
+                    </div>
+                {% endif %}
+            </div>
+            {% if not is_mobile_view %}
+                <div class="product-show-box__share">
+                    <span>Share</span>
+                    <a href="#"><i class="fa fa-facebook"></i></a>
+                    <a href="#"><i class="fa fa-twitter"></i></a>
+                    <a href="#"><i class="fa fa-google-plus"></i></a>
+                </div>
+            {% endif %}
+        </div>
+        <div class="col-md-6 col-xs-12">
+
+            <h1 class="product-show-box__header">{{ product.name }}</h1>
+
+            {% if product.code %}
+                <div class="product-show-box__code"><strong>Code</strong>: {{ product.code }}</div>
+            {% endif %}
+
+            <div class="product-show-box__shopping">
+                {% include 'VcareWebBundle:Product:_box_shopping.html.twig' %}
+            </div>
+
+            {% if product.shortDescription %}
+                <h2 class="product-show-box__description--short">{{ product.shortDescription|raw }}</h2>
+            {% endif %}
+
+            {% if product.description %}
+                <p class="product-show-box__description--full">{{ product.description|markdown }}</p>
+            {% endif %}
+
+            {% if product.attributes|length > 0 %}
+                <h3>{{ 'Attributes'|trans }}</h3>
+                <div class="table-responsive">
+                    <table class="table table-sm product-show-box__attributes">
+                        <tbody>
+                        {% for attribute in product.attributes %}
+                            <tr>
+                                <td>{{ attribute.name }}</td>
+                                <td>{{ attribute.value|markdown }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% endif %}
+            {% if is_mobile_view %}
+                <div class="product-show-box__share">
+                    <span>{{ 'Share'|trans|raw }}</span>
+                    <a href="#"><i class="fa fa-facebook"></i></a>
+                    <a href="#"><i class="fa fa-twitter"></i></a>
+                    <a href="#"><i class="fa fa-google-plus"></i></a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="product-association">
+        {% if product.associations|length > 0 %}
+            <div class="page-header">{{ 'You May also like'|trans|raw }}</div>
+            <div class="row">
+                {% for association in product.associations %}
+                    {% if association.associatedObjects|length > 0 %}
+                        {{ list(association.associatedObjects) }}
+                    {% endif %}
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

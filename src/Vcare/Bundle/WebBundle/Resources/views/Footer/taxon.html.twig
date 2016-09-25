@@ -1,0 +1,9 @@
+{% set root = taxons|first %}
+
+{% if root.children|length %}
+    <ul>
+        {% for taxon in root.children %}
+            <li><a href="{{ path(taxon) }}">{{ taxon.name }}</a></li>
+        {% endfor %}
+    </ul>
+{% endif %}

@@ -1,0 +1,34 @@
+{% extends 'VcareWebBundle:Checkout:layout.html.twig' %}
+{% form_theme form 'VcareWebBundle:Form:common.html.twig' %}
+
+{% block content %}
+    <div class="payment-content">
+        {% include 'VcareWebBundle:Checkout:_progressBar.html.twig' %}
+
+        <div class="page-header">{{ 'sylius.ui.payment_method'|trans|raw }}</div>
+
+        <form method="post" action="{{ path(context.process.forwardRoute, {'stepName': context.currentStep.name}) }}"
+              class="form-horizontal" novalidate>
+            {{ form_errors(form.paymentMethod) }}
+
+            {% for paymentMethodForm in form.paymentMethod %}
+                <div style="padding: 20px 0;">
+                    {{ form_row(paymentMethodForm) }}
+                </div>
+            {% endfor %}
+
+            {{ form_widget(form._token) }}
+
+            <div class="form-actions">
+                <a href="{{ path(context.process.displayRoute, {'stepName': context.previousStep.name}) }}" class="btn btn-secondary btn-lg">
+                    <i class="fa fa-angle-left"></i>
+                    {{ 'sylius.ui.back'|trans }}
+                </a>
+                <button type="submit" class="btn btn-primary btn-lg">
+                    {{ 'sylius.checkout.forward'|trans }}
+                    <i class="fa fa-angle-right"></i>
+                </button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

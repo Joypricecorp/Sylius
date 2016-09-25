@@ -1,0 +1,43 @@
+{% import 'VcareWebBundle:Macros:buttons.html.twig' as buttons %}
+{% from 'VcareWebBundle:Account/Order:macros.html.twig' import state %}
+
+<div class="invoice-sm">
+    {% if orders|length %}
+        {% for order in orders %}
+            {% if order.number %}
+                <div class="row" id="order-{{ order.number }}">
+                    <div class="col-xs-4">{{ 'sylius.ui.placed_at'|trans }}</div>
+                    <div class="col-xs-7">{{ order.createdAt|date }}</div>
+
+                    <div class="col-xs-4">{{ 'sylius.ui.number'|trans }}</div>
+                    <div class="col-xs-7">{{ order.number }}</div>
+                    <div class="col-xs-4">{{ 'sylius.ui.total'|trans }}</div>
+                    <div class="col-xs-7">{{ order.total|sylius_money(order.currency) }}</div>
+                    <div class="col-xs-4">{{ 'sylius.ui.state'|trans }}</div>
+                    <div class="col-xs-7">{{ state(order) }}</div>
+                    <div class="col-xs-4">{{ 'sylius.ui.invoice'|trans }}</div>
+                    <div class="col-xs-7">
+                        {% if order.isInvoiceAvailable %}
+                            {{ buttons.btn(
+                                path('sylius_account_order_invoice', {'number': order.number}),
+                                '',
+                                'order-' ~ order.number ~ '-invoice',
+                                'file-pdf-o',
+                                'btn-secondary'
+                            ) }}
+                        {% else %}
+                            -
+                        {% endif %}
+                    </div>
+                    <div class="col-xs-4"></div>
+                    <div class="col-xs-7">
+                        {{ buttons.show(path('sylius_account_order_show', {'number': order.number}), '', 'order-' ~ order.number ~ '-details') }}
+                    </div>
+                </div>
+                <hr>
+            {% endif %}
+        {% endfor %}
+    {% else %}
+        <p>{{ 'sylius.account.order.empty'|trans }}</p>
+    {% endif %}
+</div>

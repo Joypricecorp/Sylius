@@ -1,0 +1,53 @@
+{% macro list(products) %}
+    {% from 'VcareWebBundle:Product:macros.html.twig' import display_price %}
+
+    {% for r in products %}
+        {% set product_show_url = path('sylius_shop_product_show', {'slug': r.slug}) %}
+        {% set product_image = r.images.first() ? r.images.first.path|imagine_filter('250x250') : 'http://placehold.it/250x250' %}
+
+        <div class="col-xl-4 col-sm-6 col-xs-12">
+            <div class="product-box">
+                <div class="product-box__picture carousel js-flickity">
+                    {% if r.images|length > 1 %}
+                        {% for img in r.images %}
+                            <div class="carousel-cell">
+                                <a href="{{ product_show_url }}" title="{{ r.name }}">
+                                    <img src="{{ img.path|imagine_filter('250x250') }}" alt="{{ r.name }}">
+                                </a>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <div class="carousel-cell">
+                            <a href="{{ product_show_url }}" title="{{ r.name }}">
+                                <img src="{{ product_image }}" alt="{{ r.name }}">
+                            </a>
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="product-box__info">
+                    <div class="row">
+                        <div class="col-xs-12 col-lg-7 product-box__info--left">
+                            <a class="product-box__info--label" href="{{ product_show_url }}">{{ r.name }}</a>
+                        </div>
+                        <div class="col-xs-12 col-lg-3 product-box__info--right">
+                            <label class="product-box__info--price">{{ display_price(r.firstVariant) }}</label>
+                        </div>
+                        {#<div class="col-xs-12">#}
+                            {#<a href="{{ product_show_url }}" title="{{ r.name }}" class="btn btn-primary product-box__info--btn">#}
+                                {#<i class="fa fa-shopping-cart"></i>#}
+                                {#{{ 'Add to Cart'|trans }}#}
+                            {#</a>#}
+                        {#</div>#}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endmacro %}
+
+{% macro display_price(variant) %}
+    {% if (variant.isPriceReduced) %}
+        {{ variant.originalPrice|sylius_price }}
+    {% endif %}
+    {{ sylius_calculate_price(variant)|sylius_price }}
+{% endmacro %}

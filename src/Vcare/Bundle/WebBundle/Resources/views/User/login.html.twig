@@ -1,0 +1,63 @@
+{% extends 'VcareWebBundle::layout.html.twig' %}
+
+{% form_theme form 'VcareWebBundle:Form:bootstrap_4_layout.html.twig' %}
+
+{% block content %}
+    <div class="row user-login">
+        <div class="col-sm-6 col-xs-12 user-login__right">
+            <div class="page-header">{{ 'เข้าระบบ'|trans|raw }}</div>
+
+            {% if error %}
+                <div class="alert alert-danger">
+                    {{ error.messageKey|trans(error.messageData, 'security') }}
+                </div>
+            {% endif %}
+
+            <form action="{{ path('sylius_user_security_check') }}" method="post" class="user-login__form">
+                {{ form_errors(form) }}
+
+                <div class="user-form">
+                    {{ form_row(form._username) }}
+                    {{ form_row(form._password) }}
+                </div>
+
+                <div class="row user-login__label">
+                    <div class="col-md-6 col-xs-12">
+                        <div class="form-group row">
+                            <div class="checkbox">
+                                <label for="remember_me">
+                                    <input type="checkbox" id="remember_me" name="_remember_me" value="on"/>
+                                    {{ 'sylius.form.user.remember_me'|trans }}
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-xs-12">
+                        <div class="form-action user-login__form--buttons">
+                            <button class="btn btn-primary" type="submit">
+                                <i class="fa fa-lock"></i>
+                                {{ 'sylius.ui.login_button'|trans }}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                {{ form_rest(form) }}
+
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="user-login__check">
+                            <a href="{{ path('sylius_user_registration') }}">
+                                {{ 'sylius.security.login.no_account'|trans }}
+                            </a>
+                            <a href="{{ path('sylius_user_request_password_reset_token') }}">
+                                {{ 'sylius.ui.forgot_password'|trans }}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+{% endblock %}
