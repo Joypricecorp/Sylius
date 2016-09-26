@@ -72,6 +72,7 @@
 {% endmacro %}
 
 {% macro add_to_cart(product) %}
+    {% form_theme form 'SyliusUiBundle:Form:theme.html.twig' %}
     {% set form = sylius_cart_form({'product': product}) %}
 
     <form action="{{ path('sylius_shop_cart_item_add', {'id': product.id}) }}" method="post">

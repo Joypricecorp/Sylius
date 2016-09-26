@@ -40,6 +40,7 @@ class ToroCmsExtension extends AbstractResourceExtension implements PrependExten
             $routeClasses[$className] = [
                 'field' => $routeConfig['field'],
                 'prefix' => $routeConfig['prefix'],
+                'partial' => $routeConfig['defaults']['partial'],
             ];
 
             $controllerByClasses[$className] = $routeConfig['defaults']['controller'];

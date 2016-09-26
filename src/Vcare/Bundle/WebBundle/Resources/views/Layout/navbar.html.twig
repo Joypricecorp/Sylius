@@ -13,7 +13,7 @@
                 </ul>
 
                 <ul class="nav navbar-nav nav-main__top-user">
-                    {{ knp_menu_render('sylius.shop.locale', {'template': 'VcareWebBundle:Menu:locale.html.twig', 'display': 'desktop'}) }}
+                    {{ knp_menu_render('vcare.shop.locale', {'template': 'VcareWebBundle:Menu:locale.html.twig', 'display': 'desktop'}) }}
                     {% if is_granted('ROLE_USER') %}
                         {% set user = app.user %}
                         <li class="nav-item nav-item-user">
@@ -61,28 +61,28 @@
         </div>
     </div>
 
-    {#{% set categories = render(url('route_web_menu_taxon', {code: 'category', template: 'VcareWebBundle:Menu:taxon.html.twig'})) %}
+    {% set categories = render(url('route_shop_partial_taxon_menus', {code: 'category', template: 'VcareWebBundle:Menu:taxon.html.twig'})) %}
 
     <div class="nav-main__menu row">
         <div class="col-xs-12">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-2 col-md-6 nav-main__menu-brand hidden-sm-down">
-                        <a href="{{ path('route_web_homepage') }}">{{ 'VcareAsia'|trans }}</a>
+                        <a href="{{ path('sylius_shop_homepage') }}">{{ 'VcareAsia'|trans }}</a>
                     </div>
                     <div class="col-lg-7 nav-main__menu-category hidden-md-down">
                         {{ categories|raw }}
                     </div>
                     <div class="col-lg-3 col-md-6 col-xs-10 nav-main__menu-cart">
-                        {% if sylius_cart_exists() %}
-                            {% set cart = sylius_cart_get() %}
-                            <a class="btn btn-primary" href="{{ path('sylius_cart_summary') }}">
-                                #}{#{% set trans = {'%items%': cart.totalQuantity, '%total%': cart.total|sylius_price } %}#}{#
-                                <i class="fa fa-shopping-cart"></i> {{ cart.total|sylius_price }}
+                        {% set cart = sylius_cart_get() %}
+                        {% if cart.empty %}
+                            <a class="btn btn-primary" href="{{ ('route_web_product_index') }}">
+                                <i class="fa fa-shopping-cart"></i> {{ "Store"|trans }}
                             </a>
                         {% else %}
-                            <a class="btn btn-primary" href="{{ path('route_web_product_index') }}">
-                                <i class="fa fa-shopping-cart"></i> {{ "Store"|trans }}
+                            <a class="btn btn-primary" href="{{ path('sylius_shop_cart_summary') }}">
+                                {% set trans = {'%items%': cart.totalQuantity, '%total%': cart.total|sylius_price } %}
+                                <i class="fa fa-shopping-cart"></i> {{ cart.total|sylius_price }}
                             </a>
                         {% endif %}
                     </div>
@@ -97,5 +97,5 @@
                 </div>
             </div>
         </div>
-    </div>#}
+    </div>
 </nav>

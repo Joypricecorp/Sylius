@@ -74,7 +74,7 @@ class RouteProvider extends DoctrineProvider implements RouteProviderInterface
         }
 
         foreach ($this->getRepositories() as $className => $repository) {
-            $entity = $this->tryToFindEntity($name, $repository, $className);
+            $entity = $this->tryToFindEntity($name, $repository, $className, $parameters);
             if ($entity) {
                 return $this->createRouteFromEntity($entity);
             }
@@ -142,7 +142,7 @@ class RouteProvider extends DoctrineProvider implements RouteProviderInterface
                     continue;
                 }
 
-                $entity = $this->tryToFindEntity($value, $repository, $className);
+                $entity = $this->tryToFindEntity($value, $repository, $className, $request->query->all());
 
                 if (null === $entity) {
                     continue;
@@ -220,10 +220,11 @@ class RouteProvider extends DoctrineProvider implements RouteProviderInterface
      * @param string $identifier
      * @param RepositoryInterface $repository
      * @param string $className
+     * @param array $parameters
      *
      * @return object|null
      */
-    private function tryToFindEntity($identifier, RepositoryInterface $repository, $className)
+    private function tryToFindEntity($identifier, RepositoryInterface $repository, $className, array $parameters = [])
     {
         $criteria = [$this->routeConfigs[$className]['field'] => $identifier];
         $reflex = new \ReflectionClass($className);
@@ -235,6 +236,12 @@ class RouteProvider extends DoctrineProvider implements RouteProviderInterface
         if ($reflex->implementsInterface(TranslatableInterface::class)) {
             $criteria['locale'] = $this->localeContext->getLocaleCode();
         }
+
+        if (isset($this->routeConfigs[$className]['partial'])) {
+            $criteria['partial'] = $this->routeConfigs[$className]['partial'];
+        }
+
+        $criteria = array_replace_recursive($criteria, $parameters);
 
         if ($repository instanceof PageFinderRepositoryInterface) {
             return $repository->findPageForDisplay($criteria);

@@ -22,6 +22,8 @@ class PageRepository extends EntityRepository implements PageFinderRepositoryInt
      */
     public function findPageForDisplay(array $criteria)
     {
+        $criteria['published'] = true;
+
         return $this->findOneBy($criteria);
     }
 

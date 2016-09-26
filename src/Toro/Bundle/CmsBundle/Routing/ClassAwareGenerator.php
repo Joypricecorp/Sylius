@@ -4,6 +4,7 @@ namespace Toro\Bundle\CmsBundle\Routing;
 
 use Doctrine\Common\Util\ClassUtils;
 use Symfony\Cmf\Component\Routing\ContentAwareGenerator as BaseContentAwareGenerator;
+use Symfony\Component\Routing\Exception\RouteNotFoundException;
 
 class ClassAwareGenerator extends BaseContentAwareGenerator
 {
@@ -18,6 +19,24 @@ class ClassAwareGenerator extends BaseContentAwareGenerator
     public function setRouteConfig(array $routeConfig)
     {
         $this->routeConfig = $routeConfig;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function getRouteByName($name, array $parameters)
+    {
+        if ($this->provider instanceof RouteProvider) {
+            $route = $this->provider->getRouteByName($name, $parameters);
+        } else {
+            $route = $this->provider->getRouteByName($name);
+        }
+
+        if (empty($route)) {
+            throw new RouteNotFoundException('No route found for name: '.$name);
+        }
+
+        return $this->getBestLocaleRoute($route, $parameters);
     }
 
     /**

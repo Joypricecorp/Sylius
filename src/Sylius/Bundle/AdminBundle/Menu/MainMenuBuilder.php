@@ -32,7 +32,7 @@ final class MainMenuBuilder extends AbstractAdminMenuBuilder
         $this->configureSalesMenu($menu);
         $this->configureCustomersSubMenu($menu);
         $this->configureMarketingSubMenu($menu);
-        //$this->configureContentMenu($menu);
+        $this->configureContentMenu($menu);
         $this->configureConfigurationSubMenu($menu);
 
         $this->eventDispatcher->dispatch(self::EVENT_NAME, new MenuBuilderEvent($this->factory, $menu));
@@ -120,16 +120,16 @@ final class MainMenuBuilder extends AbstractAdminMenuBuilder
         ;
 
         $child
-            ->addChild('static_contents', ['route' => 'sylius_admin_static_content_index'])
+            ->addChild('pages', ['route' => 'toro_admin_page_index'])
             ->setLabel('sylius.menu.admin.main.content.static_contents')
             ->setLabelAttribute('icon', 'file')
         ;
 
-        $child
-            ->addChild('routes', ['route' => 'sylius_admin_route_index'])
-            ->setLabel('sylius.menu.admin.main.content.routes')
-            ->setLabelAttribute('icon', 'sitemap')
-        ;
+//        $child
+//            ->addChild('routes', ['route' => 'sylius_admin_route_index'])
+//            ->setLabel('sylius.menu.admin.main.content.routes')
+//            ->setLabelAttribute('icon', 'sitemap')
+//        ;
     }
 
     /**

@@ -7,3 +7,4 @@ toro_cms:
                 controller: toro.controller.page:viewAction
                 repository: toro.repository.page
                 template: ToroCmsBundle::show.html.twig
+                partial: false

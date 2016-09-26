@@ -31,7 +31,7 @@
     "node-sass": "^3.4.2"
   },
   "scripts": {
-    "gulp": "gulp",
+    "gulp": "gulp && gulp cms-merge",
     "modernizr": "./node_modules/modernizr/bin/modernizr -d ./web/assets -c ./node_modules/modernizr/lib/config-all.json"
   },
   "repository": {

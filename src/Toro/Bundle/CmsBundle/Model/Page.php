@@ -132,6 +132,10 @@ class Page implements PageInterface
      */
     public function setPartial(bool $partial)
     {
+        $this->options->setData(array_merge(
+            $this->options->getData(), ['template_strategy' => $partial ? 'partial' : null]
+        ));
+
         $this->partial = $partial;
     }
 

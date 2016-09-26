@@ -1,20 +1,16 @@
 {% extends 'knp_menu.html.twig' %}
 
-{% macro root(item, options) %}
-    <div class="dropdown locale">
-        <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="flag-icon flag-icon-{{ item.getAttribute('currentLocale')|slice(3, 2)|lower }}"></i>
-            <span>{{ item.label }}</span>
-        </a>
-        {% set listAttributes = item.childrenAttributes %}
-        {{ block('list') -}}
-    </div>
-{% endmacro %}
-
 {% block root %}
-    {% if options.display == 'desktop' %}
+    {% if item.children|length and options.display == 'desktop' %}
         <li class="nav-item nav-item-locale">
-            {{ _self.root(item, options) }}
+            <div class="dropdown locale">
+                <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="flag-icon flag-icon-{{ item.getAttribute('currentLocale')|slice(3, 2)|lower }}"></i>
+                    <span>{{ item.label }}</span>
+                </a>
+                {% set listAttributes = item.childrenAttributes %}
+                {{ block('list') -}}
+            </div>
         </li>
     {% endif %}
 {% endblock %}

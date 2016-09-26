@@ -13,7 +13,7 @@ use Symfony\Component\Intl\Intl;
 
 final class LocaleMenuBuilder extends AbstractMenuBuilder
 {
-    const EVENT_NAME = 'sylius.menu.shop.locale';
+    const EVENT_NAME = 'vcare.menu.shop.locale';
 
     /**
      * @var LocaleContextInterface
@@ -66,8 +66,8 @@ final class LocaleMenuBuilder extends AbstractMenuBuilder
         foreach ($locales as $locale) {
             $menu
                 ->addChild($locale, [
-                    'route' => 'sylius_locale_change',
-                    'routeParameters' => ['locale' => $locale],
+                    'route' => 'sylius_shop_switch_locale',
+                    'routeParameters' => ['code' => $locale],
                 ])
                 ->setLabel($currentBundle->getLocaleName($locale))
                 ->setAttributes(['class' => 'dropdown-item'])

@@ -1,7 +1,7 @@
 {% extends 'VcareWebBundle::layout.html.twig' %}
 
 {% block carousel %}
-    {#{{ sonata_block_render({'name': '/cms/blocks/slide-homepage'}, {'template': 'VcareWebBundle:Carousel:home.html.twig'}) }}#}
+    {{ render(url('jumbotron', {partial: true})) }}
 {% endblock %}
 
 {% block content %}

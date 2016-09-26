@@ -16,7 +16,6 @@ class PageController extends ResourceController
     public function viewAction(Request $request, $entity = null)
     {
         // TODO: resource viewer
-        // TODO: check page.partial
 
         /** @var OptionableInterface|TimestampableInterface|ResourceInterface $page */
         $page = $entity ?: $request->attributes->get('_toro_entity');
@@ -30,6 +29,15 @@ class PageController extends ResourceController
         $templateContent = null;
         $templateVar = $this->metadata->getName();
 
+        // FIXME: with some cool idea!
+        if ($page instanceof PageInterface) {
+            if ($request->getBaseUrl() !== '/app_dev.php') {
+                $page->setBody(
+                    preg_replace('|/app_dev.php|', $request->getBaseUrl(), $page->getBody())
+                );
+            }
+        }
+
         if ($option = $page->getOptions()) {
             $template = $option->getTemplate();
             $templateStrategy = $option->getTemplateStrategy();
@@ -38,6 +46,10 @@ class PageController extends ResourceController
 
         if ('blank' === $templateStrategy && empty($template)) {
             $template = 'ToroCmsBundle::blank.html.twig';
+        }
+
+        if ('partial' === $templateStrategy && empty($template)) {
+            $template = 'ToroCmsBundle::partial.html.twig';
         }
 
         if (!$template) {
@@ -71,13 +83,6 @@ class PageController extends ResourceController
                     $page->getOptions()->getTemplateVar() => $page,
                 ]);
             }
-        }
-
-        // FIXME: with some cool idea!
-        if ($page instanceof PageInterface && $request->getBaseUrl() !== '/app_dev.php') {
-            $page->setBody(
-                preg_replace('|/app_dev.php|', $request->getBaseUrl(), $page->getBody())
-            );
         }
 
         $view = View::create($page);

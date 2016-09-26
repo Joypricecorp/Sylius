@@ -72,6 +72,7 @@ class Configuration implements ConfigurationInterface
                                 ->scalarNode('controller')->isRequired()->cannotBeEmpty()->info('Controller where the request should be routed.')->end()
                                 ->scalarNode('repository')->isRequired()->cannotBeEmpty()->info('Repository where the router will find the class.')->end()
                                 ->scalarNode('template')->cannotBeEmpty()->info('Template where the router will find to render.')->end()
+                                ->scalarNode('partial')->cannotBeEmpty()->info('Is this partial page.')->end()
                                 ->arrayNode('sylius')->cannotBeEmpty()->info('Sylius defaults to add to generated route.')
                                     ->useAttributeAsKey('sylius')
                                     ->prototype('variable')

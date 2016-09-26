@@ -12,7 +12,7 @@ route_shop_product_show:
                     - 'expr:service("sylius.context.channel").getChannel()'
 
 route_shop_taxon_show:
-    path: /{code}
+    path: /t/{code}
     methods: [GET]
     defaults:
         _controller: sylius.controller.taxon:showAction
