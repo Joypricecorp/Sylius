@@ -1,5 +1,24 @@
+twig:
+    debug: "%kernel.debug%"
+    strict_variables: "%kernel.debug%"
+    form:
+        resources:
+            - "VcareWebBundle:Form:bootstrap_4_layout.html.twig"
+
 liip_imagine:
     filter_sets:
+        120x90:
+            filters:
+                thumbnail: { size: [120, 90], mode: inset }
         250x250:
             filters:
                 thumbnail: { size: [250, 250], mode: inset }
+        450x450:
+            filters:
+                thumbnail: { size: [450, 450], mode: inset }
+        850x850:
+            filters:
+                thumbnail: { size: [850, 850], mode: inset }
+        1000x1000:
+            filters:
+                thumbnail: { size: [1000, 1000], mode: inset }

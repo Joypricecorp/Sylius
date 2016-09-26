@@ -1,9 +1,7 @@
-{% set root = taxons|first %}
-
-{% if root.children|length %}
+{% if taxons|length %}
     <ul>
-        {% for taxon in root.children %}
-            <li><a href="{{ path(taxon) }}">{{ taxon.name }}</a></li>
+        {% for taxon in taxons %}
+            <li><a href="{{ path('route_shop_taxon_show', {code: taxon.code}) }}">{{ taxon.name }}</a></li>
         {% endfor %}
     </ul>
 {% endif %}

@@ -1,4 +1,30 @@
-{% import 'VcareWebBundle:Macros:alerts.html.twig' as alerts %}
+{#
+<div class="product-show-box__shopping">
+<div class="row">
+    <form action="/cart/add?id=9" method="post">
+                            <div class="row">
+        <div class="col-xs-12 product-show-box__shopping--price">
+                    ฿2,950.00
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-5 col-xs-12 product-show-box__shopping--quantity">
+                <a id="down" onclick="updateSpinner(this);">-</a>
+    <input type="number" id="vcare_cart_item_quantity" name="vcare_cart_item[quantity]" required="required" min="1" empty_value="1" class=" form-control" value="1">
+    <a id="up" onclick="updateSpinner(this);">+</a>
+    <input type="hidden" id="vcare_cart_item__token" name="vcare_cart_item[_token]" class=" form-control" value="iIPk4KTHLMm_k5ezk18UtuBRfajUE2WRkuZG33B0pPs">
+        </div>
+        <div class="col-md-6 col-xs-12 product-show-box__shopping--add-cart">
+            <button type="submit" class="btn btn-primary">
+                <i class="fa fa-cart-plus"></i>
+                หยิบใส่ตะกร้า
+            </button>
+        </div>
+        </div>
+    </form>
+</div>
+</div>
+#}
 
 {% macro cart_quantity(form) %}
     <a id="down" onclick="updateSpinner(this);">-</a>
@@ -31,8 +57,7 @@
         </div>
         <div class="col-md-6 col-xs-12 product-show-box__shopping--add-cart">
             <button type="submit" class="btn btn-primary">
-                <i class="fa fa-cart-plus"></i>
-                {{ 'sylius.ui.add_to_cart'|trans|raw }}
+                <i class="fa fa-cart-plus"></i> {{ 'sylius.ui.add_to_cart'|trans|raw }}
             </button>
         </div>
         {#<div class="col-md-3 col-xs-12 product-show-box__shopping--wishlist">#}
@@ -49,18 +74,17 @@
 {% macro add_to_cart(product) %}
     {% set form = sylius_cart_form({'product': product}) %}
 
-    <form action="{{ path('sylius_cart_item_add', {'id': product.id}) }}" method="post">
+    <form action="{{ path('sylius_shop_cart_item_add', {'id': product.id}) }}" method="post">
         {% if product.hasVariants %}
             {{ _self.add_to_cart_variants(product, form) }}
-
             <div class="row">
-                <div class="col-sm-4 hidden-sm-down"></div>
-                <div class="col-sm-4">{{ _self.cart_quantity(form) }}</div>
-                <div class="col-sm-4">
+                <div class="col-md-5 col-xs-12 product-show-box__shopping--quantity">
+                    {{ _self.cart_quantity(form) }}
+                </div>
+                <div class="col-md-6 col-xs-12 product-show-box__shopping--add-cart">
                     <button type="submit" class="btn btn-primary">{{ 'Add To Cart'|trans|raw }}</button>
                 </div>
             </div>
-
         {% else %}
             {{ _self.add_to_cart_single(product, form) }}
         {% endif %}

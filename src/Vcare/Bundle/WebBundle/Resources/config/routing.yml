@@ -1,0 +1,29 @@
+route_shop_product_show:
+    path: /products/{slug}
+    methods: [GET]
+    defaults:
+        _controller: sylius.controller.product:showAction
+        _sylius:
+            template: VcareWebBundle:Product:show.html.twig
+            repository:
+                method: findOneBySlugAndChannel
+                arguments:
+                    - $slug
+                    - 'expr:service("sylius.context.channel").getChannel()'
+
+route_shop_taxon_show:
+    path: /{code}
+    methods: [GET]
+    defaults:
+        _controller: sylius.controller.taxon:showAction
+        _sylius:
+            template: VcareWebBundle:Taxon:show.html.twig
+            repository:
+                method: findOneByCode
+                arguments: [$code]
+    requirements:
+        permalink: .+
+
+route_shop_partials:
+    resource: "@VcareWebBundle/Resources/config/routing_partial.yml"
+    prefix: /_partial

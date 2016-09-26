@@ -1,6 +1,9 @@
 # This file is part of the Sylius package.
 # (c) Paweł Jędrzejewski
-    
+
+vcare_web:
+    resource: "@VcareWebBundle/Resources/config/routing.yml"
+
 sylius_shop:
     resource: "@SyliusShopBundle/Resources/config/routing.yml"
 
