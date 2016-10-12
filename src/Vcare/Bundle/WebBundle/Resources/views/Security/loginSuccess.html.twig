@@ -1,0 +1,16 @@
+{% extends 'VcareWebBundle::layout.html.twig' %}
+
+{% block content %}
+    APP LOGIN SUCCESS
+
+    {% set appName = app.request.attributes.get('appName') %}
+    {% set token = app.request.attributes.get('token') %}
+
+    <p>TODO: close window and open app.</p>
+
+    <code style="white-space: normal">
+        {{ token }}
+    </code>
+
+    <a href="{{ appName }}://?{{ token }}" class="btn btn-primary">Open App: {{ appName }}</a>
+{% endblock %}

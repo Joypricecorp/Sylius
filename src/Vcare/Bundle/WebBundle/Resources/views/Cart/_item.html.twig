@@ -1,0 +1,25 @@
+{% from "VcareWebBundle:Product:macros.html.twig" import cart_quantity %}
+{% set item_form = form.items[loop.index0] %}
+
+<tr>
+    <td class="variant">
+        {{ include('VcareWebBundle:Product:_variant.html.twig', {'variant': item.variant}) }}
+    </td>
+    <td class="unit-price">
+        {#{% if item.unitPrice != item.discountedUnitPrice %}
+            <span class="regular-unit-price">{{ item.unitPrice|sylius_price(cart.currencyCode) }}</span>
+        {% endif %}#}
+        {{ item.discountedUnitPrice|sylius_price(cart.currencyCode) }}
+    </td>
+    <td class="quantity">
+        {{ cart_quantity(item_form) }}
+    </td>
+    <td class="price">
+        {{ item.total|sylius_price(cart.currencyCode) }}
+    </td>
+    <td class="remove">
+        <a href="{{ path('sylius_shop_cart_item_remove', {'id': item.id}) }}" class="btn btn-danger">
+            <i class="fa fa-trash-o"></i>
+        </a>
+    </td>
+</tr>

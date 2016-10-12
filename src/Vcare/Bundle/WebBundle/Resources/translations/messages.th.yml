@@ -1,0 +1,12 @@
+sylius.ui.address: ที่อยู่
+sylius.ui.address: ที่อยู่
+sylius.ui.continue_shopping: เลือกซื้อสินค้าต่อ
+sylius.form.address.city: เขต/อำเภอ
+sylius.ui.yes_label: ใช่
+sylius.ui.no_label: ไม่ใช่
+sylius.form.variant.tracked: ตรวจสต๊อก
+sylius.form.login.username: อีเมล์
+
+vcare.ui.login_information: ข้อมูลการเข้าระบบ
+vcare.ui.register_in_the_store: กรุณาระบุรายละเอียดสำหรับการสมัครสมาชิก
+vcare.menu.shop.account.addressing: แก้ไขที่อยู่

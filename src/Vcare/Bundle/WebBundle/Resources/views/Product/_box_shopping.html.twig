@@ -1,0 +1,9 @@
+{% from "VcareWebBundle:Product:macros.html.twig" import out_of_stock, add_to_cart %}
+
+<div class="row">
+    {% if product.simple and not sylius_inventory_is_available(product.firstVariant) %}
+        {{ out_of_stock(product) }}
+    {% else %}
+        {{ add_to_cart(product, form|default(null)) }}
+    {% endif %}
+</div>

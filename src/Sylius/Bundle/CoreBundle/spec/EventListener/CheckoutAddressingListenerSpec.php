@@ -20,7 +20,7 @@ use Symfony\Component\EventDispatcher\GenericEvent;
 /**
  * Automatic set customer's default addressing
  *
- * @author Liverbool <nukboon@gmail.com>
+ * @author Dos <nukboon@gmail.com>
  */
 final class CheckoutAddressingListenerSpec extends ObjectBehavior
 {

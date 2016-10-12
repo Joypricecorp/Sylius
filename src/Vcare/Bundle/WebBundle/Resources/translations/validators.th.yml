@@ -1,0 +1,7 @@
+"%stockable% does not have sufficient stock.": "%stockable% เหลือไม่พอสำหรับจำนวนที่คุณสั่งซื้อ"
+
+vcare.customer.phone_number.not_blank: กรุณาระบุหมายเลขโทรศัพท์ของท่าน
+vcare.customer.phone_number.not_numeric: หมายเลขโทรศัพท์ไม่ถูกต้อง
+vcare.customer.phone_number.not_valid_length: หมายเลขโทรศัพท์ไม่ถูกต้อง
+vcare.customer.postcode.not_numeric: รหัสไปรษณีย์ไม่ถูกต้อง
+vcare.customer.name.registered: มีชื่อลูกค้านี้ในระบบแล้ว หากท่านเป็นสมาชิกอยู่แล้ว กรุณาไปที่หน้า Login

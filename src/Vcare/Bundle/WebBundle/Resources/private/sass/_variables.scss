@@ -1,0 +1,32 @@
+// color
+$color-base: #F7941E !default;
+$color-second: #607D8B !default;
+$color-ext: lighten($color-second, 10%) !default;
+$color-basic: #ECEEEF !default;
+
+// Bootstrap variables
+$brand-primary: $color-base;
+
+$enable-flex: true;
+$enable-rounded: true;
+$enable-shadows: true;
+$enable-gradients: true;
+$enable-transitions: true;
+$enable-hover-media-query: false;
+$enable-grid-classes: true;
+
+// form
+$input-padding-y: .33rem;
+
+// border radius
+$border-radius: 0;
+$border-radius-lg: 0;
+$border-radius-sm: 0;
+
+// normal button size
+$btn-padding-y: 5px 12px;
+$btn-padding-x: 6px 12px;
+
+$btn-primary-color: #ffffff;
+$btn-primary-bg: $color-base;
+$btn-primary-border: darken($color-base, 10%);

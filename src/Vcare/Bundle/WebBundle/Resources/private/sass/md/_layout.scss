@@ -1,0 +1,7 @@
+body {
+    @include debug_mode(md);
+
+    > .container {
+        padding: .5rem;
+    }
+}

@@ -1,0 +1,25 @@
+.form-error {
+    color: red;
+
+    &__label {
+        padding: 6px 0 0 0 !important;
+    }
+}
+
+.form-group {
+    select {
+        border: 0;
+        height: 38px;
+        outline: 1px solid #ccc;
+    }
+
+    &.has-danger {
+        .alert-danger {
+            margin-top: .5rem;
+        }
+    }
+}
+
+.btn {
+    box-shadow: none !important;
+}

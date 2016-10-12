@@ -1,0 +1,50 @@
+{% extends 'VcareWebBundle:Account:layout.html.twig' %}
+{% form_theme form 'VcareWebBundle:Form:common.html.twig' %}
+
+{% block breadcrumb %}
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="{{ path('sylius_shop_homepage') }}">{{ 'sylius.ui.home'|trans }}</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a href="{{ path('sylius_shop_account_dashboard') }}">{{ 'sylius.ui.my_account'|trans }}</a>
+        </li>
+        <li class="breadcrumb-item active">{{ 'sylius.ui.personal_information'|trans }}</li>
+    </ol>
+{% endblock %}
+
+{% block subcontent %}
+    <h4>{{ 'sylius.ui.addressing'|trans }}</h4>
+
+    <div class="card-text">
+        {{ form_start(form, {'action': path('sylius_shop_account_addressing_update'), 'attr': {'class': 'account-menu__content--form', 'novalidate': 'novalidate'}}) }}
+            <input type="hidden" name="_method" value="PUT" />
+
+            <div class="row">
+                <fieldset class="col-xs-12 col-md-6 address-container">
+                    <div class="card card-block">
+                        <h6 class="card-title"><strong>{{ 'sylius.ui.shipping_address'|trans }}</strong></h6>
+                        <div class="card-text">
+                            {% include 'VcareWebBundle:Account:_formAddressing.html.twig' with {'form': form.shippingAddress} %}
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset class="col-xs-12 col-md-6 address-container">
+                    <div class="card card-block">
+                        <h6 class="card-title"><strong>{{ 'sylius.ui.billing_address'|trans }}</strong></h6>
+                        <div class="card-text">
+                            {% include 'VcareWebBundle:Account:_formAddressing.html.twig' with {'form': form.billingAddress} %}
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+
+            <div class="text-sm-right text-xs-right">
+                <button type="submit" class="btn btn-primary">{{ 'sylius.ui.save_changes'|trans }}</button>
+            </div>
+
+            {{ form_row(form._token) }}
+        {{ form_end(form, {'render_rest': false}) }}
+    </div>
+{% endblock %}

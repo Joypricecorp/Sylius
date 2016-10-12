@@ -1,0 +1,110 @@
+{% extends 'VcareWebBundle::layout.html.twig' %}
+{% from 'VcareWebBundle:Product:macros.html.twig' import list %}
+{% set is_mobile_view = is_mobile_view() %}
+
+{% if order_item is defined %}
+    {% set product = order_item.variant.product %}
+{% endif %}
+
+{% block content %}
+    <div class="row product-show">
+        <div class="col-md-6 col-xs-12">
+            <div class="product-show-pictures">
+
+                <div class="product-show-pictures__preview preload_object magnify">
+                    {% set first_image = product.images.first() %}
+                    {% set product_picture_l = first_image ? first_image.path|imagine_filter('850x850') : 'http://placehold.it/850x850' %}
+                    {% set product_picture_xl = first_image ? first_image.path|imagine_filter('1000x1000') : 'http://placehold.it/1000x1000' %}
+
+                    <img src="{{ product_picture_l }}" class="zoom" data-magnify-src="{{ product_picture_xl }}">
+                </div>
+
+                {% if product.images|length > 1 %}
+                    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" data-interval="false">
+                        <div class="carousel-inner" role="listbox">
+                            {% for image in product.images %}
+                                {% if loop.index%4==1 %}
+                                    <div class="carousel-item product-show-pictures__item row {{ loop.first ? 'active' : '' }}">
+                                {% endif %}
+                                        <div class="product-show-pictures__item--list col-xs-4">
+                                            <a href="{{ image.path|imagine_filter('850x850') }}" title="{{ product.name }}">
+                                                <input class="xl-image-path" type="hidden" value="{{ image.path|imagine_filter('1000x1000') }}">
+                                                <img src="{{ image.path|imagine_filter('120x90') }}" alt="{{ product.name }}"/>
+                                            </a>
+                                        </div>
+                                {% if loop.index%4==0 or loop.last %}
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        {% if product.images|length > 4 %}
+                            <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                                <span class="icon-prev" aria-hidden="true"></span>
+                                <span class="sr-only">{{ "sylius.ui.previous"|trans }}</span>
+                            </a>
+                            <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                                <span class="icon-next" aria-hidden="true"></span>
+                                <span class="sr-only">{{ "sylius.ui.next"|trans }}</span>
+                            </a>
+                        {% endif %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="col-md-6 col-xs-12">
+            <h1 class="product-show-box__header">{{ product.name }}</h1>
+
+            {% if product.code %}
+                <div class="product-show-box__code"><strong>{{ "sylius.ui.code"|trans }}</strong>: {{ product.code }}</div>
+            {% endif %}
+
+            <div class="product-show-box__share">
+                <a href="#"><i class="fa fa-facebook"></i></a>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+                <a href="#"><i class="fa fa-google-plus"></i></a>
+            </div>
+
+            <div class="product-show-box__shopping">
+                {% include 'VcareWebBundle:Product:_box_shopping.html.twig' %}
+            </div>
+
+            {% if product.shortDescription %}
+                <div class="product-show-box__description--short">{{ product.shortDescription|markdown }}</div>
+            {% endif %}
+
+            {% if product.description %}
+                <p class="product-show-box__description--full">{{ product.description|raw }}</p>
+            {% endif %}
+
+            {% if product.attributes|length %}
+                <h3>{{ 'sylius.ui.attributes'|trans }}</h3>
+                <div class="table-responsive">
+                    <table class="table table-sm product-show-box__attributes">
+                        <tbody>
+                        {% for attribute in product.attributes %}
+                            <tr>
+                                <td>{{ attribute.name }}</td>
+                                <td>{{ attribute.value }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="product-association">
+        {% if product.associations|length %}
+            <div class="page-header">{{ 'sylius.ui.you_may_also_like'|trans|raw }}</div>
+            <div class="row">
+                {% for association in product.associations %}
+                    {% if association.associatedObjects|length > 0 %}
+                        {{ list(association.associatedObjects) }}
+                    {% endif %}
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

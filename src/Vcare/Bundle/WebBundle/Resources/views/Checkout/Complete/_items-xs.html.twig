@@ -1,0 +1,78 @@
+{% for item in order.items %}
+    {% set product = item.product %}
+
+    <div class="finalize-xs">
+        <div class="finalize-xs__variant">
+            {{ include('VcareWebBundle:Product:_variant.html.twig', {'variant': item.variant}) }}
+        </div>
+        <div class="row finalize-xs__row">
+            <div class="col-xs-6 finalize-xs__left">{{ 'sylius.ui.qty'|trans }}</div>
+            <div class="col-xs-6">{{ item.quantity }}</div>
+        </div>
+        <div class="row finalize-xs__row">
+            <div class="col-xs-6 finalize-xs__left">{{ 'sylius.ui.price'|trans }}</div>
+            <div class="col-xs-6">{{ item.unitPrice|sylius_price(order.currencyCode, order.exchangeRate) }}</div>
+        </div>
+        <div class="row finalize-xs__row">
+            <div class="col-xs-6 finalize-xs__left">{{ 'sylius.ui.subtotal'|trans }}</div>
+            <div class="col-xs-6">{{ item.subtotal|sylius_price(order.currencyCode, order.exchangeRate) }}</div>
+        </div>
+    </div>
+{% endfor %}
+
+<div class="finalize-xs-total">
+    <div class="finalize-xs-total__row row">
+        <div class="col-xs-6 finalize-xs-total__left">{{ 'sylius.ui.subtotal'|trans }}</div>
+        <div class="col-xs-6  text-xs-right">
+            {{ order.itemsTotal|sylius_price(order.currencyCode, order.exchangeRate) }}
+        </div>
+    </div>
+    <hr>
+
+    <div class="finalize-xs-total__row row">
+        <div class="col-xs-6 finalize-xs-total__left">{{ 'sylius.ui.tax_total'|trans }}</div>
+        <div class="col-xs-6  text-xs-right">
+            {{ order.taxTotal|sylius_price(order.currencyCode, order.exchangeRate) }}
+        </div>
+    </div>
+    <hr>
+
+    <div class="finalize-xs-total__row row">
+        <div class="col-xs-6 finalize-xs-total__left">{{ 'sylius.ui.shipping_total'|trans }}</div>
+        <div class="col-xs-6  text-xs-right">
+            {{ order.shippingTotal|sylius_price(order.currencyCode, order.exchangeRate) }}
+        </div>
+    </div>
+    <hr>
+
+    {% set orderPromotionAdjustment = constant('Sylius\\Component\\Core\\Model\\AdjustmentInterface::ORDER_PROMOTION_ADJUSTMENT') %}
+    {% set orderPromotions = sylius_aggregate_adjustments(order.getAdjustmentsRecursively(orderPromotionAdjustment)) %}
+
+    {% if not orderPromotions is empty %}
+        <div class="finalize-xs-total__row row">
+            <div class="col-xs-6 finalize-xs-total__left">
+                <strong>{{ 'sylius.ui.promotion_total'|trans }}</strong><br>
+                <ul>
+                    {% for label, amount in orderPromotions %}
+                        <li class="item">
+                            {{ label }} {% if not amount == 0 %}-{% endif %}{{ (-1 * amount)|sylius_price(order.currencyCode, order.exchangeRate) }}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            {% set orderDiscount = order.adjustmentsTotalRecursively(orderPromotionAdjustment) %}
+            <div class="col-xs-6  text-xs-right">
+                {% if not orderDiscount == 0 %}-{% endif %}{{ (-1 * orderDiscount)|sylius_price(order.currencyCode, order.exchangeRate) }}
+            </div>
+        </div>
+        <hr>
+    {% endif %}
+
+    <div class="finalize-xs-total__row finalize-xs-total__total row">
+        <div class="col-xs-6 finalize-xs-total__left">{{ 'sylius.ui.total'|trans }}</div>
+        <div class="col-xs-6  text-xs-right">
+            {{ order.total|sylius_price(order.currencyCode, order.exchangeRate) }}
+        </div>
+    </div>
+</div>

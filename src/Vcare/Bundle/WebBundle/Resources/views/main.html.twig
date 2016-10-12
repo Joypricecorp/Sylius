@@ -1,0 +1,29 @@
+{% extends 'VcareWebBundle::layout.html.twig' %}
+
+{% block carousel %}
+    {{ render(url('toro_cms_partial_page', {slug: 'home-slideshow'})) }}
+{% endblock %}
+
+{% block content %}
+    {{ render(url('sylius_shop_partial_product_index_latest', {'count': 9, 'template': 'VcareWebBundle:Product:latest.html.twig'})) }}
+{% endblock %}
+
+{% block jumbotron %}
+    {#<div class="jumbotron jumbotron__index--bt">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 jumbotron__faq">
+                    <h3>Frequently Asked Questions</h3>
+                    <ul>
+                        <li><a>Who are the local coordinators?</a></li>
+                        <li><a>We want to place defibrillator in community. What do we have to do?</a></li>
+                        <li><a>What is a smartphone?</a></li>
+                        <li><a>Can I send an SOS call without internet connection?</a></li>
+                        <li><a>What is semi-automatic defibrillator (AED)?</a></li>
+                        <li><a>Still not finding an answer?</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>#}
+{% endblock %}
