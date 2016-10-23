@@ -3,41 +3,20 @@
 
     padding: 2rem 0;
 
-    &__item {
-        + #{$root-box}__item {
-            border-top: 1px solid $color-second;
-            padding-top: 1rem;
-        }
-
-        .variant-box__body-heading {
-            font-size: 1rem;
-            font-weight: bold;
-        }
-
-        &-table {
-            font-size: 1rem;
-
-            .remove {
-                vertical-align: middle;
-
-                .btn {
-                    @include border-radius(50%);
-                    @include box-shadow(none);
+    &__table {
+        &--item {
+            .unit-price {
+                .regular-price {
+                    text-decoration: line-through;
+                    color: red;
+                    font-size: 60%;
                 }
             }
-
-            th, td {
-                text-align: right;
-            }
-
-            tr:first-child {
-                th, td {
-                    border: none;
+            .quantity {
+                input {
+                    min-width: 50px;
+                    padding: 0.33rem;
                 }
-            };
-
-            .quantity-box {
-                @include flex-align-right();
             }
         }
     }

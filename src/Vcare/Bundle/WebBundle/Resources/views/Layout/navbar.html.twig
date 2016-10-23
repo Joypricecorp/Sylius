@@ -87,9 +87,9 @@
                     <div class="col-lg-3 col-md-6 col-xs-10 nav-main__menu-cart">
                         {% set cart = sylius_cart_get() %}
                         {% if cart.empty %}
-                            {#<a class="btn btn-primary" href="{{ path('sylius_shop_homepage') }}">
-                                <i class="fa fa-shopping-cart"></i> {{ "Store"|trans }}
-                            </a>#}
+                            <a class="btn btn-primary" href="{{ path('sylius_shop_product_index') }}">
+                                {{ "vcare.ui.all_products"|trans }}
+                            </a>
                         {% else %}
                             <a class="btn btn-primary" href="{{ path('sylius_shop_cart_summary') }}">
                                 <i class="fa fa-shopping-cart"></i> {{ cart.total|sylius_price }}

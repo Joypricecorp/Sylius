@@ -21,13 +21,13 @@
 
 {% set page_navigate %}
     <div class="row" style="margin-bottom: 1rem;">
-        <div class="col-md-6 col-xs-12 text-md-left text-xs-center">
+        <div class="col-xs-6">
             <a href="{{ path('sylius_shop_account_order_index') }}" class="btn btn-secondary">
                 <i class="fa fa-angle-left"></i>
                 {{ 'sylius.ui.order_history'|trans }}
             </a>
         </div>
-        <div class="col-md-6 col-xs-12 text-md-right text-xs-center">
+        <div class="col-xs-6 text-xs-right">
             {% if 'fulfilled' == order.state %}
                 <a href="{{ path('sylius_shop_account_order_incoice', {'number': order.number}) }}" class="btn btn-primary">
                     <i class="fa fa-print"></i>

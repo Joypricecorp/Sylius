@@ -10,11 +10,20 @@
         <tbody>
         <tr>
             <th>{{ 'sylius.ui.unit_price'|trans }}</th>
-            <td>{{ item.discountedUnitPrice|sylius_price(cart.currencyCode) }}</td>
+            <td>
+                {% if item.unitPrice != item.discountedUnitPrice %}
+                    <span class="regular-price">{{ item.unitPrice|sylius_price(cart.currencyCode) }}</span>
+                {% endif %}
+                <span class="discounted-price">{{ item.discountedUnitPrice|sylius_price(cart.currencyCode) }}</span>
+            </td>
         </tr>
         <tr>
             <th>{{ 'sylius.ui.qty'|trans }}</th>
             <td>{{ cart_quantity(item_form) }}</td>
+        </tr>
+        <tr>
+            <th>{{ 'sylius.ui.tax'|trans }}</th>
+            <td>{{ item.taxTotal|sylius_price(cart.currencyCode) }}</td>
         </tr>
         <tr>
             <th>{{ 'sylius.ui.total'|trans }}</th>

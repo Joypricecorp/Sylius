@@ -17,7 +17,7 @@ class UpdateExchangeRateCommand extends ContainerAwareCommand
     protected function configure()
     {
         $this
-            ->setName('paysbuy:currency:update')
+            ->setName('dos:paysbuy:currency:update')
             ->setDescription('Update currencies exchange rates using external database.')
             ->addOption('all', null, InputOption::VALUE_NONE, 'Update all currencies (including not enabled ones) in database?')
         ;

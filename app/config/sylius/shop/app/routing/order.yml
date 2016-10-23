@@ -1,5 +1,5 @@
 sylius_shop_order_pay:
-    path: /{lastNewPaymentId}/pay
+    path: /{paymentId}/pay
     methods: [GET]
     defaults:
         _controller: sylius.controller.payum:prepareCaptureAction
@@ -21,16 +21,13 @@ sylius_shop_order_thank_you:
         _sylius:
             template: VcareWebBundle:Checkout:thankYou.html.twig
 
-sylius_shop_order_show_details:
+sylius_shop_order_show:
     path: /{tokenValue}
     methods: [GET]
     defaults:
         _controller: sylius.controller.order:showAction
         _sylius:
             template: VcareWebBundle:Checkout:orderDetails.html.twig
-            grid: sylius_shop_account_order
-            section: shop_account
             repository:
                 method: findOneBy
-                arguments:
-                    [tokenValue: $tokenValue]
+                arguments: [tokenValue: $tokenValue]

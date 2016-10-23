@@ -11,9 +11,7 @@ sylius_grid:
                 options:
                     class: Toro\Bundle\CmsBundle\Model\Page
             sorting:
-                createdAt:
-                    path: createdAt
-                    direction: desc
+                createdAt: desc
             filters:
                 title:
                     type: string
@@ -35,9 +33,10 @@ sylius_grid:
                 slug:
                     type: string
                     label: Slug
-                created_at:
+                createdAt:
                     type: datetime
                     label: Create at
+                    sortable: ~
                     options:
                         format: d-m-Y H:i
             actions:

@@ -8,7 +8,7 @@
                 <div class="content">
                     {{ 'sylius.ui.thank_you'|trans }}
                     <div class="sub header">{{ 'sylius.ui.placed_an_order'|trans }}</div>
-                    <a href="{{ path('sylius_shop_order_show_details', { 'tokenValue': order.tokenValue }) }}">
+                    <a href="{{ path('sylius_shop_order_show', { 'tokenValue': order.tokenValue }) }}">
                         {{ 'sylius.ui.show_order_details'|trans }}
                     </a>
                 </div>

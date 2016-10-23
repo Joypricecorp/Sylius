@@ -18,12 +18,13 @@
                         {{ form_errors(form) }}
 
                         {% if not is_mobile_view %}
-                            <table class="table cart-summary__table" id="cart-summary">
+                            <table class="table table-bordered cart-summary__table" id="cart-summary">
                                 <thead>
                                 <tr>
                                     <th>{{ 'sylius.ui.item'|trans }}</th>
-                                    <th>{{ 'sylius.ui.unit_price'|trans }}</th>
-                                    <th>{{ 'sylius.ui.qty'|trans }}</th>
+                                    <th class="text-align-right">{{ 'sylius.ui.unit_price'|trans }}</th>
+                                    <th class="text-align-center">{{ 'sylius.ui.qty'|trans }}</th>
+                                    <th class="text-align-right">{{ 'sylius.ui.tax'|trans }}</th>
                                     <th class="text-align-right">{{ 'sylius.ui.total'|trans }}</th>
                                     <th></th>
                                 </tr>
@@ -58,15 +59,15 @@
                 </div>
 
                 <div class="col-lg-4 col-xs-12 cart-summary__total">
-                    <div class="page-header">{{ 'sylius.ui.grand_total'|trans }}</div>
+                    <div class="page-header">{{ 'sylius.ui.summary'|trans }}</div>
 
                     <div class="cart-summary__total--row">
                         <div class="row">
                             <div class="col-xs-5 cart-summary__total--txt">
-                                <strong>{{ 'sylius.ui.subtotal'|trans }}</strong>
+                                <strong>{{ 'sylius.ui.tax'|trans }}</strong>
                             </div>
                             <div class="col-xs-7 cart-summary__total--prc">
-                                {{ cart.itemsTotal|sylius_price(cart.currencyCode, cart.exchangeRate) }}
+                                {{ cart.taxTotal|sylius_price(cart.currencyCode) }}
                             </div>
                         </div>
                     </div>
@@ -74,46 +75,22 @@
                     <div class="cart-summary__total--row">
                         <div class="row">
                             <div class="col-xs-5 cart-summary__total--txt">
-                                <strong>{{ 'sylius.ui.tax_total'|trans }}</strong>
+                                <strong>{{ 'sylius.ui.shipping'|trans }}</strong>
                             </div>
                             <div class="col-xs-7 cart-summary__total--prc">
-                                {{ cart.taxTotal|sylius_price(cart.currencyCode, cart.exchangeRate) }}
+                                {{ cart.shippingTotal|sylius_price(cart.currencyCode) }}
                             </div>
                         </div>
                     </div>
 
-                    <div class="cart-summary__total--row">
-                        <div class="row">
-                            <div class="col-xs-5 cart-summary__total--txt">
-                                <strong>{{ 'sylius.ui.shipping_total'|trans }}</strong>
-                            </div>
-                            <div class="col-xs-7 cart-summary__total--prc">
-                                {{ cart.shippingTotal|sylius_price(cart.currencyCode, cart.exchangeRate) }}
-                            </div>
-                        </div>
-                    </div>
-
-                    {% set cartPromotionAdjustment = constant('Sylius\\Component\\Core\\Model\\AdjustmentInterface::ORDER_PROMOTION_ADJUSTMENT') %}
-                    {% set cartPromotions = sylius_aggregate_adjustments(cart.getAdjustmentsRecursively(cartPromotionAdjustment)) %}
-
-                    {% if not cartPromotions is empty %}
+                    {% if cart.orderPromotionTotal %}
                         <div class="cart-summary__total--row">
                             <div class="row">
-                                {% for label, amount in cartPromotions %}
-                                    <div class="col-xs-7">{{ label }}</div>
-                                    <div class="col-xs-5">
-                                        {% if not amount == 0 %}-{% endif %}{{ (-1 * amount)|sylius_price(cart.currencyCode, cart.exchangeRate) }}
-                                    </div>
-                                {% endfor %}
-
-                                <div class="col-xs-6">
-                                    <strong>{{ 'sylius.ui.promotion_total'|trans }}</strong>
+                                <div class="col-xs-5 cart-summary__total--txt">
+                                    <strong>{{ 'sylius.ui.discount'|trans }}</strong>
                                 </div>
-
-                                {% set cartDiscount = cart.adjustmentsTotalRecursively(cartPromotionAdjustment) %}
-
-                                <div class="col-xs-6 cart-summary__total--prc">
-                                    {% if not cartDiscount == 0 %}-{% endif %}{{ (-1 * cartDiscount)|sylius_price(cart.currencyCode, cart.exchangeRate) }}
+                                <div class="col-xs-7 cart-summary__total--prc">
+                                    {{ cart.orderPromotionTotal|sylius_price(cart.currencyCode) }}
                                 </div>
                             </div>
                         </div>
@@ -122,10 +99,10 @@
                     <div class="cart-summary__total--grd">
                         <div class="row">
                             <div class="col-xs-5 cart-summary__total--grd-txt">
-                                <strong>{{ 'sylius.ui.total'|trans }}</strong>
+                                <strong>{{ 'sylius.ui.order_total'|trans }}</strong>
                             </div>
                             <div class="col-xs-7 cart-summary__total--grd-prc">
-                                {{ cart.total|sylius_price(cart.currencyCode, cart.exchangeRate) }}
+                                {{ cart.total|sylius_price(cart.currencyCode) }}
                             </div>
                         </div>
                     </div>

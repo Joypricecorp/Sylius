@@ -6,7 +6,12 @@ sylius.ui.yes_label: ใช่
 sylius.ui.no_label: ไม่ใช่
 sylius.form.variant.tracked: ตรวจสต๊อก
 sylius.form.login.username: อีเมล์
+sylius.ui.products: สินค้าทั้งหมด
+sylius.menu.admin.main.catalog.products: จัดการสินค้า
+sylius.ui.manage_users_able_to_access_administration_panel: ผู้ใช้ที่สามารถเข้าระบบบริหารจัดการข้อมูลได้
 
+vcare.ui.all_products: สินค้าทั้งหมด
+vcare.ui.more_products: สินค้าอื่นๆ
 vcare.ui.login_information: ข้อมูลการเข้าระบบ
 vcare.ui.register_in_the_store: กรุณาระบุรายละเอียดสำหรับการสมัครสมาชิก
 vcare.menu.shop.account.addressing: แก้ไขที่อยู่

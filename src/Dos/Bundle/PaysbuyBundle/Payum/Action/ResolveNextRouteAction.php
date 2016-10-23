@@ -36,7 +36,7 @@ final class ResolveNextRouteAction implements ActionInterface
         /** @var PaymentInterface $payment */
         $payment = $request->getFirstModel();
 
-        $request->setRouteName('sylius_shop_order_show_details');
+        $request->setRouteName('sylius_shop_order_show');
         $request->setRouteParameters(['tokenValue' => $payment->getOrder()->getTokenValue()]);
 
         if ($this->session) {

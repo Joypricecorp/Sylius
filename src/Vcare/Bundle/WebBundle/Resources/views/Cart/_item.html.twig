@@ -1,20 +1,23 @@
 {% from "VcareWebBundle:Product:macros.html.twig" import cart_quantity %}
 {% set item_form = form.items[loop.index0] %}
 
-<tr>
+<tr class="cart-summary__table--item">
     <td class="variant">
         {{ include('VcareWebBundle:Product:_variant.html.twig', {'variant': item.variant}) }}
     </td>
-    <td class="unit-price">
-        {#{% if item.unitPrice != item.discountedUnitPrice %}
-            <span class="regular-unit-price">{{ item.unitPrice|sylius_price(cart.currencyCode) }}</span>
-        {% endif %}#}
-        {{ item.discountedUnitPrice|sylius_price(cart.currencyCode) }}
+    <td class="unit-price text-align-right">
+        {% if item.unitPrice != item.discountedUnitPrice %}
+            <span class="regular-price">{{ item.unitPrice|sylius_price(cart.currencyCode) }}</span><br>
+        {% endif %}
+        <span class="discounted-price">{{ item.discountedUnitPrice|sylius_price(cart.currencyCode) }}</span>
     </td>
     <td class="quantity">
         {{ cart_quantity(item_form) }}
     </td>
-    <td class="price">
+    <td class="tax text-align-right">
+        {{ item.taxTotal|sylius_price(cart.currencyCode) }}
+    </td>
+    <td class="price text-align-right">
         {{ item.total|sylius_price(cart.currencyCode) }}
     </td>
     <td class="remove">

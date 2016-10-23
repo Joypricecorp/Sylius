@@ -31,7 +31,7 @@ final class MainMenuBuilder extends AbstractAdminMenuBuilder
         $this->addCatalogSubMenu($menu);
         $this->addSalesSubMenu($menu);
         $this->addCustomersSubMenu($menu);
-        $this->addMarketingSubMenu($menu);
+        //$this->addMarketingSubMenu($menu);
         $this->addContentSubMenu($menu);
         $this->addConfigurationSubMenu($menu);
 

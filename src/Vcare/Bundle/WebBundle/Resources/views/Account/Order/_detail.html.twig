@@ -96,9 +96,10 @@
         <thead>
         <tr>
             <th>{{ 'sylius.ui.item'|trans }}</th>
-            <th>{{ 'sylius.ui.qty'|trans }}</th>
-            <th>{{ 'sylius.ui.unit_price'|trans }}</th>
-            <th>{{ 'sylius.ui.total'|trans }}</th>
+            <th class="text-align-right">{{ 'sylius.ui.unit_price'|trans }}</th>
+            <th class="text-align-center">{{ 'sylius.ui.qty'|trans }}</th>
+            <th class="text-align-right">{{ 'sylius.ui.tax'|trans }}</th>
+            <th class="text-align-right">{{ 'sylius.ui.total'|trans }}</th>
         </tr>
         </thead>
         <tbody>
@@ -107,65 +108,49 @@
                 <td class="account-menu__product-table--product">
                     {{ include('VcareWebBundle:Product:_variant.html.twig', {'variant': item.variant}) }}
                 </td>
-                <td class="account-menu__product-table--qty">{{ item.quantity }}</td>
                 <td class="account-menu__product-table--price">
                     {{ item.unitPrice|sylius_price(order.currencyCode, order.exchangeRate) }}
                 </td>
+                <td class="account-menu__product-table--qty">{{ item.quantity }}</td>
                 <td class="account-menu__product-table--total">
-                    {{ item.subtotal|sylius_price(order.currencyCode, order.exchangeRate) }}
+                    {{ item.taxTotal|sylius_price(order.currencyCode, order.exchangeRate) }}
+                </td>
+                <td class="account-menu__product-table--total">
+                    {{ item.total|sylius_price(order.currencyCode, order.exchangeRate) }}
                 </td>
             </tr>
         {% endfor %}
         </tbody>
         <tfoot>
-            <tr class="table-active">
-                <th class="text-align-right" colspan="3">
-                    {{ 'sylius.ui.subtotal'|trans }}
-                </th>
-                <th>{{ order.itemsTotal|sylius_price(order.currencyCode, order.exchangeRate) }}</th>
-            </tr>
             <tr>
-                <th class="text-align-right" colspan="3">
+                <th class="text-align-right" colspan="4">
                     {{ 'sylius.ui.tax_total'|trans }}
                 </th>
                 <td>{{ order.taxTotal|sylius_price(order.currencyCode, order.exchangeRate) }}</td>
             </tr>
             <tr>
-                <th class="text-align-right" colspan="3">
+                <th class="text-align-right" colspan="4">
                     {{ 'sylius.ui.shipping_total'|trans }}
                 </th>
                 <td>{{ order.shippingTotal|sylius_price(order.currencyCode, order.exchangeRate) }}</td>
             </tr>
 
-            {% set orderPromotionAdjustment = constant('Sylius\\Component\\Core\\Model\\AdjustmentInterface::ORDER_PROMOTION_ADJUSTMENT') %}
-            {% set orderPromotions = sylius_aggregate_adjustments(order.getAdjustmentsRecursively(orderPromotionAdjustment)) %}
-
-            {% if not orderPromotions is empty %}
+            {% if order.orderPromotionTotal %}
                 <tr>
-                    <th class="text-align-right" colspan="3">
-                        <strong>{{ 'sylius.ui.promotion_total'|trans }}</strong><br>
-                        <ul>
-                            {% for label, amount in orderPromotions %}
-                                <li class="item">
-                                    {{ label }} {% if not amount == 0 %}-{% endif %}{{ (-1 * amount)|sylius_price(order.currencyCode, order.exchangeRate) }}
-                                </li>
-                            {% endfor %}
-                        </ul>
+                    <th class="text-align-right" colspan="4">
+                        {{ 'sylius.ui.promotion_total'|trans }}
                     </th>
-
-                    {% set orderDiscount = order.adjustmentsTotalRecursively(orderPromotionAdjustment) %}
-
                     <td class="text-align-right">
-                        {% if not orderDiscount == 0 %}-{% endif %}{{ (-1 * orderDiscount)|sylius_price(order.currencyCode, order.exchangeRate) }}
+                        {{ order.orderPromotionTotal|sylius_price(order.currencyCode, order.exchangeRate) }}
                     </td>
                 </tr>
             {% endif %}
 
             <tr class="table-active">
-                <th class="text-align-right" colspan="3">
+                <th class="text-align-right" colspan="4">
                     {{ 'sylius.ui.total'|trans }}
                 </th>
-                <td>{{ order.total|sylius_price(order.currencyCode, order.exchangeRate) }}</td>
+                <th>{{ order.total|sylius_price(order.currencyCode, order.exchangeRate) }}</th>
             </tr>
         </tfoot>
     </table>
