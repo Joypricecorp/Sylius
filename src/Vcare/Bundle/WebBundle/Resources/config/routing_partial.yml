@@ -1,0 +1,23 @@
+route_shop_partial_taxon_menus:
+    path: /taxon-menu/{code}
+    defaults:
+        _controller: sylius.controller.taxon:indexAction
+        _sylius:
+            template: $template
+            permission: false
+            repository:
+                method: findChildrenAsTreeByRootCode
+                arguments: [$code]
+
+route_shop_partial_products_by_taxon_code:
+    path: /taxon/{code}
+    methods: [GET]
+    defaults:
+        _controller: sylius.controller.product:indexAction
+        _sylius:
+            template: VcareWebBundle:Taxon:_products.html.twig
+            repository:
+                method: findEnabledByTaxonCodeAndChannel
+                arguments:
+                    - $code
+                    - 'expr:service("sylius.context.channel").getChannel()'

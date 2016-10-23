@@ -1,0 +1,158 @@
+{% extends 'VcareWebBundle::layout.html.twig' %}
+{% import 'VcareWebBundle:Macros:alerts.html.twig' as alerts %}
+
+{% set is_mobile_view = is_mobile_view() %}
+
+{% form_theme form with [_self, 'VcareWebBundle:Form:common.html.twig'] %}
+
+{% block content %}
+    <div class="cart-summary">
+        <div class="page-header">{{ 'sylius.ui.cart_summary'|trans|raw }}</div>
+
+        {{ include('VcareWebBundle:Checkout:_steps.html.twig', {'active': 'summary'}) }}
+
+        {% if not cart.empty %}
+            <div class="row">
+                <div class="col-lg-8 col-xs-12">
+                    {{ form_start(form, {'action': path('sylius_shop_cart_save'), 'attr': {'id': 'form-cart-summary', 'novalidate': 'novalidate'}}) }}
+                        {{ form_errors(form) }}
+
+                        {% if not is_mobile_view %}
+                            <table class="table cart-summary__table" id="cart-summary">
+                                <thead>
+                                <tr>
+                                    <th>{{ 'sylius.ui.item'|trans }}</th>
+                                    <th>{{ 'sylius.ui.unit_price'|trans }}</th>
+                                    <th>{{ 'sylius.ui.qty'|trans }}</th>
+                                    <th class="text-align-right">{{ 'sylius.ui.total'|trans }}</th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for item in cart.items %}
+                                    {% include 'VcareWebBundle:Cart:_item.html.twig' %}
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        {% else %}
+                            {% for item in cart.items %}
+                                {% include 'VcareWebBundle:Cart:_item-xs.html.twig' %}
+                            {% endfor %}
+                        {% endif %}
+
+                        <div class="text-md-right text-xs-center m-b-2">
+                            <button type="submit" class="btn btn-primary btn-lg cart-dirty-yes">
+                                <i class="fa fa-repeat"></i> {{ 'sylius.ui.update_cart'|trans }}
+                            </button>
+                        </div>
+
+                    <input type="hidden" name="_method" value="PATCH"/>
+
+                    {#<div class="ui action input">
+                        {{ form_widget(form.promotionCoupon, {'attr': {'placeholder': 'sylius.ui.enter_your_code'|trans~'...'}}) }}
+                        <button type="submit" id="sylius-save" class="ui teal icon labeled button"><i class="ticket icon"></i> {{ 'sylius.ui.apply_coupon'|trans }}</button>
+                    </div>#}
+
+                    {{ form_row(form._token) }}
+                    {{ form_end(form, {'render_rest': false}) }}
+                </div>
+
+                <div class="col-lg-4 col-xs-12 cart-summary__total">
+                    <div class="page-header">{{ 'sylius.ui.grand_total'|trans }}</div>
+
+                    <div class="cart-summary__total--row">
+                        <div class="row">
+                            <div class="col-xs-5 cart-summary__total--txt">
+                                <strong>{{ 'sylius.ui.subtotal'|trans }}</strong>
+                            </div>
+                            <div class="col-xs-7 cart-summary__total--prc">
+                                {{ cart.itemsTotal|sylius_price(cart.currencyCode, cart.exchangeRate) }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cart-summary__total--row">
+                        <div class="row">
+                            <div class="col-xs-5 cart-summary__total--txt">
+                                <strong>{{ 'sylius.ui.tax_total'|trans }}</strong>
+                            </div>
+                            <div class="col-xs-7 cart-summary__total--prc">
+                                {{ cart.taxTotal|sylius_price(cart.currencyCode, cart.exchangeRate) }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cart-summary__total--row">
+                        <div class="row">
+                            <div class="col-xs-5 cart-summary__total--txt">
+                                <strong>{{ 'sylius.ui.shipping_total'|trans }}</strong>
+                            </div>
+                            <div class="col-xs-7 cart-summary__total--prc">
+                                {{ cart.shippingTotal|sylius_price(cart.currencyCode, cart.exchangeRate) }}
+                            </div>
+                        </div>
+                    </div>
+
+                    {% set cartPromotionAdjustment = constant('Sylius\\Component\\Core\\Model\\AdjustmentInterface::ORDER_PROMOTION_ADJUSTMENT') %}
+                    {% set cartPromotions = sylius_aggregate_adjustments(cart.getAdjustmentsRecursively(cartPromotionAdjustment)) %}
+
+                    {% if not cartPromotions is empty %}
+                        <div class="cart-summary__total--row">
+                            <div class="row">
+                                {% for label, amount in cartPromotions %}
+                                    <div class="col-xs-7">{{ label }}</div>
+                                    <div class="col-xs-5">
+                                        {% if not amount == 0 %}-{% endif %}{{ (-1 * amount)|sylius_price(cart.currencyCode, cart.exchangeRate) }}
+                                    </div>
+                                {% endfor %}
+
+                                <div class="col-xs-6">
+                                    <strong>{{ 'sylius.ui.promotion_total'|trans }}</strong>
+                                </div>
+
+                                {% set cartDiscount = cart.adjustmentsTotalRecursively(cartPromotionAdjustment) %}
+
+                                <div class="col-xs-6 cart-summary__total--prc">
+                                    {% if not cartDiscount == 0 %}-{% endif %}{{ (-1 * cartDiscount)|sylius_price(cart.currencyCode, cart.exchangeRate) }}
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+
+                    <div class="cart-summary__total--grd">
+                        <div class="row">
+                            <div class="col-xs-5 cart-summary__total--grd-txt">
+                                <strong>{{ 'sylius.ui.total'|trans }}</strong>
+                            </div>
+                            <div class="col-xs-7 cart-summary__total--grd-prc">
+                                {{ cart.total|sylius_price(cart.currencyCode, cart.exchangeRate) }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cart-summary__total--btn cart-dirty-no">
+                        <a href="{{ path('sylius_shop_checkout_start') }}" class="btn btn-success btn-lg">
+                            {{ 'sylius.ui.checkout'|trans }}
+                        </a>
+                        <form method="post" action="{{ path('sylius_shop_cart_clear') }}">
+                            <input type="hidden" name="_method" value="DELETE"/>
+                            <button type="submit" class="btn btn-danger">
+                                <i class="icon remove"></i> {{ 'sylius.ui.clear_cart'|trans }}
+                            </button>
+                        </form>
+                        <a href="{{ path('sylius_shop_homepage') }}" class="btn btn-secondary">
+                            {{ 'sylius.ui.continue_shopping'|trans }}
+                        </a>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            {{ alerts.info('sylius.ui.your_cart_is_empty'|trans) }}
+        {% endif %}
+    </div>
+{% endblock %}
+
+{% block sylius_cart_item_row %}
+    {{ parent() }}
+    {% block form_message %}{% endblock %}
+{% endblock %}
