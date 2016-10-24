@@ -1,0 +1,61 @@
+@import "../../variables";
+
+.jumbotron {
+    border-radius: 0;
+    background: $color-basic;
+
+    ul {
+        padding-left: 0;
+        list-style: none;
+
+        li {
+
+            &:before {
+                font-family: FontAwesome;
+                content: "\f105";
+                color: $color-second;
+                margin-right: .5rem;
+            }
+        }
+    }
+
+    &__index {
+        h1 {
+            color: $color-base;
+        }
+
+        p {
+            font-size: 1.2em;
+            color: $color-second;
+        }
+
+        img {
+            width: 100%;
+        }
+
+        &--bt {
+            margin-bottom: 0 !important;
+        }
+    }
+
+    &__btn {
+        display: block;
+        background: $color-base;
+        color: #fff !important;
+        border: none;
+        border-radius: .2em;
+        padding: .5em 1.5em;
+        box-shadow: 0 .2em 0 0 darken($color-base, 10%);
+    }
+
+    &__faq {
+
+        h3 {
+            color: $color-base;
+        }
+
+        a {
+            color: $color-second;
+        }
+    }
+}

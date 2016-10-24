@@ -1,0 +1,15 @@
+sylius.ui.continue_shopping: Continue Shopping
+sylius.form.address.city: City
+sylius.ui.yes_label: Yes
+sylius.ui.no_label: No
+sylius.form.variant.tracked: Tracked
+sylius.form.login.username: Email
+sylius.ui.products: Products
+sylius.menu.admin.main.catalog.products: Products
+sylius.ui.manage_users_able_to_access_administration_panel: Manage users able to access administration panel
+
+vcare.ui.all_products: All products
+vcare.ui.more_products: More products
+vcare.ui.login_information: Login infomation
+vcare.ui.register_in_the_store: Enter your information.
+vcare.menu.shop.account.addressing: Edit addressing

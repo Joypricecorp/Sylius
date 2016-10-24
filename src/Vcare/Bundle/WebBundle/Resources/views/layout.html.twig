@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="{{ app.request.locale }}" class="{{ layout|default('layout-basic') }}">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{% block title %}{{ site_header }}{% endblock %}</title>
+    <script src="{{ asset('assets/modernizr.js') }}"></script>
+
+    {{ include('VcareWebBundle::favicons.html.twig') }}
+
+    {% block stylesheets %}
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600" rel=stylesheet>
+        <link rel="stylesheet" href="{{ asset('assets/web/css/style.css') }}" type="text/css"/>
+        <link rel="stylesheet" href="{{ asset('bundles/vcareweb/css/style.css') }}" type="text/css"/>
+    {% endblock %}
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+{% block navbar %}
+    {% include 'VcareWebBundle:Layout:navbar.html.twig' %}
+{% endblock %}
+
+{% block carousel %}{% endblock %}
+
+{% block flash %}
+    {% include 'VcareWebBundle:Layout:flash.html.twig' %}
+{% endblock %}
+
+<div class="container">
+    {% block content %}{% endblock %}
+</div>
+
+{% block jumbotron %}{% endblock %}
+
+{% block footer %}
+    {% include 'VcareWebBundle:Layout:footer.html.twig' %}
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('assets/web/js/app.js') }}"></script>
+    <script src="{{ asset('bundles/vcareweb/js/app.js') }}"></script>
+{% endblock javascripts %}
+</body>
+</html>

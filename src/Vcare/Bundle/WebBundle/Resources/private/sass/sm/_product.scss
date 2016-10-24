@@ -1,0 +1,44 @@
+.product-box {
+
+    &:hover {
+        border: 0;
+    }
+}
+
+.product-show-pictures {
+    margin-bottom: 2rem;
+}
+
+.product-show-box {
+    padding-left: 1rem;
+    padding-right: 1rem;
+
+    &__shopping {
+        text-align: center;
+
+        form {
+            margin: 0 auto;
+        }
+
+        &--add-cart {
+            padding-top: .5rem;
+
+            button {
+                width: 100%;
+            }
+        }
+    }
+
+    &__header {
+        font-size: 2rem;
+    }
+}
+
+.product-association {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.magnify {
+    margin-bottom: 0;
+}

@@ -1,0 +1,5 @@
+{% if taxons|length %}
+    {% for taxon in taxons %}
+        <a href="{{ path('sylius_shop_taxon_show', {permalink: taxon.permalink}) }}">{{ taxon.name }}</a>
+    {% endfor %}
+{% endif %}

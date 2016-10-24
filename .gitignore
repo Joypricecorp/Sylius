@@ -14,7 +14,8 @@
 /web/bundles
 /web/css
 /web/js
-/web/media
+/web/media/*
+!/web/media/.gitkeep
 
 /bin
 /vendor
