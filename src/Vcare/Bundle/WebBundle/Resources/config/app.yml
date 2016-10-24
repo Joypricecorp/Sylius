@@ -17,6 +17,13 @@ liip_imagine:
                 thumbnail: { size: [1000, 1000], mode: inset }
 
 winzou_state_machine:
+    sylius_order:
+        callbacks:
+            after:
+                vcare_cancel_order:
+                    on: ["cancel"]
+                    do: ["@vcare.email_manager.order", "sendCancelledEmail"]
+                    args: ["object"]
     sylius_payment:
         callbacks:
             after:

@@ -10,6 +10,8 @@ sylius.ui.products: สินค้าทั้งหมด
 sylius.menu.admin.main.catalog.products: จัดการสินค้า
 sylius.ui.manage_users_able_to_access_administration_panel: ผู้ใช้ที่สามารถเข้าระบบบริหารจัดการข้อมูลได้
 
+sylius.email.order_cancelled.name: คำสั่งซื้อของคุณถูกยกเลิกแล้ว
+
 vcare.ui.all_products: สินค้าทั้งหมด
 vcare.ui.more_products: สินค้าอื่นๆ
 vcare.ui.login_information: ข้อมูลการเข้าระบบ

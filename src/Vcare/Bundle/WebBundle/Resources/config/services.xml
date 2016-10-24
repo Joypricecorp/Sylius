@@ -59,5 +59,9 @@
             <argument>%sylius.model.customer.class%</argument>
             <tag name="form.type" alias="vcare_customer_address" />
         </service>
+
+        <service id="vcare.email_manager.order" class="Vcare\Bundle\WebBundle\EmailManager\OrderEmailManager">
+            <argument type="service" id="sylius.email_sender" />
+        </service>
     </services>
 </container>
