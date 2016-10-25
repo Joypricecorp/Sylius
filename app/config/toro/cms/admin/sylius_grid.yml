@@ -9,7 +9,7 @@ sylius_grid:
             driver:
                 name: doctrine/orm
                 options:
-                    class: Toro\Bundle\CmsBundle\Model\Page
+                    class: Vcare\Bundle\WebBundle\Model\Page
             sorting:
                 createdAt: desc
             filters:
