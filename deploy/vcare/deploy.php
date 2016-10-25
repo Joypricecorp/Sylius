@@ -59,7 +59,6 @@ task('deploy:web_update', [
     'deploy:assets_install',
     //'deploy:assets_upload',
     //'deploy:assets_copy',
-    'database:migrate',
     'deploy:cache:warmup',
     'database:migrate',
     'cachetool:clear:apcu',
