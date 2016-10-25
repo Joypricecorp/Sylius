@@ -26,6 +26,10 @@
             <argument type="service" id="vcare.formatter.money.inner"/>
         </service>
 
+        <service id="vcare.form.checkout.address.type" class="Vcare\Bundle\WebBundle\Form\Type\Checkout\AddressType" parent="sylius.form.type.checkout_address" decorates="sylius.form.type.checkout_address">
+            <tag name="form.type" alias="sylius_checkout_address" />
+        </service>
+
         <service id="vcare.form.checkout.payment.type" class="Vcare\Bundle\WebBundle\Form\Type\Checkout\PaymentType" parent="sylius.form.type.checkout_payment" decorates="sylius.form.type.checkout_payment">
             <tag name="form.type" alias="sylius_checkout_payment" />
         </service>

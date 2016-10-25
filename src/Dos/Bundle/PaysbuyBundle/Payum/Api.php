@@ -105,7 +105,7 @@ class Api
             'opt_detail' => '',
             'opt_param' => [
                 'cash_exp' => 24,
-                'device_display' => 'd',
+                'device_display' => 'm',
             ],
         ]);
 

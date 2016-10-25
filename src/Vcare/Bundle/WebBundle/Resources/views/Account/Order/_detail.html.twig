@@ -32,6 +32,7 @@
                 {% for payment in order.payments %}
                     {% set type = 'info' %}
                     {% set hint = '' %}
+                    {% set name = payment.method %}
 
                     {% if 'completed' == payment.state %}
                         {% set type = 'success' %}
@@ -51,11 +52,24 @@
                         {% if 'paysbuy' == payment.method.code %}
                             {# TODO: display expire date-time #}
                             {% set hint = "กรุณาชำระเงินภายใน 24 ชม." %}
+                            {% set details = payment.details|default([]) %}
+                            {% set params = details.params|default([]) %}
+                            {% set method = params.method|default(null) %}
+
+                            {% if 2 == method %}
+                                {% set name = "ui.paysbuy.form.method.credit_card"|trans %}
+                            {% endif %}
+                            {% if 5 == method %}
+                                {% set name = "ui.paysbuy.form.method.online_banking"|trans %}
+                            {% endif %}
+                            {% if 6 == method %}
+                                {% set name = "ui.paysbuy.form.method.cash"|trans %}
+                            {% endif %}
                         {% endif %}
                     {% endif %}
 
-                    <div class="alert alert-{{ type }}" role="alert">
-                        {{ payment.method }} {{ payment.amount|sylius_price(payment.currencyCode, payment.order.exchangeRate) }}
+                    <div class="alert alert-block alert-{{ type }}" role="alert">
+                        {{ name }} {{ payment.amount|sylius_price(payment.currencyCode, payment.order.exchangeRate) }}
                         <strong class="pull-right">{{ ("sylius.ui." ~ payment.state)|trans }}</strong>
                         {% if hint %}
                             <p><strong>{{ hint }}</strong></p>

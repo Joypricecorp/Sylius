@@ -93,3 +93,32 @@ sylius_shop_checkout_complete:
                 type: sylius_checkout_complete
                 options:
                     validation_groups: 'sylius_checkout_complete'
+
+sylius_shop_checkout_change_address_book:
+    path: /change-address-book/{addressId}/{addressType}
+    methods: [GET]
+    defaults:
+        _controller: sylius.controller.order:changeAddressingAction
+        _sylius:
+            flash: false
+            repository:
+                method: find
+                arguments: [expr:service('sylius.context.cart').getCart()]
+            redirect:
+                route: sylius_shop_checkout_address
+            state_machine:
+                graph: sylius_order_checkout
+                transition: address
+
+sylius_shop_checkout_address_books:
+    path: /address-books
+    methods: [GET]
+    defaults:
+        _controller: sylius.controller.address:indexAction
+        _sylius:
+            template: VcareWebBundle:Checkout:_address_books.html.twig
+            paginate: false
+            repository:
+                method: findByCustomer
+                arguments:
+                    - 'expr:service("sylius.context.customer").getCustomer()'

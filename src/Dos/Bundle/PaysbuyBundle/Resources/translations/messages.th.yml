@@ -15,13 +15,13 @@ ui:
 
         form:
             method:
-                label: Select Paysbuy Method
+                label: เลือกช่องทางการชำระเงิน
 
-                paysbuy: Paysbuy Account
-                credit_card: Credit Card
-                paypal: Paypal
-                american_express: American Express
-                online_banking: Online Banking
-                cash: Cash
+                paysbuy: บัญชีของเพย์สบาย
+                credit_card: ชำระด้วยบัตรเครดิต
+                paypal: เพย์พาล
+                american_express: อเมริกัน เอกซ์เพรส
+                online_banking: ชำระผ่านบัญชีธนาคารออนไลน์
+                cash: ชำระด้วยเงินสด
                 smart_perse: Smart Perse
-                loan: Loan
+                loan: ผ่อนชำระ

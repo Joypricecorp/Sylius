@@ -14,7 +14,7 @@ class PaysbuyMethodChoiceType extends AbstractType
     private function getChoiceList()
     {
         return [
-            1 => "ui.paysbuy.form.method.paysbuy",
+            //1 => "ui.paysbuy.form.method.paysbuy",
             2 => "ui.paysbuy.form.method.credit_card",
             //3 => "ui.paysbuy.form.method.paypal",
             //4 => "ui.paysbuy.form.method.american_express",

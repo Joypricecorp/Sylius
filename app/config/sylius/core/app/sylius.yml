@@ -20,4 +20,6 @@ imports:
     - { resource: "@SyliusCoreBundle/Resources/config/app/sylius/sylius_user.yml" }
     - { resource: "@SyliusCoreBundle/Resources/config/app/sylius/sylius_customer.yml" }
 
+    - { resource: "sylius_addressing.yml" }
     - { resource: "sylius_mailer.yml" }
+    - { resource: "sylius_order.yml" }

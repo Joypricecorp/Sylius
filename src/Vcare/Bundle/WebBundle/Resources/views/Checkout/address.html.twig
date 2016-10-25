@@ -10,34 +10,45 @@
         {{ include('VcareWebBundle:Checkout:_steps.html.twig', {'active': 'address'}) }}
 
         {{ form_start(form, {'action': path('sylius_shop_checkout_address'), 'attr': {'novalidate': 'novalidate'}}) }}
-            <input type="hidden" name="_method" value="PUT" />
+        <input type="hidden" name="_method" value="PUT"/>
 
-            {{ form_errors(form) }}
+        {{ form_errors(form) }}
 
-            <div class="row">
-                <fieldset class="col-xs-12 col-md-6 address-container" id="checkout-shipping-address-container">
-                    <legend>{{ 'sylius.ui.shipping_address'|trans }}</legend>
-                    {% include 'VcareWebBundle:Address:_form.html.twig' with {'form': form.shippingAddress} %}
-                    {{ form_row(form.differentBillingAddress, {'attr': {'class': 'address-trigger'}}) }}
-                </fieldset>
+        <div class="row">
+            {{ render(path('sylius_shop_checkout_address_books')) }}
 
-                <fieldset class="col-xs-12 col-md-6 address-container" id="checkout-billing-address-container">
-                    <legend>{{ 'sylius.ui.billing_address'|trans }}</legend>
-                    {% include 'VcareWebBundle:Address:_form.html.twig' with {'form': form.billingAddress} %}
-                </fieldset>
+            <div class="col-xs-12 col-md-4 address-container" id="checkout-shipping-address-container">
+                <div class="card card-block">
+                    <h5 class="card-title"><i class="fa fa-truck"></i> {{ 'sylius.ui.shipping_address'|trans }}</h5>
+                    <div class="card-text">
+                        {% include 'VcareWebBundle:Address:_form.html.twig' with {'form': form.shippingAddress} %}
+                    </div>
+                </div>
+
+                {{ form_row(form.differentBillingAddress, {'attr': {'class': 'address-trigger'}}) }}
             </div>
 
-            <div class="form-actions checkout__btn">
-                <a href="{{ path('sylius_shop_cart_summary') }}" class="btn btn-secondary btn-lg">
-                    <i class="fa fa-angle-left"></i>
-                    {{ 'sylius.ui.back'|trans }}
-                </a>
-                <button type="submit" class="btn btn-primary btn-lg">
-                    {{ 'sylius.ui.next'|trans }}
-                    <i class="fa fa-angle-right"></i>
-                </button>
+            <div class="col-xs-12 col-md-4 address-container" id="checkout-billing-address-container">
+                <div class="card card-block">
+                    <h5 class="card-title"><i class="fa fa-file-text-o"></i> {{ 'sylius.ui.billing_address'|trans }}</h5>
+                    <div class="card-text">
+                        {% include 'VcareWebBundle:Address:_form.html.twig' with {'form': form.billingAddress} %}
+                    </div>
+                </div>
             </div>
-            {{ form_row(form._token) }}
+        </div>
+
+        <div class="form-actions checkout__btn">
+            <a href="{{ path('sylius_shop_cart_summary') }}" class="btn btn-secondary btn-lg">
+                <i class="fa fa-angle-left"></i>
+                {{ 'sylius.ui.back'|trans }}
+            </a>
+            <button type="submit" class="btn btn-primary btn-lg">
+                {{ 'sylius.ui.next'|trans }}
+                <i class="fa fa-angle-right"></i>
+            </button>
+        </div>
+        {{ form_row(form._token) }}
         {{ form_end(form, {'render_rest': false}) }}
     </div>
 {% endblock %}
