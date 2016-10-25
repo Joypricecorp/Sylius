@@ -26,11 +26,15 @@ class AddressType extends BaseAddressType
                 /** @var OrderInterface $cart */
                 if (($customer && $customer->getDefaultAddress()) && ($cart = $event->getData())) {
                     if (!$cart->getBillingAddress()) {
-                        $cart->setBillingAddress(clone $customer->getDefaultAddress());
+                        $address = clone $customer->getDefaultAddress();
+                        $address->setCustomer(null);
+                        $cart->setBillingAddress($address);
                     }
 
                     if (!$cart->getShippingAddress()) {
-                        $cart->setShippingAddress(clone $customer->getDefaultAddress());
+                        $address = clone $customer->getDefaultAddress();
+                        $address->setCustomer(null);
+                        $cart->setShippingAddress($address);
                     }
                 }
             })
