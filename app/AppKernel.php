@@ -104,6 +104,7 @@ class AppKernel extends Kernel
             new \Stfalcon\Bundle\TinymceBundle\StfalconTinymceBundle(),
             new \Toro\Bundle\MediaBundle\ToroMediaBundle(),
             new \Toro\Bundle\CmsBundle\ToroCmsBundle(),
+            new \Toro\Bundle\FixtureBundle\ToroFixtureBundle(),
             new \Vcare\Bundle\WebBundle\VcareWebBundle(),
             new \BCC\CronManagerBundle\BCCCronManagerBundle(),
             new \Symfony\Bundle\AsseticBundle\AsseticBundle(),

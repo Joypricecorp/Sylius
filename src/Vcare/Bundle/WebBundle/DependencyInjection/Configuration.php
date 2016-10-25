@@ -2,14 +2,10 @@
 
 namespace Vcare\Bundle\WebBundle\DependencyInjection;
 
+use Sylius\Bundle\ResourceBundle\SyliusResourceBundle;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
-/**
- * This is the class that validates and merges configuration from your app/config files.
- *
- * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/configuration.html}
- */
 class Configuration implements ConfigurationInterface
 {
     /**
@@ -20,9 +16,12 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('vcare_web');
 
-        // Here you should define the parameters that are allowed to
-        // configure your bundle. See the documentation linked above for
-        // more information on that topic.
+        $rootNode
+            ->children()
+            ->scalarNode('driver')->defaultValue(SyliusResourceBundle::DRIVER_DOCTRINE_ORM)->end()
+            ->arrayNode('resources')->addDefaultsIfNotSet()->end()
+            ->end()
+        ;
 
         return $treeBuilder;
     }

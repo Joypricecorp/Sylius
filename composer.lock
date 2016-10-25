@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "414eb54d0c08cf1b5aff6fa54884ad0c",
-    "content-hash": "e73456288d28ca1262288ecb4c6e741e",
+    "hash": "f198aaa00d56f419e3d2b9b84a69518b",
+    "content-hash": "03e47d81385d7410efb20b2d1a8e7249",
     "packages": [
         {
             "name": "aptoma/twig-markdown",
@@ -391,35 +391,35 @@
         },
         {
             "name": "doctrine/annotations",
-            "version": "v1.2.7",
+            "version": "v1.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/annotations.git",
-                "reference": "f25c8aab83e0c3e976fd7d19875f198ccf2f7535"
+                "reference": "30e07cf03edc3cd3ef579d0dd4dd8c58250799a5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/annotations/zipball/f25c8aab83e0c3e976fd7d19875f198ccf2f7535",
-                "reference": "f25c8aab83e0c3e976fd7d19875f198ccf2f7535",
+                "url": "https://api.github.com/repos/doctrine/annotations/zipball/30e07cf03edc3cd3ef579d0dd4dd8c58250799a5",
+                "reference": "30e07cf03edc3cd3ef579d0dd4dd8c58250799a5",
                 "shasum": ""
             },
             "require": {
                 "doctrine/lexer": "1.*",
-                "php": ">=5.3.2"
+                "php": "^5.6 || ^7.0"
             },
             "require-dev": {
                 "doctrine/cache": "1.*",
-                "phpunit/phpunit": "4.*"
+                "phpunit/phpunit": "^5.6.1"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.3.x-dev"
+                    "dev-master": "1.4.x-dev"
                 }
             },
             "autoload": {
-                "psr-0": {
-                    "Doctrine\\Common\\Annotations\\": "lib/"
+                "psr-4": {
+                    "Doctrine\\Common\\Annotations\\": "lib/Doctrine/Common/Annotations"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -455,7 +455,7 @@
                 "docblock",
                 "parser"
             ],
-            "time": "2015-08-31 12:32:49"
+            "time": "2016-10-24 11:45:47"
         },
         {
             "name": "doctrine/cache",
@@ -8369,17 +8369,177 @@
             "time": "2016-10-03 18:44:12"
         },
         {
-            "name": "twig/extensions",
-            "version": "v1.4.0",
+            "name": "toro/cms-bundle",
+            "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/twigphp/Twig-extensions.git",
-                "reference": "531eaf4b9ab778b1d7cdd10d40fc6aa74729dfee"
+                "url": "https://github.com/intbizth/toro-cms-bundle.git",
+                "reference": "ef08e020a9c6454ca562979739a58525866d640c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig-extensions/zipball/531eaf4b9ab778b1d7cdd10d40fc6aa74729dfee",
-                "reference": "531eaf4b9ab778b1d7cdd10d40fc6aa74729dfee",
+                "url": "https://api.github.com/repos/intbizth/toro-cms-bundle/zipball/ef08e020a9c6454ca562979739a58525866d640c",
+                "reference": "ef08e020a9c6454ca562979739a58525866d640c",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.6|^7.0"
+            },
+            "require-dev": {
+                "doctrine/orm": "^2.4",
+                "phpspec/phpspec": "^3.1",
+                "phpunit/phpunit": "^5.6",
+                "twig/twig": "^1.0"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Toro\\Bundle\\CmsBundle\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "liverbool",
+                    "homepage": "https://github.com/liverbool"
+                }
+            ],
+            "description": "APIs management for Symfony2 projects.",
+            "homepage": "https://github.com/intbizth/toro-cms-bundle",
+            "keywords": [
+                "cms"
+            ],
+            "time": "2016-10-19 07:54:30"
+        },
+        {
+            "name": "toro/fixture-bundle",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/intbizth/toro-fixture-bundle.git",
+                "reference": "5401acc227aba1a8e2ddd746504848ecdf8faad5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/intbizth/toro-fixture-bundle/zipball/5401acc227aba1a8e2ddd746504848ecdf8faad5",
+                "reference": "5401acc227aba1a8e2ddd746504848ecdf8faad5",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.6|^7.0"
+            },
+            "require-dev": {
+                "doctrine/orm": "^2.4",
+                "phpspec/phpspec": "^3.1",
+                "phpunit/phpunit": "^5.6",
+                "twig/twig": "^1.0"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Toro\\Bundle\\FixtureBundle\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "liverbool",
+                    "homepage": "https://github.com/liverbool"
+                }
+            ],
+            "description": "Fixture for Symfony2 projects.",
+            "homepage": "https://github.com/intbizth/toro-fixture-bundle",
+            "keywords": [
+                "Fixture"
+            ],
+            "time": "2016-10-15 16:05:55"
+        },
+        {
+            "name": "toro/media-bundle",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/intbizth/toro-media-bundle.git",
+                "reference": "416bb756ecc60c6e4d21caae7531299c0ceaf5de"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/intbizth/toro-media-bundle/zipball/416bb756ecc60c6e4d21caae7531299c0ceaf5de",
+                "reference": "416bb756ecc60c6e4d21caae7531299c0ceaf5de",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/phpcr-bundle": "^1.3",
+                "doctrine/phpcr-odm": "^1.3",
+                "helios-ag/fm-elfinder-bundle": "~6",
+                "liip/imagine-bundle": "~1.0",
+                "php": "^5.6|^7.0",
+                "stfalcon/tinymce-bundle": "1.*",
+                "symfony-cmf/media-bundle": "^1.3",
+                "symfony/form": "^2.8",
+                "symfony/framework-bundle": "^2.8"
+            },
+            "require-dev": {
+                "phpspec/phpspec": "^3.1",
+                "phpunit/phpunit": "^5.6",
+                "twig/twig": "^1.0"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Toro\\Bundle\\MediaBundle\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "liverbool",
+                    "homepage": "https://github.com/liverbool"
+                }
+            ],
+            "description": "APIs management for Symfony2 projects.",
+            "homepage": "https://github.com/intbizth/toro-media-bundle",
+            "keywords": [
+                "media"
+            ],
+            "time": "2016-10-13 17:49:22"
+        },
+        {
+            "name": "twig/extensions",
+            "version": "v1.4.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/twigphp/Twig-extensions.git",
+                "reference": "f0bb8431c8691f5a39f1017d9a5967a082bf01ff"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/twigphp/Twig-extensions/zipball/f0bb8431c8691f5a39f1017d9a5967a082bf01ff",
+                "reference": "f0bb8431c8691f5a39f1017d9a5967a082bf01ff",
                 "shasum": ""
             },
             "require": {
@@ -8418,7 +8578,7 @@
                 "i18n",
                 "text"
             ],
-            "time": "2016-09-22 16:50:57"
+            "time": "2016-10-25 17:34:14"
         },
         {
             "name": "twig/twig",
@@ -11813,16 +11973,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "5.6.1",
+            "version": "5.6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "60c32c5b5e79c2248001efa2560f831da11cc2d7"
+                "reference": "cd13b23ac5a519a4708e00736c26ee0bb28b2e01"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/60c32c5b5e79c2248001efa2560f831da11cc2d7",
-                "reference": "60c32c5b5e79c2248001efa2560f831da11cc2d7",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/cd13b23ac5a519a4708e00736c26ee0bb28b2e01",
+                "reference": "cd13b23ac5a519a4708e00736c26ee0bb28b2e01",
                 "shasum": ""
             },
             "require": {
@@ -11891,7 +12051,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2016-10-07 13:03:26"
+            "time": "2016-10-25 07:40:25"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -13068,7 +13228,11 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "toro/cms-bundle": 20,
+        "toro/media-bundle": 20,
+        "toro/fixture-bundle": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

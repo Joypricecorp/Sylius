@@ -32,6 +32,10 @@
         "michelf/php-markdown": "^1.6",
         "symfony-cmf/media-bundle": "~1.2",
 
+        "toro/cms-bundle": "1.0.x-dev",
+        "toro/media-bundle": "1.0.x-dev",
+        "toro/fixture-bundle": "1.0.x-dev",
+
         "doctrine/collections": "~1.2",
         "doctrine/common": "~2.5",
         "doctrine/data-fixtures": "~1.1.0",
@@ -181,7 +185,6 @@
     },
     "autoload": {
         "psr-4": {
-            "Toro\\Bundle\\": "src/Toro/Bundle/",
             "Dos\\Bundle\\": "src/Dos/Bundle/",
             "Vcare\\Bundle\\": "src/Vcare/Bundle/",
             "Sylius\\Behat\\": "src/Sylius/Behat/",
