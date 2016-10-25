@@ -16,7 +16,11 @@
                     {% set product_picture_l = first_image ? first_image.path|imagine_filter('850x850') : 'http://placehold.it/850x850' %}
                     {% set product_picture_xl = first_image ? first_image.path|imagine_filter('1000x1000') : 'http://placehold.it/1000x1000' %}
 
-                    <img src="{{ product_picture_l }}" class="zoom" data-magnify-src="{{ product_picture_xl }}">
+                    {% if is_mobile_view %}
+                        <img src="{{ product_picture_l }}">
+                    {% else %}
+                        <img src="{{ product_picture_l }}" class="zoom" data-magnify-src="{{ product_picture_xl }}">
+                    {% endif %}
                 </div>
 
                 {% if product.images|length > 1 %}
