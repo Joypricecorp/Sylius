@@ -1,0 +1,58 @@
+.product-list {
+    margin-top: 1rem;
+}
+
+.product-box {
+    border: none;
+    &:hover {
+        border: 0;
+    }
+}
+
+.product-show {
+    padding: 0;
+}
+
+.product-show-box {
+
+    &__header {
+        padding-top: 2rem;
+    }
+
+    &__shopping {
+        margin: 0 auto;
+
+        &--price {
+            font-size: 2rem;
+            text-align: center;
+        }
+
+        &--add-cart {
+            padding-top: 1rem;
+            text-align: center;
+        }
+    }
+
+    &__description {
+
+        &--short, &--full {
+            font-size: 1.5rem;
+        }
+    }
+
+    &__header {
+        font-size: 1.5rem;
+    }
+}
+
+.product-show {
+
+    h3 {
+        font-size: 1.3rem;
+    }
+
+    p {
+        font-size: .9rem;
+    }
+
+}

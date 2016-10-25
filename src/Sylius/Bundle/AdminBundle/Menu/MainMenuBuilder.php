@@ -31,7 +31,7 @@ final class MainMenuBuilder extends AbstractAdminMenuBuilder
         $this->addCatalogSubMenu($menu);
         $this->addSalesSubMenu($menu);
         $this->addCustomersSubMenu($menu);
-        $this->addMarketingSubMenu($menu);
+        //$this->addMarketingSubMenu($menu);
         $this->addContentSubMenu($menu);
         $this->addConfigurationSubMenu($menu);
 
@@ -62,23 +62,23 @@ final class MainMenuBuilder extends AbstractAdminMenuBuilder
             ->setLabelAttribute('icon', 'cube')
         ;
 
-        $catalog
+        /*$catalog
             ->addChild('attributes', ['route' => 'sylius_admin_product_attribute_index'])
             ->setLabel('sylius.menu.admin.main.catalog.attributes')
             ->setLabelAttribute('icon', 'cubes')
-        ;
+        ;*/
 
-        $catalog
+        /*$catalog
             ->addChild('options', ['route' => 'sylius_admin_product_option_index'])
             ->setLabel('sylius.menu.admin.main.catalog.options')
             ->setLabelAttribute('icon', 'options')
-        ;
+        ;*/
 
-        $catalog
+        /*$catalog
             ->addChild('association_types', ['route' => 'sylius_admin_product_association_type_index'])
             ->setLabel('sylius.menu.admin.main.catalog.association_types')
             ->setLabelAttribute('icon', 'tasks')
-        ;
+        ;*/
     }
 
     /**
@@ -138,15 +138,9 @@ final class MainMenuBuilder extends AbstractAdminMenuBuilder
         ;
 
         $content
-            ->addChild('static_contents', ['route' => 'sylius_admin_static_content_index'])
+            ->addChild('static_contents', ['route' => 'toro_admin_page_index'])
             ->setLabel('sylius.menu.admin.main.content.static_contents')
             ->setLabelAttribute('icon', 'file')
-        ;
-
-        $content
-            ->addChild('routes', ['route' => 'sylius_admin_route_index'])
-            ->setLabel('sylius.menu.admin.main.content.routes')
-            ->setLabelAttribute('icon', 'sitemap')
         ;
     }
 
@@ -207,11 +201,11 @@ final class MainMenuBuilder extends AbstractAdminMenuBuilder
             ->setLabelAttribute('icon', 'translate')
         ;
 
-        $configuration
+        /*$configuration
             ->addChild('payment_methods', ['route' => 'sylius_admin_payment_method_index'])
             ->setLabel('sylius.menu.admin.main.configuration.payment_methods')
             ->setLabelAttribute('icon', 'payment')
-        ;
+        ;*/
 
         $configuration
             ->addChild('shipping_methods', ['route' => 'sylius_admin_shipping_method_index'])

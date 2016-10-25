@@ -1,0 +1,19 @@
+<div class="account-menu__content--address-header">
+    {{ address.firstName }} {{ address.lastName }}
+</div>
+
+<div class="account-menu__content--address-detail">
+    {% if address.company is not null %}
+        <p>{{ address.company }}</p>
+    {% endif %}
+
+    <p>{{ address.phoneNumber }}</p>
+    <p>{{ address.street }}</p>
+    <p>{{ address.city }}</p>
+
+    {% if address|sylius_province_name is not empty %}
+        {{ address|sylius_province_name }}<br/>
+    {% endif %}
+
+    <p>{{ address.countryCode|sylius_country_name|upper }} {{ address.postcode }}</p>
+</div>

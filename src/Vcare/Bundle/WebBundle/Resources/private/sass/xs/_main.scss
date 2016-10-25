@@ -1,0 +1,23 @@
+@include media-breakpoint-only(xs) {
+    @import "../base-mobile";
+    @import "carousel";
+    @import "account";
+    @import "cart";
+    @import "checkout";
+    @import "footer";
+    @import "jumbotron";
+    @import "layout";
+    @import "nav";
+    @import "product";
+    @import "user";
+
+    .breadcrumb {
+        padding: 0.75rem;
+        font-size: 80%;
+
+        > li + li::before {
+            padding-right: .1rem;
+            padding-left: .2rem;
+        }
+    }
+}

@@ -1,0 +1,36 @@
+.carousel {
+
+    &__index {
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+        background: #eceeef;
+        color: $color-second;
+        max-height: 350px;
+        margin-bottom: 2rem;
+
+        img {
+            height: 250px;
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            line-height: 3.5rem;
+        }
+
+        p {
+            font-size: 1.2rem;
+            line-height: 1.8rem;
+        }
+    }
+}
+
+.carousel-control {
+    width: 8%;
+}
+
+.carousel-control {
+    .icon-next::before,
+    .icon-prev::before {
+        font-size: 5rem;
+    }
+}

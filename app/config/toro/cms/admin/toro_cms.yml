@@ -1,0 +1,13 @@
+toro_cms:
+    resources:
+        page:
+            classes:
+                model: Vcare\Bundle\WebBundle\Model\Page
+                interface: Vcare\Bundle\WebBundle\Model\PageInterface
+
+sylius_user:
+    resources:
+        admin:
+            user:
+                classes:
+                    interface: Sylius\Component\Core\Model\AdminUserInterface

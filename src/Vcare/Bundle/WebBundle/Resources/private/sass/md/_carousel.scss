@@ -1,0 +1,12 @@
+.carousel {
+
+    &__index {
+        min-height: 400px;
+        max-height: 400px;
+        padding-top: 5rem;
+
+        h1 {
+            font-size: 2rem;
+        }
+    }
+}
