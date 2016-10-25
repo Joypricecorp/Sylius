@@ -1,0 +1,16 @@
+{% extends 'VcareWebBundle::layout.html.twig' %}
+
+{% from 'VcareWebBundle:Macros:misc.html.twig' import pagination %}
+{% from 'VcareWebBundle:Product:macros.html.twig' import list %}
+
+{% block content %}
+    <div class="product-list">
+        <h1 class="page-header">{{ 'sylius.ui.products'|trans }}</h1>
+
+        <div class="row">
+            {{ list(products) }}
+        </div>
+
+        {{ pagination(products) }}
+    </div>
+{% endblock %}

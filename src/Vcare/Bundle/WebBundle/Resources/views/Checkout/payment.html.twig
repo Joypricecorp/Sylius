@@ -1,0 +1,58 @@
+{% extends 'VcareWebBundle:Checkout:layout.html.twig' %}
+{% form_theme form 'VcareWebBundle:Form:common.html.twig' %}
+
+{% block content %}
+    <div class="checkout-step checkout-step__payment">
+        <div class="page-header">
+            {{ 'sylius.ui.payment_method'|trans|raw }}
+        </div>
+
+        {{ include('VcareWebBundle:Checkout:_steps.html.twig', {'active': 'select_payment'}) }}
+
+        {{ form_start(form, {'action': path('sylius_shop_checkout_select_payment'), 'attr': {'class': 'ui loadable form', 'novalidate': 'novalidate'}}) }}
+            <input type="hidden" name="_method" value="PUT" />
+
+            {{ form_errors(form) }}
+
+            {% for payment in order.payments %}
+                {% set payment_form = form.payments[loop.index0] %}
+                {{ form_errors(payment_form.method) }}
+                {{ form_widget(payment_form.paysbuy_method_check, {value: 1}) }}
+
+                <ul class="list-group">
+                    {% for payment_method_choice in payment_form.method %}
+                        {% set payment_method = payment_method_choice.parent.vars.choices[loop.index0].data %}
+                        <li class="list-group-item list-group-item-action">
+                            <h5 class="list-group-item-heading payment-method">{{ form_widget(payment_method_choice) }}</h5>
+                            <div class="list-group-item-text p-l-2">
+                                {% if payment_method.description is not null %}
+                                    <p class="description">{{ payment_method.description }}</p>
+                                {% endif %}
+                                {% if payment_method.code is same as ('paysbuy') %}
+                                    <strong>{{ form_label(payment_form.paysbuy_method) }}</strong>
+                                    <div class="p-l-2 paysbuy-method-choices">{{ form_widget(payment_form.paysbuy_method) }}</div>
+                                {% endif %}
+                                {% if payment_method.instructions is not null %}
+                                    <p class="alert alert-block alert-info">{{ payment_method.instructions }}</p>
+                                {% endif %}
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endfor %}
+
+            <div class="form-actions">
+                <a href="{{ path('sylius_shop_checkout_select_shipping') }}" class="btn btn-secondary btn-lg">
+                    <i class="fa fa-angle-left"></i>
+                    {{ 'sylius.ui.back'|trans }}
+                </a>
+                <button type="submit" class="btn btn-primary btn-lg">
+                    {{ 'sylius.ui.next'|trans }}
+                    <i class="fa fa-angle-right"></i>
+                </button>
+            </div>
+
+            {{ form_row(form._token) }}
+        {{ form_end(form, {'render_rest': false}) }}
+    </div>
+{% endblock %}

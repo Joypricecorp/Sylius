@@ -1,0 +1,27 @@
+ui:
+    paysbuy:
+        payment:
+            cart: Cart
+            new: New
+            processing: Processing
+            completed: Completed
+            failed: Failed
+            cancelled: Cancelled
+            void: Void
+            refunded: Refunded
+            authorized: Authorized
+            unknown: Unknown
+            payedout: Payedout
+
+        form:
+            method:
+                label: Select Paysbuy Method
+
+                paysbuy: Paysbuy Account
+                credit_card: Credit Card
+                paypal: Paypal
+                american_express: American Express
+                online_banking: Online Banking
+                cash: Cash
+                smart_perse: Smart Perse
+                loan: Loan
