@@ -73,7 +73,7 @@ class AddPaysbuyMethodOrderFormSubscriber implements EventSubscriberInterface
             } else {
                 $data->setDetails(array_replace_recursive(
                     $data->getDetails(), ['params' => [
-                        'opt_fix_method' => 0,
+                        'opt_fix_method' => 1,
                         'method' => $submitedData['paysbuy_method'],
                     ]]
                 ));
