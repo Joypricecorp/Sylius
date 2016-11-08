@@ -17,7 +17,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * @author Liverbool <nukboon@gmail.com>
+ * @author Dos <nukboon@gmail.com>
  */
 final class CurrencyCodeChoiceType extends AbstractType
 {

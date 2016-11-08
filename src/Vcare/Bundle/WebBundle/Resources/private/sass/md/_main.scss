@@ -1,0 +1,11 @@
+@include media-breakpoint-only(md) {
+    @import "../base-mobile";
+    @import "carousel";
+    @import "cart";
+    @import "checkout";
+    @import "footer";
+    @import "layout";
+    @import "nav";
+    @import "product";
+    @import "user";
+}

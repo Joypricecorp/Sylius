@@ -61,7 +61,7 @@ final class AddCodeFormSubscriber implements EventSubscriberInterface
         $disabled = false;
 
         if ($resource instanceof CodeAwareInterface) {
-            $disabled = null !== $resource->getCode();
+            //$disabled = null !== $resource->getCode();
         } elseif (null !== $resource) {
             throw new UnexpectedTypeException($resource, CodeAwareInterface::class);
         }

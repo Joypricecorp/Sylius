@@ -1,0 +1,26 @@
+fm_elfinder:
+    instances:
+        editor:
+            locale: "LANG"
+            relative_path: false
+            connector:
+                debug: "%kernel.debug%"
+                binds:
+                    - name: 'upload.presave'
+                      value: ['Plugin.Normalizer.onUpLoadPreSave', 'Plugin.Sanitizer.onUpLoadPreSave']
+                    - name: 'mkdir.pre mkfile.pre rename.pre'
+                      value: ['Plugin.Normalizer.cmdPreprocess', 'Plugin.Sanitizer.cmdPreprocess']
+                roots:
+                    media:
+                        driver: LocalFileSystem
+                        path: "%kernel.root_dir%/themes"
+                        upload_allow: ['image/png', 'image/jpg', 'image/jpeg', 'image/gif', 'text/plain']
+                        upload_max_size: 10M
+                        attributes:
+                            - { pattern: "~.(%locked_theme%)~", read: true, write: false, locked: true }
+                        plugins:
+                            - name: 'Sanitizer'
+                              value:
+                                enable: true
+                                targets: ['\','/',':','*','?','"','<','>','|', ' ']
+                                replace: "-"

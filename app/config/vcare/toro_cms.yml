@@ -1,0 +1,24 @@
+toro_cms:
+    resources:
+        page:
+            classes:
+                model: Vcare\Bundle\WebBundle\Model\Page
+                interface: Vcare\Bundle\WebBundle\Model\PageInterface
+        post:
+            classes:
+                model: Vcare\Bundle\WebBundle\Model\Post
+                interface: Vcare\Bundle\WebBundle\Model\PostInterface
+                repository: Vcare\Bundle\WebBundle\Doctrine\ORM\PostRepository
+                form:
+                    default: Vcare\Bundle\WebBundle\Form\Type\PostType
+            translation:
+                classes:
+                    model: Vcare\Bundle\WebBundle\Model\PostTranslation
+                    interface: Vcare\Bundle\WebBundle\Model\PostTranslationInterface
+
+sylius_user:
+    resources:
+        admin:
+            user:
+                classes:
+                    interface: Sylius\Component\Core\Model\AdminUserInterface

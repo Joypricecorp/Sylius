@@ -1,0 +1,21 @@
+{% form_theme form 'VcareWebBundle:Form:common.html.twig' %}
+
+{{ form_start(form, {'action': path('sylius_shop_payment_method_update', {'paymentId': payment.id}), 'attr': {'novalidate': 'novalidate'}}) }}
+    <input type="hidden" name="_method" value="PUT"/>
+    {{ form_errors(form) }}
+    {{ form_widget(form.paysbuy_method_check, {value: 0}) }}
+
+    <ul class="list-group">
+        {% for payment_method_choice in form.method.children %}
+            <li class="list-group-item list-group-item-action">
+                {{ form_widget(payment_method_choice) }}
+                {{ form_label(payment_method_choice) }}
+            </li>
+        {% endfor %}
+    </ul>
+
+    <div class="form-actions text-xs-center text-md-right" style="margin-top: 1rem">
+        <button type="submit" class="btn btn-sm btn-success"> {{ 'sylius.ui.pay'|trans }}</button>
+    </div>
+    {{ form_row(form._token) }}
+{{ form_end(form, {'render_rest': false}) }}

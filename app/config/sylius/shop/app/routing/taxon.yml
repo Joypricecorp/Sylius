@@ -1,0 +1,16 @@
+sylius_shop_taxon_show:
+    path: /taxons/{permalink}
+    methods: [GET]
+    defaults:
+        _controller: sylius.controller.taxon:showAction
+        _sylius:
+            template: VcareWebBundle:Taxon:show.html.twig
+            repository:
+                method: findOneByPermalink
+                arguments: [$permalink]
+    requirements:
+        permalink: .+
+
+route_shop_partials:
+    resource: "@VcareWebBundle/Resources/config/routing_partial.yml"
+    prefix: /_partial

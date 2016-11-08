@@ -1,0 +1,19 @@
+{% from "VcareWebBundle:Macros:images.html.twig" import toro_image %}
+
+<div class="container home-content home-content__thumb">
+    <div class="home-content--heading">
+        <h3>{{ taxon.name }}</h3>
+        <hr>
+        <h4>{{ taxon.description }}</h4>
+    </div>
+
+    <div class="row">
+        {% for post in posts %}
+            <div class="col-md-6 col-xs-12">
+                <p class="home-content__thumb--image">
+                    <iframe src="{{ post.vdoPath }}" width="100%" height="300" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                </p>
+            </div>
+        {% endfor %}
+    </div>
+</div>

@@ -1,0 +1,121 @@
+{% macro list(products) %}
+    {% for r in products %}
+        {% set product_show_url = path('sylius_shop_product_show', {'slug': r.slug}) %}
+        {% set product_image = r.images.first() ? r.images.first.path|imagine_filter('250x250') : 'http://placehold.it/250x250' %}
+
+        <div class="col-xl-4 col-sm-6 col-xs-12">
+            <div class="product-box">
+                <div class="product-box__picture carousel js-flickity">
+                    {% if r.images|length > 1 %}
+                        {% for img in r.images %}
+                            <div class="carousel-cell">
+                                <a href="{{ product_show_url }}" title="{{ r.name }}">
+                                    <img src="{{ img.path|imagine_filter('250x250') }}" alt="{{ r.name }}">
+                                </a>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <div class="carousel-cell">
+                            <a href="{{ product_show_url }}" title="{{ r.name }}">
+                                <img src="{{ product_image }}" alt="{{ r.name }}">
+                            </a>
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="product-box__info">
+                    <a class="product-box__info--label" href="{{ product_show_url }}">{{ r.name }}</a>
+                    <label class="product-box__info--price">
+                        {{ sylius_calculate_price(r.firstVariant)|sylius_price }}
+                    </label>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endmacro %}
+
+{% macro display_price(priceable) %}
+    <div class="row">
+        <div class="col-xs-12 product-show-box__shopping--price">
+            {{ priceable.price|sylius_price }}
+        </div>
+    </div>
+{% endmacro %}
+
+{% macro cart_quantity(form) %}
+    {% form_theme form 'VcareWebBundle:Form:common.html.twig' %}
+    <span class="quantity-box">
+        <a class="btn btn-primary quantity-box--down">-</a>
+        {{ form_widget(form.quantity, {'attr': {'empty_value': '1', 'data-cart-dirty': true}}) }}
+        <a class="btn btn-primary quantity-box--up">+</a>
+    </span>
+{% endmacro %}
+
+{% macro out_of_stock(product) %}
+    <div class="col-md-4 col-xs-12 product-show-box__shopping--price">
+        {{ _self.display_price(product) }}
+    </div>
+    <div class="col-md-6 col-xs-12 product-show-box__shopping--out-of-stock">
+        {{ "sylius.ui.out_of_stock"|trans }}
+    </div>
+{% endmacro %}
+
+{% macro add_to_cart_single(product, form) %}
+    <div class="row">
+        <div class="col-xs-12 product-show-box__shopping--price">
+            {{ _self.display_price(product) }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-5 col-xs-12 product-show-box__shopping--quantity">
+            {{ _self.cart_quantity(form) }}
+        </div>
+        <div class="col-md-6 col-xs-12 product-show-box__shopping--add-cart">
+            <button type="submit" class="btn btn-primary">
+                <i class="fa fa-cart-plus"></i> {{ 'sylius.ui.add_to_cart'|trans|raw }}
+            </button>
+        </div>
+        {#<div class="col-md-3 col-xs-12 product-show-box__shopping--wishlist">#}
+        {#<button type="submit" class="btn btn-primary"><i class="fa fa-heart-o"></i>Add To Wishlist</button>#}
+        {#</div>#}
+    </div>
+{% endmacro %}
+
+{% macro add_to_cart_variants(product, form) %}
+    {{ _self.display_price(product) }}
+{% endmacro %}
+
+{% macro add_to_cart(product, form) %}
+    {% set form = form ?: sylius_cart_form({'product': product}) %}
+    {% form_theme form 'VcareWebBundle:Form:common.html.twig' %}
+
+    {{ form_errors(form) }}
+
+    {{ form_start(form, {'action': path('sylius_shop_cart_item_add', {'productId': product.id}), 'attr': {'class': '', 'novalidate': 'novalidate'}}) }}
+        {#{% if product.hasVariants %}
+            {{ _self.add_to_cart_variants(product, form) }}
+            <div class="row">
+                <div class="col-md-5 col-xs-12 product-show-box__shopping--quantity">
+                    {{ _self.cart_quantity(form) }}
+                </div>
+                <div class="col-md-6 col-xs-12 product-show-box__shopping--add-cart">
+                    <button type="submit" class="btn btn-primary">{{ 'sylius.ui.add_to_cart'|trans|raw }}</button>
+                </div>
+            </div>
+        {% else %}
+            {{ _self.add_to_cart_single(product, form) }}
+        {% endif %}#}
+
+        {% if not product.simple %}
+            {% if product.variantSelectionMethodChoice %}
+                {% include 'VcareWebBundle:Product:_variants.html.twig' %}
+            {% else %}
+                {% for option_form in form.variant %}
+                    {{ form_row(option_form, { 'attr': { 'data-option': option_form.vars.name } }) }}
+                {% endfor %}
+            {% endif %}
+        {% endif %}
+    
+        {{ _self.add_to_cart_single(product, form) }}
+        {{ form_row(form._token) }}
+    {{ form_end(form, {'render_rest': false}) }}
+{% endmacro %}

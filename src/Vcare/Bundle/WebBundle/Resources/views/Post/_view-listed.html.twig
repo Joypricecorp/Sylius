@@ -1,0 +1,57 @@
+{% from "VcareWebBundle:Macros:images.html.twig" import toro_image %}
+
+<div class="container home-content">
+    <div class="home-content--heading">
+        <h3>{{ taxon.name }}</h3>
+        <hr>
+        <h4>{{ taxon.description }}</h4>
+    </div>
+
+    <div class="row">
+        {% set first = posts|first %}
+        <div class="col-md-6 col-xs-12">
+            <div class="home-content--first">
+                <p class="home-content__thumb--image">
+                    <a class="btn btn-link" href="{{ path('vcare_shop_post_show', {slug: first.slug}) }}">
+                        {{ toro_image(first.thumb|default(first.cover), 'post_medium_square') }}
+                    </a>
+                </p>
+
+                <h4>{{ first.title }}</h4>
+                <h5>{{ first.description|truncate(200) }}</h5>
+
+                <a class="btn btn-link" href="{{ path('vcare_shop_post_show', {slug: first.slug}) }}">
+                    {{ "vcare.ui.read_more"|trans }}
+                </a>
+            </div>
+        </div>
+        <div class="col-md-6 col-xs-12">
+            <div class="home-content--other">
+                {% for post in posts %}
+                    {% if loop.index0 %}
+                        <div class="col-md-6 col-xs-12">
+                            <div class="row home-content__box">
+                                <div class="col-md-6 col-xs-12">
+                                    <p class="home-content--image">
+                                        <a class="btn btn-link"
+                                           href="{{ path('vcare_shop_post_show', {slug: post.slug}) }}">
+                                            {{ toro_image(post.thumb|default(post.cover), 'post_small') }}
+                                        </a>
+                                    </p>
+                                </div>
+                                <div class="col-md-6 col-xs-12">
+                                    <h4>{{ post.title }}</h4>
+                                    <h5>{{ post.description|truncate(80) }}</h5>
+                                    <a class="btn btn-link"
+                                       href="{{ path('vcare_shop_post_show', {slug: post.slug}) }}">
+                                        {{ "vcare.ui.read_more"|trans }}
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>

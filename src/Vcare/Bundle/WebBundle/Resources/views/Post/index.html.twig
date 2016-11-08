@@ -1,0 +1,42 @@
+{% extends 'VcareWebBundle::layout.html.twig' %}
+{% from 'VcareWebBundle:Macros:misc.html.twig' import pagination %}
+
+{%- block carousel %}
+    {% if posts|length %}
+        {{ include("VcareWebBundle:Post:featured.html.twig") }}
+    {% endif %}
+{% endblock -%}
+
+{% block content %}
+    <div class="container post-index">
+        {% block post_products %}
+            {% set taxon = vcare_get_taxon_by_code('post-ihealth-product') %}
+            {% if taxon %}
+                {% set posts = vcare_get_posts_by_taxon_and_channel(taxon).setMaxPerPage(4) %}
+                {% if posts|length %}
+                    {{ include('VcareWebBundle:Post:_view-thumb.html.twig', { taxon: taxon, posts: posts }) }}
+                {% endif %}
+            {% endif %}
+        {% endblock %}
+
+        {% block post_vdos %}
+            {% set taxon = vcare_get_taxon_by_code('post-ihealth-vdo') %}
+            {% if taxon %}
+                {% set posts = vcare_get_posts_by_taxon_and_channel(taxon).setMaxPerPage(2) %}
+                {% if posts|length %}
+                    {{ include('VcareWebBundle:Post:_view-vdo.html.twig', { taxon: taxon, posts: posts }) }}
+                {% endif %}
+            {% endif %}
+        {% endblock %}
+
+        {% block post_generals %}
+            {% set taxon = vcare_get_taxon_by_code('post-ihealth-product') %}
+            {% if taxon %}
+                {% set posts = vcare_get_posts_by_taxon_and_channel(taxon).setMaxPerPage(3) %}
+                {% if posts|length %}
+                    {{ include('VcareWebBundle:Post:_view-listed.html.twig', { taxon: taxon, posts: posts }) }}
+                {% endif %}
+            {% endif %}
+        {% endblock %}
+    </div>
+{% endblock %}

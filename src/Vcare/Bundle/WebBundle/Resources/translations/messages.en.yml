@@ -1,0 +1,35 @@
+sylius.ui.continue_shopping: Continue Shopping
+sylius.form.address.city: City
+sylius.ui.yes_label: Yes
+sylius.ui.no_label: No
+sylius.form.variant.tracked: Tracked
+sylius.form.login.username: Email
+sylius.ui.products: Products
+sylius.menu.admin.main.catalog.products: Products
+sylius.ui.manage_users_able_to_access_administration_panel: Manage users able to access administration panel
+sylius.ui.manage_your_saved_addresses: Manage your saved addresses
+sylius.email.order_cancelled.name: Your order was cancelled
+
+sylius.menu.shop.account.address_book: Address books
+
+vcare.ui.checkout_change_address: Change address
+vcare.ui.checkout_use_for_billing_address: Use for Billing
+vcare.ui.checkout_use_for_shipping_address: Use for Shipping
+vcare.ui.all_products: All products
+vcare.ui.more_products: More products
+vcare.ui.login_information: Login infomation
+vcare.ui.register_in_the_store: Enter your information.
+vcare.menu.shop.account.addressing: Edit addressing
+
+sylius.menu.admin.main.content.pages: Pages
+sylius.menu.admin.main.content.posts: Posts
+
+sylius.form.product.slug: Slug
+
+sylius.ui.criteria: criteria
+
+vcare.ui.home: "Home"
+vcare.ui.posts: "Posts"
+vcare.ui.details: "Detail"
+vcare.ui.read_more: "Read more"
+vcare.ui.more_contents: ​Read more contents

@@ -2,10 +2,15 @@
 # (c) Paweł Jędrzejewski
 
 imports:
-    - { resource: "@SyliusCoreBundle/Resources/config/app/config.yml" }
-    - { resource: "@SyliusAdminBundle/Resources/config/app/config.yml" }
+    - { resource: "sylius/core/app/config.yml" }
+    - { resource: "sylius/admin/app/config.yml" }
     - { resource: "@SyliusShopBundle/Resources/config/app/config.yml" }
     - { resource: "@SyliusApiBundle/Resources/config/app/config.yml" }
+    - { resource: "@DosPaysbuyBundle/Resources/config/app/main.yml" }
+    - { resource: "@VcareWebBundle/Resources/config/app.yml" }
+    - { resource: "@ToroMediaBundle/Resources/config/app.yml" }
+    - { resource: "@ToroCmsBundle/Resources/config/app/main.yml" }
+    - { resource: "vcare/config.yml" }
 
     - { resource: "parameters.yml" }
     - { resource: "security.yml" }
@@ -33,7 +38,11 @@ doctrine:
         dbname: "%database_name%"
         user: "%database_user%"
         password: "%database_password%"
-        charset: UTF8
+        server_version: "%server_version%"
+        charset: utf8
+        default_table_options:
+            charset: utf8
+            collate: utf8_unicode_ci
 
 doctrine_migrations:
     dir_name: "%kernel.root_dir%/migrations"
@@ -57,3 +66,12 @@ fos_rest:
         rules:
             - { path: '^/api', priorities: ['json', 'xml'], fallback_format: json, prefer_extension: true }
             - { path: '^/', stop: true }
+
+twig:
+    globals:
+        site_header: VcareAsia
+        site_domain: vcareasia.com
+        site_url: http://vcareasia.com
+        site_mail: support@vcareasia.com
+        #site_logo: /assets/web/img/logo.png
+        site_branding: iHealth

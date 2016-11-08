@@ -22,7 +22,6 @@ class Version20161026101817 extends AbstractMigration
 
         $this->addSql('ALTER TABLE sylius_customer_group ADD code VARCHAR(255) NOT NULL');
         $this->addSql('CREATE UNIQUE INDEX UNIQ_7FCF9B0577153098 ON sylius_customer_group (code)');
-        $this->addSql('UPDATE sylius_customer_group SET sylius_customer_group.code = UCASE (sylius_customer_group.name)');
     }
 
     /**

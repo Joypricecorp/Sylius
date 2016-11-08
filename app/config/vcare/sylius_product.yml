@@ -1,0 +1,13 @@
+sylius_product:
+    driver: doctrine/orm
+    resources:
+        product:
+            classes:
+                model: Vcare\Bundle\WebBundle\Model\Product
+                form:
+                    default: Vcare\Bundle\WebBundle\Form\Type\ProductType
+            translation:
+                classes:
+                    model: Vcare\Bundle\WebBundle\Model\ProductTranslation
+                    form:
+                        default: Vcare\Bundle\WebBundle\Form\Type\ProductTranslationType

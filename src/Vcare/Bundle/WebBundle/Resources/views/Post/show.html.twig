@@ -1,0 +1,37 @@
+{% extends 'VcareWebBundle::layout.html.twig' %}
+{% from "VcareWebBundle:Macros:images.html.twig" import toro_image %}
+
+{% block breadcrumb %}
+    <div class="container">
+        <ol class="breadcrumb breadcrumb-top">
+            <li class="breadcrumb-item">
+                <a href="/">{{ "vcare.ui.home"|trans }}</a>
+            </li>
+            <li class="breadcrumb-item"><a href="/posts">{{ "vcare.ui.posts"|trans }}</a></li>
+            <li class="breadcrumb-item active">{{ post.title }}</li>
+        </ol>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="container post-show">
+        <div class="post-show--cover">
+            {{ toro_image(post.cover, 'strip', post.title) }}
+        </div>
+
+        <h1 class="post-show--title">{{ post.title }}</h1>
+        <h2 class="post-show--description">{{ post.description }}</h2>
+        <div class="post-show--body">{{ post.body|raw }}</div>
+
+        {#<hr>#}
+
+        {% if post.taxon %}
+            {% set taxon = post.taxon %}
+            {% set posts = vcare_get_posts_by_taxon_and_channel(taxon).setMaxPerPage(2) %}
+
+            {% if posts|length %}
+                {{ include('VcareWebBundle:Post:_view-thumb.html.twig', { taxon: taxon, posts: posts }) }}
+            {% endif %}
+        {% endif %}
+    </div>
+{% endblock %}

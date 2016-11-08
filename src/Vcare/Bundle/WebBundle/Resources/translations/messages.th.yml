@@ -1,0 +1,36 @@
+sylius.ui.address: ที่อยู่
+sylius.ui.address: ที่อยู่
+sylius.ui.continue_shopping: เลือกซื้อสินค้าต่อ
+sylius.form.address.city: เขต/อำเภอ
+sylius.ui.yes_label: ใช่
+sylius.ui.no_label: ไม่ใช่
+sylius.form.variant.tracked: ตรวจสต๊อก
+sylius.form.login.username: อีเมล์
+sylius.ui.products: สินค้าทั้งหมด
+sylius.menu.admin.main.catalog.products: จัดการสินค้า
+sylius.ui.manage_users_able_to_access_administration_panel: ผู้ใช้ที่สามารถเข้าระบบบริหารจัดการข้อมูลได้
+sylius.ui.manage_your_saved_addresses: จัดการที่อยู่ที่ถูกบันทึกไว้
+sylius.email.order_cancelled.name: คำสั่งซื้อของคุณถูกยกเลิกแล้ว
+sylius.menu.shop.account.address_book: สมุดที่อยู่
+
+vcare.ui.checkout_change_address: เลือกที่อยู่ในการออกบิล และส่งสินค้า
+vcare.ui.checkout_use_for_billing_address: ใช้เป็นที่อยู่ออกบิล
+vcare.ui.checkout_use_for_shipping_address: ใช้เป็นที่อยู่ส่งสินค้า
+vcare.ui.all_products: สินค้าทั้งหมด
+vcare.ui.more_products: สินค้าอื่นๆ
+vcare.ui.login_information: ข้อมูลการเข้าระบบ
+vcare.ui.register_in_the_store: กรุณาระบุรายละเอียดสำหรับการสมัครสมาชิก
+vcare.menu.shop.account.addressing: แก้ไขที่อยู่
+
+sylius.menu.admin.main.content.pages: Pages
+sylius.menu.admin.main.content.posts: Posts
+
+sylius.form.product.slug: Slug
+
+sylius.ui.criteria: เงื่อนไข
+
+vcare.ui.home: "หน้าหลัก"
+vcare.ui.posts: "บล็อก"
+vcare.ui.details: "รายละเอียด"
+vcare.ui.read_more: "อ่านต่อ"
+vcare.ui.more_contents: "อ่านบทความทั้งหมด"

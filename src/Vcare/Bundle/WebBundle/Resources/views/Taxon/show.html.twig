@@ -1,0 +1,13 @@
+{% extends 'VcareWebBundle::layout.html.twig' %}
+
+{% block content %}
+    <div class="container">
+        <div class="product-taxon">
+            <div class="page-header">
+                <h1>{{ 'sylius.ui.products_categorized_under_taxon_taxon'|trans({'%taxon%': taxon.name})|raw }}</h1>
+            </div>
+
+            {{ render(url('route_shop_partial_products_by_taxon_code', {code: taxon.code})) }}
+        </div>
+    </div>
+{% endblock %}

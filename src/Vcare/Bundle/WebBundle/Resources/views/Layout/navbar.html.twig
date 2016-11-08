@@ -1,0 +1,117 @@
+<nav class="nav-main">
+    <div class="nav-main__top row">
+        <div class="col-xs-12">
+            <div class="container">
+
+                <ul class="nav navbar-nav nav-main__top-links">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ path('sylius_shop_homepage') }}">
+                            <span class="hidden-sm-down"><i class="fa fa-home"></i> {{ site_header }}</span>
+                            <strong class="hidden-md-up">{{ site_header }}</strong>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('vcare_shop_post_index') }}">
+                            <span class="hidden-sm-down"><i class="fa fa-laptop"></i> {{ "vcare.ui.posts"|trans }}</span>
+                            <strong class="hidden-md-up">{{ "vcare.ui.posts"|trans }}</strong>
+                        </a>
+                    </li>
+                </ul>
+
+                <ul class="nav navbar-nav nav-main__top-user">
+                    {{ knp_menu_render('vcare.shop.locale', {'template': 'VcareWebBundle:Menu:locale.html.twig', 'display': 'desktop'}) }}
+                    {% if is_granted('ROLE_USER') %}
+                        {% set user = app.user %}
+                        <li class="nav-item nav-item-user">
+                            <div class="dropdown">
+                                <a class="dropdown-toggle" id="dropdownUser" data-toggle="dropdown" aria-haspopup="true"
+                                   aria-expanded="false">
+                                    <img src="{{ asset('assets/web/img/avatar.png') }}">
+                                    <span>{{ user.customer ? user.customer.fullname : user.username }}</span>
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownUser">
+                                    <li class="dropdown-item">
+                                        <a href="{{ path('sylius_shop_account_order_index') }}">
+                                            <i class="fa fa-shopping-cart"></i>{{ 'sylius.ui.order_history'|trans }}
+                                        </a>
+                                    </li>
+                                    <li class="dropdown-item">
+                                        <a href="{{ path('sylius_shop_account_dashboard') }}">
+                                            <i class="fa fa-user"></i>{{ 'sylius.ui.profile'|trans }}
+                                        </a>
+                                    </li>
+                                    <li class="dropdown-item">
+                                        <a href="{{ path('sylius_shop_account_change_password') }}">
+                                            <i class="fa fa-sign-in"></i>{{ 'sylius.ui.change_password'|trans }}
+                                        </a>
+                                    </li>
+                                    <li class="dropdown-item">
+                                        <a href="{{ path('sylius_shop_logout') }}">
+                                            <i class="fa fa-sign-out"></i>{{ 'sylius.ui.logout'|trans }}
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link navbar-user__reg" href="{{ path('sylius_shop_register') }}">
+                                <i class="fa fa-user"></i> {{ "sylius.ui.register"|trans }}
+                            </a>
+                        </li>
+                        <li class="nav-item navbar-user__log">
+                            <a class="nav-link" href="{{ path('sylius_shop_login') }}">
+                                <i class="fa fa-sign-in"></i>
+                                {{ "sylius.ui.login"|trans }}
+                            </a>
+                        </li>
+                    {% endif %}
+                </ul>
+
+            </div>
+        </div>
+    </div>
+
+    {% set categories = render(url('route_shop_partial_taxon_menus', {code: 'category', template: 'VcareWebBundle:Menu:taxon.html.twig'})) %}
+
+    <div class="nav-main__menu row">
+        <div class="col-xs-12">
+            <div class="container">
+                <div class="row">
+                    <div itemscope class="col-lg-2 col-md-6 nav-main__menu-brand hidden-sm-down">
+                        <a itemprop="url" href="{{ path('sylius_shop_homepage') }}">
+                            {% if site_logo|default(null) %}
+                                <img itemprop="logo" id="site-logo" src="{{ site_logo }}" alt="{{ site_branding }}">
+                            {% else %}
+                                {{ site_branding }}
+                            {% endif %}
+                        </a>
+                    </div>
+                    <div class="col-lg-7 nav-main__menu-category hidden-md-down">
+                        {{ categories|raw }}
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-xs-10 nav-main__menu-cart">
+                        {% set cart = sylius_cart_get() %}
+                        {% if cart.empty %}
+                            <a class="btn btn-primary" href="{{ path('sylius_shop_product_index') }}">
+                                {{ "vcare.ui.all_products"|trans }}
+                            </a>
+                        {% else %}
+                            <a class="btn btn-primary" href="{{ path('sylius_shop_cart_summary') }}">
+                                <i class="fa fa-shopping-cart"></i> {{ cart.total|sylius_price }}
+                            </a>
+                        {% endif %}
+                    </div>
+
+                    <div class="col-xs-2 nav-main__menu-toggle hidden-md-up">
+                        <button class="btn btn-hamburger"><i class="fa fa-navicon"></i></button>
+                    </div>
+
+                    <div class="col-xs-12 nav-main__menu-category category-toggle hidden-lg-up hidden-sm-down">
+                        {{ categories|raw }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
