@@ -1,0 +1,14 @@
+@import "user-login";
+@import "user-account";
+@import "user-register";
+
+.user-form {
+
+    label {
+        width: 100% !important;
+    }
+
+    .col-sm-10 {
+        width: 100% !important;
+    }
+}

@@ -1,0 +1,25 @@
+{% extends 'VcareWebBundle::layout.html.twig' %}
+
+{% block content %}
+    <div class="container">
+        <div class="checkout-step__thank_you">
+        <div class="checkout-step__thank_yo--text">
+            <h1 class="ui icon header">
+                {% set lastPayment = order.payments.last() %}
+                <div class="content">
+                    {{ 'sylius.ui.thank_you'|trans }}
+                    <div class="sub header">{{ 'sylius.ui.placed_an_order'|trans }}</div>
+                    <a href="{{ path('sylius_shop_order_show', { 'tokenValue': order.tokenValue }) }}">
+                        {{ 'sylius.ui.show_order_details'|trans }}
+                    </a>
+                </div>
+                {% if lastPayment.method.instructions is not null %}
+                    <div class="sub header">
+                        {{ lastPayment.method.instructions }}
+                    </div>
+                {% endif %}
+            </h1>
+        </div>
+    </div>
+    </div>
+{% endblock %}

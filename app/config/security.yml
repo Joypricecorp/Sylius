@@ -48,8 +48,6 @@ security:
                 login_path: sylius_shop_login
                 check_path: sylius_shop_login_check
                 failure_path: sylius_shop_login
-                default_target_path: sylius_shop_homepage
-                use_forward: false
                 use_referer: true
             remember_me:
                 secret: "%secret%"
@@ -75,6 +73,7 @@ security:
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/verify, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: "/account.*", role: ROLE_USER }
+        - { path: "/checkout.*", role: ROLE_USER }
 
         - { path: ^/admin/login, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/login-check, role: IS_AUTHENTICATED_ANONYMOUSLY }

@@ -1,0 +1,24 @@
+{% if taxons|length %}
+    {% for taxon in taxons %}
+        {{ _self.render_tree(taxon) }}
+    {% endfor %}
+{% endif %}
+
+{% macro render_tree(taxon) %}
+    {% if taxon.children|length %}
+        <div class="dropdown taxons">
+            <a class="dropdown-toggle" id="dropdownUser" data-toggle="dropdown">
+                <span>{{ taxon.name }}</span>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="dropdownUser">
+                {% for taxon in taxon.children %}
+                    <li class="dropdown-item">
+                        <a href="{{ path('route_shop_product_index_taxon', {slug: taxon.slug}) }}">{{ taxon.name }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% else %}
+        <a href="{{ path('route_shop_product_index_taxon', {slug: taxon.slug}) }}">{{ taxon.name }}</a>
+    {% endif %}
+{% endmacro %}

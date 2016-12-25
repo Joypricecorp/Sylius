@@ -1,0 +1,39 @@
+liip_imagine:
+    loaders:
+        stream_assets:
+            filesystem:
+                data_root: "%kernel.root_dir%/../web/"
+
+    filter_sets:
+        cmf_strip:
+            data_loader: cmf_media_doctrine_phpcr
+            filters:
+                strip: {  }
+        cmf_post_medium:
+            data_loader: cmf_media_doctrine_phpcr
+            filters:
+                thumbnail: { size: [555, 313], mode: outbound }
+        cmf_post_medium_square:
+            data_loader: cmf_media_doctrine_phpcr
+            filters:
+                thumbnail: { size: [495, 280], mode: outbound }
+        cmf_post_small:
+            data_loader: cmf_media_doctrine_phpcr
+            filters:
+                thumbnail: { size: [252, 144], mode: outbound }
+        assets_strip:
+            data_loader: stream_assets
+            filters:
+                strip: {  }
+        assets_post_medium:
+            data_loader: stream_assets
+            filters:
+                thumbnail: { size: [555, 313], mode: outbound }
+        assets_post_medium_square:
+            data_loader: stream_assets
+            filters:
+                thumbnail: { size: [495, 280], mode: outbound }
+        assets_post_small:
+            data_loader: stream_assets
+            filters:
+                thumbnail: { size: [252, 144], mode: outbound }

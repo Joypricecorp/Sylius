@@ -1,0 +1,30 @@
+{% extends 'VcareWebBundle:Account:layout.html.twig' %}
+{% from 'VcareWebBundle:Macros:misc.html.twig' import pagination %}
+
+{% set is_mobile_view = is_mobile_view() %}
+
+{% block breadcrumbs%}
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="{{ path('route_shop_homepage') }}">{{ 'sylius.ui.home'|trans }}</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a href="{{ path('sylius_shop_account_dashboard') }}">{{ 'sylius.ui.my_account'|trans }}</a>
+        </li>
+        <li class="breadcrumb-item active">{{ 'sylius.ui.order_history'|trans }}</li>
+    </ol>
+{% endblock %}
+
+{% block subcontent %}
+    <div class="container">
+        <h4 class="card-title">{{ 'sylius.ui.order_history'|trans }}</h4>
+
+        {% if not is_mobile_view %}
+            {% include 'VcareWebBundle:Account/Order:_list.html.twig' %}
+        {% else %}
+            {% include 'VcareWebBundle:Account/Order:_list-xs.html.twig' %}
+        {% endif %}
+
+        {{ pagination(orders.data) }}
+    </div>
+{% endblock %}

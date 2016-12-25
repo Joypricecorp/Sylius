@@ -1,0 +1,45 @@
+{% extends 'VcareWebBundle:Account:layout.html.twig' %}
+
+{% import 'VcareWebBundle:Macros:buttons.html.twig' as buttons %}
+
+{% block breadcrumbs%}
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="{{ path('route_shop_homepage') }}">{{ 'sylius.ui.home'|trans }}</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a href="{{ path('sylius_shop_account_dashboard') }}">{{ 'sylius.ui.my_account'|trans }}</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a href="{{ path('sylius_shop_account_order_index') }}">{{ 'sylius.ui.order_history'|trans }}</a>
+        </li>
+        <li class="breadcrumb-item active">
+            {{ 'sylius.ui.order'|trans }} <span>{{ order.number }}</span>
+        </li>
+    </ol>
+{% endblock %}
+
+{% set page_navigate %}
+    <div class="row" style="margin-bottom: 1rem;">
+        <div class="col-xs-6">
+            <a href="{{ path('sylius_shop_account_order_index') }}" class="btn btn-secondary">
+                <i class="fa fa-angle-left"></i>
+                {{ 'sylius.ui.order_history'|trans }}
+            </a>
+        </div>
+        <div class="col-xs-6 text-xs-right">
+            {% if 'fulfilled' == order.state %}
+                <a href="{{ path('sylius_shop_account_order_incoice', {'number': order.number}) }}" class="btn btn-primary">
+                    <i class="fa fa-print"></i>
+                    {{ 'sylius.ui.invoice'|trans }}
+                </a>
+            {% endif %}
+        </div>
+    </div>
+{% endset %}
+
+{% block subcontent %}
+    {{ page_navigate }}
+    {% include 'VcareWebBundle:Account/Order:_detail.html.twig' %}
+    {{ page_navigate }}
+{% endblock %}

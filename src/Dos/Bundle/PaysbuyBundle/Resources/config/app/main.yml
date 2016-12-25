@@ -1,0 +1,12 @@
+payum:
+    gateways:
+        paysbuy:
+            factory: paysbuy
+            sandbox: "%paysbuy_sandbox%"
+            psbID: "%paysbuy_psb_id%"
+            username: "%paysbuy_username%"
+            secureCode: "%paysbuy_secure_code%"
+
+sylius_payment:
+    gateways:
+        paysbuy: Paysbuy

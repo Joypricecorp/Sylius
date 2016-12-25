@@ -1,0 +1,8 @@
+{% extends "@VcareWeb/layout.html.twig" %}
+
+{% block content %}
+    <div class="text-xs-center">
+        <img src="{{ asset('assets/web/img/errors/'~(random([1, 7]))~'.png') }}" alt="ERrOR">
+        <h4>Page not found! ไม่พบหน้าเพจที่คุณเรียก คุณอาจพิมพ์ URL ผิด หรือถูกลบ หรือหมดอายุไปแล้ว</h4>
+    </div>
+{% endblock %}

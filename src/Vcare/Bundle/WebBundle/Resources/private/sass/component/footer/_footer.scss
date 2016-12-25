@@ -1,0 +1,102 @@
+//$footer-link-color: $color-base !default;
+$footer-link-color: #fff !default;
+$footer-heading-color: #231F20 !default;
+$footer-text-ship-color: #fff !default;
+
+.footer {
+    width: 100%;
+
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    &__ct {
+        margin-right: 0;
+        margin-left: 0;
+        background: $color-ext;
+    }
+
+    &__ship {
+        text-align: right;
+        line-height: 4rem;
+        color: $footer-text-ship-color;
+
+        strong {
+            font-size: 1rem;
+            font-weight: bold;
+            padding-right: 10px;
+        }
+    }
+
+    &__payment {
+        width: 100%;
+    }
+
+    &__sitemap {
+        background: $color-second;
+
+        &--ct {
+            padding: 2rem 0;
+            margin-left: 0;
+            margin-right: 0;
+
+            h4 {
+                margin: 1rem 0;
+                color: $footer-heading-color;
+            }
+
+            p, li {
+                margin-bottom: .5rem;
+            }
+        }
+
+        &--add {
+            padding: .5rem 0;
+        }
+
+        a {
+            color: $footer-link-color;
+        }
+
+        &--social {
+
+            i {
+                text-align: center;
+                width: 45px;
+                height: 45px;
+                font-size: 1.5rem;
+                border-radius: 50%;
+                line-height: 45px;
+            }
+
+            a {
+
+                &:hover {
+                    opacity: .8;
+                }
+            }
+        }
+    }
+
+    &__icon {
+        display: inline-block;
+        font-size: 3rem;
+        padding-left: 15px;
+    }
+
+    &__lc {
+        padding: 3rem 0;
+        font-size: .8rem;
+        text-align: center;
+
+        p {
+            margin-bottom: .5rem;
+        }
+    }
+}
+
+.footer-checkout {
+    padding-top: 3rem;
+}

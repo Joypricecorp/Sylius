@@ -1,0 +1,19 @@
+toro_admin_post:
+    resource: "post.yml"
+
+toro_admin_page:
+    resource: "page.yml"
+
+BCCCronManagerBundle:
+    resource: "@BCCCronManagerBundle/Resources/config/routing.xml"
+    prefix: /crons
+
+elfinder_admin:
+    resource: "@FMElfinderBundle/Resources/config/routing.yml"
+
+elfinder_theme_editor:
+    path: /themes/{instance}/{homeFolder}
+    defaults:
+        _controller: FMElfinderBundle:ElFinder:show
+        instance: default
+        homeFolder: ''
