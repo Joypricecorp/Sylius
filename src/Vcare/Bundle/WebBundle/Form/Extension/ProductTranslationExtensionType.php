@@ -21,6 +21,10 @@ class ProductTranslationExtensionType extends AbstractTypeExtension
                 'required' => false,
                 'label' => 'sylius.form.product.attributes',
             ])
+            ->add('manual', TextareaType::class, [
+                'required' => false,
+                'label' => 'sylius.form.product.manual',
+            ])
         ;
     }
 

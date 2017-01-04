@@ -7,12 +7,22 @@ use Sylius\Component\Core\Model\ProductTranslationInterface as BaseProductTransl
 interface ProductTranslationInterface extends BaseProductTranslationInterface
 {
     /**
-     * @return mixed
+     * @return string
      */
     public function getAttribute();
 
     /**
-     * @param mixed $attribute
+     * @param string $attribute
      */
     public function setAttribute($attribute);
+
+    /**
+     * @return string
+     */
+    public function getManual();
+
+    /**
+     * @param string $manual
+     */
+    public function setManual($manual);
 }

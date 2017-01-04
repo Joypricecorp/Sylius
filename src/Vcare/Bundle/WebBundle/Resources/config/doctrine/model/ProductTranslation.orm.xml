@@ -7,5 +7,6 @@
 
     <mapped-superclass name="Vcare\Bundle\WebBundle\Model\ProductTranslation" table="sylius_product_translation">
         <field name="attribute" type="text" nullable="true"/>
+        <field name="manual" type="text" nullable="true"/>
     </mapped-superclass>
 </doctrine-mapping>

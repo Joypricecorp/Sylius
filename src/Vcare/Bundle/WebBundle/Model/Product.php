@@ -30,6 +30,22 @@ class Product extends BaseProduct implements ProductInterface
     /**
      * {@inheritdoc}
      */
+    public function getManual()
+    {
+        return $this->getTranslation()->getManual();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setManual($manual)
+    {
+        $this->getTranslation()->setManual($manual);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getExternalOrderUrl()
     {
         return $this->externalOrderUrl;

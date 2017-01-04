@@ -63,3 +63,5 @@ sylius.ui.orders_statistics: Orders statistics
 sylius.ui.this_customer_has_not_placed_any_orders_yet: This customer has not placed any orders yet
 sylius.ui.overall_this_customer_has_placed_orders_across_all_channels.choice: Overall this customer has placed orders across all channels
 sylius.ui.total_value_of_orders: Total value of orders
+
+sylius.form.product.manual: Manual

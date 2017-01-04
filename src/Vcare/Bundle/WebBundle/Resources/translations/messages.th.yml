@@ -63,3 +63,5 @@ sylius.ui.orders_statistics: สถิติการสั่งซื้อ
 sylius.ui.this_customer_has_not_placed_any_orders_yet: ยังไม่มีรายการสั่งซื้อ
 sylius.ui.overall_this_customer_has_placed_orders_across_all_channels.choice: คำสั่งซื้อทั้งหมด
 sylius.ui.total_value_of_orders: ยอดรวมการสั่งซื้อ
+
+sylius.form.product.manual: คู่มือการใช้งาน

@@ -113,8 +113,6 @@
             </div>
         </div>
 
-        {% set manualImage = product.getImageByCode('manual') %}
-
         <div class="product-show-content">
             <ul class="nav nav-tabs">
                 <li class="nav-item">
@@ -123,11 +121,9 @@
                 <li class="nav-item">
                     <a class="nav-link" data-toggle="tab" href="#product-show-tab-attribute">{{ "vcare.ui.attributes"|trans }}</a>
                 </li>
-                {% if manualImage %}
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#product-show-tab-manual">{{ "vcare.ui.manual"|trans }}</a>
-                    </li>
-                {% endif %}
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#product-show-tab-manual">{{ "vcare.ui.manual"|trans }}</a>
+                </li>
             </ul>
 
             <div class="tab-content product-show-tab">
@@ -137,11 +133,9 @@
                 <div id="product-show-tab-attribute" class="tab-pane">
                     {{ product.attribute|raw }}
                 </div>
-                {% if manualImage %}
-                    <div id="product-show-tab-manual" class="tab-pane">
-                        <img src="{{ manualImage.path|imagine_filter('local_strip') }}" class="img-fluid" alt="{{ product.name }}">
-                    </div>
-                {% endif %}
+                <div id="product-show-tab-manual" class="tab-pane">
+                    {{ product.manual|raw }}
+                </div>
             </div>
         </div>
 

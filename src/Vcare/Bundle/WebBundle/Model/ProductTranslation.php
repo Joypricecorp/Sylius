@@ -12,6 +12,11 @@ class ProductTranslation extends BaseProductTranslation implements ProductTransl
     private $attribute;
 
     /**
+     * @var string
+     */
+    private $manual;
+
+    /**
      * {@inheritdoc}
      */
     public function getAttribute()
@@ -25,5 +30,21 @@ class ProductTranslation extends BaseProductTranslation implements ProductTransl
     public function setAttribute($attribute)
     {
         $this->attribute = $attribute;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getManual()
+    {
+        return $this->manual;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setManual($manual)
+    {
+        $this->manual = $manual;
     }
 }
