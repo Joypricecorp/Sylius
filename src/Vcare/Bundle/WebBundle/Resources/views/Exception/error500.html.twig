@@ -1,8 +1,1 @@
-{% extends "@VcareWeb/layout.html.twig" %}
-
-{% block content %}
-    <div class="text-xs-center">
-        <img src="{{ asset('assets/web/img/errors/'~(random([1, 7]))~'.png') }}" alt="ERrOR">
-        <h4>System ERROR! โปรดติดต่อผู้ดูแลระบบ</h4>
-    </div>
-{% endblock %}
+{% extends "@VcareWeb/Exception/error.html.twig" %}

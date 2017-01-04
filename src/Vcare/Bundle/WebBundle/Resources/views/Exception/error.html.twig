@@ -1,7 +1,71 @@
-{% extends "@VcareWeb/layout.html.twig" %}
+<html>
+<head>
+    <title>{% block title %}Whoops{% endblock %} - {{ site_header }}</title>
+    <style type="text/css" media="screen">
+        body {
+            background-color: #F8F8F8;
+            color: #000;
+            margin: 0;
+            font-family: "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+        }
 
-{% block content %}
-    <div class="text-xs-center">
-        <img src="{{ asset('assets/web/img/errors/'~(random([1, 7]))~'.png') }}" alt="ERrOR">
+        h1 {
+            font-size: 82px;
+            padding: 1rem 0 0 0;
+            margin: 0;
+        }
+
+        #error {
+            width: 600px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .left {
+            float: left;
+            text-align: center;
+            padding-bottom: 3rem;
+        }
+
+        .left img {
+            width: 200px;
+        }
+
+        .right {
+            padding-left: 220px;
+        }
+
+        .hint {
+            color: #999;
+        }
+
+    </style>
+</head>
+<body>
+
+<br><br><br>
+<br><br><br>
+
+<div id="error">
+    <div class="left">
+        <img src="{{ asset('assets/web/img/errors/'~(random([1, 7]))~'.png') }}">
     </div>
-{% endblock %}
+    <div class="right">
+        {% block error_message %}
+            <h1>Whoops!</h1>
+            <h2>Something went wrong :(</h2>
+
+            <p class="hint">
+                Our development team has been alerted to this error.
+                {% if site_mail %}
+                    If you continue to have problems please contact support:
+                    <a href="mailto:{{ site_mail }}">{{ site_mail }}</a>
+                {% endif %}
+            </p>
+            <br>
+        {% endblock %}
+    </div>
+</div>
+
+</body>
+</html>
