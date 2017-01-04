@@ -113,3 +113,12 @@ input[type="date"].form-control {
         margin-bottom: .5rem;
     }
 }
+
+.social-btn {
+    display: inline-flex;
+    align-items: flex-end;
+
+    > div {
+        margin-right: 10px;
+    }
+}
