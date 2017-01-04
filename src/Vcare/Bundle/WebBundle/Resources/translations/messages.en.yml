@@ -65,3 +65,4 @@ sylius.ui.overall_this_customer_has_placed_orders_across_all_channels.choice: Ov
 sylius.ui.total_value_of_orders: Total value of orders
 
 sylius.form.product.manual: Manual
+vcare.ui.share: Share

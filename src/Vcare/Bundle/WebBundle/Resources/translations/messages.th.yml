@@ -65,3 +65,4 @@ sylius.ui.overall_this_customer_has_placed_orders_across_all_channels.choice: �
 sylius.ui.total_value_of_orders: ยอดรวมการสั่งซื้อ
 
 sylius.form.product.manual: คู่มือการใช้งาน
+vcare.ui.share: แชร์

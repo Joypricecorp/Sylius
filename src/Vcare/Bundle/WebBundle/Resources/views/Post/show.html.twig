@@ -1,7 +1,18 @@
 {% extends '@VcareWeb/layout.html.twig' %}
-{% from "@VcareWeb/Macros/images.html.twig" import toro_image %}
+{% from '@VcareWeb/Macros/images.html.twig' import toro_image, toro_image_src %}
+{% from '@VcareWeb/Macros/social.html.twig' import metas, shares_default %}
+
+{% set share_link = url('toro_cms_post', { slug: post.slug }) %}
 
 {% block title %} {{ parent() }} - {{ post.title }}{% endblock %}
+{% block metatags %}
+    {{ metas({
+        'url': share_link,
+        'title': post.title,
+        'description': post.description,
+        'image': post.cover ? toro_image_src(post.cover, 'strip') : asset('assets/web/img/g-bg.png'),
+    }) }}
+{% endblock %}
 
 {% block breadcrumb %}
     <div class="container">
@@ -19,6 +30,9 @@
 {% block content %}
     <div class="container post-show">
         {% block blog_post %}
+            <div class="post-show--social">
+                {{ shares_default(share_link) }}
+            </div>
             <div class="post-show--cover">
                 {{ toro_image(post.cover, 'strip', post.title, 'img-fluid') }}
             </div>

@@ -1,13 +1,26 @@
 {% extends '@VcareWeb/layout.html.twig' %}
 {% from '@VcareWeb/Product/macros.html.twig' import list %}
-{% from '@VcareWeb/Macros/images.html.twig' import toro_image %}
+{% from '@VcareWeb/Macros/images.html.twig' import toro_image, toro_image_src %}
+{% from '@VcareWeb/Macros/social.html.twig' import metas, shares %}
+
 {% set is_mobile_view = is_mobile_view() %}
+{% set first_image = product.images.first() %}
+{% set share_image = product.getImageByCode('share') %}
+{% set share_link = url('route_shop_product_show', {slug: product.slug}) %}
 
 {% if order_item is defined %}
     {% set product = order_item.variant.product %}
 {% endif %}
 
 {% block title %} {{ parent() }} - {{ product.name }}{% endblock %}
+{% block metatags %}
+    {{ metas({
+        'url': share_link,
+        'title': product.name,
+        'description': product.shortDescription,
+        'image': (share_image ? share_image.path : (first_image ? first_image.path : (asset('assets/web/img/g-bg.png'))))|imagine_filter('local_strip'),
+    }) }}
+{% endblock %}
 
 {% block breadcrumb %}
     <div class="container">
@@ -29,7 +42,7 @@
                 <div class="product-show-pictures">
 
                     <div class="product-show-pictures__preview preload_object magnify">
-                        {% set first_image = product.images.first() %}
+
                         {% set product_picture_l = first_image ? first_image.path|imagine_filter('850x850') : 'http://placehold.it/850x850' %}
                         {% set product_picture_xl = first_image ? first_image.path|imagine_filter('1000x1000') : 'http://placehold.it/1000x1000' %}
 
@@ -90,9 +103,7 @@
 
                 <hr>
                 <div class="product-show-box__share">
-                    <a href="#"><i class="fa fa-facebook"></i></a>
-                    <a href="#"><i class="fa fa-twitter"></i></a>
-                    <a href="#"><i class="fa fa-google-plus"></i></a>
+                    {{ shares(share_link) }}
                 </div>
 
                 {#{% if product.attributes|length %}

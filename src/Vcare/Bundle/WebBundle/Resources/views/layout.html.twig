@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ app.request.locale }}" class="{{ layout|default('layout-basic') }}">
+<html lang="{{ app.request.locale|slice(0, 2) }}" class="{{ layout|default('layout-basic') }}">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -40,6 +40,10 @@
 
 {% block footer %}
     {{ render(path('toro_cms_partial_page', {slug: '_tpls/main-footer'})) }}
+{% endblock %}
+
+{% block extra_scripts %}
+    {{ render(path('toro_cms_partial_page', {slug: '_tpls/extra-scripts'})) }}
 {% endblock %}
 
 {% block javascripts %}
