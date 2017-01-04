@@ -18,7 +18,7 @@
                     <div class="row home-content__box">
                         <div class="col-md-6 col-xs-12">
                             <p class="home-content--image">
-                                <a class="btn btn-link" href="{{ path('vcare_shop_post_show', {slug: post.slug}) }}">
+                                <a href="{{ path('vcare_shop_post_show', {slug: post.slug}) }}">
                                     {{ toro_image(post.thumb|default(post.cover), 'post_small') }}
                                 </a>
                             </p>
