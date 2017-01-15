@@ -26,7 +26,7 @@
                                     <th>{{ 'sylius.ui.item'|trans }}</th>
                                     <th class="text-align-right">{{ 'sylius.ui.unit_price'|trans }}</th>
                                     <th class="text-align-center">{{ 'sylius.ui.qty'|trans }}</th>
-                                    <th class="text-align-right">{{ 'sylius.ui.tax'|trans }}</th>
+                                    {#<th class="text-align-right">{{ 'sylius.ui.tax'|trans }}</th>#}
                                     <th class="text-align-right">{{ 'sylius.ui.total'|trans }}</th>
                                     <th></th>
                                 </tr>
@@ -65,33 +65,46 @@
 
                     <div class="cart-summary__total--row">
                         <div class="row">
-                            <div class="col-xs-5 cart-summary__total--txt">
-                                <strong>{{ 'sylius.ui.tax'|trans }}</strong>
+                            <div class="col-xs-6 cart-summary__total--txt">
+                                <strong>{{ 'sylius.ui.subtotal'|trans }}</strong>
                             </div>
-                            <div class="col-xs-7 cart-summary__total--prc">
-                                {{ money.convertAndFormat(cart.taxTotal) }}
+                            <div class="col-xs-6 cart-summary__total--prc">
+                                {{ money.convertAndFormat(cart.itemstotal) }}
                             </div>
                         </div>
                     </div>
 
-                    <div class="cart-summary__total--row">
+                    {#<div class="cart-summary__total--row">
                         <div class="row">
-                            <div class="col-xs-5 cart-summary__total--txt">
-                                <strong>{{ 'sylius.ui.shipping'|trans }}</strong>
+                            <div class="col-xs-6 cart-summary__total--txt">
+                                <strong>{{ 'sylius.ui.tax'|trans }}</strong>
                             </div>
-                            <div class="col-xs-7 cart-summary__total--prc">
-                                {{ money.convertAndFormat(cart.shippingTotal) }}
+                            <div class="col-xs-6 cart-summary__total--prc">
+                                {{ money.convertAndFormat(cart.taxTotal) }}
                             </div>
                         </div>
-                    </div>
+                    </div>#}
+
+                    {% if cart.shippingTotal > 0 %}
+                        <div class="cart-summary__total--row">
+                            <div class="row">
+                                <div class="col-xs-6 cart-summary__total--txt">
+                                    <strong>{{ 'sylius.ui.shipping'|trans }}</strong>
+                                </div>
+                                <div class="col-xs-6 cart-summary__total--prc">
+                                    {{ money.convertAndFormat(cart.shippingTotal) }}
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
 
                     {% if cart.orderPromotionTotal %}
                         <div class="cart-summary__total--row">
                             <div class="row">
-                                <div class="col-xs-5 cart-summary__total--txt">
+                                <div class="col-xs-6 cart-summary__total--txt">
                                     <strong>{{ 'sylius.ui.discount'|trans }}</strong>
                                 </div>
-                                <div class="col-xs-7 cart-summary__total--prc">
+                                <div class="col-xs-6 cart-summary__total--prc">
                                     {{ money.convertAndFormat(cart.orderPromotionTotal) }}
                                 </div>
                             </div>
@@ -100,10 +113,10 @@
 
                     <div class="cart-summary__total--grd">
                         <div class="row">
-                            <div class="col-xs-5 cart-summary__total--grd-txt">
+                            <div class="col-xs-6 cart-summary__total--grd-txt">
                                 <strong>{{ 'sylius.ui.order_total'|trans }}</strong>
                             </div>
-                            <div class="col-xs-7 cart-summary__total--grd-prc">
+                            <div class="col-xs-6 cart-summary__total--grd-prc">
                                 {{ money.convertAndFormat(cart.total) }}
                             </div>
                         </div>
@@ -112,10 +125,10 @@
                     {% if cart.currencyCode is not same as(sylius.currencyCode) %}
                         <div class="cart-summary__total--grd">
                             <div class="row">
-                                <div class="col-xs-5 cart-summary__total--grd-txt">
+                                <div class="col-xs-6 cart-summary__total--grd-txt">
                                     <strong>{{ 'sylius.ui.base_currency_order_total'|trans }}</strong>
                                 </div>
-                                <div class="col-xs-7 cart-summary__total--grd-prc">
+                                <div class="col-xs-6 cart-summary__total--grd-prc">
                                     {{ money.format(cart.total, cart.currencyCode) }}
                                 </div>
                             </div>

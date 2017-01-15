@@ -46,6 +46,22 @@ class Product extends BaseProduct implements ProductInterface
     /**
      * {@inheritdoc}
      */
+    public function getData(): array
+    {
+        return (array) $this->getTranslation()->getData();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setData(array $data)
+    {
+        $this->getTranslation()->setData($data);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getExternalOrderUrl()
     {
         return $this->externalOrderUrl;
@@ -57,5 +73,10 @@ class Product extends BaseProduct implements ProductInterface
     public function setExternalOrderUrl($externalOrderUrl)
     {
         $this->externalOrderUrl = $externalOrderUrl;
+    }
+
+    public function getManuals()
+    {
+        return $this->getTranslation()->getManuals();
     }
 }

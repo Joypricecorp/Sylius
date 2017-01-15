@@ -23,10 +23,10 @@
             <th>{{ 'sylius.ui.qty'|trans }}</th>
             <td>{{ cart_quantity(form) }}</td>
         </tr>
-        <tr>
+        {#<tr>
             <th>{{ 'sylius.ui.tax'|trans }}</th>
             <td>{{ item_tax(item.variant, item.taxTotal) }}</td>
-        </tr>
+        </tr>#}
         <tr>
             <th>{{ 'sylius.ui.total'|trans }}</th>
             <td>{{ money.convertAndFormat(item.subtotal) }}</td>

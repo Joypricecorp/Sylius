@@ -104,6 +104,7 @@
 
                 {# product items #}
                 <tr class="heading">
+                    <td>#</td>
                     <td>
                         {{ 'sylius.ui.product'|trans }}
                     </td>
@@ -113,9 +114,9 @@
                     <td class="account-menu__product-table--qty">
                         {{ 'sylius.ui.qty'|trans }}
                     </td>
-                    <td class="account-menu__product-table--tax">
+                    {#<td class="account-menu__product-table--tax">
                         {{ 'sylius.ui.tax'|trans }}
-                    </td>
+                    </td>#}
                     <td class="account-menu__product-table--total">
                         {{ 'sylius.ui.total'|trans }}
                     </td>
@@ -123,9 +124,8 @@
 
                 {% for item in order.items %}
                     <tr class="item{% if loop.index == order.items|length %} last{% endif %}">
-                        <td>
-                            {{ item.product.name }}
-                        </td>
+                        <td>{{ loop.index }}.</td>
+                        <td>{{ item.product.name }}</td>
                         <td class="account-menu__product-table--price">
                             {% if item.unitPrice != item.discountedUnitPrice %}
                                 <span class="regular-price">{{ price_tax_item(item.variant, item.unitPrice, item.taxTotal) }}</span>
@@ -137,9 +137,9 @@
                         <td class="account-menu__product-table--qty">
                             {{ item.quantity }}
                         </td>
-                        <td class="account-menu__product-table--tax">
+                        {#<td class="account-menu__product-table--tax">
                             {{ item_tax(item.variant, item.taxTotal) }}
-                        </td>
+                        </td>#}
                         <td class="account-menu__product-table--total">
                             {{ money.convertAndFormat(item.subtotal) }}
                         </td>
@@ -148,14 +148,14 @@
 
                 <tfoot>
                 {# tax total #}
-                <tr>
+                {#<tr>
                     <td colspan="4">
                         <span class="pull-right">{{ 'sylius.ui.tax_total'|trans }} :</span>
                     </td>
                     <td>
                         {{ money.convertAndFormat(order.taxTotal) }}
                     </td>
-                </tr>
+                </tr>#}
 
                 {# shipping total #}
                 <tr>
@@ -179,7 +179,7 @@
                 {# all total total #}
                 <tr class="total">
                     <td colspan="4">
-                        <span class="pull-right">{{ 'sylius.ui.total'|trans }}:</span>
+                        <span class="pull-right">{{ 'sylius.ui.order_total'|trans }}:</span>
                     </td>
                     <td>
                         {{ money.convertAndFormat(order.total) }}

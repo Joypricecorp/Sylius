@@ -8,5 +8,13 @@
     <mapped-superclass name="Vcare\Bundle\WebBundle\Model\ProductTranslation" table="sylius_product_translation">
         <field name="attribute" type="text" nullable="true"/>
         <field name="manual" type="text" nullable="true"/>
+        <field name="data" type="json_array" nullable="false"/>
+
+        <one-to-many target-entity="Vcare\Bundle\WebBundle\Model\ProductManualInterface" mapped-by="productTranslation"
+                     field="manuals" orphan-removal="true">
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-many>
     </mapped-superclass>
 </doctrine-mapping>

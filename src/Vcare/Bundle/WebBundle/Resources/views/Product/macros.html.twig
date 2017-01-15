@@ -88,9 +88,10 @@
 
 {% macro price_tax_item(variant, unitPrice, taxTotal) %}
     {% import "@SyliusShop/Common/Macro/money.html.twig" as money %}
-    {% if tax_is_included_in_price(variant) %}
+    {#{% if tax_is_included_in_price(variant) %}
         {{ money.convertAndFormat(unitPrice - taxTotal) }}
     {% else %}
         {{ money.convertAndFormat(unitPrice) }}
-    {% endif %}
+    {% endif %}#}
+    {{ money.convertAndFormat(unitPrice) }}
 {% endmacro %}

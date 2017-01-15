@@ -6,6 +6,9 @@ liip_imagine:
         120x90:
             filters:
                 thumbnail: { size: [120, 90], mode: inset }
+        90x90:
+            filters:
+                thumbnail: { size: [90, 90], mode: inset }
         250x250:
             filters:
                 thumbnail: { size: [250, 250], mode: inset }

@@ -39,7 +39,7 @@ final class ResolveNextRouteAction implements ActionInterface
         $request->setRouteName('sylius_shop_order_show');
         $request->setRouteParameters(['tokenValue' => $payment->getOrder()->getTokenValue()]);
 
-        if ($this->session) {
+        /*if ($this->session) {
             switch (true) {
                 case in_array($payment->getState(), [PaymentInterface::STATE_COMPLETED]):
                     $key = 'success';
@@ -61,7 +61,7 @@ final class ResolveNextRouteAction implements ActionInterface
 
             $translateKey = "ui.paysbuy.payment." . $payment->getState();
             $this->session->getBag('flashes')->add($key, $this->translator->trans($translateKey));
-        }
+        }*/
     }
 
     /**

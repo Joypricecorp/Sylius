@@ -39,6 +39,12 @@ gulp.task('web', function() {
     ;
 });
 
+gulp.task('web-watch', function() {
+    gulp.src('src/Vcare/Bundle/WebBundle/Gulpfile.js', { read: false })
+        .pipe(chug({ tasks: 'web-watch' }))
+    ;
+});
+
 gulp.task('cms', function() {
     gulp.src('./vendor/toro/cms-bundle/Gulpfile.js', { read: false })
         .pipe(chug())

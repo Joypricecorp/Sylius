@@ -25,12 +25,14 @@ body {
  **/
 $IS_DEBUG: true;
 
+@import "fonts";
 @import "base";
 @import "utils";
 @import "loader";
 @import "menu";
 @import "button";
 @import "magnify";
+@import "tpls";
 @import "component/component";
 
 // default

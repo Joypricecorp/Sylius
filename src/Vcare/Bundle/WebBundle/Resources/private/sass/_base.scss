@@ -8,6 +8,8 @@ body {
     padding-top: 0;
     /* Prevent scroll on narrow devices */
     overflow-x: hidden;
+    font-family: $font-body;
+    background-color: #f5f5f5;
 }
 
 a {
@@ -16,6 +18,15 @@ a {
     &:hover, &:focus {
         text-decoration: none;
     }
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: $font-heading;
+}
+
+.fff-font {
+    color: #ffffff;
+    text-shadow: 0 2px 6px rgba(0,0,0,.75);
 }
 
 .page-header {

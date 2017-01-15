@@ -9,3 +9,4 @@ imports:
     - { resource: "fm_elfinder.yml" }
     - { resource: "liip_imagine.yml" }
     - { resource: "stof_doctrine_extensions.yml" }
+    - { resource: "sylius_resource.yml" }

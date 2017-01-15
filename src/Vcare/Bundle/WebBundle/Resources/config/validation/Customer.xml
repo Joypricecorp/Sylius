@@ -18,7 +18,7 @@
                 <option name="groups">sylius_customer_profile</option>
             </constraint>
             <constraint name="Length">
-                <option name="min">10</option>
+                <option name="min">9</option>
                 <option name="max">20</option>
                 <option name="minMessage">vcare.customer.phone_number.not_valid_length</option>
                 <option name="maxMessage">vcare.customer.phone_number.not_valid_length</option>

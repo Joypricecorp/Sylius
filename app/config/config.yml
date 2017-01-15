@@ -73,6 +73,7 @@ twig:
     globals:
         cart_context: "@sylius.context.cart"
         channel_settings: "@vcare.context.channel_settings"
+        product_repository: "@sylius.repository.product"
         site_header: VcareAsia
         site_domain: vcareasia.com
         site_url: http://vcareasia.com

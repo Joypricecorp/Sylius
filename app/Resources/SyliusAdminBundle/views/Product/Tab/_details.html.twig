@@ -1,5 +1,8 @@
 <div class="ui active tab" data-tab="details">
     <h3 class="ui dividing header">{{ 'sylius.ui.details'|trans }}</h3>
+    {% if false == form.vars.valid %}
+        <div class="ui red message">Some form's field(s) is not valid</div>
+    {% endif %}
     {{ form_errors(form) }}
 
     <div class="ui two column stackable grid">
@@ -10,7 +13,8 @@
                 {{ form_row(form.enabled) }}
                 {% if product.simple %}
                     {{ form_row(form.variant.onHand) }}
-                    {{ form_row(form.variant.tracked) }}
+                    {#{{ form_row(form.variant.position) }}#}
+                    {#{{ form_row(form.variant.tracked) }}#}
                 {% else %}
                     {{ form_row(form.options) }}
                     {{ form_row(form.variantSelectionMethod) }}
@@ -47,11 +51,13 @@
                     {{ form_row(translationForm.description, {'attr': {'rows': 10, 'data-theme': 'toromce', 'class': 'toromce'}}) }}
                     {{ form_row(translationForm.attribute, {'attr': {'rows': 20, 'data-theme': 'toromce', 'class': 'toromce'}}) }}
                     {{ form_row(translationForm.manual, {'attr': {'rows': 20, 'data-theme': 'toromce', 'class': 'toromce'}}) }}
+                    {{ form_row(translationForm.data, {'attr': {'rows': 40, 'data-code-mirror-yaml': 1}}) }}
                 </div>
             </div>
         {% endfor %}
     </div>
     {% if product.simple %}
+        <div style="display: none">
         <div class="ui hidden divider"></div>
         <div class="ui two column stackable grid">
             <div class="column">
@@ -71,7 +77,32 @@
                 </div>
             </div>
         </div>
+        </div>
     {% endif %}
 </div>
 
 {{ toro_tinymce({mediaPath: 'products'}) }}
+<script>
+    $(function () {
+        var CodeMirrorInit = function (editor, elId, mode) {
+            if (window[editor] instanceof CodeMirror) {
+                window[editor].refresh();
+            } else {
+                window[editor] = CodeMirror.fromTextArea(typeof elId === 'string' ? document.getElementById(elId) : elId, {
+                    lineNumbers: true,
+                    indentWithTabs: false,
+                    mode: {name: mode, htmlMode: mode === 'twig'}
+                });
+            }
+        };
+        $('[data-code-mirror-yaml]').focus(function () {
+            CodeMirrorInit($(this).data('code-mirror'), this, 'yaml');
+        });
+    });
+</script>
+<style>
+    .CodeMirror {
+        min-height: 400px;
+        height: auto;
+    }
+</style>

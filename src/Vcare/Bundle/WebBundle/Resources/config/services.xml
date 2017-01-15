@@ -43,6 +43,14 @@
             <argument type="service" id="vcare.formatter.money.inner"/>
         </service>
 
+        <service id="vcare.form.product_manual" class="Vcare\Bundle\WebBundle\Form\Type\ProductManualType">
+            <argument>%sylius.model.product_manual.class%</argument>
+            <argument type="collection">
+                <argument type="string">sylius</argument>
+            </argument>
+            <tag name="form.type" />
+        </service>
+
         <!--<service id="vcare.form.checkout.address.type" class="Vcare\Bundle\WebBundle\Form\Type\Checkout\AddressType" parent="sylius.form.type.checkout_address" decorates="sylius.form.type.checkout_address">
             <tag name="form.type" alias="sylius_checkout_address" />
         </service>

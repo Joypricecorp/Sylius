@@ -80,6 +80,10 @@
 
     &__product-table {
 
+        .media-object {
+            float: left;
+        }
+
         thead {
 
             th {

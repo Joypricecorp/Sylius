@@ -1,0 +1,10 @@
+sylius_resource:
+    resources:
+        sylius.product_manual:
+            driver: doctrine/orm
+            classes:
+                controller: Sylius\Bundle\ResourceBundle\Controller\ResourceController
+                factory: Sylius\Component\Resource\Factory\Factory
+                model: Vcare\Bundle\WebBundle\Model\ProductManual
+                interface: Vcare\Bundle\WebBundle\Model\ProductManualInterface
+                repository: Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository

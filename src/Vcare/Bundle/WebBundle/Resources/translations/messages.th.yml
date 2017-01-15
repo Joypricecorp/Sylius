@@ -12,8 +12,8 @@ vcare.ui.all_posts: "บทความทั้งหมด"
 vcare.ui.details: "รายละเอียด"
 vcare.ui.read_more: "อ่านต่อ"
 vcare.ui.more_contents: "อ่านบทความอื่นๆ"
-vcare.ui.vat_is_included_in_price: "สินค้ารวมภาษาแล้ว"
-vcare.ui.vat_is_not_included_in_price: "สินค้ายังไม่รวมภาษา"
+vcare.ui.vat_is_included_in_price: "สินค้ารวมภาษีแล้ว"
+vcare.ui.vat_is_not_included_in_price: "สินค้ายังไม่รวมภาษี"
 vcare.ui.attributes: 'คุณสมบัติ'
 vcare.ui.previous: 'ก่อนหน้า'
 vcare.ui.next: 'ถัดไป'
@@ -66,3 +66,11 @@ sylius.ui.total_value_of_orders: ยอดรวมการสั่งซื�
 
 sylius.form.product.manual: คู่มือการใช้งาน
 vcare.ui.share: แชร์
+
+vcare.ui.previous: ย้อนกลับ
+vcare.ui.next: ถัดไป
+vcare.ui.code: รหัส
+vcare.ui.you_may_also_like: สินค้าแนะนำ
+
+sylius.ui.order_total: ยอดสุทธิ (รวมภาษีแล้ว)
+sylius.ui.subtotal: มูลค่าสินค้า

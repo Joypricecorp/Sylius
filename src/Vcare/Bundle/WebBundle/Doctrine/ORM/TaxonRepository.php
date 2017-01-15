@@ -3,6 +3,7 @@
 namespace Vcare\Bundle\WebBundle\Doctrine\ORM;
 
 use Sylius\Bundle\TaxonomyBundle\Doctrine\ORM\TaxonRepository as BaseTaxonRepository;
+use Sylius\Component\Core\Model\TaxonInterface;
 
 class TaxonRepository extends BaseTaxonRepository
 {
@@ -45,5 +46,29 @@ class TaxonRepository extends BaseTaxonRepository
         ;
 
         return $queryBuilder->getQuery()->getResult();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function createListQueryBuilderLocaled($locale, TaxonInterface $root = null)
+    {
+        $queryBuilder = $this->createQueryBuilder('o')
+            ->leftJoin('o.translations', 'translation')
+            ->andWhere('translation.locale = :locale')
+            ->setParameter(':locale', $locale)
+        ;
+
+        if ($root) {
+            $queryBuilder
+                ->andWhere('o.root = :root')
+                ->setParameter('root', $root)
+
+                ->andWhere('o.id <> :notSelf')
+                ->setParameter('notSelf', $root)
+            ;
+        }
+
+        return $queryBuilder;
     }
 }

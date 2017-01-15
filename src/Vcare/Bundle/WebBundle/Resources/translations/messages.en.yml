@@ -66,3 +66,11 @@ sylius.ui.total_value_of_orders: Total value of orders
 
 sylius.form.product.manual: Manual
 vcare.ui.share: Share
+
+vcare.ui.previous: Previous
+vcare.ui.next: Next
+vcare.ui.code: Code
+vcare.ui.you_may_also_like: You may also like
+
+sylius.ui.order_total: Grand total (included vat)
+sylius.ui.subtotal: Total

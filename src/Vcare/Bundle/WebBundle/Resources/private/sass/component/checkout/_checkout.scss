@@ -25,6 +25,9 @@
     }
 
     &__finalize {
+        .media-object {
+            float: left;
+        }
         table {
             tfoot {
                 th, td {
