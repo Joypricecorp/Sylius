@@ -44,7 +44,7 @@
             <div class="col-md-6 col-xs-12">
                 <div class="product-show-pictures">
 
-                    <div class="product-show-pictures__preview preload_object magnify">
+                    <div class="product-show-pictures__preview preload_object{{ printif(' magnify', not is_mobile_view) }}">
 
                         {% set product_picture_xl = first_image ? first_image.path|imagine_filter('local_strip') : 'http://placehold.it/1000x1000' %}
 

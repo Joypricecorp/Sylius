@@ -1,13 +1,9 @@
-.taxon-preview {
+.tpl-content {
   &__image {
+    margin-bottom: 1rem;
+
     img {
       width: 80%;
     }
-
-    /*&--overlap {
-      img {
-        margin-top: 0;
-      }
-    }*/
   }
 }
