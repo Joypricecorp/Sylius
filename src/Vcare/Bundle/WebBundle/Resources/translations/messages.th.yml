@@ -6,7 +6,7 @@ vcare.ui.more_products: สินค้าอื่นๆ
 vcare.ui.login_information: ข้อมูลการเข้าระบบ
 vcare.ui.register_in_the_store: กรุณาระบุรายละเอียดสำหรับการสมัครสมาชิก
 vcare.menu.shop.account.addressing: แก้ไขที่อยู่
-vcare.ui.home: "หน้าหลัก"
+vcare.ui.home: "หน้าแรก"
 vcare.ui.posts: "บทความ"
 vcare.ui.all_posts: "บทความทั้งหมด"
 vcare.ui.details: "รายละเอียด"
@@ -74,3 +74,6 @@ vcare.ui.you_may_also_like: สินค้าแนะนำ
 
 sylius.ui.order_total: ยอดสุทธิ (รวมภาษีแล้ว)
 sylius.ui.subtotal: มูลค่าสินค้า
+
+vcare.ui.social_login: เข้าระบบด้วยบัญชีอื่นๆ
+vcare.ui.social_facebook_login: เข้าระบบด้วยบัญชี Facebook

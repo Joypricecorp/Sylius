@@ -20,6 +20,7 @@
 
             a {
                 display: block;
+                width: 350px;
 
                 &:hover {
                     opacity: .8;
@@ -72,7 +73,6 @@
     }
 
     &__fb, &__ih {
-        width: 350px;
         margin: .5rem 0;
     }
 

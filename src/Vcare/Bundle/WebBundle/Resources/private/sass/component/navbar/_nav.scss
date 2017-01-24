@@ -40,6 +40,7 @@
 
         &-brand {
             font-size: 1.7rem;
+            text-align: center;
 
             // prevent box width resize when we increase font-size over column width
             overflow: hidden;
@@ -49,7 +50,7 @@
             }
 
             img {
-                width: 100%;
+                height: 75px;
             }
         }
 

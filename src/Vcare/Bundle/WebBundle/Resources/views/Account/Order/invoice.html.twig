@@ -26,11 +26,11 @@
 
             <table cellpadding="0" cellspacing="0">
                 <tr class="top">
-                    <td colspan="4">
+                    <td colspan="5">
                         <table>
                             <tr>
                                 <td class="title">
-                                    <img src="{{ asset('favicon.png') }}">
+                                    <img src="{{ asset('logo.png') }}">
                                 </td>
                                 <td>
                                     {{ 'sylius.ui.invoice'|trans }} #{{ order.number }}<br>
@@ -44,7 +44,7 @@
 
                 <tr class="information">
                     {% set address = order.shippingAddress %}
-                    <td colspan="4">
+                    <td colspan="5">
                         <table>
                             <tr>
                                 <td>
@@ -149,7 +149,7 @@
                 <tfoot>
                 {# tax total #}
                 {#<tr>
-                    <td colspan="4">
+                    <td colspan="5">
                         <span class="pull-right">{{ 'sylius.ui.tax_total'|trans }} :</span>
                     </td>
                     <td>

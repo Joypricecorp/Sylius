@@ -25,3 +25,6 @@ parameters:
     paysbuy_psb_id: 8051084553
     paysbuy_username: plusmain_merchant@paysbuy.com
     paysbuy_secure_code: f8a64c0f7141d10687b62d4ecb52721d
+
+    toro_facebook_client_id: ~
+    toro_facebook_client_secret: ~

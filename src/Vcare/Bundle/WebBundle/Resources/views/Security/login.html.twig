@@ -5,15 +5,16 @@
 {% block content %}
     <div class="container">
         <div class="row user-login">
-            {#<div class="col-sm-6 col-xs-12 user-login__left">
-                <div class="page-header">{{ 'Social Login'|trans|raw }}</div>
+            <div class="col-sm-6 col-xs-12 user-login__left">
+                <div class="page-header">{{ 'vcare.ui.social_login'|trans }}</div>
 
                 <div class="user-login__form--social">
-                    #}{#{{ render(path('hwi_oauth_connect')) }}#}{#
-                    <a class="user-login__fb btn btn-fb btn-lg"><i class="fa fa-facebook-official"></i>{{ 'Login with Facebook'|trans }}</a>
-                    <a class="user-login__ih btn btn-primary btn-lg"><i class="user-login__ih--icon"></i>{{ 'Login with iHealth'|trans }}</a>
+                    <a class="user-login__fb btn btn-fb btn-lg" href="{{ path('hwi_oauth_service_redirect', {'service': 'facebook' }) }}">
+                        <i class="fa fa-facebook-official"></i> {{ 'vcare.ui.social_facebook_login'|trans }}
+                    </a>
+                    {#<a class="user-login__ih btn btn-primary btn-lg"><i class="user-login__ih--icon"></i>{{ 'Login with iHealth'|trans }}</a>#}
                 </div>
-            </div>#}
+            </div>
             <div class="col-sm-6 col-xs-12 user-login__right">
                 <div class="page-header">{{ 'sylius.ui.login'|trans|raw }}</div>
 
@@ -62,7 +63,7 @@
                             </div>
                         </div>
                     </div>
-
+                <input type="hidden" name="_csrf_shop_security_token" value="{{ csrf_token('shop_authenticate') }}">
                 <input type="hidden" name="_target_path" value="{{ app.request.headers.get('referer') }}" />
                 {{ form_end(form, {'render_rest': false}) }}
 

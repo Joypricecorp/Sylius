@@ -145,6 +145,14 @@ class UserProvider extends BaseUserProvider implements AccountConnectorInterface
             $customer->setFirstName($realName);
         }
 
+        if (null !== $firstName = $response->getFirstName()) {
+            $customer->setFirstName($firstName);
+        }
+
+        if (null !== $lastName = $response->getLastName()) {
+            $customer->setLastName($lastName);
+        }
+
         if (!$user->getUsername()) {
             $user->setUsername($response->getEmail() ?: $response->getNickname());
         }

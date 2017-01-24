@@ -78,6 +78,7 @@
 
         <service id="vcare.email_manager.order" class="Vcare\Bundle\WebBundle\EmailManager\OrderEmailManager">
             <argument type="service" id="sylius.email_sender" />
+            <argument type="service" id="sylius.context.channel" />
         </service>
 
         <service id="vcare.controller.shop.homepage" decorates="sylius.controller.shop.homepage" class="Vcare\Bundle\WebBundle\Controller\HomepageController">

@@ -164,15 +164,17 @@
       font-family: $font-heading;
 
       .nav-link {
-        color: #cccccc;
+        color: #555;
         border: none;
         border-radius: 0;
-        background-color: transparent;
+        background-color: rgba($color-base, .15);
+        border-bottom: 4px solid rgba($color-base, .15);
 
         &.active {
-          border-bottom: 4px solid $color-base;
           font-weight: bold;
-          color: #000000;
+          color: #ffffff;
+          background-color: rgba($color-base, .75);
+          border-bottom: 4px solid $color-base;
         }
       }
     }

@@ -6,6 +6,10 @@ winzou_state_machine:
                     on: ["cancel"]
                     do: ["@vcare.email_manager.order", "sendCancelledEmail"]
                     args: ["object"]
+                vcare_confirm_order:
+                    on: ["create"]
+                    do: ["@vcare.email_manager.order", "sendNotifyConfirmationEmail"]
+                    args: ["object"]
     sylius_payment:
         callbacks:
             after:
