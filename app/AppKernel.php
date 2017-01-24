@@ -75,8 +75,6 @@ class AppKernel extends Kernel
             new \Sylius\Bundle\FixturesBundle\SyliusFixturesBundle(),
             new \Sylius\Bundle\PayumBundle\SyliusPayumBundle(), // must be added after PayumBundle.
             new \Sylius\Bundle\ThemeBundle\SyliusThemeBundle(), // must be added after FrameworkBundle
-
-            new \HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
         ];
 
         if (in_array($this->environment, ['dev', 'test', 'test_cached'], true)) {
@@ -109,6 +107,8 @@ class AppKernel extends Kernel
             new \Vcare\Bundle\WebBundle\VcareWebBundle(),
             new \BCC\CronManagerBundle\BCCCronManagerBundle(),
             new \Symfony\Bundle\AsseticBundle\AsseticBundle(),
+
+            new \HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
         ];
 
         return array_merge(self::getSyliusBundles(), $bundles);
