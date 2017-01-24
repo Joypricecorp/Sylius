@@ -6050,12 +6050,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/intbizth/toro-cms-bundle.git",
-                "reference": "28e8dc25754675695d183f1a3b7e15e0de40eb3d"
+                "reference": "6ef6d1917972be33d4aff83f088b425ad5355b7a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/intbizth/toro-cms-bundle/zipball/28e8dc25754675695d183f1a3b7e15e0de40eb3d",
-                "reference": "28e8dc25754675695d183f1a3b7e15e0de40eb3d",
+                "url": "https://api.github.com/repos/intbizth/toro-cms-bundle/zipball/6ef6d1917972be33d4aff83f088b425ad5355b7a",
+                "reference": "6ef6d1917972be33d4aff83f088b425ad5355b7a",
                 "shasum": ""
             },
             "require": {
@@ -6093,7 +6093,7 @@
             "keywords": [
                 "cms"
             ],
-            "time": "2017-01-21 14:41:56"
+            "time": "2017-01-24 08:32:11"
         },
         {
             "name": "toro/fixture-bundle",
@@ -8135,6 +8135,7 @@
                 "schema",
                 "validate"
             ],
+            "abandoned": "kherge/json",
             "time": "2013-10-30 16:51:34"
         },
         {
@@ -8192,6 +8193,7 @@
                 "phar",
                 "update"
             ],
+            "abandoned": true,
             "time": "2013-11-09 17:13:13"
         },
         {
@@ -8243,6 +8245,7 @@
                 "semantic",
                 "version"
             ],
+            "abandoned": true,
             "time": "2014-05-27 05:29:25"
         },
         {
