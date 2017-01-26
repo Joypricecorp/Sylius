@@ -34,7 +34,7 @@ sylius_shop_cart_item_remove:
     defaults:
         _controller: sylius.controller.order_item:removeAction
         _sylius:
-            redirect: sylius_shop_cart_summary
+            redirect: false
             flash: sylius.cart.remove_item
 
 sylius_shop_cart_item_add:

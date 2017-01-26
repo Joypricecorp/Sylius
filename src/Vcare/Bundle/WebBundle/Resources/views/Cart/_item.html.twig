@@ -23,8 +23,8 @@
         {{ money.convertAndFormat(item.subtotal) }}
     </td>
     <td class="remove">
-        <a href="{{ path('sylius_shop_cart_item_remove', {'id': item.id}) }}" class="btn btn-danger">
+        <button type="button" data-redirect="{{ path('sylius_shop_cart_summary') }}" data-action-url="{{ path('sylius_shop_ajax_cart_item_remove', {'id': item.id}) }}" class="btn btn-danger" data-csrf-token="{{ csrf_token(item.id) }}">
             <i class="fa fa-trash-o"></i>
-        </a>
+        </button>
     </td>
 </tr>

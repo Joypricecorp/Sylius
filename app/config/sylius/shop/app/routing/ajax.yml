@@ -1,0 +1,8 @@
+sylius_shop_ajax_cart_item_remove:
+    path: /{id}/remove
+    methods: [DELETE]
+    defaults:
+        _controller: sylius.controller.order_item:removeAction
+        _format: json
+        _sylius:
+            flash: sylius.cart.remove_item
