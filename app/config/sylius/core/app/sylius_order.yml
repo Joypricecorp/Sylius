@@ -3,3 +3,6 @@ sylius_order:
         order:
             classes:
                 controller: Vcare\Bundle\WebBundle\Controller\OrderController
+    expiration:
+        cart: '1 hour'
+        order: '1 days'
