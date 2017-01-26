@@ -124,5 +124,11 @@
         <service id="vcare.listener.user_enable" class="Vcare\Bundle\WebBundle\EventListener\UserAutoEnableListener">
             <tag name="kernel.event_listener" event="sylius.customer.pre_register" method="enableUser" />
         </service>
+
+        <service id="vcare.handler.shop_user_logout" class="Vcare\Bundle\WebBundle\EventListener\ShopUserLogoutHandler" decorates="sylius.handler.shop_user_logout">
+            <argument type="service" id="vcare.handler.shop_user_logout.inner" />
+            <argument type="service" id="sylius.context.cart" />
+            <argument type="service" id="sylius.repository.order" />
+        </service>
     </services>
 </container>
