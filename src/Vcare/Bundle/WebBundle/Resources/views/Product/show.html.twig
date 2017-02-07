@@ -45,12 +45,13 @@
 
                     <div class="product-show-pictures__preview preload_object">
 
+                        {% set product_picture = first_image ? first_image.path|imagine_filter('450x450') : 'http://placehold.it/450x450' %}
                         {% set product_picture_xl = first_image ? first_image.path|imagine_filter('local_strip') : 'http://placehold.it/1000x1000' %}
 
                         {% if is_mobile_view %}
                             <img src="{{ product_picture_xl }}">
                         {% else %}
-                            <img src="{{ product_picture_xl }}" data-zoom-image="{{ product_picture_xl }}">
+                            <img src="{{ product_picture }}" data-zoom-image="{{ product_picture_xl }}">
                         {% endif %}
                     </div>
 
