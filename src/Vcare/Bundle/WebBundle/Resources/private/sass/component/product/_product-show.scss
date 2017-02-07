@@ -13,7 +13,8 @@
   text-align: center;
   &__preview {
     img {
-      width: 90%;
+      max-width: 450px;
+      max-height: 450px;
     }
   }
 

@@ -1,7 +1,7 @@
-// $(document).ready(function () {
-//     $('.zoom').magnify();
-// });
-
 $(function () {
-    $('img[data-zoom-image]').elevateZoom();
+    $('img[data-magnify-src]').magnify();
 });
+
+// $(function () {
+//     $('img[data-zoom-image]').elevateZoom();
+// });

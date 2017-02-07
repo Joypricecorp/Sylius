@@ -43,15 +43,14 @@
             <div class="col-md-6 col-xs-12">
                 <div class="product-show-pictures">
 
-                    <div class="product-show-pictures__preview preload_object">
-
+                    <div class="product-show-pictures__preview preload_object{{ print_if(' magnify', is_mobile_view) }}">
                         {% set product_picture = first_image ? first_image.path|imagine_filter('450x450') : 'http://placehold.it/450x450' %}
-                        {% set product_picture_xl = first_image ? first_image.path|imagine_filter('local_strip') : 'http://placehold.it/1000x1000' %}
+                        {% set product_picture_xl = first_image ? first_image.path|imagine_filter('850x850') : 'http://placehold.it/1000x1000' %}
 
                         {% if is_mobile_view %}
                             <img src="{{ product_picture_xl }}">
                         {% else %}
-                            <img src="{{ product_picture }}" data-zoom-image="{{ product_picture_xl }}">
+                            <img src="{{ product_picture }}" data-magnify-src="{{ product_picture_xl }}">
                         {% endif %}
                     </div>
 
@@ -64,9 +63,9 @@
                                         <div class="carousel-item product-show-pictures__item row {{ loop.first ? 'active' : '' }}">
                                     {% endif %}
                                     <div class="product-show-pictures__item--list col-xs-4">
-                                        <a href="{{ image.path|imagine_filter('850x850') }}" title="{{ product.name }}">
+                                        <a href="#" title="{{ product.name }}">
                                             <input class="xl-image-path" type="hidden"
-                                                   value="{{ image.path|imagine_filter('local_strip') }}">
+                                                   value="{{ image.path|imagine_filter('850x850') }}">
                                             <img src="{{ image.path|imagine_filter('90x90') }}"
                                                  alt="{{ product.name }}"/>
                                         </a>
