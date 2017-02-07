@@ -8,7 +8,7 @@ require 'vendor/deployphp/recipes/recipes/configure.php';
  */
 
 // Symfony shared dirs
-set('shared_dirs', ['var/logs', 'var/sessions']);
+set('shared_dirs', ['var/logs', 'var/sessions', 'web/media']);
 
 // Symfony writable dirs
 set('writable_dirs', ['var/cache', 'var/logs', 'var/sessions', 'web/media']);
