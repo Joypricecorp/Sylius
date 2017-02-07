@@ -13,7 +13,7 @@
             'keywords': cx_settings.branding('keywords')
         }) }}
     {% endblock %}
-    <title>{% block title %}{% endblock %} - {{ cx_settings.branding('name') }}</title>
+    <title>{% block title %}{{ cx_settings.branding('title') }}{% endblock %} - {{ cx_settings.branding('name') }}</title>
     {#<script src="{{ asset('assets/modernizr.js') }}"></script>#}
 
     {{ include('VcareWebBundle::favicons.html.twig') }}

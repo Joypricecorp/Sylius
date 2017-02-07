@@ -126,17 +126,17 @@ class ChannelSettingsContext
         $localeCode = $this->getChannel()->getDefaultLocale()->getCode();
         $defaults = (array) $this->container->getParameter('toro_branding');
         $settings = (array)$this->get('branding');
-        $default = array_key_exists($key, $defaults) ? $defaults[$key] : null;
+        $settings = array_replace_recursive($defaults, $settings);
 
         if (array_key_exists($key, $settings)) {
             if (is_array($settings[$key])) {
-                return array_key_exists($localeCode, $settings[$key]) ? $settings[$key][$localeCode] : $default;
+                return array_key_exists($localeCode, $settings[$key]) ? $settings[$key][$localeCode] : null;
             }
 
             return $settings[$key];
         }
 
-        return $default;
+        return null;
     }
 
     /**

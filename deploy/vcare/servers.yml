@@ -39,5 +39,12 @@ v00:
             copyright: '2017 vcareasia.com'
             contact_email: 'support@vcareasia.com'
             logo: /logo.png
-            description: ~
-            keywords: ~
+            title:
+                th_TH: "Best of iHealth, Snail8 Products"
+                en_US: "Best of iHealth, Snail8 Products"
+            description:
+                th_TH: "VcareAsia เป็นเว็บสินค้า ihealth, snail8 ที่ดีที่สุด"
+                en_US: "VcareAsia is a best ihealth, snail8 product e-commerce site."
+            keywords:
+                th_TH: "ihealth, snail8, Blood Pressure Monitors, Wireless Scales, Fitness Devices, Glucometers, Skin Care"
+                en_US: "ihealth, snail8, Blood Pressure Monitors, Wireless Scales, Fitness Devices, Glucometers, Skin Care"
