@@ -4,6 +4,9 @@
   h1 {
     color: $font-color-ihealth;
   }
+  h2 {
+
+  }
 }
 
 .product-show-pictures {
@@ -40,6 +43,8 @@
 }
 
 .product-show-box {
+
+  padding-right: 2rem;
 
   &__header {
     font-size: 2.5rem !important;

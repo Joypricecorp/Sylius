@@ -64,7 +64,6 @@
                         </div>
                     </div>
                 <input type="hidden" name="_csrf_shop_security_token" value="{{ csrf_token('shop_authenticate') }}">
-                <input type="hidden" name="_target_path" value="{{ app.request.headers.get('referer') }}" />
                 {{ form_end(form, {'render_rest': false}) }}
 
             </div>

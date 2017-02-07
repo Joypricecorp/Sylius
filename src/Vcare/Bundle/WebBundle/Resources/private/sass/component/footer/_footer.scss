@@ -1,10 +1,6 @@
-//$footer-link-color: $color-base !default;
-$footer-link-color: #fff !default;
-$footer-heading-color: #231F20 !default;
-$footer-text-ship-color: #fff !default;
-
 .footer {
     width: 100%;
+    color: #ffffff;
 
     ul {
         list-style: none;
@@ -21,7 +17,6 @@ $footer-text-ship-color: #fff !default;
     &__ship {
         text-align: right;
         line-height: 4rem;
-        color: $footer-text-ship-color;
 
         strong {
             font-size: 1rem;
@@ -44,7 +39,7 @@ $footer-text-ship-color: #fff !default;
 
             h4 {
                 margin: 1rem 0;
-                color: $footer-heading-color;
+                color: #ffffff;
             }
 
             p, li {
@@ -57,11 +52,14 @@ $footer-text-ship-color: #fff !default;
         }
 
         a {
-            color: $footer-link-color;
+            color: rgba(#ffffff, .75) !important;
+            &:hover {
+                color: #ffffff !important;
+                text-decoration: underline;
+            }
         }
 
         &--social {
-
             i {
                 text-align: center;
                 width: 45px;
@@ -69,13 +67,6 @@ $footer-text-ship-color: #fff !default;
                 font-size: 1.5rem;
                 border-radius: 50%;
                 line-height: 45px;
-            }
-
-            a {
-
-                &:hover {
-                    opacity: .8;
-                }
             }
         }
     }

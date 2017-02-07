@@ -3,11 +3,16 @@
 namespace Vcare\Bundle\WebBundle\Context;
 
 use Sylius\Component\Channel\Context\ChannelContextInterface;
+use Sylius\Component\Core\Model\ChannelInterface;
+use Sylius\Component\Core\Model\TaxonInterface;
 use Sylius\Component\Taxonomy\Repository\TaxonRepositoryInterface;
+use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 use Vcare\Bundle\WebBundle\Doctrine\ORM\TaxonRepository;
 
 class ChannelSettingsContext
 {
+    use ContainerAwareTrait;
+
     /**
      * @var ChannelContextInterface
      */
@@ -22,6 +27,14 @@ class ChannelSettingsContext
     {
         $this->channelContext = $channelContext;
         $this->taxonRepository = $taxonRepository;
+    }
+
+    /**
+     * @return ChannelInterface|\Sylius\Component\Channel\Model\ChannelInterface
+     */
+    public function getChannel()
+    {
+        return $this->channelContext->getChannel();
     }
 
     /**
@@ -91,5 +104,47 @@ class ChannelSettingsContext
         return $this->taxonRepository->findOneBy([
             'code' => $this->getProductTaxonRootCode($default)
         ]);
+    }
+
+    /**
+     * @param $code
+     *
+     * @return TaxonInterface[]
+     */
+    public function getChildrenByCode($code)
+    {
+        return $this->taxonRepository->findChildrenByCode($code);
+    }
+
+    /**
+     * @param string $key
+     *
+     * @return string|null
+     */
+    public function getBranding($key)
+    {
+        $localeCode = $this->getChannel()->getDefaultLocale()->getCode();
+        $defaults = (array) $this->container->getParameter('toro_branding');
+        $settings = (array)$this->get('branding');
+        $default = array_key_exists($key, $defaults) ? $defaults[$key] : null;
+
+        if (array_key_exists($key, $settings)) {
+            if (is_array($settings[$key])) {
+                return array_key_exists($localeCode, $settings[$key]) ? $settings[$key][$localeCode] : $default;
+            }
+
+            return $settings[$key];
+        }
+
+        return $default;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBaseUrl()
+    {
+        return $this->container->getParameter('toro_base_url');
+
     }
 }

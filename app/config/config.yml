@@ -75,12 +75,9 @@ twig:
         channel_settings: "@vcare.context.channel_settings"
         product_repository: "@sylius.repository.product"
         cx_channel: "@sylius.context.channel"
-        site_header: VcareAsia
-        site_domain: vcareasia.com
-        site_url: http://vcareasia.com
-        site_mail: support@vcareasia.com
-        site_logo: /logo.png
-        site_branding: iHealth
+        cx_settings: "@vcare.context.channel_settings"
+        site_url: "%toro_base_url%"
+        branding: "%toro_branding%"
 
 hwi_oauth:
     firewall_names: [shop]

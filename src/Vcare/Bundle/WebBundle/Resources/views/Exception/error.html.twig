@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>{% block title %}Whoops{% endblock %} - {{ site_header }}</title>
+    <title>{% block title %}Whoops{% endblock %} - {{ cx_settings.branding('name') }}</title>
     <style type="text/css" media="screen">
         body {
             background-color: #F8F8F8;
@@ -57,9 +57,9 @@
 
             <p class="hint">
                 Our development team has been alerted to this error.
-                {% if site_mail %}
+                {% if cx_settings.branding('contact_email') %}
                     If you continue to have problems please contact support:
-                    <a href="mailto:{{ site_mail }}">{{ site_mail }}</a>
+                    <a href="mailto:{{ cx_settings.branding('contact_email') }}">{{ cx_settings.branding('contact_email') }}</a>
                 {% endif %}
             </p>
             <br>

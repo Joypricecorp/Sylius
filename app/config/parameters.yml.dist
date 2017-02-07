@@ -28,3 +28,11 @@ parameters:
 
     toro_facebook_client_id: ~
     toro_facebook_client_secret: ~
+    toro_base_url: http://vcareasia.com
+    toro_branding:
+        name: 'VcareAsia'
+        copyright: '2017 vcareasia.com'
+        contact_email: 'support@vcareasia.com'
+        logo: /logo.png
+        description: ~
+        keywords: ~

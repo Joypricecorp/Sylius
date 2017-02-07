@@ -1,4 +1,4 @@
-{% block subject %}{{ site_header }} - {{ 'sylius.email.order_cancelled.name'|trans }}{% endblock %}
+{% block subject %}{{ cx_settings.branding('name') }} - {{ 'sylius.email.order_cancelled.name'|trans }}{% endblock %}
 
 {% block body %}
     {% spaceless %}

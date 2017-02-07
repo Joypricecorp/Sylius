@@ -6,16 +6,17 @@
 {% set is_mobile_view = is_mobile_view() %}
 {% set first_image = product.images.first() %}
 {% set share_image = product.getImageByCode('share') %}
-{% set share_link = url('route_shop_product_show', {slug: product.slug}) %}
+{% set canonical = url('route_shop_product_canonical', { id: product.id }) %}
 
 {% if order_item is defined %}
     {% set product = order_item.variant.product %}
 {% endif %}
 
-{% block title %} {{ parent() }} - {{ product.name }}{% endblock %}
+{% block title %}{{ product.name }}{% endblock %}
+
 {% block metatags %}
     {{ metas({
-        'url': share_link,
+        'url': canonical,
         'title': product.name,
         'description': product.shortDescription,
         'image': (share_image ? share_image.path : (first_image ? first_image.path : (asset('assets/web/img/g-bg.png'))))|imagine_filter('local_strip'),
@@ -23,19 +24,17 @@
 {% endblock %}
 
 {% block breadcrumb %}
-    <div class="container">
-        <ol class="breadcrumb breadcrumb-top">
-            <li class="breadcrumb-item">
-                <a href="{{ path('route_shop_homepage') }}">{{ "vcare.ui.home"|trans }}</a>
-            </li>
-            <li class="breadcrumb-item"><a
-                        href="{{ path('route_shop_product_index') }}">{{ "vcare.ui.all_products"|trans }}</a></li>
-            <li class="breadcrumb-item"><a
-                        href="{{ path('route_shop_product_index_taxon', {slug: product.mainTaxon.slug}) }}">{{ product.mainTaxon.name }}</a>
-            </li>
-            <li class="breadcrumb-item active">{{ product.name }}</li>
-        </ol>
-    </div>
+    <ol class="breadcrumb breadcrumb-top">
+        <li class="breadcrumb-item">
+            <a href="{{ path('route_shop_homepage') }}">{{ "vcare.ui.home"|trans }}</a>
+        </li>
+        <li class="breadcrumb-item"><a
+                    href="{{ path('route_shop_product_index') }}">{{ "vcare.ui.all_products"|trans }}</a></li>
+        <li class="breadcrumb-item"><a
+                    href="{{ path('route_shop_product_index_taxon', {slug: product.mainTaxon.slug}) }}">{{ product.mainTaxon.name }}</a>
+        </li>
+        <li class="breadcrumb-item active">{{ product.name }}</li>
+    </ol>
 {% endblock %}
 
 {% block content %}
@@ -44,15 +43,14 @@
             <div class="col-md-6 col-xs-12">
                 <div class="product-show-pictures">
 
-                    <div class="product-show-pictures__preview preload_object{{ printif(' magnify', not is_mobile_view) }}">
+                    <div class="product-show-pictures__preview preload_object">
 
                         {% set product_picture_xl = first_image ? first_image.path|imagine_filter('local_strip') : 'http://placehold.it/1000x1000' %}
 
                         {% if is_mobile_view %}
                             <img src="{{ product_picture_xl }}">
                         {% else %}
-                            <img src="{{ product_picture_xl }}" class="zoom"
-                                 data-magnify-src="{{ product_picture_xl }}">
+                            <img src="{{ product_picture_xl }}" data-zoom-image="{{ product_picture_xl }}">
                         {% endif %}
                     </div>
 
@@ -99,7 +97,7 @@
                     <h1 class="product-show-box__header">{{ product.name }}</h1>
 
                     {% if product.shortDescription %}
-                        <div class="product-show-box__description--short">{{ product.shortDescription|markdown }}</div>
+                        <h2 class="product-show-box__description--short">{{ product.shortDescription }}</h2>
                     {% endif %}
 
                     {% if product.code %}
@@ -113,7 +111,7 @@
 
                     <hr>
                     <div class="product-show-box__share">
-                        {{ shares(share_link) }}
+                        {{ shares(canonical) }}
                     </div>
                 </div>
             </div>

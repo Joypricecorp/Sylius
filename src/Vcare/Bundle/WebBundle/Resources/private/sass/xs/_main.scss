@@ -12,14 +12,5 @@
     @import "user";
     @import "taxon";
     @import "tpls";
-
-    .breadcrumb {
-        padding: 0.75rem;
-        font-size: 80%;
-
-        > li + li::before {
-            padding-right: .1rem;
-            padding-left: .2rem;
-        }
-    }
+    @import "breadcrumb";
 }

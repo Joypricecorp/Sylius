@@ -1,11 +1,19 @@
+{% from '@VcareWeb/Macros/social.html.twig' import metas %}
 <!DOCTYPE html>
 <html lang="{{ app.request.locale|slice(0, 2) }}" class="{{ layout|default('layout-basic') }}">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    {% block metatags %}{% endblock %}
-    <title>{% block title %}{{ site_header }}{% endblock %}</title>
+    {% block metatags %}
+        {{ metas({
+            'url': url('route_shop_homepage'),
+            'title': cx_settings.branding('title'),
+            'description': cx_settings.branding('description'),
+            'keywords': cx_settings.branding('keywords')
+        }) }}
+    {% endblock %}
+    <title>{% block title %}{% endblock %} - {{ cx_settings.branding('name') }}</title>
     {#<script src="{{ asset('assets/modernizr.js') }}"></script>#}
 
     {{ include('VcareWebBundle::favicons.html.twig') }}

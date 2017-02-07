@@ -79,6 +79,23 @@ class PostRepository extends EntityRepository
     /**
      * {@inheritdoc}
      */
+    public function findOneByIdAndChannel($id, ChannelInterface $channel)
+    {
+        return $this->createQueryBuilder('o')
+            //->leftJoin('o.translations', 'translation')
+            ->andWhere('o.channel = :channel')
+            ->andWhere('o.published = true')
+            ->andWhere('o.id = :id')
+            ->setParameter('id', $id)
+            ->setParameter('channel', $channel)
+            ->getQuery()
+            ->getOneOrNullResult()
+            ;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function createQueryBuilderByChannelAndLocale(ChannelInterface $channel, $locale)
     {
         $queryBuilder = $this->createQueryBuilder('o')

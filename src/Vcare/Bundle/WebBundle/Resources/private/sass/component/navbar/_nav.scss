@@ -39,8 +39,9 @@
         font-family: $font-heading;;
 
         &-brand {
+            float: left;
+            margin-right: 2rem;
             font-size: 1.7rem;
-            text-align: center;
 
             // prevent box width resize when we increase font-size over column width
             overflow: hidden;

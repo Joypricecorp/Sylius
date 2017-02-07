@@ -15,18 +15,22 @@
         <meta property="twitter:description" content="{{ params.description }}">
     {% endif %}
 
+    {% if params.keywords|default(false) %}
+        <meta name="keywords" content="{{ params.keywords }}">
+    {% endif %}
+
     {% if params.url|default(false) %}
         <link rel="canonical" href="{{ params.url }}">
     {% endif %}
 
-    <meta property="og:site_name" content="{{ params.site_name|default(site_header) }}">
+    <meta property="og:site_name" content="{{ params.site_name|default(cx_settings.branding('name')) }}">
 {% endmacro %}
 
 {%- macro shares(url) -%}
     <a href="http://www.facebook.com/sharer/sharer.php?u={{ url }}" target="_blank">
         <i class="fa fa-facebook"></i>
     </a>
-    <a href="{{ 'https://twitter.com/intent/tweet?' ~ {'via': site_header}|url_encode }}" target="_blank">
+    <a href="{{ 'https://twitter.com/intent/tweet?' ~ {'via': cx_settings.branding('name')}|url_encode }}" target="_blank">
         <i class="fa fa-twitter"></i>
     </a>
     <a href="https://plus.google.com/share?url={{ url }}" target="_blank">
@@ -41,7 +45,7 @@
             <a class="fb-xfbml-parse-ignore" target="_blank">{{ 'vcare.ui.share'|trans }}</a>
         </div>
         <a class="twitter-share-button"
-           href="{{ 'https://twitter.com/intent/tweet?' ~ {'via': site_header}|url_encode }}">
+           href="{{ 'https://twitter.com/intent/tweet?' ~ {'via': cx_settings.branding('name')}|url_encode }}">
             {{ 'vcare.ui.tweet'|trans }}
         </a>
     </div>

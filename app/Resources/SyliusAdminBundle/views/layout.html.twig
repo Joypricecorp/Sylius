@@ -1,6 +1,6 @@
 {% extends 'SyliusUiBundle:Layout:sidebar.html.twig' %}
 
-{% block title %}{{ site_header }} | {% endblock %}
+{% block title %}{{ cx_settings.branding('name') }} | {% endblock %}
 
 {% block stylesheets %}
     {% include 'SyliusUiBundle::_stylesheets.html.twig' with {'path': 'assets/admin/css/style.css'} %}
@@ -25,12 +25,12 @@
 {% endblock %}
 
 {% block sidebar %}
-    <a class="item" href="{{ path('sylius_admin_dashboard') }}"><b>{{ site_header }}</b></a>
+    <a class="item" href="{{ path('sylius_admin_dashboard') }}"><b>{{ cx_settings.branding('name') }}</b></a>
     {{ knp_menu_render('sylius.admin.main', {'template': 'SyliusUiBundle:Menu:sidebar.html.twig'}) }}
 {% endblock %}
 
 {% block footer %}
-    {{ 'sylius.ui.powered_by'|trans }} <a href="{{ site_url }}" target="_blank">{{ site_domain }}</a>.
+    {{ 'sylius.ui.powered_by'|trans }} <a href="{{ cx_settings.baseurl }}" target="_blank">{{ cx_settings.branding('name') }}</a>.
 {% endblock %}
 
 {% block javascripts %}

@@ -11,17 +11,14 @@
     background: #e6e6e6;
   }
 
-  &--white,
-  &--supple {
-    .btn-primary {
-      border-width: 2px;
-      background: none;
-      color: $color-base;
+  .btn-primary {
+    border-width: 2px;
+    background: none;
+    color: $color-base;
 
-      &:hover {
-        background: darken($color-base, 10%);
-        color: #ffffff;
-      }
+    &:hover {
+      background: darken($color-base, 10%);
+      color: #ffffff;
     }
   }
 
@@ -49,6 +46,7 @@
   }
 
   img {
+    max-width: 450px;
     max-height: 290px;
   }
 
