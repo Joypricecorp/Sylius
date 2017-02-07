@@ -1,6 +1,4 @@
 (function($) {
-    console.log('web app start ..');
-
     $('[data-toggle="tooltip"]').tooltip();
 
     $('[data-toggle="offcanvas"]').click(function () {

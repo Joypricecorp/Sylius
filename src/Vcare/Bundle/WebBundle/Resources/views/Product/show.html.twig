@@ -28,10 +28,13 @@
         <li class="breadcrumb-item">
             <a href="{{ path('route_shop_homepage') }}">{{ "vcare.ui.home"|trans }}</a>
         </li>
-        <li class="breadcrumb-item"><a
-                    href="{{ path('route_shop_product_index') }}">{{ "vcare.ui.all_products"|trans }}</a></li>
-        <li class="breadcrumb-item"><a
-                    href="{{ path('route_shop_product_index_taxon', {slug: product.mainTaxon.slug}) }}">{{ product.mainTaxon.name }}</a>
+        <li class="breadcrumb-item">
+            <a href="{{ path('route_shop_product_index') }}">{{ "vcare.ui.all_products"|trans }}</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a href="{{ path('route_shop_product_index_taxon', { slug: product.mainTaxon.slug }) }}">
+                {{ product.mainTaxon.name }}
+            </a>
         </li>
         <li class="breadcrumb-item active">{{ product.name }}</li>
     </ol>
@@ -50,7 +53,7 @@
                         {% if is_mobile_view %}
                             <img src="{{ product_picture_xl }}">
                         {% else %}
-                            <img src="{{ product_picture }}" data-magnify-src="{{ product_picture_xl }}">
+                            <img src="{{ product_picture }}" class="zoom" data-magnify-src="{{ product_picture_xl }}">
                         {% endif %}
                     </div>
 
@@ -62,10 +65,10 @@
                                     {% if loop.index%4==1 %}
                                         <div class="carousel-item product-show-pictures__item row {{ loop.first ? 'active' : '' }}">
                                     {% endif %}
+                                    {% set pic_lg = image.path|imagine_filter('850x850') %}
                                     <div class="product-show-pictures__item--list col-xs-4">
-                                        <a href="#" title="{{ product.name }}">
-                                            <input class="xl-image-path" type="hidden"
-                                                   value="{{ image.path|imagine_filter('850x850') }}">
+                                        <a href="{{ pic_lg }}" title="{{ product.name }}">
+                                            <input class="xl-image-path" type="hidden" value="{{ pic_lg }}">
                                             <img src="{{ image.path|imagine_filter('90x90') }}"
                                                  alt="{{ product.name }}"/>
                                         </a>

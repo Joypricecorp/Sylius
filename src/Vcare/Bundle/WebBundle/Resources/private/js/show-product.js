@@ -4,9 +4,13 @@ $(document).ready(function () {
     $(document).on('click', '.product-show .carousel-item a', function (e) {
         current_image = $(this);
         e.preventDefault();
+
         var img = $(this).attr('href');
-        if ($('.product-show-pictures__preview .preload_wrapper').length == 0)
+
+        if ($('.product-show-pictures__preview .preload_wrapper').length == 0) {
             $('.product-show-pictures__preview').prepend(loaderDiv);
+        }
+
         var tmpImg = new Image();
         tmpImg.onload = imageLoaded;
         tmpImg.src = img;
