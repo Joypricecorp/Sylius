@@ -48,7 +48,7 @@
 
                     <div class="product-show-pictures__preview preload_object{{ print_if(' magnify', is_mobile_view) }}">
                         {% set product_picture = first_image ? first_image.path|imagine_filter('450x450') : 'http://placehold.it/450x450' %}
-                        {% set product_picture_xl = first_image ? first_image.path|imagine_filter('850x850') : 'http://placehold.it/1000x1000' %}
+                        {% set product_picture_xl = first_image ? first_image.path|imagine_filter('local_strip') : 'http://placehold.it/1000x1000' %}
 
                         {% if is_mobile_view %}
                             <img src="{{ product_picture_xl }}">
@@ -65,12 +65,11 @@
                                     {% if loop.index%4==1 %}
                                         <div class="carousel-item product-show-pictures__item row {{ loop.first ? 'active' : '' }}">
                                     {% endif %}
-                                    {% set pic_lg = image.path|imagine_filter('850x850') %}
+                                    {% set pic_lg = image.path|imagine_filter('local_strip') %}
                                     <div class="product-show-pictures__item--list col-xs-4">
                                         <a href="{{ pic_lg }}" title="{{ product.name }}">
                                             <input class="xl-image-path" type="hidden" value="{{ pic_lg }}">
-                                            <img src="{{ image.path|imagine_filter('90x90') }}"
-                                                 alt="{{ product.name }}"/>
+                                            <img src="{{ image.path|imagine_filter('90x90') }}" alt="{{ product.name }}"/>
                                         </a>
                                     </div>
                                     {% if loop.index%4==0 or loop.last %}
