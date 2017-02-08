@@ -1,0 +1,38 @@
+{% import 'VcareWebBundle:Macros:buttons.html.twig' as buttons %}
+{% import "@SyliusShop/Common/Macro/money.html.twig" as money %}
+{% from 'VcareWebBundle:Account/Order:macros.html.twig' import state %}
+{% set orders = resources.data %}
+
+<div class="invoice-sm">
+    {% for order in orders %}
+        {% if order.number %}
+            <div class="row" id="order-{{ order.number }}">
+                <div class="col-xs-4">{{ 'sylius.ui.placed_at'|trans }}</div>
+                <div class="col-xs-7">{{ order.createdAt|localizeddate('medium', 'short') }}</div>
+                <div class="col-xs-4">{{ 'sylius.ui.number'|trans }}</div>
+                <div class="col-xs-7">{{ order.number }}</div>
+                <div class="col-xs-4">{{ 'sylius.ui.total'|trans }}</div>
+                <div class="col-xs-7">{{ money.convertAndFormat(order.total) }}</div>
+                <div class="col-xs-4">{{ 'sylius.ui.state'|trans }}</div>
+                <div class="col-xs-7">{{ state(order.state) }}</div>
+                <div class="col-xs-4">{{ 'sylius.ui.invoice'|trans }}</div>
+                <div class="col-xs-7">
+                    {% if 'fulfilled' == order.state %}
+                        <a href="{{ path('sylius_shop_account_order_incoice', {'number': order.number}) }}" class="btn btn-sm">
+                            <i class="fa fa-print"></i>
+                            {{ 'sylius.ui.invoice'|trans }}
+                        </a>
+                    {% else %}
+                        -
+                    {% endif %}
+                </div>
+                <div class="col-xs-12 text-xs-center">
+                    {{ buttons.show(path('sylius_shop_account_order_show', {'number': order.number}), '', '', 'btn-sm') }}
+                </div>
+            </div>
+            <hr>
+        {% endif %}
+    {% else %}
+        <p>{{ 'sylius.ui.no_results'|trans }}</p>
+    {% endfor %}
+</div>

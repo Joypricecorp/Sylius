@@ -1,0 +1,48 @@
+{% form_theme form 'VcareWebBundle:Form:common.html.twig' %}
+{% import "@SyliusShop/Common/Macro/money.html.twig" as money %}
+{% from 'VcareWebBundle:Product:macros.html.twig' import price_simple, item_text_tax %}
+
+{% set product = order_item.variant.product %}
+
+{{ form_errors(form) }}
+
+{{ form_start(form, {'action': path('sylius_shop_cart_item_add', {'productId': product.id}), 'attr': {'class': '', 'novalidate': 'novalidate'}}) }}
+    {#{% if not product.simple %}
+        {% if product.variantSelectionMethodChoice %}
+            {% include 'VcareWebBundle:Product:_variants.html.twig' %}
+        {% else %}
+            {% for option_form in form.variant %}
+                {{ form_row(option_form, { 'attr': { 'data-option': option_form.vars.name } }) }}
+            {% endfor %}
+        {% endif %}
+    {% endif %}#}
+
+    {#{{ _self.add_to_cart_single(product, form) }}#}
+
+    <div class="row">
+        <div class="col-xs-12 product-show-box__shopping--price">
+            <div class="row">
+                <div class="col-xs-12 product-show-box__shopping--price">
+                    {{ price_simple(product) }}
+                    {{ item_text_tax(product.variants.first) }}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-5 col-xs-12 product-show-box__shopping--quantity">
+            <span class="quantity-box">
+                <a class="btn btn-primary quantity-box--down">-</a>
+                {{ form_widget(form.cartItem.quantity, {'attr': {'empty_value': '1', 'data-cart-dirty': true}}) }}
+                <a class="btn btn-primary quantity-box--up">+</a>
+            </span>
+        </div>
+        <div class="col-md-6 col-xs-12 product-show-box__shopping--add-cart">
+            <button type="submit" class="btn btn-primary">
+                <i class="fa fa-cart-plus"></i> {{ 'sylius.ui.add_to_cart'|trans|raw }}
+            </button>
+        </div>
+    </div>
+
+    {{ form_row(form._token) }}
+{{ form_end(form, {'render_rest': false}) }}

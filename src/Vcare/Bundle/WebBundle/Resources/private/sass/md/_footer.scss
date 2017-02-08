@@ -1,0 +1,40 @@
+.footer {
+
+    h4 {
+        margin: .8rem 0 .5rem 0;
+    }
+
+    &__ship {
+        padding-right: 0;
+        padding-top: 1em;
+        padding-bottom: 1em;
+
+        button {
+            margin-left: .5em;
+            padding: .3em .5em;
+        }
+    }
+
+    &__icon {
+        font-size: 2.5em;
+        padding-left: 10px;
+    }
+
+    &__sitemap {
+
+        &--add {
+            padding: 1rem 0;
+        }
+
+        &--ct {
+
+            li {
+                margin-bottom: .3rem;
+            }
+        }
+    }
+
+    &__lc {
+        padding: 2rem 0 2rem 0;
+    }
+}

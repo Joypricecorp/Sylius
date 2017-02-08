@@ -1,0 +1,22 @@
+toro_admin_cms_post:
+    resource: |
+        alias: toro.post
+        section: admin
+        templates: SyliusAdminBundle:Crud
+        except: ['show']
+        redirect: update
+        grid: toro_admin_post
+        form:
+            type: Toro\Bundle\CmsBundle\Form\Type\PostType
+            options:
+                taxon_code: "expr:service('vcare.context.channel_settings').getBlogTaxonRootCode()"
+        vars:
+          create:
+            templates:
+                form: ToroCmsBundle:Admin/Post:_form_semantic_create.html.twig
+          update:
+            templates:
+                form: ToroCmsBundle:Admin/Post:_form_semantic.html.twig
+          index:
+            icon: ti-book
+    type: sylius.resource

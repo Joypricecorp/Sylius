@@ -1,0 +1,5 @@
+toro_tagging:
+    resources:
+        post:
+            subject: Vcare\Bundle\WebBundle\Model\PostTranslation
+            tag: ~

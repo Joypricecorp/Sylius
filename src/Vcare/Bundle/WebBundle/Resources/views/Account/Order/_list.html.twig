@@ -1,0 +1,50 @@
+{% import 'VcareWebBundle:Macros:buttons.html.twig' as buttons %}
+{% import "@SyliusShop/Common/Macro/money.html.twig" as money %}
+{% from 'VcareWebBundle:Account/Order:macros.html.twig' import state %}
+{% set orders = resources.data %}
+
+<div class="row account-menu__content--order">
+    {% if orders|length %}
+        <table class="table table-bordered account-menu__order-table">
+            <thead>
+                <tr>
+                    <td>{{ 'sylius.ui.placed_at'|trans }}</td>
+                    <td>{{ 'sylius.ui.number'|trans }}</td>
+                    <td>{{ 'sylius.ui.total'|trans }}</td>
+                    <td>{{ 'sylius.ui.state'|trans }}</td>
+                    <td>{{ 'sylius.ui.invoice'|trans }}</td>
+                    <td></td>
+                </tr>
+            </thead>
+            <tbody>
+            {% for order in orders %}
+                {% if order.number %}
+                    <tr class="order" id="order-{{ order.number }}">
+                        <td>{{ order.createdAt|localizeddate('medium', 'short') }}</td>
+                        <td>{{ order.number }}</td>
+                        <td class="account-menu__order-table--total">
+                            {{ money.convertAndFormat(order.total) }}
+                        </td>
+                        <td class="text-xs-center">{{ state(order.state) }}</td>
+                        <td class="account-menu__order-table--invoice">
+                            {% if 'fulfilled' == order.state %}
+                                <a href="{{ path('sylius_shop_account_order_incoice', {'number': order.number}) }}" class="btn btn-sm">
+                                    <i class="fa fa-print"></i>
+                                    {{ 'sylius.ui.invoice'|trans }}
+                                </a>
+                            {% else %}
+                                -
+                            {% endif %}
+                        </td>
+                        <td class="account-menu__order-table--action">
+                            {{ buttons.show(path('sylius_shop_account_order_show', {'number': order.number}), '', '', 'btn-sm') }}
+                        </td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>{{ 'sylius.ui.no_results'|trans }}</p>
+    {% endif %}
+</div>

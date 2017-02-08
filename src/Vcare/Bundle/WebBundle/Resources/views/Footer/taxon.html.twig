@@ -1,0 +1,9 @@
+{#
+{% if taxons|length > 0 %}
+    <ul>
+        {% for taxon in taxons %}
+            <li><a href="{{ path('route_shop_product_index_taxon', {slug: taxon.slug}) }}">{{ taxon.name }}</a></li>
+        {% endfor %}
+    </ul>
+{% endif %}
+#}

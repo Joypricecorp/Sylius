@@ -1,13 +1,31 @@
 # This file is part of the Sylius package.
 # (c) Paweł Jędrzejewski
 
+sylius_admin_dashboard_redirect:
+    path: /admin
+    methods: [GET]
+    defaults:
+        _controller: FrameworkBundle:Redirect:redirect
+        route: sylius_admin_dashboard
+        permanent: true
+
+toro_media:
+    resource: "@ToroMediaBundle/Resources/config/routing.yml"
+
 sylius_shop:
-    resource: "@SyliusShopBundle/Resources/config/routing.yml"
+    resource: "sylius/shop/app/routing.yml"
 
 sylius_admin:
-    resource: "@SyliusAdminBundle/Resources/config/routing.yml"
+    resource: "sylius/admin/app/routing.yml"
     prefix: /admin
 
 sylius_api:
     resource: "@SyliusApiBundle/Resources/config/routing.yml"
     prefix: /api
+
+vcare_posts:
+    resource: "vcare/routing/post.yml"
+
+# must to be end of file.
+toro_cms:
+    resource: "@ToroCmsBundle/Resources/config/routing.yml"

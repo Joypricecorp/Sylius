@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="{{ app.request.locale|slice(0, 2) }}" class="{{ layout|default('layout-basic') }}">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    {% block metatags %}{% endblock %}
+    <title>{% block title %}{{ site_header }}{% endblock %}</title>
+    {#<script src="{{ asset('assets/modernizr.js') }}"></script>#}
+
+    {{ include('VcareWebBundle::favicons.html.twig') }}
+
+    {% block stylesheets %}
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600" rel=stylesheet>
+        <link rel="stylesheet" href="{{ asset('assets/web/css/style.css') }}" type="text/css"/>
+    {% endblock %}
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+{% block navbar %}
+    {% include '@VcareWeb/Layout/navbar.html.twig' %}
+{% endblock %}
+
+{% block carousel %}{% endblock %}
+{% block breadcrumb %}{% endblock %}
+
+{% block flash %}
+    {% include '@VcareWeb/Layout/flash.html.twig' %}
+{% endblock %}
+
+{% block content %}{% endblock %}
+
+{% block jumbotron %}{% endblock %}
+
+{% block footer %}
+    {{ render(path('toro_cms_partial_page', {slug: '_tpls/main-footer'})) }}
+{% endblock %}
+
+{% block extra_scripts %}
+    {{ render(path('toro_cms_partial_page', {slug: '_tpls/extra-scripts'})) }}
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('assets/web/js/app.js') }}"></script>
+{% endblock javascripts %}
+</body>
+</html>

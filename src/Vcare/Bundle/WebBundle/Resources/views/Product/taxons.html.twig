@@ -1,0 +1,15 @@
+{% extends '@VcareWeb/Product/index.html.twig' %}
+
+{% block carousel %}
+    {%- set taxon_slide = render(path('toro_cms_partial_page', {slug: '_tpls/taxon-slide-' ~ taxon.code|lower})) -%}
+
+    {% if not taxon_slide and taxon.parent  %}
+        {%- set taxon_slide = render(path('toro_cms_partial_page', {slug: '_tpls/taxon-slide-' ~ taxon.parent.code|lower})) -%}
+    {% endif %}
+
+    {% if not taxon_slide and taxon.root  %}
+        {%- set taxon_slide = render(path('toro_cms_partial_page', {slug: '_tpls/taxon-slide-' ~ taxon.root.code|lower})) -%}
+    {% endif %}
+
+    {{ taxon_slide|default('')|raw }}
+{% endblock %}

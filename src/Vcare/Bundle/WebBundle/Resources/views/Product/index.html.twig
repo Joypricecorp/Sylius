@@ -1,0 +1,30 @@
+{% extends '@VcareWeb/layout.html.twig' %}
+{% from '@VcareWeb/Macros/misc.html.twig' import pagination %}
+{% from '@VcareWeb/Product/macros.html.twig' import list %}
+
+{% if configuration.parameters.get('vars')['taxon'] is defined %}
+    {% set taxon = configuration.parameters.get('vars')['taxon']  %}
+{% endif %}
+
+{% block carousel %}
+    {{ render(path('toro_cms_partial_page', {slug: '_tpls/product-index-slide'})) }}
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="product-list">
+            <h1 class="page-header">
+                {% if taxon is defined %}
+                    {{ taxon.name }}
+                {% else %}
+                    {{ 'sylius.ui.products'|trans }}
+                {% endif %}
+            </h1>
+            <div class="row">
+                {{ list(products.data) }}
+            </div>
+
+            {{ pagination(products.data) }}
+        </div>
+    </div>
+{% endblock %}

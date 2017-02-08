@@ -1,0 +1,34 @@
+route_shop_product_index:
+    path: /products
+    methods: [GET]
+    defaults:
+        _controller: sylius.controller.product:indexAction
+        _sylius:
+            template: "@VcareWeb/Product/index.html.twig"
+            grid: sylius_shop_product_index
+
+route_shop_product_show:
+    path: /products/{slug}
+    methods: [GET]
+    defaults:
+        _controller: sylius.controller.product:showAction
+        _sylius:
+            template: "@VcareWeb/Product/show.html.twig"
+            repository:
+                method: findOneBySlugAndChannel
+                arguments:
+                    - $slug
+                    - "expr:service('sylius.context.channel').getChannel()"
+
+route_shop_product_index_taxon:
+    path: /category/{slug}
+    methods: [GET]
+    defaults:
+        _controller: sylius.controller.product:indexAction
+        _sylius:
+            template: '@VcareWeb/Product/taxons.html.twig'
+            grid: sylius_shop_product
+            vars:
+                taxon: "expr:service('sylius.repository.taxon').findOneBySlug($slug)"
+    requirements:
+        slug: .+

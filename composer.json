@@ -35,6 +35,20 @@
         "friendsofsymfony/oauth-server-bundle": "^1.5",
         "friendsofsymfony/rest-bundle": "^2.1",
         "fzaninotto/faker": "^1.6",
+
+        "stfalcon/tinymce-bundle": "2.*",
+        "helios-ag/fm-elfinder-bundle": "~6",
+        "suncat/mobile-detect-bundle": "1.0.*",
+        "bcc/cron-manager-bundle": "^3.0",
+        "aptoma/twig-markdown": "^2.0",
+        "michelf/php-markdown": "^1.6",
+        "symfony-cmf/media-bundle": "~1.2",
+
+        "toro/cms-bundle": "1.0.x-dev",
+        "toro/tagging-bundle": "1.0.x-dev",
+        "toro/media-bundle": "1.0.x-dev",
+        "toro/fixture-bundle": "1.0.x-dev",
+
         "gedmo/doctrine-extensions": "^2.4.12",
         "incenteev/composer-parameter-handler": "^2.1",
         "jms/serializer-bundle": "^1.1",
@@ -48,6 +62,7 @@
         "polishsymfonycommunity/symfony-mocker-container": "^1.0",
         "sensio/distribution-bundle": "^5.0",
         "sonata-project/intl-bundle": "^2.2",
+
         "stof/doctrine-extensions-bundle": "^1.2",
         "swiftmailer/swiftmailer": "^5.4",
         "symfony/monolog-bundle": "^3.0",
@@ -66,6 +81,9 @@
         "zendframework/zend-stdlib": "^3.1"
     },
     "require-dev": {
+        "liil/kint": "^1.0",
+        "deployer/deployer": "^3.2",
+        "deployphp/recipes": "^3.1",
         "akeneo/phpspec-skip-example-extension": "^2.0",
         "behat/behat": "^3.2",
         "behat/mink": "^1.7",
@@ -105,6 +123,7 @@
         "sylius/customer": "self.version",
         "sylius/customer-bundle": "self.version",
         "sylius/fixtures-bundle": "self.version",
+        "sylius/installer-bundle": "self.version",
         "sylius/inventory": "self.version",
         "sylius/inventory-bundle": "self.version",
         "sylius/locale": "self.version",
@@ -162,7 +181,10 @@
         ]
     },
     "autoload": {
+        "files": [ "app/AppKernel.php" ],
         "psr-4": {
+            "Dos\\Bundle\\": "src/Dos/Bundle/",
+            "Vcare\\Bundle\\": "src/Vcare/Bundle/",
             "Sylius\\Behat\\": "src/Sylius/Behat/",
             "Sylius\\Bundle\\": "src/Sylius/Bundle/",
             "Sylius\\Component\\": "src/Sylius/Component/"
@@ -178,7 +200,8 @@
         "classmap": ["app/AppKernel.php", "app/AppCache.php"]
     },
     "config": {
-        "bin-dir": "bin"
+        "bin-dir": "bin",
+        "component-dir": "web/assets"
     },
     "extra": {
         "symfony-app-dir": "app",

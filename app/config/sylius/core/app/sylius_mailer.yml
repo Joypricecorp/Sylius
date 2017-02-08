@@ -1,0 +1,29 @@
+sylius_mailer:
+    sender:
+        name: VcareAsia
+        address: no-reply@vcareasia.com
+    emails:
+        order_confirmation:
+            subject: sylius.emails.order_confirmation.subject
+            template: "VcareWebBundle:Email:orderConfirmation.html.twig"
+        order_cancelled:
+            subject: sylius.emails.order_cancelled.subject
+            template: "VcareWebBundle:Email:orderCancelled.html.twig"
+        shipment_confirmation:
+            subject: sylius.emails.shipment_confirmation.subject
+            template: "VcareWebBundle:Email:shipmentConfirmation.html.twig"
+        user_registration:
+            subject: sylius.emails.user_registration.subject
+            template: "VcareWebBundle:Email:userRegistration.html.twig"
+        password_reset:
+            subject: sylius.emails.user.password_reset.subject
+            template: "VcareWebBundle:Email:passwordReset.html.twig"
+        reset_password_token:
+            subject: sylius.emails.user.password_reset.subject
+            template: "VcareWebBundle:Email:passwordReset.html.twig"
+        reset_password_pin:
+            subject: sylius.emails.user.password_reset.subject
+            template: "VcareWebBundle:Email:passwordReset.html.twig"
+        verification_token:
+            subject: sylius.emails.user.verification_token.subject
+            template: "VcareWebBundle:Email:verification.html.twig"

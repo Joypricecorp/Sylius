@@ -1,0 +1,47 @@
+sylius_shop_account_root:
+    path: /
+    defaults:
+        _controller: FrameworkBundle:Redirect:redirect
+        route: sylius_shop_account_dashboard
+        permanent: true
+
+sylius_shop_account_dashboard:
+    path: /dashboard
+    methods: [GET]
+    defaults:
+        _controller: sylius.controller.customer:showAction
+        _sylius:
+            template: VcareWebBundle:Account:dashboard.html.twig
+            repository:
+                method: find
+                arguments: [expr:service('sylius.context.customer').getCustomer()]
+
+sylius_shop_account_profile_update:
+    path: /profile/edit
+    methods: [GET, PUT]
+    defaults:
+        _controller: sylius.controller.customer:updateAction
+        _sylius:
+            template: VcareWebBundle:Account:profileUpdate.html.twig
+            form: Sylius\Bundle\CustomerBundle\Form\Type\CustomerProfileType
+            repository:
+                method: find
+                arguments: [expr:service('sylius.context.customer').getCustomer()]
+            redirect: sylius_shop_account_profile_update
+
+sylius_shop_account_change_password:
+    path: /change-password
+    methods: [GET, POST]
+    defaults:
+        _controller: sylius.controller.shop_user:changePasswordAction
+        _sylius:
+            template: VcareWebBundle:Account:changePassword.html.twig
+            redirect: sylius_shop_account_dashboard
+
+sylius_shop_account_order:
+    resource: "account/order.yml"
+    prefix: /orders
+
+sylius_shop_account_address_book:
+    resource: "account/address_book.yml"
+    prefix: /address-books
