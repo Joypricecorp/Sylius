@@ -4,6 +4,7 @@ route_shop_product_index:
     defaults:
         _controller: sylius.controller.product:indexAction
         _sylius:
+            paginate: 24
             template: "@VcareWeb/Product/index.html.twig"
             grid: sylius_shop_product_index
 
@@ -41,6 +42,7 @@ route_shop_product_index_taxon_canonical:
     defaults:
         _controller: sylius.controller.product:indexAction
         _sylius:
+            paginate: 24
             template: '@VcareWeb/Product/taxons.html.twig'
             grid: sylius_shop_product
             vars:
