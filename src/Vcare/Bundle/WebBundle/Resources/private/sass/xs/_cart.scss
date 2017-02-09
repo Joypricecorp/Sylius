@@ -4,3 +4,19 @@
 .cart-summary {
     padding: 0;
 }
+
+.dropdown-cart {
+    .dropdown-menu {
+        position: fixed;
+        width: 100%;
+        top: 112px;
+
+        .navbar-fixed & {
+            top: 56px;
+        }
+
+        td {
+            white-space: normal;
+        }
+    }
+}

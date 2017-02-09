@@ -75,10 +75,10 @@
                         <div class="nav-main__menu-category">{{ categories|raw }}</div>
                     </div>
                     <div class="col-md-3 col-xs-10 nav-main__menu-cart">
+                        {{ include("@VcareWeb/Layout/nav-cart.html.twig") }}
                         <a class="btn btn-primary" href="{{ path('route_shop_product_index') }}">
                             {{ "vcare.ui.all_products"|trans }}
                         </a>
-                        {{ include("@VcareWeb/Layout/nav-cart.html.twig") }}
                     </div>
                     <div class="col-xs-2 nav-main__menu-toggle hidden-md-up">
                         <button class="btn btn-hamburger"><i class="fa fa-navicon"></i></button>

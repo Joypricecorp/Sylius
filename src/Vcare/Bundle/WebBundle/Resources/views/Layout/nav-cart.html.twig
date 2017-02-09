@@ -3,7 +3,7 @@
     <a class="btn btn-ok cart" href="{{ path('sylius_shop_cart_summary') }}" data-toggle="dropdown">
         <i class="fa fa-shopping-cart"></i> <strong>{{ cart.items|length }}</strong>
     </a>
-    <div class="dropdown-menu dropdown-menu-right">
+    <div class="dropdown-menu {{ print_if('dropdown-menu-right', not is_mobile_view()) }}">
         {% if cart.empty %}
             <div class="dropdown-item">
                 <div class="text-align-center">{{ "sylius.ui.your_cart_is_empty"|trans }}</div>
