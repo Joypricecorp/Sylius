@@ -50,8 +50,8 @@ sylius_shop_cart_item_add:
                 type: Sylius\Bundle\CoreBundle\Form\Type\Order\AddToCartType
                 options:
                     product: expr:service('sylius.repository.product').find($productId)
-            template: VcareWebBundle:Product:show.html.twig
+            template: "@VcareWeb/Product/show.html.twig"
             redirect:
-                route: sylius_shop_cart_summary
-                parameters: {}
+                route: referer
+                hash: _cart-added
             flash: sylius.cart.add_item

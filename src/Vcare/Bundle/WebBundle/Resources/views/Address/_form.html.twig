@@ -30,7 +30,7 @@
 </div>
 <div class="row">
     <div class="col-md-6 col-xs-12">
-        <div class="province-container" data-url="{{ path('sylius_shop_province_choice') }}">
+        <div class="province-container" data-url="{{ path('sylius_shop_ajax_render_province_form') }}">
             {% if form.provinceCode is defined %}
                 {{ form_row(form.provinceCode, {'attr': {'class': ''}}) }}
             {% elseif form.provinceName is defined %}

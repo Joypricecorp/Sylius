@@ -1,5 +1,6 @@
 {% extends 'VcareWebBundle:Checkout:layout.html.twig' %}
 {% form_theme form 'VcareWebBundle:Form:common.html.twig' %}
+{% set has_billing = order.billingAddress ? true : false %}
 
 {% block content %}
     <div class="container">
@@ -26,10 +27,10 @@
                     </div>
                 </div>
 
-                {{ form_row(form.differentBillingAddress, {'attr': {'class': 'address-trigger'}}) }}
+                {{ form_row(form.differentBillingAddress, {checked: has_billing, 'attr': {'class': 'address-trigger'}}) }}
             </div>
 
-            <div class="col-xs-12 col-md-4 address-container" id="checkout-billing-address-container">
+            <div class="col-xs-12 col-md-4 address-container" id="checkout-billing-address-container"{% if has_billing %} style="display: block;"{% endif %}>
                 <div class="card card-block">
                     <h5 class="card-title"><i class="fa fa-file-text-o"></i> {{ 'sylius.ui.billing_address'|trans }}</h5>
                     <div class="card-text">
@@ -49,6 +50,7 @@
                 <i class="fa fa-angle-right"></i>
             </button>
         </div>
+
         {{ form_row(form._token) }}
         {{ form_end(form, {'render_rest': false}) }}
     </div>

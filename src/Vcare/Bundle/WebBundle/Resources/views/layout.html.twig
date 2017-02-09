@@ -15,12 +15,10 @@
         }) }}
     {% endblock %}
     <title>{% block title %}{{ cx_settings.branding('title') }}{% endblock %} - {{ cx_settings.branding('name') }}</title>
-    {#<script src="{{ asset('assets/modernizr.js') }}"></script>#}
 
     {{ include('VcareWebBundle::favicons.html.twig') }}
 
     {% block stylesheets %}
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600" rel=stylesheet>
         <link rel="stylesheet" href="{{ asset('assets/web/css/style.css') }}?{{ var_timestamp }}" type="text/css"/>
     {% endblock %}
 
@@ -58,5 +56,10 @@
 {% block javascripts %}
     <script src="{{ asset('assets/web/js/app.js') }}?{{ var_timestamp }}"></script>
 {% endblock javascripts %}
+
+{% block tpls %}
+    {% include '@VcareWeb/_tpls.html.twig' %}
+{% endblock %}
+
 </body>
 </html>

@@ -26,7 +26,7 @@
                 <div class="row">
                     {% set default_address = (sylius.customer.defaultAddress) %}
                     {% for address in addresses %}
-                        <div class="col-xs-6">
+                        <div class="col-md-6 col-xs-12">
                             <div class="card card-block">
                                 {% include '@SyliusShop/Common/_address.html.twig' with {'address': address} %}
 
@@ -44,7 +44,7 @@
 
                                 {% if default_address.id == address.id %}
                                     <span class="btn btn-success btn-sm" style="cursor: default">
-                                        <i class="fa fa-bookmark"></i> {{ "Default_address"|trans }}
+                                        <i class="fa fa-bookmark"></i> {{ "Default"|trans }}
                                     </span>
                                 {% else %}
                                     {{ render(path('sylius_shop_account_address_book_set_as_default', {id: address.id})) }}

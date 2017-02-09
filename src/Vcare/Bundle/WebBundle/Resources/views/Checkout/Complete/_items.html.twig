@@ -5,11 +5,11 @@
     <thead>
     <tr>
         <th>#</th>
-        <th>{{ 'sylius.ui.item'|trans }}</th>
-        <th class="text-align-right">{{ 'sylius.ui.price'|trans }}</span></th>
-        <th class="text-align-center">{{ 'sylius.ui.qty'|trans }}</th>
-        {#<th class="text-align-right">{{ 'sylius.ui.tax'|trans }}</th>#}
-        <th class="text-align-right">{{ 'sylius.ui.total'|trans }}</th>
+        <th>{{ 'sylius.ui.item'|trans|raw }}</th>
+        <th class="text-align-right">{{ 'sylius.ui.price'|trans|raw }}</span></th>
+        <th class="text-align-center">{{ 'sylius.ui.qty'|trans|raw }}</th>
+        {#<th class="text-align-right">{{ 'sylius.ui.tax'|trans|raw }}</th>#}
+        <th class="text-align-right">{{ 'sylius.ui.total'|trans|raw }}</th>
     </tr>
     </thead>
     <tbody>
@@ -34,17 +34,17 @@
     </tbody>
     <tfoot>
     {#<tr>
-        <th class="text-align-right" colspan="5">{{ 'sylius.ui.tax_total'|trans }}</th>
+        <th class="text-align-right" colspan="5">{{ 'sylius.ui.tax_total'|trans|raw }}</th>
         <td class="text-align-right">{{ money.convertAndFormat(order.taxTotal) }}</td>
     </tr>#}
     <tr>
-        <th class="text-align-right" colspan="4">{{ 'sylius.ui.shipping_total'|trans }}</th>
+        <th class="text-align-right" colspan="4">{{ 'sylius.ui.shipping_total'|trans|raw }}</th>
         <td class="text-align-right">{{ money.convertAndFormat(order.shippingTotal) }}</td>
     </tr>
 
     {% if order.orderPromotionTotal %}
         <tr>
-            <th class="text-align-right" colspan="4">{{ 'sylius.ui.promotion_total'|trans }}</th>
+            <th class="text-align-right" colspan="4">{{ 'sylius.ui.promotion_total'|trans|raw }}</th>
             <td class="text-align-right">
                 {{ money.convertAndFormat(order.orderPromotionTotal) }}
             </td>
@@ -52,7 +52,7 @@
     {% endif %}
 
     <tr class="grand-total">
-        <th class="text-align-right" colspan="4">{{ 'sylius.ui.order_total'|trans }}</th>
+        <th class="text-align-right" colspan="4">{{ 'sylius.ui.order_total'|trans|raw }}</th>
         <td class="text-align-right">{{ money.convertAndFormat(order.total) }}</td>
     </tr>
     </tfoot>

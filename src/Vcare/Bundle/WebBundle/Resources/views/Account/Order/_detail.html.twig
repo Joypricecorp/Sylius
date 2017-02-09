@@ -6,14 +6,14 @@
 <div class="order-detail-card card card-block">
     <div class="row">
         <div class="col-md-9 col-xs-12">
-            {{ 'sylius.ui.placed_at'|trans }}: <strong>{{ order.createdAt|localizeddate }}</strong><br>
-            {{ "sylius.ui.payment_method"|trans }}: <strong>{{ order.payments.last.method.name }} - {{ ("sylius.ui." ~ order.paymentState)|trans }}</strong><br>
-            {{ "sylius.ui.shipping_method"|trans }}: <strong>{{ order.shipments.last.method.name }} - {{ ("sylius.ui." ~ order.shippingState)|trans }}</strong>
+            {{ 'sylius.ui.placed_at'|trans|raw }}: <strong>{{ order.createdAt|localizeddate }}</strong><br>
+            {{ "sylius.ui.payment_method"|trans|raw }}: <strong>{{ order.payments.last.method.name }} - {{ ("sylius.ui." ~ order.paymentState)|trans|raw }}</strong><br>
+            {{ "sylius.ui.shipping_method"|trans|raw }}: <strong>{{ order.shipments.last.method.name }} - {{ ("sylius.ui." ~ order.shippingState)|trans|raw }}</strong>
         </div>
         <div class="col-md-3 col-xs-12">
-            {{ 'sylius.ui.order'|trans }}: <strong>{{ order.number }}</strong><br>
-            {{ "sylius.ui.currency"|trans }}: <strong>{{ order.currencyCode|upper }}</strong><br>
-            {{ 'sylius.ui.state'|trans }}: <strong>{{ state(order.state) }}</strong>
+            {{ 'sylius.ui.order'|trans|raw }}: <strong>{{ order.number }}</strong><br>
+            {{ "sylius.ui.currency"|trans|raw }}: <strong>{{ order.currencyCode|upper }}</strong><br>
+            {{ 'sylius.ui.state'|trans|raw }}: <strong>{{ state(order.state) }}</strong>
         </div>
     </div>
 </div>
@@ -24,7 +24,7 @@
 
         <div class="card">
             <div class="card-header">
-                <strong>{{ 'sylius.ui.payments'|trans }}</strong>
+                <strong>{{ 'sylius.ui.payments'|trans|raw }}</strong>
             </div>
             <div class="card-block">
                 {% for payment in order.payments %}
@@ -55,20 +55,20 @@
                             {% set method = params.method|default(null) %}
 
                             {% if 2 == method %}
-                                {% set name = "ui.paysbuy.form.method.credit_card"|trans %}
+                                {% set name = "ui.paysbuy.form.method.credit_card"|trans|raw %}
                             {% endif %}
                             {% if 5 == method %}
-                                {% set name = "ui.paysbuy.form.method.online_banking"|trans %}
+                                {% set name = "ui.paysbuy.form.method.online_banking"|trans|raw %}
                             {% endif %}
                             {% if 6 == method %}
-                                {% set name = "ui.paysbuy.form.method.cash"|trans %}
+                                {% set name = "ui.paysbuy.form.method.cash"|trans|raw %}
                             {% endif %}
                         {% endif %}
                     {% endif %}
 
                     <div class="alert alert-block alert-{{ type }}" role="alert">
                         {{ name }} {{ money.convertAndFormat(payment.amount) }}
-                        <strong class="pull-right">{{ ("sylius.ui." ~ payment.state)|trans }}</strong>
+                        <strong class="pull-right">{{ ("sylius.ui." ~ payment.state)|trans|raw }}</strong>
                         {% if hint %}
                             <p><strong>{{ hint }}</strong></p>
                         {% endif %}
@@ -80,7 +80,7 @@
     <div class="col-md-3 col-xs-12">
         <div class="card">
             <div class="card-header">
-                <strong>{{ 'sylius.ui.shipping_address'|trans }}</strong>
+                <strong>{{ 'sylius.ui.shipping_address'|trans|raw }}</strong>
             </div>
             <div class="card-block">
                 {% include 'VcareWebBundle:Account/Order:_address.html.twig' with { 'address': order.shippingAddress } %}
@@ -90,7 +90,7 @@
     <div class="col-md-3 col-xs-12">
         <div class="card">
             <div class="card-header">
-                <strong>{{ 'sylius.ui.billing_address'|trans }}</strong>
+                <strong>{{ 'sylius.ui.billing_address'|trans|raw }}</strong>
             </div>
             <div class="card-block">
                 {% include 'VcareWebBundle:Account/Order:_address.html.twig' with { 'address': order.billingAddress } %}
@@ -104,11 +104,11 @@
         <thead>
         <tr>
             <th>#</th>
-            <th>{{ 'sylius.ui.item'|trans }}</th>
-            <th class="text-align-right">{{ 'sylius.ui.unit_price'|trans }}</th>
-            <th class="text-align-center">{{ 'sylius.ui.qty'|trans }}</th>
-            {#<th class="text-align-right">{{ 'sylius.ui.tax'|trans }}</th>#}
-            <th class="text-align-right">{{ 'sylius.ui.total'|trans }}</th>
+            <th>{{ 'sylius.ui.item'|trans|raw }}</th>
+            <th class="text-align-right">{{ 'sylius.ui.unit_price'|trans|raw }}</th>
+            <th class="text-align-center">{{ 'sylius.ui.qty'|trans|raw }}</th>
+            {#<th class="text-align-right">{{ 'sylius.ui.tax'|trans|raw }}</th>#}
+            <th class="text-align-right">{{ 'sylius.ui.total'|trans|raw }}</th>
         </tr>
         </thead>
         <tbody>
@@ -139,7 +139,7 @@
         <tfoot>
             {#<tr>
                 <th class="text-align-right" colspan="5">
-                    {{ 'sylius.ui.tax_total'|trans }}
+                    {{ 'sylius.ui.tax_total'|trans|raw }}
                 </th>
                 <td>
                     {{ money.convertAndFormat(order.taxTotal) }}
@@ -147,7 +147,7 @@
             </tr>#}
             <tr>
                 <th class="text-align-right" colspan="4">
-                    {{ 'sylius.ui.shipping_total'|trans }}
+                    {{ 'sylius.ui.shipping_total'|trans|raw }}
                 </th>
                 <td>
                     {{ money.convertAndFormat(order.shippingTotal) }}
@@ -157,7 +157,7 @@
             {% if order.orderPromotionTotal %}
                 <tr>
                     <th class="text-align-right" colspan="4">
-                        {{ 'sylius.ui.promotion_total'|trans }}
+                        {{ 'sylius.ui.promotion_total'|trans|raw }}
                     </th>
                     <td class="text-align-right">
                         {{ money.convertAndFormat(order.orderPromotionTotal) }}
@@ -167,7 +167,7 @@
 
             <tr class="table-active">
                 <th class="text-align-right" colspan="4">
-                    {{ 'sylius.ui.order_total'|trans }}
+                    {{ 'sylius.ui.order_total'|trans|raw }}
                 </th>
                 <th>
                     {{ money.convertAndFormat(order.total) }}

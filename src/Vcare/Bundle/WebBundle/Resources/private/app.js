@@ -29,7 +29,19 @@
             .prop('checked', true)
         ;
     });
+
     $('.navbar [data-toggle="dropdown"]').bootstrapDropdownHover({
         // see next for specifications
     });
+
+    // product show
+    $("img.lazy").lazyload({
+        container: $(".product-show-content")
+    });
+
+    $('.product-show-content [data-toggle="tab"]').on('shown.bs.tab', function (e) {
+        $("img.lazy").lazyload({
+            container: $(".product-show-content")
+        });
+    })
 })(jQuery);

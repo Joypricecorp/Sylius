@@ -20,3 +20,16 @@ $(document).on('keyup', '.quantity-box input', function (e) {
 
     return true;
 });
+
+var quantityChanged = false;
+$(document).on('change', 'form[name=sylius_cart] .quantity-box input', function (e) {
+    if (quantityChanged) {
+        return;
+    }
+
+    setTimeout(function() {
+        $(e.target).closest('form').submit();
+    }, 2000);
+
+    quantityChanged = true;
+});

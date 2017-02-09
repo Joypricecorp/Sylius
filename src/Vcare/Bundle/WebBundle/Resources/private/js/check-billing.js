@@ -1,9 +1,9 @@
 $(function () {
     $(document).on('change', '.address-trigger', function(){
         if(this.checked)
-            $('#checkout-billing-address-container').fadeIn('slow');
+            $('#checkout-billing-address-container').fadeIn('fast');
         else
-            $('#checkout-billing-address-container').fadeOut('slow');
+            $('#checkout-billing-address-container').fadeOut('fast');
     });
 
     $(document).on('change', 'select[name$="[countryCode]"]', function(event) {
@@ -14,7 +14,7 @@ $(function () {
         var provinceInputFieldName = $select.attr('name').replace('countryCode', 'provinceName');
 
         if ('' === $select.val()) {
-            $provinceContainer.fadeOut('slow', function () {
+            $provinceContainer.fadeOut('fast', function () {
                 $provinceContainer.html('');
             });
 
@@ -23,22 +23,22 @@ $(function () {
 
         $.get($provinceContainer.attr('data-url'), {countryCode: $(this).val()}, function (response) {
             if (!response.content) {
-                $provinceContainer.fadeOut('slow', function () {
+                $provinceContainer.fadeOut('fast', function () {
                     $provinceContainer.html('');
                 });
             } else if (-1 !== response.content.indexOf('select')) {
-                $provinceContainer.fadeOut('slow', function () {
+                $provinceContainer.fadeOut('fast', function () {
                     $provinceContainer.html(response.content.replace(
-                        'name="vcare_address_province"',
+                        'name="sylius_address_province"',
                         'name="' + provinceSelectFieldName + '"'
                     ));
 
                     $provinceContainer.fadeIn();
                 });
             } else {
-                $provinceContainer.fadeOut('slow', function () {
+                $provinceContainer.fadeOut('fast', function () {
                     $provinceContainer.html(response.content.replace(
-                        'name="vcare_address_province"',
+                        'name="sylius_address_province"',
                         'name="' + provinceInputFieldName + '"'
                     ));
 

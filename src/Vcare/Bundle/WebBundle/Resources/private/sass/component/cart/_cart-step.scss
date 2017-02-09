@@ -1,6 +1,6 @@
 $cart-step-item-completed-background-color: $color-ext;
 $cart-step-item-background-color: lighten($color-ext, 15%);
-$cart-step-item-text-color: lighten($cart-step-item-background-color, 15%);
+$cart-step-item-text-color: lighten($color-ext, 50%);
 
 .cart-step {
   clear: both;

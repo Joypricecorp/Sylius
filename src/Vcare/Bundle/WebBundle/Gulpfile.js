@@ -28,6 +28,7 @@ var paths = {
             nodeRoot + 'fastclick/lib/fastclick.js',
             nodeRoot + 'prefixfree/prefixfree.min.js',
             nodeRoot + 'magnify/dist/js/jquery.magnify.js',
+            nodeRoot + 'jquery-lazyload/jquery.lazyload.js',
             'Resources/private/js/**',
             'Resources/private/app.js'
         ],

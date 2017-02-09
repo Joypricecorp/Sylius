@@ -7,7 +7,7 @@
     <div class="container">
         <div class="checkout-step checkout-step__finalize">
         <div class="page-header">
-            {{ 'sylius.ui.order_summary'|trans|raw }}
+            {{ 'sylius.ui.order_summary'|trans|raw|raw }}
         </div>
 
         {{ include('VcareWebBundle:Checkout:_steps.html.twig', {'active': 'complete'}) }}
@@ -19,13 +19,13 @@
             <div class="row">
                 <div class="col-md-6 col-xs-12">
                     <div class="card addressing">
-                        <div class="card-header">{{ 'sylius.ui.shipping_address'|trans }}</div>
+                        <div class="card-header">{{ 'sylius.ui.shipping_address'|trans|raw }}</div>
                         {% include 'VcareWebBundle:Address:_show.html.twig' with { 'address': order.shippingAddress } %}
                     </div>
                 </div>
                 <div class="col-md-6 col-xs-12">
                     <div class="card addressing">
-                        <div class="card-header">{{ 'sylius.ui.billing_address'|trans }}</div>
+                        <div class="card-header">{{ 'sylius.ui.billing_address'|trans|raw }}</div>
                         {% include 'VcareWebBundle:Address:_show.html.twig' with { 'address': order.billingAddress } %}
                     </div>
                 </div>
@@ -42,7 +42,7 @@
             <div class="form-actions text-md-right text-xs-center">
                 <button type="submit" class="btn btn-lg btn-success">
                     <i class="fa fa-cart-arrow-down"></i>
-                    {{ 'sylius.ui.place_order'|trans }}
+                    {{ 'sylius.ui.place_order'|trans|raw }}
                 </button>
             </div>
 

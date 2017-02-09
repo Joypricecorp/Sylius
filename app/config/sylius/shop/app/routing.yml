@@ -14,9 +14,6 @@ sylius_shop_security:
 sylius_shop_product:
     resource: "routing/product.yml"
 
-sylius_shop_provinces:
-    resource: "routing/provinces.yml"
-
 sylius_shop_cart:
     resource: "routing/cart.yml"
     prefix: /cart

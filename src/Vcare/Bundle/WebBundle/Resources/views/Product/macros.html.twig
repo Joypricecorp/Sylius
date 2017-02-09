@@ -95,3 +95,31 @@
     {% endif %}#}
     {{ money.convertAndFormat(unitPrice) }}
 {% endmacro %}
+
+{% macro variants_cart(items, img_size = '100x100') %}
+    <table class="variants-cart">
+        <tbody>
+            {% for item in items %}
+                {% set product = item.variant.product %}
+                {% set first_image = product.images.first() %}
+                {% set product_picture = first_image ? first_image.path|imagine_filter(img_size) : '//placehold.it/' ~ img_size %}
+                {% set product_url = path('route_shop_product_show', { slug: product.slug }) %}
+
+                <tr>
+                    <td class="variants-cart--img">
+                        <a href="{{ product_url }}"><img src="{{ product_picture }}" alt="{{ product.name }}"></a>
+                    </td>
+                    <td class="variants-cart--product">
+                        <h6><a href="{{ product_url }}">{{ product.name }}</a></h6>
+                        <span>{{ item.quantity }} x {{ _self.price_tax_item(item.variant, item.discountedUnitPrice, item.taxTotal) }}</span>
+                    </td>
+                    <td class="variants-cart--remove">
+                        <button type="button" class="btn btn-sm btn-danger-outline" data-action-url="{{ path('sylius_shop_ajax_cart_item_remove', {'id': item.id}) }}" data-csrf-token="{{ csrf_token(item.id) }}">
+                            <i class="fa fa-trash-o"></i>
+                        </button>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endmacro %}

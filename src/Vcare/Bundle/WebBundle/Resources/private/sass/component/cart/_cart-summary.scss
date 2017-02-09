@@ -34,8 +34,8 @@
         &--txt {
             display: flex;
             align-items: center;
-            font-size: .8rem;
-            color: #aaaaaa;
+            font-size: .9rem;
+            color: $color-ext;
         }
 
         &--prc {
@@ -52,8 +52,8 @@
             &-txt {
                 display: flex;
                 align-items: center;
-                font-size: 1rem;
-                color: #000;
+                font-size: .9rem;
+                color: $color-ext;
             }
 
             &-prc {

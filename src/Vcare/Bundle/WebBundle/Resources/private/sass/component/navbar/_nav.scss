@@ -1,5 +1,4 @@
 .nav-main {
-
     &__top {
         background: $color-second;
         padding: .2rem 0;
@@ -143,5 +142,28 @@
         right: 0;
         z-index: 9999;
         position: fixed;
+    }
+
+    .dropdown-cart {
+        display: inline-block;
+
+        .dropdown-menu {
+            border-radius: 5px;
+
+            .dropdown-item {
+                &:hover {
+                    background: none;
+                }
+            }
+        }
+        .btn {
+            &.checkout {
+                border-radius: 5px;
+            }
+            &.view-cart {
+                color: $color-second;
+                border-radius: 5px;
+            }
+        }
     }
 }

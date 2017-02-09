@@ -72,8 +72,10 @@ vcare.ui.next: ถัดไป
 vcare.ui.code: รหัส
 vcare.ui.you_may_also_like: สินค้าแนะนำ
 
-sylius.ui.order_total: ยอดสุทธิ (รวมภาษีแล้ว)
+sylius.ui.order_total: ยอดสุทธิ <br>(รวมภาษีแล้ว)
 sylius.ui.subtotal: มูลค่าสินค้า
 
 vcare.ui.social_login: เข้าระบบด้วยบัญชีอื่นๆ
 vcare.ui.social_facebook_login: เข้าระบบด้วยบัญชี Facebook
+
+sylius.form.image.type: Type

@@ -9,7 +9,7 @@
             {{ include('VcareWebBundle:Product:_variant.html.twig', {'variant': item.variant}) }}
         </div>
         <div class="row finalize-xs__row">
-            <div class="col-xs-6 finalize-xs__left">{{ 'sylius.ui.price'|trans }}</div>
+            <div class="col-xs-6 finalize-xs__left">{{ 'sylius.ui.price'|trans|raw }}</div>
             <div class="col-xs-6">
                 {% if item.unitPrice != item.discountedUnitPrice %}
                     <span class="regular-price">{{ price_tax_item(item.variant, item.unitPrice, item.taxTotal) }}</span>
@@ -20,15 +20,15 @@
             </div>
         </div>
         <div class="row finalize-xs__row">
-            <div class="col-xs-6 finalize-xs__left">{{ 'sylius.ui.qty'|trans }}</div>
+            <div class="col-xs-6 finalize-xs__left">{{ 'sylius.ui.qty'|trans|raw }}</div>
             <div class="col-xs-6">{{ item.quantity }}</div>
         </div>
         {#<div class="row finalize-xs__row">
-            <div class="col-xs-6 finalize-xs__left">{{ 'sylius.ui.tax'|trans }}</div>
+            <div class="col-xs-6 finalize-xs__left">{{ 'sylius.ui.tax'|trans|raw }}</div>
             <div class="col-xs-6">{{ item_tax(item.variant, item.taxTotal) }}</div>
         </div>#}
         <div class="row finalize-xs__row">
-            <div class="col-xs-6 finalize-xs__left">{{ 'sylius.ui.subtotal'|trans }}</div>
+            <div class="col-xs-6 finalize-xs__left">{{ 'sylius.ui.subtotal'|trans|raw }}</div>
             <div class="col-xs-6">{{ money.convertAndFormat(item.subtotal) }}</div>
         </div>
     </div>
@@ -36,7 +36,7 @@
 
 <div class="finalize-xs-total">
     {#<div class="finalize-xs-total__row row">
-        <div class="col-xs-6 finalize-xs-total__left">{{ 'sylius.ui.tax_total'|trans }}</div>
+        <div class="col-xs-6 finalize-xs-total__left">{{ 'sylius.ui.tax_total'|trans|raw }}</div>
         <div class="col-xs-6  text-xs-right">
             {{ money.convertAndFormat(order.taxTotal) }}
         </div>
@@ -44,7 +44,7 @@
     <hr>#}
 
     <div class="finalize-xs-total__row row">
-        <div class="col-xs-6 finalize-xs-total__left">{{ 'sylius.ui.shipping_total'|trans }}</div>
+        <div class="col-xs-6 finalize-xs-total__left">{{ 'sylius.ui.shipping_total'|trans|raw }}</div>
         <div class="col-xs-6  text-xs-right">
             {{ money.convertAndFormat(order.shippingTotal) }}
         </div>
@@ -53,7 +53,7 @@
 
     {% if order.orderPromotionTotal %}
         <div class="finalize-xs-total__row row">
-            <div class="col-xs-6 finalize-xs-total__left">{{ 'sylius.ui.promotion_total'|trans }}</div>
+            <div class="col-xs-6 finalize-xs-total__left">{{ 'sylius.ui.promotion_total'|trans|raw }}</div>
             <div class="col-xs-6  text-xs-right">
                 {{ money.convertAndFormat(order.orderPromotionTotal) }}
             </div>
@@ -62,7 +62,7 @@
     {% endif %}
 
     <div class="finalize-xs-total__row finalize-xs-total__total row">
-        <div class="col-xs-6 finalize-xs-total__left">{{ 'sylius.ui.order_total'|trans }}</div>
+        <div class="col-xs-6 finalize-xs-total__left">{{ 'sylius.ui.order_total'|trans|raw }}</div>
         <div class="col-xs-6  text-xs-right">
             {{ money.convertAndFormat(order.total) }}
         </div>

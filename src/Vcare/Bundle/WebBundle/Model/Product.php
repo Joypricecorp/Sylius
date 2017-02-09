@@ -79,4 +79,14 @@ class Product extends BaseProduct implements ProductInterface
     {
         return $this->getTranslation()->getManuals();
     }
+
+    /**
+     * @param string $type
+     *
+     * @return mixed
+     */
+    public function getImageByType($type)
+    {
+        return $this->getImagesByType($type)->first();
+    }
 }

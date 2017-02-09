@@ -136,6 +136,10 @@ input[type="date"].form-control {
 
 .table {
   background: #ffffff;
+
+  th {
+    font-size: .8rem;
+  }
 }
 
 .dropdown {
@@ -145,4 +149,12 @@ input[type="date"].form-control {
       display: block;
     }
   }
+}
+
+.modal-content {
+  border-radius: 5px;
+}
+
+.text-align-left {
+  text-align: left;
 }

@@ -15,7 +15,12 @@ $(document).on('click', '[data-action-url]', function (e) {
             _method: 'DELETE'
         },
         success: function (response) {
-            window.location.replace(redirectUrl);
+            if (redirectUrl) {
+                window.location.replace(redirectUrl);
+                return;
+            }
+
+            $el.closest('tr').remove();
         }
     });
 });

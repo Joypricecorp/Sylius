@@ -1,7 +1,7 @@
 {%- macro toro_image_src(image, size, alt = '') -%}
     {% spaceless %}
         {% if not image %}
-            {% set src = asset('assets/web/img/g-bg.png')|imagine_filter('assets_' ~ size) %}
+            {% set src = asset('assets/web/img/g-bg.png') %}
         {% else %}
             {% set src = cmf_media_display_url(image, { imagine_filter: 'cmf_' ~ size }) %}
         {% endif %}
@@ -10,7 +10,7 @@
 {%- endmacro -%}
 
 {% macro toro_image(image, size, alt = '', class = '') %}
-    {% set alt = alt|default('Picture'|trans) %}
+    {% set alt = alt|default('Picture') %}
     <img class="{{ class }}" src="{{ _self.toro_image_src(image, size, alt) }}" alt="{{ alt }}" />
 {% endmacro %}
 

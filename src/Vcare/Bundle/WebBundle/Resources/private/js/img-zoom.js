@@ -1,5 +1,5 @@
 $(function () {
-    $('.zoom').magnify();
+    $('.magnify .zoom').magnify();
 });
 
 // $(function () {

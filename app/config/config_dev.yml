@@ -8,8 +8,8 @@ framework:
     router: { resource: "%kernel.root_dir%/config/routing_dev.yml" }
     profiler:
         only_exceptions: false
-        collect: false
-        enabled: false
+#        collect: false
+#        enabled: false
 
 monolog:
     handlers:

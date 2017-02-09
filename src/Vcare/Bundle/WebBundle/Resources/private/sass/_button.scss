@@ -11,6 +11,14 @@ $btn-fb-border: #30589F;
     @include button-variant($btn-fb-color, $btn-fb-bg, $btn-fb-border);
 }
 
+$btn-ok-color: #ffffff;
+$btn-ok-bg: $font-color-ihealth;
+$btn-ok-border: $font-color-ihealth;
+
+.btn-ok {
+    @include button-variant($btn-ok-color, $btn-ok-bg, $btn-ok-border);
+}
+
 .btn {
     outline: none;
     @include box-shadow(inset 0 -4px 0 rgba(0, 0, 0, 0.10));

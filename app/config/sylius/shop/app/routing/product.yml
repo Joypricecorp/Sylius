@@ -54,11 +54,12 @@ route_shop_product_index_taxon:
     path: /category/{slug}
     methods: [GET]
     defaults:
+        locale: "%locale%"
         _controller: sylius.controller.product:indexAction
         _sylius:
             template: '@VcareWeb/Product/taxons.html.twig'
             grid: sylius_shop_product
             vars:
-                taxon: "expr:service('sylius.repository.taxon').findOneBySlug($slug)"
+                taxon: "expr:service('sylius.repository.taxon').findOneBySlug($slug, $locale)"
     requirements:
         slug: .+

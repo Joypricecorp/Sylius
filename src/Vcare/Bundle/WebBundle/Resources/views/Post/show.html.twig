@@ -60,7 +60,7 @@
                                     <div class="col-md-6 col-xs-12">
                                         <p class="home-content__thumb--image">
                                             <a href="{{ path('vcare_shop_post_show', {slug: post.slug}) }}">
-                                                {{ toro_image(post.thumb|default(post.cover), 'post_medium') }}
+                                                {{ toro_image(post.thumb|default(post.cover), 'post_medium', post.slug) }}
                                             </a>
                                         </p>
                                     </div>

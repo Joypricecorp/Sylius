@@ -86,6 +86,10 @@
 }
 
 .address-container {
+    .card-block {
+        padding: 1rem;
+    }
+
     legend {
         color: #78797c;
         font-size: 1rem;
@@ -96,14 +100,25 @@
 
     .form-control {
         font-size: .75rem;
+        padding: 0.23rem 0.35rem;
+    }
+
+    .form-control-label {
+        font-size: .8rem;
     }
 
     .form-group {
         select {
             border: 0;
-            height: 29px;
+            height: 26px;
             outline: 1px solid #ccc;
         }
+    }
+
+    .col-md-6,
+    .col-xs-12 {
+        padding-left: 0.5375rem;
+        padding-right: 0.5375rem;
     }
 }
 
