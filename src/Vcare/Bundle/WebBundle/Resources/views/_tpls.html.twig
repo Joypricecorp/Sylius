@@ -20,26 +20,38 @@
                         {{ variants_cart(cart.items, '80x80') }}
                     {% endif %}
                 </div>
-                <div class="modal-footer m-b-2">
+                <div class="modal-footer m-b-1">
                     <div class="text-align-right m-b-2">
                         {% import "@SyliusShop/Common/Macro/money.html.twig" as money %}
                         <h6>{{ "sylius.ui.subtotal"|trans }}: {{ money.convertAndFormat(cart.total) }}</h6>
                     </div>
-                    <div class="row">
-                        <div class="col-xs-8 text-align-center">
-                            <a class="btn btn-secondary view-cart" href="{{ path('sylius_shop_cart_summary') }}">
-                                {{ "sylius.ui.view_and_edit_cart"|trans }}
-                            </a>
-                            <a class="btn btn-ok checkout" href="{{ path('sylius_shop_checkout_start') }}">
-                                {{ "sylius.ui.checkout"|trans }}
-                            </a>
+                    {% if is_mobile_view() %}
+                        <a class="btn btn-secondary view-cart" href="{{ path('sylius_shop_cart_summary') }}">
+                            {{ "sylius.ui.view_and_edit_cart"|trans }}
+                        </a>
+                        <a class="btn btn-ok checkout" href="{{ path('sylius_shop_checkout_start') }}">
+                            {{ "sylius.ui.checkout"|trans }}
+                        </a>
+                        <button type="button" class="btn btn-link m-t-1" data-dismiss="modal" aria-label="Close">
+                            {{ "sylius.ui.continue_shopping"|trans }}
+                        </button>
+                    {% else %}
+                        <div class="row">
+                            <div class="col-xs-8 text-align-center">
+                                <a class="btn btn-secondary view-cart" href="{{ path('sylius_shop_cart_summary') }}">
+                                    {{ "sylius.ui.view_and_edit_cart"|trans }}
+                                </a>
+                                <a class="btn btn-ok checkout" href="{{ path('sylius_shop_checkout_start') }}">
+                                    {{ "sylius.ui.checkout"|trans }}
+                                </a>
+                            </div>
+                            <div class="col-xs-4">
+                                <button type="button" class="btn btn-link" data-dismiss="modal" aria-label="Close">
+                                    {{ "sylius.ui.continue_shopping"|trans }}
+                                </button>
+                            </div>
                         </div>
-                        <div class="col-xs-4">
-                            <button type="button" class="btn btn-link" data-dismiss="modal" aria-label="Close">
-                                {{ "sylius.ui.continue_shopping"|trans }}
-                            </button>
-                        </div>
-                    </div>
+                    {% endif %}
                 </div>
             </div>
         </div>

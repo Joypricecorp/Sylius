@@ -1,3 +1,4 @@
+/*
 (function ( $ ) {
     'use strict';
 
@@ -36,3 +37,4 @@
         }
     });
 })( jQuery );
+*/

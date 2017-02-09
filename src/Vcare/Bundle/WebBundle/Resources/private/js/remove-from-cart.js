@@ -21,6 +21,7 @@ $(document).on('click', '[data-action-url]', function (e) {
             }
 
             $el.closest('tr').remove();
+            window.location.reload();
         }
     });
 });
