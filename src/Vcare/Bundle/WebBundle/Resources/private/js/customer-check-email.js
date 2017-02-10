@@ -10,7 +10,7 @@ $(function() {
     var $email = $('#sylius_checkout_address_customer_email').on('keyup keypress blur change', function (e) {
         var $el = $(this);
 
-        if (!loading && !$loginForm.is(':visible') && validateEmail($el.val())) {
+        if (!loading && /*!$loginForm.is(':visible') &&*/ validateEmail($el.val())) {
             loading = true;
 
             $.ajax({
