@@ -18,6 +18,7 @@ $(function() {
                 data: { email: $el.val() },
                 error: function (res) {
                     loading = false;
+                    $loginForm.hide();
                 },
                 success: function (res) {
                     $loginForm.show();
