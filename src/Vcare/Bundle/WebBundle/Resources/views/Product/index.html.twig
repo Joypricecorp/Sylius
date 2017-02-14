@@ -6,7 +6,7 @@
 
 {% block metatags %}
     {% if taxon %}
-        {% set canonical = url('route_shop_product_index_taxon_canonical', { slug: taxon.id }) %}
+        {% set canonical = url('route_shop_product_index_taxon', { slug: taxon.slug }) %}
         {{ metas({
             'url': canonical,
             'title': taxon.name,

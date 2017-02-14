@@ -2,7 +2,7 @@
 {% from '@VcareWeb/Macros/images.html.twig' import toro_image, toro_image_src %}
 {% from '@VcareWeb/Macros/social.html.twig' import metas, shares_default %}
 
-{% set canonical = url('vcare_shop_post_canonical', { id: post.id }) %}
+{% set canonical = url('vcare_shop_post_show', { slug: post.slug }) %}
 
 {% block title %} {{ parent() }} - {{ post.title }}{% endblock %}
 {% block metatags %}

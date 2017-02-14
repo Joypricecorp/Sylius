@@ -6,7 +6,7 @@
 {% set is_mobile_view = is_mobile_view() %}
 {% set first_image = product.images.first() %}
 {% set share_image = product.getImageByType('share') %}
-{% set canonical = url('route_shop_product_canonical', { id: product.id }) %}
+{% set canonical = url('route_shop_product_show', { id: product.slug }) %}
 
 {% if order_item is defined %}
     {% set product = order_item.variant.product %}

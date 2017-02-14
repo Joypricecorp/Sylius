@@ -20,7 +20,7 @@
     {% endif %}
 
     {% if params.url|default(false) %}
-        <link rel="canonical" href="{{ params.url }}">
+        {#<link rel="canonical" href="{{ params.url }}">#}
     {% endif %}
 
     <meta property="og:site_name" content="{{ params.site_name|default(cx_settings.branding('name')) }}">
