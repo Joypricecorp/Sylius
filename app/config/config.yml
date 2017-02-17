@@ -88,3 +88,6 @@ hwi_oauth:
             client_id: "%toro_facebook_client_id%"
             client_secret: "%toro_facebook_client_secret%"
             scope: "email,public_profile,user_birthday"
+
+sylius_shop:
+    locale_switcher: storage
