@@ -16,10 +16,11 @@ route_shop_product_show:
         _sylius:
             template: "@VcareWeb/Product/show.html.twig"
             repository:
-                method: findOneBySlugAndChannel
+                method: findOneByChannelAndSlug
                 arguments:
-                    - $slug
                     - "expr:service('sylius.context.channel').getChannel()"
+                    - "expr:service('sylius.context.locale').getLocaleCode()"
+                    - $slug
 
 route_shop_product_index_taxon:
     path: /category/{slug}
