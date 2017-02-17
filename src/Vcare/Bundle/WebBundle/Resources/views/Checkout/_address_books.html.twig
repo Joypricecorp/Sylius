@@ -1,24 +1,22 @@
 {% if addresses|length %}
-    <div class="col-xs-12 col-md-4">
-        <div class="card card-block">
-            <h5 class="card-title">{{ "sylius.ui.address_book"|trans }}</h5>
-            <p class="card-text">{{ "vcare.ui.checkout_change_address"|trans }}</p>
-            <hr>
+    <div class="card card-block">
+        <h5 class="card-title">{{ "sylius.ui.address_book"|trans }}</h5>
+        <p class="card-text">{{ "vcare.ui.checkout_change_address"|trans }}</p>
+        <hr>
 
-            <div class="card-text" style="max-height: 340px; overflow: scroll;">
-                {% for address in addresses %}
-                    {% include '@SyliusShop/Common/_address.html.twig' with {'address': address} %}
-                    <a href="{{ path('sylius_shop_checkout_change_address_book', {addressId: address.id, addressType: 'shipping'}) }}"
-                       class="btn btn-default btn-sm">
-                        <i class="fa fa-truck"></i> {{ "vcare.ui.checkout_use_for_shipping_address"|trans }}
-                    </a>
-                    <a href="{{ path('sylius_shop_checkout_change_address_book', {addressId: address.id, addressType: 'billing'}) }}"
-                       class="btn btn-default btn-sm">
-                        <i class="fa fa-file-text-o"></i> {{ "vcare.ui.checkout_use_for_billing_address"|trans }}
-                    </a>
-                    <hr>
-                {% endfor %}
-            </div>
+        <div class="card-text" style="max-height: 340px; overflow: scroll;">
+            {% for address in addresses %}
+                {% include '@SyliusShop/Common/_address.html.twig' with {'address': address} %}
+                <a href="{{ path('sylius_shop_checkout_change_address_book', {addressId: address.id, addressType: 'shipping'}) }}"
+                   class="btn btn-default btn-sm">
+                    <i class="fa fa-truck"></i> {{ "vcare.ui.checkout_use_for_shipping_address"|trans }}
+                </a>
+                <a href="{{ path('sylius_shop_checkout_change_address_book', {addressId: address.id, addressType: 'billing'}) }}"
+                   class="btn btn-default btn-sm">
+                    <i class="fa fa-file-text-o"></i> {{ "vcare.ui.checkout_use_for_billing_address"|trans }}
+                </a>
+                <hr>
+            {% endfor %}
         </div>
     </div>
 {% endif %}

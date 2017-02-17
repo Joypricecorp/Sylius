@@ -17,6 +17,8 @@ $color-basic: #ECEEEF !default;
 // Bootstrap variables
 $brand-primary: $color-base;
 
+$alert-border-radius: 0;
+
 $enable-flex: true;
 $enable-rounded: true;
 $enable-shadows: true;
@@ -45,6 +47,6 @@ $btn-primary-color: #ffffff;
 $btn-primary-bg: $color-base;
 $btn-primary-border: darken($color-base, 5%);
 
-$font-heading: "Kanit", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$font-heading: "Prompt", "Helvetica Neue", Helvetica, Arial, sans-serif;
 $font-body: $font-heading;
 $font-color-ihealth: #FF5200;

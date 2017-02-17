@@ -17,7 +17,15 @@
         {{ form_errors(form) }}
 
         <div class="row">
-            {{ render(path('sylius_shop_checkout_address_books')) }}
+            <div class="col-xs-12 col-md-4">
+                {% if is_granted('ROLE_USER') %}
+                    {{ render(path('sylius_shop_checkout_address_books')) }}
+                {% else %}
+                    {% if form.customer is defined %}
+                        {% include '@VcareWeb/Checkout/_login.html.twig' with {'form': form.customer} %}
+                    {% endif %}
+                {% endif %}
+            </div>
 
             <div class="col-xs-12 col-md-4 address-container" id="checkout-shipping-address-container">
                 <div class="card card-block">

@@ -56,3 +56,9 @@
         </ul>
     </div>
 </div>
+
+{% if not is_granted('ROLE_USER') and order.customer and order.customer.email %}
+    <div class="m-b-1 text-align-right">
+        <i class="fa fa-shopping-cart"></i> {{ "sylius.ui.checking_out_as"|trans }}: <strong>{{ order.customer.email }}</strong>
+    </div>
+{% endif %}

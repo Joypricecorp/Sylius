@@ -74,8 +74,12 @@ vcare.ui.you_may_also_like: สินค้าแนะนำ
 
 sylius.ui.order_total: ยอดสุทธิ <br>(รวมภาษีแล้ว)
 sylius.ui.subtotal: มูลค่าสินค้า
+sylius.ui.history: History
 
 vcare.ui.social_login: เข้าระบบด้วยบัญชีอื่นๆ
 vcare.ui.social_facebook_login: เข้าระบบด้วยบัญชี Facebook
 
 sylius.form.image.type: Type
+
+vcare.ui.enter_your_email: "กรุณากรอกอีเมล์ของท่าน"
+vcare.ui.free: "ฟรี!"

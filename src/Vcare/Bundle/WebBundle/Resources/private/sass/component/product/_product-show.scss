@@ -92,7 +92,6 @@
   }
 
   &__description {
-
     &--short {
       font-size: 1.4rem;
     }
@@ -100,7 +99,7 @@
 
   &__share {
     padding: 1rem 0;
-    text-align: center;
+    text-align: left;
 
     span {
       padding-bottom: .5rem;

@@ -46,7 +46,9 @@ final class ShopUserLogoutHandler implements LogoutSuccessHandlerInterface
     public function onLogoutSuccess(Request $request)
     {
         if ($cart = $this->cartContext->getCart()) {
-            $this->cartRepository->remove($cart);
+            if ($cart->getId()) {
+                $this->cartRepository->remove($cart);
+            }
         }
 
         return $this->logoutSuccessHandler->onLogoutSuccess($request);

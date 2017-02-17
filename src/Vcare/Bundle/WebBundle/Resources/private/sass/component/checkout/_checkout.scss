@@ -113,6 +113,12 @@
             height: 26px;
             outline: 1px solid #ccc;
         }
+
+        &.has-danger {
+            .alert-danger {
+                font-size: .8rem;
+            }
+        }
     }
 
     .col-md-6,

@@ -29,32 +29,5 @@
                 </option>
             </constraint>
         </property>
-        <property name="postcode">
-            <constraint name="NotBlank">
-                <option name="message">sylius.address.postcode.not_blank</option>
-                <option name="groups">
-                    <value>sylius_shipping_address_update</value>
-                    <value>sylius</value>
-                </option>
-            </constraint>
-            <constraint name="Type">
-                <option name="type">numeric</option>
-                <option name="message">vcare.customer.postcode.not_numeric</option>
-                <option name="groups">
-                    <value>sylius_shipping_address_update</value>
-                    <value>sylius</value>
-                </option>
-            </constraint>
-            <constraint name="Length">
-                <option name="min">2</option>
-                <option name="max">255</option>
-                <option name="minMessage">sylius.address.postcode.min_length</option>
-                <option name="maxMessage">sylius.address.postcode.max_length</option>
-                <option name="groups">
-                    <value>sylius_shipping_address_update</value>
-                    <value>sylius</value>
-                </option>
-            </constraint>
-        </property>
     </class>
 </constraint-mapping>

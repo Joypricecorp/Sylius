@@ -74,8 +74,12 @@ vcare.ui.you_may_also_like: You may also like
 
 sylius.ui.order_total: "Grand total <br>(included vat)"
 sylius.ui.subtotal: Total
+sylius.ui.history: History
 
 vcare.ui.social_login: Social Login
 vcare.ui.social_facebook_login: Login with Facebook
 
 sylius.form.image.type: Type
+
+vcare.ui.enter_your_email: "Please provide your email"
+vcare.ui.free: "Free"

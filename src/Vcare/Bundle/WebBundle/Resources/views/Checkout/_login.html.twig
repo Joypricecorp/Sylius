@@ -1,0 +1,28 @@
+{% form_theme form 'VcareWebBundle:Form:common.html.twig' %}
+<div class="card card-block">
+    <h5 class="card-title">{{ "vcare.ui.enter_your_email"|trans }}</h5>
+    <hr>
+    <div class="card-text">
+        {{ form_errors(form.email) }}
+        {{ form_row(form.email, {'attr': {'data-url': path('sylius_shop_ajax_user_check_action')}}) }}
+
+        <div class="api-login-form hidden">
+            <div class="alert alert-block alert-info">
+                {{ "sylius.ui.it_seems_you_have_an_account_already"|trans }}
+            </div>
+            <div class="form-group">
+                <label class="form-control-label required" for="sylius_checkout_address_customer_email">{{ 'sylius.ui.password'|trans }}</label>
+                <input type="password" class="form-control" placeholder="{{ 'sylius.ui.password'|trans }}">
+                <input type="hidden" name="_csrf_shop_security_token" value="{{ csrf_token('shop_authenticate') }}">
+            </div>
+
+            <div class="text-align-right">
+                <button type="button" class="btn btn-ok" id="api-login-submit" data-url="{{ path('sylius_shop_login_check') }}">
+                    {{ 'sylius.ui.sign_in'|trans }}
+                </button>
+            </div>
+
+            <div id="api-validation-error"></div>
+        </div>
+    </div>
+</div>

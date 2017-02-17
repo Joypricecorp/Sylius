@@ -1,297 +1,128 @@
 /* thai */
 @font-face {
-  font-family: 'Mitr-Light';
+  font-family: 'Prompt';
   font-style: normal;
-  font-weight: 300;
-  src: local('Mitr Light'), local('Mitr-Light'), url(https://fonts.gstatic.com/s/mitr/v1/Aw3qYhhE6vdrfnZdi86kJVKPGs1ZzpMvnHX-7fPOuAc.woff2) format('woff2');
+  font-weight: 400;
+  src: local('Prompt'), local('Prompt-Regular'), url(https://fonts.gstatic.com/s/prompt/v1/Bx8a9N3FdJ9p65nqfQy-cn-_kf6ByYO6CLYdB4HQE-Y.woff2) format('woff2');
   unicode-range: U+0E01-0E5B, U+200B-200D, U+25CC;
 }
 /* vietnamese */
 @font-face {
-  font-family: 'Mitr-Light';
+  font-family: 'Prompt';
   font-style: normal;
-  font-weight: 300;
-  src: local('Mitr Light'), local('Mitr-Light'), url(https://fonts.gstatic.com/s/mitr/v1/DE3gVT4h5C8Zd0jzdsBTNFKPGs1ZzpMvnHX-7fPOuAc.woff2) format('woff2');
+  font-weight: 400;
+  src: local('Prompt'), local('Prompt-Regular'), url(https://fonts.gstatic.com/s/prompt/v1/lN9rbtX8rTcYd4C1szGXVH-_kf6ByYO6CLYdB4HQE-Y.woff2) format('woff2');
   unicode-range: U+0102-0103, U+1EA0-1EF9, U+20AB;
 }
 /* latin-ext */
 @font-face {
-  font-family: 'Mitr-Light';
+  font-family: 'Prompt';
   font-style: normal;
-  font-weight: 300;
-  src: local('Mitr Light'), local('Mitr-Light'), url(https://fonts.gstatic.com/s/mitr/v1/hYWBXDXajkPBQZR4ONdVeFKPGs1ZzpMvnHX-7fPOuAc.woff2) format('woff2');
+  font-weight: 400;
+  src: local('Prompt'), local('Prompt-Regular'), url(https://fonts.gstatic.com/s/prompt/v1/D2spEWwgoBL9an19yMyJcn-_kf6ByYO6CLYdB4HQE-Y.woff2) format('woff2');
   unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
 }
 /* latin */
 @font-face {
-  font-family: 'Mitr-Light';
+  font-family: 'Prompt';
   font-style: normal;
-  font-weight: 300;
-  src: local('Mitr Light'), local('Mitr-Light'), url(https://fonts.gstatic.com/s/mitr/v1/akRkjoomQlqTjlwGviFp2gLUuEpTyoUstqEm5AMlJo4.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+  font-weight: 400;
+  src: local('Prompt'), local('Prompt-Regular'), url(https://fonts.gstatic.com/s/prompt/v1/ZB_1bEE8INIHXH5ElV5sm-vvDin1pK8aKteLpeZ5c0A.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
 }
-
 /* thai */
 @font-face {
-  font-family: 'Mitr-Regular';
+  font-family: 'Prompt';
   font-style: normal;
-  font-weight: 400;
-  src: local('Mitr'), local('Mitr-Regular'), url(https://fonts.gstatic.com/s/mitr/v1/ZP8Sddky7dScpnaEjSKU4RTbgVql8nDJpwnrE27mub0.woff2) format('woff2');
+  font-weight: 700;
+  src: local('Prompt Bold'), local('Prompt-Bold'), url(https://fonts.gstatic.com/s/prompt/v1/FPv8WKaF2GKNzHDMmdIR8IX0hVgzZQUfRDuZrPvH3D8.woff2) format('woff2');
   unicode-range: U+0E01-0E5B, U+200B-200D, U+25CC;
 }
 /* vietnamese */
 @font-face {
-  font-family: 'Mitr-Regular';
+  font-family: 'Prompt';
   font-style: normal;
-  font-weight: 400;
-  src: local('Mitr'), local('Mitr-Regular'), url(https://fonts.gstatic.com/s/mitr/v1/r33kI5EVg-Iv8irj0lTRwxTbgVql8nDJpwnrE27mub0.woff2) format('woff2');
+  font-weight: 700;
+  src: local('Prompt Bold'), local('Prompt-Bold'), url(https://fonts.gstatic.com/s/prompt/v1/lOptTH4MF4h-gfflDFkDTIX0hVgzZQUfRDuZrPvH3D8.woff2) format('woff2');
   unicode-range: U+0102-0103, U+1EA0-1EF9, U+20AB;
 }
 /* latin-ext */
 @font-face {
-  font-family: 'Mitr-Regular';
+  font-family: 'Prompt';
   font-style: normal;
-  font-weight: 400;
-  src: local('Mitr'), local('Mitr-Regular'), url(https://fonts.gstatic.com/s/mitr/v1/tLKJhLFVCOYVOubu-Pyl9RTbgVql8nDJpwnrE27mub0.woff2) format('woff2');
+  font-weight: 700;
+  src: local('Prompt Bold'), local('Prompt-Bold'), url(https://fonts.gstatic.com/s/prompt/v1/W60QwjJXbv44jmaJwYy3a4X0hVgzZQUfRDuZrPvH3D8.woff2) format('woff2');
   unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
 }
 /* latin */
 @font-face {
-  font-family: 'Mitr-Regular';
+  font-family: 'Prompt';
   font-style: normal;
-  font-weight: 400;
-  src: local('Mitr'), local('Mitr-Regular'), url(https://fonts.gstatic.com/s/mitr/v1/vSUTrxrHmrSUDBq_RWxkuvesZW2xOQ-xsNqO47m55DA.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+  font-weight: 700;
+  src: local('Prompt Bold'), local('Prompt-Bold'), url(https://fonts.gstatic.com/s/prompt/v1/AcHtr8ZFPMAttYPZKPJ36JBw1xU1rKptJj_0jans920.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
 }
-
 /* thai */
 @font-face {
-  font-family: 'Taviraj';
-  font-style: normal;
+  font-family: 'Prompt';
+  font-style: italic;
   font-weight: 400;
-  src: local('Taviraj'), local('Taviraj-Regular'), url(https://fonts.gstatic.com/s/taviraj/v1/Yg0-EjhA03bb1axoJ_H_DlKPGs1ZzpMvnHX-7fPOuAc.woff2) format('woff2');
+  src: local('Prompt Italic'), local('Prompt-Italic'), url(https://fonts.gstatic.com/s/prompt/v1/NTQ9TgRBAUpKGMZUjA6XxBkAz4rYn47Zy2rvigWQf6w.woff2) format('woff2');
   unicode-range: U+0E01-0E5B, U+200B-200D, U+25CC;
 }
 /* vietnamese */
 @font-face {
-  font-family: 'Taviraj';
-  font-style: normal;
+  font-family: 'Prompt';
+  font-style: italic;
   font-weight: 400;
-  src: local('Taviraj'), local('Taviraj-Regular'), url(https://fonts.gstatic.com/s/taviraj/v1/gJT8MJQtsIyvCzkpkRsOPlKPGs1ZzpMvnHX-7fPOuAc.woff2) format('woff2');
+  src: local('Prompt Italic'), local('Prompt-Italic'), url(https://fonts.gstatic.com/s/prompt/v1/Z91ssSPIflB_m-1MvaQ2IhkAz4rYn47Zy2rvigWQf6w.woff2) format('woff2');
   unicode-range: U+0102-0103, U+1EA0-1EF9, U+20AB;
 }
 /* latin-ext */
 @font-face {
-  font-family: 'Taviraj';
-  font-style: normal;
+  font-family: 'Prompt';
+  font-style: italic;
   font-weight: 400;
-  src: local('Taviraj'), local('Taviraj-Regular'), url(https://fonts.gstatic.com/s/taviraj/v1/HvGDk2VhNZrdye_vpakiRlKPGs1ZzpMvnHX-7fPOuAc.woff2) format('woff2');
+  src: local('Prompt Italic'), local('Prompt-Italic'), url(https://fonts.gstatic.com/s/prompt/v1/XHEPub-vqMYIBt54KF8ZyRkAz4rYn47Zy2rvigWQf6w.woff2) format('woff2');
   unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
 }
 /* latin */
 @font-face {
-  font-family: 'Taviraj';
-  font-style: normal;
+  font-family: 'Prompt';
+  font-style: italic;
   font-weight: 400;
-  src: local('Taviraj'), local('Taviraj-Regular'), url(https://fonts.gstatic.com/s/taviraj/v1/8cQHUhQhQnNwMS_YH00Y1gLUuEpTyoUstqEm5AMlJo4.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+  src: local('Prompt Italic'), local('Prompt-Italic'), url(https://fonts.gstatic.com/s/prompt/v1/atAj9aLMNIqXxotVizDWUXYhjbSpvc47ee6xR_80Hnw.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
 }
-
 /* thai */
 @font-face {
-  font-family: 'Athiti';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Athiti'), local('Athiti-Regular'), url(https://fonts.gstatic.com/s/athiti/v1/frf8-k-3K7c-jlGoSPSAzn-_kf6ByYO6CLYdB4HQE-Y.woff2) format('woff2');
+  font-family: 'Prompt';
+  font-style: italic;
+  font-weight: 700;
+  src: local('Prompt Bold Italic'), local('Prompt-BoldItalic'), url(https://fonts.gstatic.com/s/prompt/v1/Odiddf0NoQZJa5ypm1L_nFrdFSIjhIozpZzqB1ouzuM.woff2) format('woff2');
   unicode-range: U+0E01-0E5B, U+200B-200D, U+25CC;
 }
 /* vietnamese */
 @font-face {
-  font-family: 'Athiti';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Athiti'), local('Athiti-Regular'), url(https://fonts.gstatic.com/s/athiti/v1/9bxBpUiw9EFIitD0jg2ZcH-_kf6ByYO6CLYdB4HQE-Y.woff2) format('woff2');
+  font-family: 'Prompt';
+  font-style: italic;
+  font-weight: 700;
+  src: local('Prompt Bold Italic'), local('Prompt-BoldItalic'), url(https://fonts.gstatic.com/s/prompt/v1/Odiddf0NoQZJa5ypm1L_nNDiNsR5a-9Oe_Ivpu8XWlY.woff2) format('woff2');
   unicode-range: U+0102-0103, U+1EA0-1EF9, U+20AB;
 }
 /* latin-ext */
 @font-face {
-  font-family: 'Athiti';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Athiti'), local('Athiti-Regular'), url(https://fonts.gstatic.com/s/athiti/v1/XDIc_HFH-5zL937CsnTWiX-_kf6ByYO6CLYdB4HQE-Y.woff2) format('woff2');
+  font-family: 'Prompt';
+  font-style: italic;
+  font-weight: 700;
+  src: local('Prompt Bold Italic'), local('Prompt-BoldItalic'), url(https://fonts.gstatic.com/s/prompt/v1/Odiddf0NoQZJa5ypm1L_nKE8kM4xWR1_1bYURRojRGc.woff2) format('woff2');
   unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
 }
 /* latin */
 @font-face {
-  font-family: 'Athiti';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Athiti'), local('Athiti-Regular'), url(https://fonts.gstatic.com/s/athiti/v1/HMEHHAoY-DuNFwP0_SsXtevvDin1pK8aKteLpeZ5c0A.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
-}
-
-/* thai */
-@font-face {
-  font-family: 'Athitibold';
-  font-style: normal;
-  font-weight: bold;
-  src: local('Athiti Bold'), local('Athitibold'), url(https://fonts.gstatic.com/s/athiti/v1/Zeo-gWmGbpxZ3HS6WoK9qIX0hVgzZQUfRDuZrPvH3D8.woff2) format('woff2');
-  unicode-range: U+0E01-0E5B, U+200B-200D, U+25CC;
-}
-/* vietnamese */
-@font-face {
-  font-family: 'Athitibold';
-  font-style: normal;
-  font-weight: bold;
-  src: local('Athiti Bold'), local('Athitibold'), url(https://fonts.gstatic.com/s/athiti/v1/gq6nOdIyFH5XpoBYueEK2YX0hVgzZQUfRDuZrPvH3D8.woff2) format('woff2');
-  unicode-range: U+0102-0103, U+1EA0-1EF9, U+20AB;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'Athitibold';
-  font-style: normal;
-  font-weight: bold;
-  src: local('Athiti Bold'), local('Athitibold'), url(https://fonts.gstatic.com/s/athiti/v1/J7-arghq4Q-LhhN9BRpyfYX0hVgzZQUfRDuZrPvH3D8.woff2) format('woff2');
-  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'Athitibold';
-  font-style: normal;
-  font-weight: bold;
-  src: local('Athiti Bold'), local('Athitibold'), url(https://fonts.gstatic.com/s/athiti/v1/bSSEVUKD-jNZ7CyXjeWW8JBw1xU1rKptJj_0jans920.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
-}
-
-/* thai */
-@font-face {
-  font-family: 'Maitree';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Maitree'), url(https://fonts.gstatic.com/s/maitree/v1/-HTnktNG4s69bAZcQSZgbFKPGs1ZzpMvnHX-7fPOuAc.woff2) format('woff2');
-  unicode-range: U+0E01-0E5B, U+200B-200D, U+25CC;
-}
-/* vietnamese */
-@font-face {
-  font-family: 'Maitree';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Maitree'), url(https://fonts.gstatic.com/s/maitree/v1/3CPXfKjCoOAzxxA1dnEuC1KPGs1ZzpMvnHX-7fPOuAc.woff2) format('woff2');
-  unicode-range: U+0102-0103, U+1EA0-1EF9, U+20AB;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'Maitree';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Maitree'), url(https://fonts.gstatic.com/s/maitree/v1/b9P8B0EVzrcjtNcbpJt3X1KPGs1ZzpMvnHX-7fPOuAc.woff2) format('woff2');
-  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'Maitree';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Maitree'), url(https://fonts.gstatic.com/s/maitree/v1/oi8Gl5nxk8GMNhDLimf7zwLUuEpTyoUstqEm5AMlJo4.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
-}
-
-/* thai */
-@font-face {
-  font-family: 'Maitree';
-  font-style: normal;
-  font-weight: bold;
-  src: local('Maitree Bold'), local('Maitreebold'), url(https://fonts.gstatic.com/s/maitree/v1/FHbXEJSqHW9bZ9aGnl4U2wsYbbCjybiHxArTLjt7FRU.woff2) format('woff2');
-  unicode-range: U+0E01-0E5B, U+200B-200D, U+25CC;
-}
-/* vietnamese */
-@font-face {
-  font-family: 'Maitree';
-  font-style: normal;
-  font-weight: bold;
-  src: local('Maitree Bold'), local('Maitreebold'), url(https://fonts.gstatic.com/s/maitree/v1/LX9xBY9z3MyEputbZBh4aAsYbbCjybiHxArTLjt7FRU.woff2) format('woff2');
-  unicode-range: U+0102-0103, U+1EA0-1EF9, U+20AB;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'Maitree';
-  font-style: normal;
-  font-weight: bold;
-  src: local('Maitree Bold'), local('Maitreebold'), url(https://fonts.gstatic.com/s/maitree/v1/1waW_ntxHaTqwMmt5pMvDgsYbbCjybiHxArTLjt7FRU.woff2) format('woff2');
-  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'Maitree';
-  font-style: normal;
-  font-weight: bold;
-  src: local('Maitree Bold'), local('Maitreebold'), url(https://fonts.gstatic.com/s/maitree/v1/P-HydeqfqSxrhj88sjkSFAzyDMXhdD8sAj6OAJTFsBI.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
-}
-
-/* thai */
-@font-face {
-  font-family: 'Kanit';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Kanit'), local('Kanit-Regular'), url(https://fonts.gstatic.com/s/kanit/v1/XJlHi6uxFW6uak2UaVnLX4DGDUGfDkXyfkzVDelzfFk.woff2) format('woff2');
-  unicode-range: U+0E01-0E5B, U+200B-200D, U+25CC;
-}
-/* vietnamese */
-@font-face {
-  font-family: 'Kanit';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Kanit'), local('Kanit-Regular'), url(https://fonts.gstatic.com/s/kanit/v1/wjEaKp28CQHoHrriK4GMWIDGDUGfDkXyfkzVDelzfFk.woff2) format('woff2');
-  unicode-range: U+0102-0103, U+1EA0-1EF9, U+20AB;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'Kanit';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Kanit'), local('Kanit-Regular'), url(https://fonts.gstatic.com/s/kanit/v1/O7sYIYawKRUUrEqBVGnBEIDGDUGfDkXyfkzVDelzfFk.woff2) format('woff2');
-  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'Kanit';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Kanit'), local('Kanit-Regular'), url(https://fonts.gstatic.com/s/kanit/v1/hhdWCKTH4CE5sjL-TVmfgqCWcynf_cDxXwCLxiixG1c.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
-}
-
-
-/* thai */
-@font-face {
-  font-family: 'Trirong';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Trirong'), local('Trirong-Regular'), url(https://fonts.gstatic.com/s/trirong/v1/Y3jrejtDmyaaWJBsUouHPlKPGs1ZzpMvnHX-7fPOuAc.woff2) format('woff2');
-  unicode-range: U+0E01-0E5B, U+200B-200D, U+25CC;
-}
-/* vietnamese */
-@font-face {
-  font-family: 'Trirong';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Trirong'), local('Trirong-Regular'), url(https://fonts.gstatic.com/s/trirong/v1/ttRnt6oEJ3ftgbdlophUmlKPGs1ZzpMvnHX-7fPOuAc.woff2) format('woff2');
-  unicode-range: U+0102-0103, U+1EA0-1EF9, U+20AB;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'Trirong';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Trirong'), local('Trirong-Regular'), url(https://fonts.gstatic.com/s/trirong/v1/6jlrA_qXyNx2IRgyeqwFP1KPGs1ZzpMvnHX-7fPOuAc.woff2) format('woff2');
-  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'Trirong';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Trirong'), local('Trirong-Regular'), url(https://fonts.gstatic.com/s/trirong/v1/e6z7yTR7WP1Aj1sL2Fu11ALUuEpTyoUstqEm5AMlJo4.woff2) format('woff2');
+  font-family: 'Prompt';
+  font-style: italic;
+  font-weight: 700;
+  src: local('Prompt Bold Italic'), local('Prompt-BoldItalic'), url(https://fonts.gstatic.com/s/prompt/v1/Odiddf0NoQZJa5ypm1L_nIgp9Q8gbYrhqGlRav_IXfk.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
 }

@@ -112,6 +112,10 @@
             <tag name="form.type_extension" extended-type="Sylius\Bundle\ProductBundle\Form\Type\ProductTranslationType"/>
         </service>
 
+        <service id="vcare.form.checkout_address.extension" class="Vcare\Bundle\WebBundle\Form\Extension\Checkout\AddressExtensionType">
+            <tag name="form.type_extension" extended-type="Sylius\Bundle\CoreBundle\Form\Type\Checkout\AddressType"/>
+        </service>
+
         <service id="vcare.form.checkout_paysbuy_payment.extension" class="Vcare\Bundle\WebBundle\Form\Extension\Checkout\PaymentExtensionType">
             <tag name="form.type_extension" extended-type="Sylius\Bundle\CoreBundle\Form\Type\Checkout\PaymentType"/>
         </service>
