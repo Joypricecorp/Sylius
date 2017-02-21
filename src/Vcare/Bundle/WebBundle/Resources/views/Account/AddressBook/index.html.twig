@@ -26,6 +26,7 @@
                 <div class="row">
                     {% set default_address = (sylius.customer.defaultAddress) %}
                     {% for address in addresses %}
+                        {% set is_default = default_address.id == address.id %}
                         <div class="col-md-6 col-xs-12">
                             <div class="card card-block">
                                 {% include '@SyliusShop/Common/_address.html.twig' with {'address': address} %}
@@ -34,15 +35,18 @@
                                     <i class="fa fa-edit"></i> {{ "sylius.ui.edit"|trans }}
                                 </a>
 
-                                <form action="{{ path('sylius_shop_account_address_book_delete', {'id': address.id}) }}"
-                                      method="post" style="display: inline">
-                                    <input type="hidden" name="_method" value="DELETE">
-                                    <button class="btn btn-danger btn-sm" type="submit" data-requires-confirmation>
-                                        <i class="fa fa-trash-o"></i> {{ "sylius.ui.delete"|trans }}
-                                    </button>
-                                </form>
+                                {% if not is_default %}
+                                    <form action="{{ path('sylius_shop_account_address_book_delete', {'id': address.id}) }}"
+                                          method="post" style="display: inline">
+                                        <input type="hidden" name="_method" value="DELETE">
+                                        <input type="hidden" name="_csrf_token" value="{{ csrf_token(address.id) }}" />
+                                        <button class="btn btn-danger btn-sm" type="submit" data-requires-confirmation>
+                                            <i class="fa fa-trash-o"></i> {{ "sylius.ui.delete"|trans }}
+                                        </button>
+                                    </form>
+                                {% endif %}
 
-                                {% if default_address.id == address.id %}
+                                {% if is_default %}
                                     <span class="btn btn-success btn-sm" style="cursor: default">
                                         <i class="fa fa-bookmark"></i> {{ "Default"|trans }}
                                     </span>

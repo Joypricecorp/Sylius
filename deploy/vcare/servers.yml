@@ -26,9 +26,12 @@ v00:
         redis_session_dns: 'redis://dummy:ohnaicahn4ug9gaquaSh3Tha@localhost:1234/1'
         redis_swiftmailer_dns: 'redis://dummy:ohnaicahn4ug9gaquaSh3Tha@localhost:1234/2'
         paysbuy_sandbox: false
-        paysbuy_psb_id: 3775170581
-        paysbuy_username: sonehorm@hotmail.com
-        paysbuy_secure_code: 1E636EE4D677E28BB2DDDBFEC023E00A
+        paysbuy_psb_id: 8316121652
+        paysbuy_username: triwitt@eforl.co.th
+        paysbuy_secure_code: 7767D804002814D69CC7DD6BF49655B2
+        # paysbuy_psb_id: 3775170581
+        # paysbuy_username: sonehorm@hotmail.com
+        # paysbuy_secure_code: 1E636EE4D677E28BB2DDDBFEC023E00A
 
         toro_facebook_client_id: 1306393989427191
         toro_facebook_client_secret: e87b89b423333df7f11b7a1591eba4ee
