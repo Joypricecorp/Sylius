@@ -58,31 +58,28 @@ class ProductRepository extends BaseProductRepository
     /**
      * {@inheritdoc}
      */
-    public function createQueryBuilderByChannelAndTaxonSlug(ChannelInterface $channel, $taxonId, $locale)
+    public function createShopIndexQueryBuilder(ChannelInterface $channel, $locale, array $sorting)
     {
-        if (!is_numeric($taxonId)) {
-            return parent::createQueryBuilderByChannelAndTaxonSlug($channel, $taxonId, $locale);
+        $queryBuilder = $this->createQueryBuilder('o')
+            ->addSelect('translation')
+            ->leftJoin('o.translations', 'translation', 'WITH', 'translation.locale = :locale')
+            ->innerJoin('o.productTaxons', 'productTaxon')
+            ->andWhere(':channel MEMBER OF o.channels')
+            ->andWhere('o.enabled = true')
+            ->addGroupBy('o.id')
+            ->setParameter('locale', $locale)
+            ->setParameter('channel', $channel)
+        ;
+
+        // Grid hack, we do not need to join these if we don't sort by price
+        if (isset($sorting['price'])) {
+            $queryBuilder
+                ->innerJoin('o.variants', 'variant')
+                ->innerJoin('variant.channelPricings', 'channelPricing')
+                ->andWhere('channelPricing.channel = :channel')
+            ;
         }
 
-        return $this->createQueryBuilder('o')
-            ->addSelect('translation')
-            ->leftJoin('o.translations', 'translation')
-            ->innerJoin('o.variants', 'variant')
-            ->innerJoin('variant.channelPricings', 'channelPricing')
-            ->innerJoin('o.productTaxons', 'productTaxon')
-            ->leftJoin('productTaxon.taxon', 'taxon')
-            ->leftJoin('taxon.translations', 'taxonTranslation')
-            ->innerJoin('o.channels', 'channel')
-            ->andWhere('translation.locale = :locale')
-            ->andWhere('taxonTranslation.locale = :locale')
-            ->andWhere('taxonTranslation.id = :taxonId')
-            ->andWhere('channel = :channel')
-            ->andWhere('o.enabled = true')
-            ->andWhere('channelPricing.channel = :channel')
-            ->groupBy('o.id')
-            ->setParameter('locale', $locale)
-            ->setParameter('taxonId', $taxonId)
-            ->setParameter('channel', $channel)
-            ;
+        return $queryBuilder;
     }
 }

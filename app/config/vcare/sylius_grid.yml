@@ -103,27 +103,35 @@ sylius_grid:
                 options:
                     class: "%sylius.model.product.class%"
                     repository:
-                        method: createQueryBuilderByChannelAndTaxonCodeWide
+                        method: createShopIndexQueryBuilder
                         arguments:
                             channel: "expr:service('sylius.context.channel').getChannel()"
-                            taxon: "expr:service('vcare.context.channel_settings').getProductTaxonRootContext()"
-                            locale: '%locale%'
+                            locale: "expr:service('sylius.context.locale').getLocaleCode()"
+                            sorting: "expr:service('request_stack').getCurrentRequest().get('sorting', [])"
             sorting:
                 position: asc
+            limits: [9, 18, 27]
             fields:
                 createdAt:
                     type: datetime
                     sortable: ~
                 position:
                     type: string 
-                    sortable: taxon.position
+                    sortable: productTaxon.position
+                name:
+                    type: string 
+                    sortable: translation.name
+                price:
+                    type: int
+                    sortable: channelPricing.price
             filters:
                 search:
                     type: string
                     label: false
                     options:
-                        type: contains
                         fields: [translation.name]
+                    form_options:
+                        type: contains
 
         vcare_shop_post_index:
             driver:

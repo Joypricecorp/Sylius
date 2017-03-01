@@ -1,10 +1,9 @@
 .nav-main {
     &__top {
-        background: $color-second;
+        background: #ffffff;
         padding: .2rem 0;
 
         a {
-            color: #fff;
             font-size: .8rem;
         }
 
@@ -33,7 +32,7 @@
 
     &__menu {
         border-bottom: 1px solid #E6E7E8;
-        background: #fff;
+        background: rgba(#fff, .7);
         line-height: 75px;
         font-family: $font-heading;;
 
@@ -45,12 +44,17 @@
             // prevent box width resize when we increase font-size over column width
             overflow: hidden;
 
+            width: 100px;
+            height: 75px;
+
             a {
                 color: $color-base !important;
             }
 
             img {
-                height: 75px;
+                height: 120px;
+                position: absolute;
+                margin-top: -2.5rem;
             }
         }
 
@@ -142,6 +146,18 @@
         right: 0;
         z-index: 9999;
         position: fixed;
+        background: #fff;
+
+        .nav-main__menu-brand {
+            width: auto;
+            height: auto;
+            img {
+                position: relative;
+                margin-top: 0;
+                height: 65px;
+                width: auto;
+            }
+        }
     }
 
     .dropdown-cart {
