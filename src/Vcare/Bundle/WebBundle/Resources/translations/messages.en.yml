@@ -83,3 +83,7 @@ sylius.form.image.type: Type
 
 vcare.ui.enter_your_email: "Please provide your email"
 vcare.ui.free: "Free"
+
+sylius.ui.created: Created
+sylius.ui.updated: Updated
+sylius.ui.deleted: Deleted

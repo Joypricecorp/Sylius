@@ -13,7 +13,6 @@
                 {{ form_row(form.enabled) }}
                 {% if product.simple %}
                     {{ form_row(form.variant.onHand) }}
-                    {#{{ form_row(form.variant.position) }}#}
                     {#{{ form_row(form.variant.tracked) }}#}
                 {% else %}
                     {{ form_row(form.options) }}

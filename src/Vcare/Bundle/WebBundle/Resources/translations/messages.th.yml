@@ -83,3 +83,7 @@ sylius.form.image.type: Type
 
 vcare.ui.enter_your_email: "กรุณากรอกอีเมล์ของท่าน"
 vcare.ui.free: "ฟรี!"
+
+sylius.ui.created: Created
+sylius.ui.updated: Updated
+sylius.ui.deleted: Deleted
