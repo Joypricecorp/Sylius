@@ -74,7 +74,10 @@
                         </div>
                         <div class="nav-main__menu-category">{{ categories|raw }}</div>
                     </div>
-                    <div class="col-md-3 col-xs-10 nav-main__menu-cart">
+                    <div class="col-xs-2 nav-main__menu-logo hidden-md-up">
+                        <img itemprop="logo" id="site-logo" src="{{ cx_settings.branding('logo') }}" alt="{{ cx_settings.branding('name') }}">
+                    </div>
+                    <div class="col-md-3 col-xs-7 nav-main__menu-cart">
                         {{ include("@VcareWeb/Layout/nav-cart.html.twig") }}
                         <a class="btn btn-primary" href="{{ path('route_shop_product_index') }}">
                             {{ "vcare.ui.all_products"|trans }}

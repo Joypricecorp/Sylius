@@ -1,7 +1,13 @@
 .nav-main {
     &__menu {
         &-cart {
-            text-align: left;
+            text-align: center;
+        }
+
+        &-logo {
+            img {
+                width: 65px;
+            }
         }
 
         &-toggle {
