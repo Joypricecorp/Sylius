@@ -93,6 +93,7 @@
                 <argument>sylius</argument>
             </argument>
             <argument type="service" id="sylius.repository.taxon"/>
+            <argument type="service" id="sylius.context.locale"/>
             <tag name="form.type"/>
         </service>
 

@@ -3,6 +3,7 @@
 namespace Vcare\Bundle\WebBundle\Form\Type;
 
 use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
+use Sylius\Component\Locale\Context\LocaleContextInterface;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
 use Sylius\Component\Taxonomy\Model\TaxonInterface;
 use Sylius\Component\Taxonomy\Repository\TaxonRepositoryInterface;
@@ -20,11 +21,17 @@ class TaxonChoiceRootFilterType extends AbstractResourceType
      */
     private $taxonRepository;
 
-    public function __construct($dataClass, $validationGroups = [], RepositoryInterface $repository)
+    /**
+     * @var LocaleContextInterface
+     */
+    private $localeContext;
+
+    public function __construct($dataClass, $validationGroups = [], RepositoryInterface $repository, LocaleContextInterface $localeContext)
     {
         parent::__construct($dataClass, $validationGroups);
 
         $this->taxonRepository = $repository;
+        $this->localeContext = $localeContext;
     }
 
     /**
@@ -54,7 +61,7 @@ class TaxonChoiceRootFilterType extends AbstractResourceType
             ->setDefaults([
                 'choices' => function (Options $options) {
                     if (null !== $options['root']) {
-                        $taxons = $this->taxonRepository->findChildren($options['root']->getCode());
+                        $taxons = $this->taxonRepository->findChildren($options['root']->getCode(), $this->localeContext->getLocaleCode());
                     } else {
                         $taxons = $this->taxonRepository->findNodesTreeSorted();
                     }
