@@ -19,6 +19,15 @@ $btn-ok-border: $font-color-ihealth;
     @include button-variant($btn-ok-color, $btn-ok-bg, $btn-ok-border);
 }
 
+
+$btn-snail8-color: #ffffff;
+$btn-snail8-bg: $snail8-color;
+$btn-snail8-border: $snail8-color;
+
+.btn-snail8 {
+    @include button-variant($btn-ok-color, $btn-ok-bg, $btn-ok-border);
+}
+
 .btn {
     outline: none;
     @include box-shadow(inset 0 -4px 0 rgba(0, 0, 0, 0.10));
