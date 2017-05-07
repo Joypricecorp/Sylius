@@ -1,17 +1,6 @@
-sylius_ajax:
-    resource: "sylius/shop/app/routing/ajax.yml"
-    prefix: /_ajax
-
-sylius_admin_dashboard_redirect:
-    path: /admin
-    methods: [GET]
-    defaults:
-        _controller: FrameworkBundle:Redirect:redirect
-        route: sylius_admin_dashboard
-        permanent: true
-
-toro_media:
-    resource: "@ToroMediaBundle/Resources/config/routing.yml"
+sylius_admin:
+    resource: "sylius/admin/app/routing.yml"
+    prefix: /admin
 
 sylius_shop:
     resource: "sylius/shop/app/routing.yml"
@@ -27,11 +16,14 @@ sylius_admin_api:
     resource: "@SyliusAdminApiBundle/Resources/config/routing.yml"
     prefix: /api
 
-sylius_shop_default_locale:
-    path: /
-    methods: [GET]
-    defaults:
-        _controller: sylius.controller.shop.locale_switch:switchAction
+toro_media:
+    resource: "@ToroMediaBundle/Resources/config/routing.yml"
+
+#sylius_shop_default_locale:
+#    path: /
+#    methods: [GET]
+#    defaults:
+#        _controller: sylius.controller.shop.locale_switch:switchAction
 
 vcare_posts:
     resource: "vcare/routing/post.yml"

@@ -25,3 +25,14 @@ ui:
                 cash: Cash
                 smart_perse: Smart Perse
                 loan: Loan
+
+dos:
+    form:
+        gateway_configuration:
+            paysbuy:
+                username: "Username"
+                secure_code: "Secure code"
+                psb_id: "PSB ID"
+                sandbox: "Dev Mode?"
+    payum_gateway_factory:
+        paysbuy: PaySbuy

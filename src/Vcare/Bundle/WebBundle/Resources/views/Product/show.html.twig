@@ -31,11 +31,13 @@
         <li class="breadcrumb-item">
             <a href="{{ path('route_shop_product_index') }}">{{ "vcare.ui.all_products"|trans }}</a>
         </li>
-        <li class="breadcrumb-item">
-            <a href="{{ path('route_shop_product_index_taxon', { slug: product.mainTaxon.slug }) }}">
-                {{ product.mainTaxon.name }}
-            </a>
-        </li>
+        {% if product.mainTaxon %}
+            <li class="breadcrumb-item">
+                <a href="{{ path('route_shop_product_index_taxon', { slug: product.mainTaxon.slug }) }}">
+                    {{ product.mainTaxon.name }}
+                </a>
+            </li>
+        {% endif %}
         <li class="breadcrumb-item active">{{ product.name }}</li>
     </ol>
 {% endblock %}

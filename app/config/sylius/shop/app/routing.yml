@@ -1,3 +1,7 @@
+sylius_shop_ajax:
+    resource: "routing/ajax.yml"
+    prefix: /_ajax
+
 route_shop_homepage:
     path: /
     defaults:

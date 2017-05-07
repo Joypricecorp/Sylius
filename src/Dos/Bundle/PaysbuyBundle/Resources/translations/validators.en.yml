@@ -1,0 +1,9 @@
+dos:
+    gateway_config:
+        paysbuy:
+            username:
+                not_blank: "กรุณากรอก username"
+            secure_code:
+                not_blank: "กรุณากรอก Secure code"
+            psb_id:
+                not_blank: "กรุณากรอก Psb id"

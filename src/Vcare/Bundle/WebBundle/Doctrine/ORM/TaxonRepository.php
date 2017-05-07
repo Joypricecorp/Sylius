@@ -71,4 +71,27 @@ class TaxonRepository extends BaseTaxonRepository
 
         return $queryBuilder;
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function findByNamePartWithRootCode($rootCode, $phrase, $locale)
+    {
+        return $this->createQueryBuilder('o')
+            ->addSelect('translation')
+            ->innerJoin('o.translations', 'translation')
+            ->andWhere('translation.name LIKE :name')
+            ->andWhere('translation.locale = :locale')
+            ->setParameter('name', '%'.$phrase.'%')
+            ->setParameter('locale', $locale)
+
+            ->leftJoin('o.root', 'root')
+            ->andWhere('root.code = :rootCode')
+            ->setParameter('rootCode', $rootCode)
+            ->andWhere('o.parent IS NOT NULL')
+
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 }

@@ -25,3 +25,14 @@ ui:
                 cash: ชำระด้วยเงินสด
                 smart_perse: Smart Perse
                 loan: ผ่อนชำระ
+
+dos:
+    form:
+        gateway_configuration:
+            paysbuy:
+                username: "Username"
+                secure_code: "Secure code"
+                psb_id: "PSB ID"
+                sandbox: "Dev Mode?"
+    payum_gateway_factory:
+        paysbuy: "เพย์สบาย"

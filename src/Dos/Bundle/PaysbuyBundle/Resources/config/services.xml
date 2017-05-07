@@ -30,5 +30,10 @@
             <argument type="service" id="sylius.currency_converter" />
             <tag name="payum.action" factory="paysbuy" gateway="paysbuy" all="false"/>
         </service>
+
+        <service id="dos.form.type.gateway_configuration.paysbuy" class="Dos\Bundle\PaysbuyBundle\Form\Type\PaysbuyGatewayConfigurationType">
+            <tag name="sylius.gateway_configuration_type" type="paysbuy" label="dos.payum_gateway_factory.paysbuy" />
+            <tag name="form.type" />
+        </service>
     </services>
 </container>
