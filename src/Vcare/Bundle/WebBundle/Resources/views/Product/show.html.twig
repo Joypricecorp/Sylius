@@ -43,7 +43,7 @@
 {% endblock %}
 
 {% block content %}
-    <div class="containerx">
+    <div class="containerx prd-{{ product.mainTaxon.parent.code|default('vcare') }}">
         <div class="row product-show">
             <div class="col-md-6 col-xs-12">
                 <div class="product-show-pictures">

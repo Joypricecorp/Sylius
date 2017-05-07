@@ -3,6 +3,7 @@
 
 {% block root %}
     {% set localeCode = item.getAttribute('currentLocale')|slice(3, 2)|lower %}
+    {% set localeCode = 'us' == localeCode ? 'gb' : localeCode %}
     <li class="nav-item nav-item-locale">
         <div class="dropdown locale">
             <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -10,7 +11,7 @@
                 {% if is_mobile_view %}
                     {% if 'th' == localeCode %}
                         <span>{{ "TH" }}</span>
-                    {% elseif 'us' == localeCode %}
+                    {% elseif 'gb' == localeCode %}
                         <span>{{ "EN" }}</span>
                     {% else %}
                         <span>{{ localeCode }}</span>
@@ -18,7 +19,7 @@
                 {% else %}
                     {% if 'th' == localeCode %}
                         <span>{{ "ภาษาไทย / Thai" }}</span>
-                    {% elseif 'us' == localeCode %}
+                    {% elseif 'gb' == localeCode %}
                         <span>{{ "ภาษาอังกฤษ / English" }}</span>
                     {% else %}
                         <span>{{ item.label }}</span>
@@ -33,10 +34,11 @@
 
 {% block label %}
     {% set localeCode = item.name|slice(3, 2)|lower %}
+    {% set localeCode = 'us' == localeCode ? 'gb' : localeCode %}
     <i class="flag-icon flag-icon-{{ localeCode }}"></i>
     {% if 'th' == localeCode %}
         {{ "ไทย / TH" }}
-    {% elseif 'us' == localeCode %}
+    {% elseif 'gb' == localeCode %}
         {{ "อังกฤษ / EN" }}
     {% else %}
         {{ item.label }}

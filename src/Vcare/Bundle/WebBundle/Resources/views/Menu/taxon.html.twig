@@ -2,7 +2,7 @@
     {% for taxon in taxons %}
         {{ _self.render_tree(taxon) }}
     {% endfor %}
-    <a href="{{ path('vcare_shop_post_index') }}">{{ "vcare.ui.posts"|trans }}</a>
+    {#<a href="{{ path('vcare_shop_post_index') }}">{{ "vcare.ui.posts"|trans }}</a>#}
 {% endif %}
 
 {% macro render_tree(taxon) %}
