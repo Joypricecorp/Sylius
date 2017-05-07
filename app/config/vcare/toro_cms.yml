@@ -2,8 +2,6 @@ toro_cms:
     locale_enabled: false
     form_extension:
         channel: false
-        taxon: false
-        taxon_choice: false
     resources:
         page:
             classes:
