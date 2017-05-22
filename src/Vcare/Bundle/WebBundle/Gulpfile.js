@@ -47,7 +47,8 @@ var paths = {
             'Resources/private/img/**'
         ],
         fonts: [
-            nodeRoot + 'font-awesome/fonts/**'
+            nodeRoot + 'font-awesome/fonts/**',
+            'Resources/private/fonts/**'
         ],
         copy: [
         ]

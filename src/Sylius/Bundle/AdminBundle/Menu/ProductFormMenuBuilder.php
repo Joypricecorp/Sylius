@@ -70,22 +70,28 @@ final class ProductFormMenuBuilder
             ->setLabel('sylius.ui.taxonomy')
         ;
 
-        $menu
+        /*$menu
             ->addChild('attributes')
             ->setAttribute('template', '@SyliusAdmin/Product/Tab/_attributes.html.twig')
             ->setLabel('sylius.ui.attributes')
-        ;
+        ;*/
 
-        $menu
+        /*$menu
             ->addChild('associations')
             ->setAttribute('template', '@SyliusAdmin/Product/Tab/_associations.html.twig')
             ->setLabel('sylius.ui.associations')
-        ;
+        ;*/
 
         $menu
             ->addChild('media')
             ->setAttribute('template', '@SyliusAdmin/Product/Tab/_media.html.twig')
             ->setLabel('sylius.ui.media')
+        ;
+
+        $menu
+            ->addChild('manuals')
+            ->setAttribute('template', '@SyliusAdmin/Product/Tab/_manuals.html.twig')
+            ->setLabel('Manuals')
         ;
 
         $this->eventDispatcher->dispatch(

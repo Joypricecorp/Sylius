@@ -18,9 +18,9 @@
                     {% endif %}
                 {% else %}
                     {% if 'th' == localeCode %}
-                        <span>{{ "ภาษาไทย / Thai" }}</span>
+                        <span>{{ "ภาษาไทย" }}</span>
                     {% elseif 'gb' == localeCode %}
-                        <span>{{ "ภาษาอังกฤษ / English" }}</span>
+                        <span>{{ "English" }}</span>
                     {% else %}
                         <span>{{ item.label }}</span>
                     {% endif %}
@@ -37,9 +37,9 @@
     {% set localeCode = 'us' == localeCode ? 'gb' : localeCode %}
     <i class="flag-icon flag-icon-{{ localeCode }}"></i>
     {% if 'th' == localeCode %}
-        {{ "ไทย / TH" }}
+        {{ "ภาษาไทย" }}
     {% elseif 'gb' == localeCode %}
-        {{ "อังกฤษ / EN" }}
+        {{ "English" }}
     {% else %}
         {{ item.label }}
     {% endif %}

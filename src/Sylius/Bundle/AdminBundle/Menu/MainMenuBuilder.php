@@ -86,11 +86,11 @@ final class MainMenuBuilder
             ->setLabelAttribute('icon', 'cube')
         ;
 
-        $catalog
+        /*$catalog
             ->addChild('inventory', ['route' => 'sylius_admin_inventory_index'])
             ->setLabel('sylius.menu.admin.main.catalog.inventory')
             ->setLabelAttribute('icon', 'history')
-        ;
+        ;*/
 
         /*$catalog
             ->addChild('attributes', ['route' => 'sylius_admin_product_attribute_index'])
@@ -104,11 +104,11 @@ final class MainMenuBuilder
             ->setLabelAttribute('icon', 'options')
         ;*/
 
-        $catalog
+        /*$catalog
             ->addChild('association_types', ['route' => 'sylius_admin_product_association_type_index'])
             ->setLabel('sylius.menu.admin.main.catalog.association_types')
             ->setLabelAttribute('icon', 'tasks')
-        ;
+        ;*/
     }
 
     /**
