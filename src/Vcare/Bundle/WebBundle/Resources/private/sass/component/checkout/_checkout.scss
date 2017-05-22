@@ -1,0 +1,145 @@
+@import "checkout-thankyou";
+
+.layout-checkout {
+    .nav-main__menu {
+        display: none;
+    }
+
+    .nav-main {
+        margin-bottom: 10px;
+    }
+}
+
+.checkout-step {
+
+    #checkout-billing-address-container {
+        display: none;
+    }
+
+    &__btn {
+        padding-top: 1em;
+    }
+
+    .form-actions {
+        margin-top: 40px;
+    }
+
+    &__finalize {
+        .media-object {
+            float: left;
+        }
+        table {
+            tfoot {
+                th, td {
+                    text-align: right;
+                }
+
+                .grand-total {
+                    font-weight: bold;
+                    text-align: right;
+                    font-size: 1.4rem;
+                }
+            }
+        }
+    }
+}
+
+.checkout-login {
+    padding: 3rem 0;
+
+    legend {
+        color: $color-base;
+    }
+
+    .form-control-label {
+        padding: 0 0 .5em 0;
+    }
+
+    form {
+        padding-bottom: 1em;
+    }
+}
+
+.select-shipping {
+    th, td {
+        vertical-align: middle;
+        .radio, .checkbox {
+            margin-bottom: 0;
+            label {
+                font-weight: bold;
+            }
+        }
+    }
+
+    &--price {
+        font-weight: bold;
+        font-size: 1.2rem;
+    }
+}
+
+.shipping-content, .payment-content {
+    margin-bottom: 20rem;
+}
+
+.payment-content {
+    margin-bottom: 26rem;
+}
+
+.address-container {
+    .card-block {
+        padding: 1rem;
+    }
+
+    legend {
+        color: #78797c;
+        font-size: 1rem;
+        border-left: 4px solid #aaa;
+        padding-left: 5px;
+        margin-bottom: 1rem;
+    }
+
+    .form-control {
+        font-size: .75rem;
+        padding: 0.23rem 0.35rem;
+    }
+
+    .form-control-label {
+        font-size: .8rem;
+    }
+
+    .form-group {
+        select {
+            border: 0;
+            height: 26px;
+            outline: 1px solid #ccc;
+        }
+    }
+
+    .col-md-6,
+    .col-xs-12 {
+        padding-left: 0.5375rem;
+        padding-right: 0.5375rem;
+    }
+}
+
+.checkout-new-customer {
+    padding-left: 0;
+    padding-right: 0;
+
+    &__name {
+        margin-left: 0;
+        margin-right: 0;
+
+        &--col {
+            padding-left: 0;
+            padding-right: 0;
+        }
+    }
+
+    &__btn {
+
+        button {
+            width: 420px;
+        }
+    }
+}

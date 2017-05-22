@@ -1,0 +1,106 @@
+$cart-step-item-completed-background-color: $color-ext;
+$cart-step-item-background-color: lighten($color-ext, 15%);
+$cart-step-item-text-color: lighten($color-ext, 50%);
+
+.cart-step {
+  clear: both;
+  overflow: hidden;
+  padding-bottom: 2em;
+
+  a {
+    &:hover {
+      opacity: .8;
+    }
+  }
+
+  ul {
+    display: block;
+    list-style: none;
+    width: 100%;
+    padding-left: 0;
+  }
+
+  li {
+    height: 50px;
+    float: left;
+    background: $cart-step-item-background-color;
+    width: calc(100% / 5.2);
+    position: relative;
+    line-height: 50px;
+    padding-left: 3em;
+    box-shadow: 1px 2px #fff;
+    color: $cart-step-item-text-color;
+
+    i {
+      font-size: 1rem;
+    }
+
+    &:first-child {
+      padding-left: 1rem;
+    }
+
+    &:after {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 100%;
+      width: 0;
+      height: 0;
+      border-color: transparent transparent transparent $cart-step-item-background-color;
+      border-style: solid;
+      border-width: 25px;
+      z-index: 1;
+    }
+
+    &:last-child {
+      &:after {
+        content: '';
+        top: 0;
+        border-width: 25px;
+      }
+    }
+
+    &:before {
+      content: '';
+      display: block;
+      position: absolute;
+      top: -2px;
+      left: 100%;
+      width: 0;
+      height: 0;
+      border-color: transparent transparent transparent #fff;
+      border-style: solid;
+      border-width: 27px;
+      z-index: 1;
+    }
+  }
+
+  &--completed {
+    background: $cart-step-item-completed-background-color !important;
+    color: #fff !important;
+
+    a {
+      color: #fff;
+    }
+
+    &:after {
+      content: '';
+      border-color: transparent transparent transparent $cart-step-item-completed-background-color !important;
+    }
+  }
+
+  &--active {
+    background: $color-base !important;
+    color: #fff !important;
+
+    a {
+      color: $cart-step-item-text-color;
+    }
+
+    &:after {
+      content: '';
+      border-color: transparent transparent transparent $color-base !important;
+    }
+  }
+}

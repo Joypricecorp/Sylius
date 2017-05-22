@@ -1,0 +1,101 @@
+.user-login {
+    padding: 3rem 0;
+
+    h3 {
+        color: $color-base;
+    }
+
+    &__form {
+        padding-top: 1rem;
+
+        input {
+            border-radius: 0;
+        }
+
+        &--social {
+
+            i {
+                margin-right: .5rem;
+            }
+
+            a {
+                display: block;
+                width: 350px;
+
+                &:hover {
+                    opacity: .8;
+                    color: #fff;
+                }
+            }
+        }
+
+        &--buttons {
+            text-align: right;
+            float: right;
+        }
+
+        &--label {
+            padding-top: .8rem;
+        }
+
+        &--social {
+            padding-top: .8rem;
+
+            img {
+                width: 2rem;
+                height: 2rem;
+            }
+        }
+    }
+
+    &__check {
+
+        a {
+            display: block;
+            color: $color-base;
+            font-size: 1.1rem;
+            padding: .5rem 0;
+            width: 150px;
+            border-bottom: 1px dashed $color-base;
+        }
+    }
+
+    &__label {
+
+        .checkbox {
+            line-height: 3;
+            padding-left: 1rem;
+
+            &:after {
+                margin-right: .5rem;
+            }
+        }
+    }
+
+    &__fb, &__ih {
+        margin: .5rem 0;
+    }
+
+    &__fb {
+        background: #36609F;
+    }
+
+    &__ih {
+        background: #F67300;
+
+        &--icon {
+            font-size: .8rem;
+
+            &:before {
+                content: "iHealth";
+                font-style: normal !important;
+            }
+
+            &:after {
+                content: "©";
+                font-style: normal !important;
+                vertical-align: super;
+            }
+        }
+    }
+}

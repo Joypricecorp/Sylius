@@ -1,0 +1,50 @@
+v00:
+    host: 139.162.61.107
+    port: 25252
+    user: root
+    #password: zohxoh9Nin9xaiphi4ziech8
+    forward_agent: ~
+    identity_file: ~
+    stage: production
+    deploy_path: "/var/www"
+    branch: vcare
+    config:
+        base_parameters: ./app/config/parameters.yml
+        redis_password: aiwe4Eewae8ciek3ro6Waire
+        supervisor_password: aengayah5aim3ohru3uawaiT
+    parameters:
+        mailer_transport: gmail
+        mailer_host: ~
+        mailer_user: "vcareasia.thailand@gmail.com"
+        mailer_password: aeth3ieb4yooBeesahhiThae
+        database_host: localhost
+        database_port: 7890
+        database_name: vcare_shop
+        database_user: root
+        database_password: we2atheiz2pe9ohxo6kie4Ai
+        redis_monolog_dns: 'redis://dummy:ohnaicahn4ug9gaquaSh3Tha@localhost:1234/0'
+        redis_session_dns: 'redis://dummy:ohnaicahn4ug9gaquaSh3Tha@localhost:1234/1'
+        redis_swiftmailer_dns: 'redis://dummy:ohnaicahn4ug9gaquaSh3Tha@localhost:1234/2'
+        paysbuy_sandbox: false
+        paysbuy_psb_id: 3775170581
+        paysbuy_username: sonehorm@hotmail.com
+        paysbuy_secure_code: 1E636EE4D677E28BB2DDDBFEC023E00A
+
+        toro_facebook_client_id: 1306393989427191
+        toro_facebook_client_secret: e87b89b423333df7f11b7a1591eba4ee
+
+        toro_base_url: http://vcareasia.com
+        toro_branding:
+            name: 'VcareAsia'
+            copyright: '2017 vcareasia.com'
+            contact_email: 'support@vcareasia.com'
+            logo: /logo.png
+            title:
+                th_TH: "Best of iHealth, Snail8 Products"
+                en_US: "Best of iHealth, Snail8 Products"
+            description:
+                th_TH: "VcareAsia เป็นเว็บสินค้า ihealth, snail8 ที่ดีที่สุด"
+                en_US: "VcareAsia is a best ihealth, snail8 product e-commerce site."
+            keywords:
+                th_TH: "ihealth, snail8, Blood Pressure Monitors, Wireless Scales, Fitness Devices, Glucometers, Skin Care"
+                en_US: "ihealth, snail8, Blood Pressure Monitors, Wireless Scales, Fitness Devices, Glucometers, Skin Care"

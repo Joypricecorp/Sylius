@@ -3,9 +3,15 @@
 
 imports:
     - { resource: "@SyliusCoreBundle/Resources/config/app/config.yml" }
-    - { resource: "@SyliusAdminBundle/Resources/config/app/config.yml" }
+    - { resource: "sylius/core/app/config.yml" }
+    - { resource: "sylius/admin/app/config.yml" }
     - { resource: "@SyliusShopBundle/Resources/config/app/config.yml" }
     - { resource: "@SyliusAdminApiBundle/Resources/config/app/config.yml" }
+    - { resource: "@DosPaysbuyBundle/Resources/config/app/main.yml" }
+    - { resource: "@VcareWebBundle/Resources/config/app.yml" }
+    - { resource: "@ToroMediaBundle/Resources/config/app.yml" }
+    - { resource: "@ToroCmsBundle/Resources/config/app/main.yml" }
+    - { resource: "vcare/config.yml" }
 
     - { resource: "parameters.yml" }
     - { resource: "security.yml" }
@@ -32,8 +38,13 @@ doctrine:
         dbname: "%database_name%"
         user: "%database_user%"
         password: "%database_password%"
-        server_version: "5.5"
-        charset: UTF8
+        server_version: "%server_version%"
+        charset: utf8
+        default_table_options:
+            charset: utf8
+            collate: utf8_unicode_ci
+    orm:
+        naming_strategy: doctrine.orm.naming_strategy.underscore
 
 doctrine_migrations:
     dir_name: "%kernel.root_dir%/migrations"
@@ -58,3 +69,22 @@ fos_rest:
         rules:
             - { path: '^/api', priorities: ['json', 'xml'], fallback_format: json, prefer_extension: true }
             - { path: '^/', stop: true }
+
+twig:
+    globals:
+        cart_context: "@sylius.context.cart"
+        channel_settings: "@vcare.context.channel_settings"
+        product_repository: "@sylius.repository.product"
+        cx_channel: "@sylius.context.channel"
+        cx_settings: "@vcare.context.channel_settings"
+        site_url: "%toro_base_url%"
+        branding: "%toro_branding%"
+
+hwi_oauth:
+    firewall_names: [shop]
+    resource_owners:
+        facebook:
+            type: facebook
+            client_id: "%toro_facebook_client_id%"
+            client_secret: "%toro_facebook_client_secret%"
+            scope: "email,public_profile,user_birthday"

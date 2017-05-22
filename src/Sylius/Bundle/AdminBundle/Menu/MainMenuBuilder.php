@@ -55,7 +55,8 @@ final class MainMenuBuilder
         $this->addCatalogSubMenu($menu);
         $this->addSalesSubMenu($menu);
         $this->addCustomersSubMenu($menu);
-        $this->addMarketingSubMenu($menu);
+        //$this->addMarketingSubMenu($menu);
+        $this->addContentSubMenu($menu);
         $this->addConfigurationSubMenu($menu);
 
         $this->eventDispatcher->dispatch(self::EVENT_NAME, new MenuBuilderEvent($this->factory, $menu));
@@ -91,17 +92,17 @@ final class MainMenuBuilder
             ->setLabelAttribute('icon', 'history')
         ;
 
-        $catalog
+        /*$catalog
             ->addChild('attributes', ['route' => 'sylius_admin_product_attribute_index'])
             ->setLabel('sylius.menu.admin.main.catalog.attributes')
             ->setLabelAttribute('icon', 'cubes')
-        ;
+        ;*/
 
-        $catalog
+        /*$catalog
             ->addChild('options', ['route' => 'sylius_admin_product_option_index'])
             ->setLabel('sylius.menu.admin.main.catalog.options')
             ->setLabelAttribute('icon', 'options')
-        ;
+        ;*/
 
         $catalog
             ->addChild('association_types', ['route' => 'sylius_admin_product_association_type_index'])
@@ -153,6 +154,29 @@ final class MainMenuBuilder
             ->addChild('product_reviews', ['route' => 'sylius_admin_product_review_index'])
             ->setLabel('sylius.menu.admin.main.marketing.product_reviews')
             ->setLabelAttribute('icon', 'newspaper')
+        ;
+    }
+
+    /**
+     * @param ItemInterface $menu
+     */
+    private function addContentSubMenu(ItemInterface $menu)
+    {
+        $content = $menu
+            ->addChild('content')
+            ->setLabel('sylius.menu.admin.main.content.header')
+        ;
+
+        $content
+            ->addChild('pages', ['route' => 'toro_admin_page_index'])
+            ->setLabel('sylius.menu.admin.main.content.pages')
+            ->setLabelAttribute('icon', 'file')
+        ;
+
+        $content
+            ->addChild('posts', ['route' => 'toro_admin_post_index'])
+            ->setLabel('sylius.menu.admin.main.content.posts')
+            ->setLabelAttribute('icon', 'file')
         ;
     }
 

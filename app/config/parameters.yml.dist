@@ -8,10 +8,31 @@ parameters:
     # You should uncomment this if you want use pdo_sqlite.
     # database_path: "%kernel.root_dir%/data.db3"
 
+    server_version: 5.7
+
     mailer_transport: smtp
     mailer_host: 127.0.0.1
     mailer_user: ~
     mailer_password: ~
 
     secret: EDITME
-    locale: en_US
+    locale: th_TH
+    currency: USD
+
+    sylius.user.resetting.token_ttl: P1D
+
+    paysbuy_sandbox: ~
+    paysbuy_psb_id: 8051084553
+    paysbuy_username: plusmain_merchant@paysbuy.com
+    paysbuy_secure_code: f8a64c0f7141d10687b62d4ecb52721d
+
+    toro_facebook_client_id: ~
+    toro_facebook_client_secret: ~
+    toro_base_url: http://vcareasia.com
+    toro_branding:
+        name: 'VcareAsia'
+        copyright: '2017 vcareasia.com'
+        contact_email: 'support@vcareasia.com'
+        logo: /logo.png
+        description: ~
+        keywords: ~

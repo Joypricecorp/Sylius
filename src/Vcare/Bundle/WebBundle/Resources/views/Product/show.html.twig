@@ -1,0 +1,194 @@
+{% extends '@VcareWeb/layout.html.twig' %}
+{% from '@VcareWeb/Product/macros.html.twig' import list %}
+{% from '@VcareWeb/Macros/images.html.twig' import toro_image, toro_image_src %}
+{% from '@VcareWeb/Macros/social.html.twig' import metas, shares %}
+
+{% set is_mobile_view = is_mobile_view() %}
+{% set first_image = product.images.first() %}
+{% set share_image = product.getImageByType('share') %}
+{% set canonical = url('route_shop_product_canonical', { id: product.id }) %}
+
+{% if order_item is defined %}
+    {% set product = order_item.variant.product %}
+{% endif %}
+
+{% block title %}{{ product.name }}{% endblock %}
+
+{% block metatags %}
+    {{ metas({
+        'url': canonical,
+        'title': product.name,
+        'description': product.shortDescription,
+        'image': (share_image ? share_image.path : (first_image ? first_image.path : (asset('assets/web/img/g-bg.png'))))|imagine_filter('local_strip'),
+    }) }}
+{% endblock %}
+
+{% block breadcrumb %}
+    <ol class="breadcrumb breadcrumb-top">
+        <li class="breadcrumb-item">
+            <a href="{{ path('route_shop_homepage') }}">{{ "vcare.ui.home"|trans }}</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a href="{{ path('route_shop_product_index') }}">{{ "vcare.ui.all_products"|trans }}</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a href="{{ path('route_shop_product_index_taxon', { slug: product.mainTaxon.slug }) }}">
+                {{ product.mainTaxon.name }}
+            </a>
+        </li>
+        <li class="breadcrumb-item active">{{ product.name }}</li>
+    </ol>
+{% endblock %}
+
+{% block content %}
+    <div class="containerx">
+        <div class="row product-show">
+            <div class="col-md-6 col-xs-12">
+                <div class="product-show-pictures">
+
+                    <div class="product-show-pictures__preview preload_object{{ print_if(' magnify', not is_mobile_view) }}">
+                        {% set product_picture = first_image ? first_image.path|imagine_filter('450x450') : 'http://placehold.it/450x450' %}
+
+                        {% if is_mobile_view %}
+                            <img src="{{ product_picture }}">
+                        {% else %}
+                            {% set product_picture_xl = first_image ? first_image.path|imagine_filter('local_strip') : 'http://placehold.it/1000x1000' %}
+                            <img src="{{ product_picture }}" class="zoom" data-magnify-src="{{ product_picture_xl }}">
+                        {% endif %}
+                    </div>
+
+                    {% if product.images|length > 1 %}
+                        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel"
+                             data-interval="false">
+                            <div class="carousel-inner" role="listbox">
+                                {% for image in product.images %}
+                                    {% if loop.index%4==1 %}
+                                        <div class="carousel-item product-show-pictures__item row {{ loop.first ? 'active' : '' }}">
+                                    {% endif %}
+                                    {% set pic_lg = image.path|imagine_filter('local_strip') %}
+                                    <div class="product-show-pictures__item--list col-xs-4">
+                                        <a href="{{ pic_lg }}" title="{{ product.name }}">
+                                            <input class="xl-image-path" type="hidden" value="{{ pic_lg }}">
+                                            <img src="{{ image.path|imagine_filter('90x90') }}" alt="{{ product.name }}"/>
+                                        </a>
+                                    </div>
+                                    {% if loop.index%4==0 or loop.last %}
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                            {% if product.images|length > 4 %}
+                                <a class="left carousel-control" href="#carousel-example-generic" role="button"
+                                   data-slide="prev">
+                                    <span class="icon-prev" aria-hidden="true"></span>
+                                    <span class="sr-only">{{ "vcare.ui.previous"|trans }}</span>
+                                </a>
+                                <a class="right carousel-control" href="#carousel-example-generic" role="button"
+                                   data-slide="next">
+                                    <span class="icon-next" aria-hidden="true"></span>
+                                    <span class="sr-only">{{ "vcare.ui.next"|trans }}</span>
+                                </a>
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="col-md-6 col-xs-12">
+                <div class="product-show-box">
+                    <h1 class="product-show-box__header">{{ product.name }}</h1>
+
+                    {% if product.shortDescription %}
+                        <h2 class="product-show-box__description--short">{{ product.shortDescription }}</h2>
+                    {% endif %}
+
+                    {% if product.code %}
+                        <div class="product-show-box__code"><strong>{{ "vcare.ui.code"|trans }}</strong>: {{ product.code }}
+                        </div>
+                    {% endif %}
+
+                    <div class="product-show-box__shopping">
+                        {% include 'VcareWebBundle:Product:_box_shopping.html.twig' %}
+                    </div>
+
+                    <hr>
+                    <div class="product-show-box__share">
+                        {{ shares(canonical) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-show-content">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab"
+                       href="#product-show-tab-detail">{{ "vcare.ui.details"|trans }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab"
+                       href="#product-show-tab-attribute">{{ "vcare.ui.attributes"|trans }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab"
+                       href="#product-show-tab-manual">{{ "vcare.ui.manual"|trans }}</a>
+                </li>
+            </ul>
+
+            <div class="tab-content product-show-tab">
+                <div id="product-show-tab-detail" class="tab-pane active">
+                    {% if product.data.description|default(null) %}
+                        {{ render(path('toro_cms_partial_page', {
+                            slug: product.data.description.tpl|default('_tpls/product-show-description'),
+                            productId: product.id
+                        }))|replace({'img src=': 'img class="lazy" data-original='})|raw }}
+                    {% else %}
+                        <div class="container">
+                            {{ product.description|raw }}
+                        </div>
+                    {% endif %}
+                </div>
+                <div id="product-show-tab-attribute" class="tab-pane">
+                    <div class="container">
+                        {{ product.attribute|raw }}
+                    </div>
+                </div>
+                <div id="product-show-tab-manual" class="tab-pane">
+                    {% if product.data.manual|default(null) %}
+                        {{ render(path('toro_cms_partial_page', {
+                            slug: product.data.manual.tpl|default('_tpls/product-show-manual'),
+                            productId: product.id
+                        }))|replace({'img src=': 'img class="lazy" data-original='})|raw }}
+                    {% else %}
+                        <div class="container">
+                            {% if product.manuals|length %}
+                                <ul class="list-group">
+                                    <li class="list-group-item active">Pdf Download</li>
+                                    {% for man in product.manuals %}
+                                        <li class="list-group-item">
+                                            <a href="{{ man.file ? cmf_media_download_url(man.file) : '#' }}"><i class="fa fa-file-pdf-o"></i> {{ man.title }}</a>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+                            {{ product.manual|raw }}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        {% if product.associations|length %}
+            <div class="product-association">
+                <div class="page-header">{{ 'vcare.ui.you_may_also_like'|trans|raw }}</div>
+                <div class="row">
+                    {% for association in product.associations %}
+                        {% if association.associatedProducts|length > 0 %}
+                            {{ list(association.associatedProducts) }}
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

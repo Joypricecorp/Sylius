@@ -1,0 +1,81 @@
+vcare.ui.checkout_change_address: Change address
+vcare.ui.checkout_use_for_billing_address: Use for Billing
+vcare.ui.checkout_use_for_shipping_address: Use for Shipping
+vcare.ui.all_products: All products
+vcare.ui.more_products: More products
+vcare.ui.login_information: Login infomation
+vcare.ui.register_in_the_store: Enter your information.
+vcare.menu.shop.account.addressing: Edit addressing
+vcare.ui.home: "Home"
+vcare.ui.posts: "Posts"
+vcare.ui.all_posts: "All Posts"
+vcare.ui.details: "Detail"
+vcare.ui.read_more: "Read more"
+vcare.ui.more_contents: "More contents"
+vcare.ui.vat_is_included_in_price: "Included VAT"
+vcare.ui.vat_is_not_included_in_price: "Not Included VAT"
+vcare.ui.attributes: 'Attributes'
+vcare.ui.previous: 'Previous'
+vcare.ui.next: 'Next'
+vcare.form.product.external_order_url: 'External Order Url'
+vcare.product.external_order: 'Order'
+vcare.ui.manual: 'Manual'
+
+sylius.ui.browse_all_products: All products
+sylius.ui.manage_taxons: Manage taxons
+sylius.menu.admin.main.content.header: Content
+sylius.menu.admin.main.configuration.exchange_rates: Exchange rates
+sylius.menu.admin.main.configuration.shipping_categories: Shipping categories
+sylius.ui.exchange_rates: Exchange rates
+sylius.ui.manage_exchange_rates: Manage exchange rates
+sylius.ui.edit_exchange_rate: Edit
+sylius.form.exchange_rate.source_currency: Source currency
+sylius.form.exchange_rate.target_currency: Target currency
+sylius.form.exchange_rate.ratio: Ratio
+sylius.ui.impersonate: Impersonate
+sylius.user.reset_password_request: Password reset request was sent to your email.
+sylius.user.reset_password: Your password was rested.
+sylius.ui.paysbuy: Paysbuy
+sylius.user.change_password: Your password was changed.
+sylius.resource.add: Added successfully.
+sylius.user.verify_email: Your email has been verified successfully.
+sylius.menu.admin.main.content.pages: Pages
+sylius.menu.admin.main.content.posts: Posts
+sylius.form.product.slug: Slug
+sylius.ui.criteria: Criteria
+sylius.ui.address: Address
+sylius.ui.continue_shopping: Continue Shopping
+sylius.form.address.city: City
+sylius.ui.yes_label: Yes
+sylius.ui.no_label: No
+sylius.form.variant.tracked: Tracked
+sylius.form.login.username: Email
+sylius.ui.products: Products
+sylius.menu.admin.main.catalog.products: Products
+sylius.ui.manage_users_able_to_access_administration_panel: Manage users able to access administration panel
+sylius.ui.manage_your_saved_addresses: Manage your saved addresses
+sylius.email.order_cancelled.name: Your order was cancelled
+sylius.menu.shop.account.address_book: Address books
+sylius.ui.manage_inventory: Manage inventory
+sylius.ui.greater_than: Greater than
+sylius.ui.less_than: Less than
+sylius.ui.orders_statistics: Orders statistics
+sylius.ui.this_customer_has_not_placed_any_orders_yet: This customer has not placed any orders yet
+sylius.ui.overall_this_customer_has_placed_orders_across_all_channels.choice: Overall this customer has placed orders across all channels
+sylius.ui.total_value_of_orders: Total value of orders
+
+sylius.form.product.manual: Manual
+vcare.ui.share: Share
+
+vcare.ui.previous: Previous
+vcare.ui.next: Next
+vcare.ui.code: Code
+vcare.ui.you_may_also_like: You may also like
+
+sylius.ui.order_total: "Grand total <br>(included vat)"
+sylius.ui.subtotal: Total
+
+vcare.ui.social_login: Social Login
+vcare.ui.social_facebook_login: Login with Facebook
+
+sylius.form.image.type: Type

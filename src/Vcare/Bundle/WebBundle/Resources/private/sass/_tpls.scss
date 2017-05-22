@@ -1,0 +1,75 @@
+.tpl-content {
+  margin-top: -2rem;
+  margin-bottom: -2rem;
+
+  .row {
+    min-height: 320px;
+  }
+
+  .list-group {
+    margin: 1rem .5rem;
+    font-family: $font-heading;
+  }
+
+  .style-white {
+    background: #ffffff;
+  }
+  .style-supple {
+    background: #f7f7f7;
+  }
+  .style-gray {
+    background: #e6e6e6;
+  }
+  .style-backdrop {
+    h3, p {
+      color: #ffffff;
+      text-shadow: 0 2px 6px rgba(0,0,0,.75);
+    }
+  }
+
+  .style-white,
+  .style-supple {
+    .btn-primary {
+      border-width: 2px;
+      background: none;
+      color: $color-base;
+
+      &:hover {
+        background: darken($color-base, 10%);
+        color: #ffffff;
+      }
+    }
+  }
+
+  .image {
+    text-align: center;
+    padding: 2rem;
+
+    img {
+      width: 100%;
+      max-width: 320px;
+    }
+  }
+
+  .body {
+    padding: 3rem;
+  }
+
+  h3 {
+    color: $color-base;
+    text-transform: uppercase;
+    font-size: 2rem;
+    font-weight: bold;
+  }
+
+  p {
+    color: #717171;
+    padding: .5rem 0;
+    font-size: 1.2rem;
+  }
+
+  .btn {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+}

@@ -1,0 +1,19 @@
+{% block subject %}{{ cx_settings.branding('name') }} - {{ 'sylius.email.order_cancelled.name'|trans }}{% endblock %}
+
+{% block body %}
+    {% spaceless %}
+        {% set linkOrder %}
+            <a href="{{ url('sylius_shop_order_show', {tokenValue: order.tokenValue}) }}"
+               style="display:block;height:40px;line-height:40px;border-radius:4px;text-align:center;background:#ff0000;color:#ffffff;width:200px;text-decoration:none"
+               target="_blank">{{ "sylius.ui.order_details"|trans }}</a>
+        {% endset %}
+
+        {% autoescape %}
+            <h4 style="color: red;">ใบสั่งซื้อเลขที่ #{{ order.number }} ถูกยกเลิกแล้ว</h4>
+
+            <p>คุณสามารถดูรายละเอียดใบสั่งซื้อได้ที่ <br><br> {{ linkOrder|raw }}</p>
+
+            {{ include("VcareWebBundle:Email:_footer.html.twig") }}
+        {% endautoescape %}
+    {% endspaceless %}
+{% endblock %}

@@ -1,0 +1,33 @@
+{% set cart = cart_context.getCart() %}
+<div class="dropdown dropdown-cart">
+    <a class="btn btn-ok cart" href="{{ path('sylius_shop_cart_summary') }}" data-toggle="dropdown">
+        <i class="fa fa-shopping-cart"></i> <strong>{{ cart.items|length }}</strong>
+    </a>
+    <div class="dropdown-menu {{ print_if('dropdown-menu-right', not is_mobile_view()) }}">
+        {% if cart.empty %}
+            <div class="dropdown-item">
+                <div class="text-align-center">{{ "sylius.ui.your_cart_is_empty"|trans }}</div>
+            </div>
+        {% else %}
+            {% from "@VcareWeb/Product/macros.html.twig" import variants_cart %}
+            <div class="dropdown-item">
+                {{ variants_cart(cart.items, '80x80') }}
+            </div>
+            <div class="dropdown-divider"></div>
+            <div class="dropdown-item m-b-1">
+                <div class="text-align-right m-b-3">
+                    {% import "@SyliusShop/Common/Macro/money.html.twig" as money %}
+                    <h6>{{ "sylius.ui.subtotal"|trans }}: {{ money.convertAndFormat(cart.total) }}</h6>
+                </div>
+                <div class="text-align-center">
+                    <a class="btn btn-secondary view-cart" href="{{ path('sylius_shop_cart_summary') }}">
+                        {{ "sylius.ui.view_and_edit_cart"|trans }}
+                    </a>
+                    <a class="btn btn-ok checkout" href="{{ path('sylius_shop_checkout_start') }}">
+                        {{ "sylius.ui.checkout"|trans }}
+                    </a>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</div>

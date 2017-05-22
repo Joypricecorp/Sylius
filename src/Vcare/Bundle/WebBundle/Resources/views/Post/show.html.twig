@@ -1,0 +1,75 @@
+{% extends '@VcareWeb/layout.html.twig' %}
+{% from '@VcareWeb/Macros/images.html.twig' import toro_image, toro_image_src %}
+{% from '@VcareWeb/Macros/social.html.twig' import metas, shares_default %}
+
+{% set canonical = url('vcare_shop_post_canonical', { id: post.id }) %}
+
+{% block title %} {{ parent() }} - {{ post.title }}{% endblock %}
+{% block metatags %}
+    {{ metas({
+        'url': canonical,
+        'title': post.title,
+        'description': post.description,
+        'image': post.cover ? toro_image_src(post.cover, 'strip') : asset('assets/web/img/g-bg.png'),
+    }) }}
+{% endblock %}
+
+{% block breadcrumb %}
+    <ol class="breadcrumb breadcrumb-top">
+        <li class="breadcrumb-item">
+            <a href="/">{{ "vcare.ui.home"|trans }}</a>
+        </li>
+        <li class="breadcrumb-item"><a href="{{ path('vcare_shop_post_index') }}">{{ "vcare.ui.posts"|trans }}</a></li>
+        <li class="breadcrumb-item"><a href="{{ path('vcare_shop_post_all') }}">{{ "vcare.ui.all_posts"|trans }}</a></li>
+        <li class="breadcrumb-item active">{{ post.title }}</li>
+    </ol>
+{% endblock %}
+
+{% block content %}
+    <div class="container post-show">
+        {% block blog_post %}
+            <div class="post-show--social pull-xs-right">
+                {{ shares_default(canonical) }}
+            </div>
+            <div class="post-show--cover">
+                {{ toro_image(post.cover, 'strip', post.title, 'img-fluid') }}
+            </div>
+
+            <h1 class="post-show--title">{{ post.title }}</h1>
+            <h2 class="post-show--description">{{ post.description }}</h2>
+            <div class="post-show--body">{{ post.body|raw }}</div>
+        {% endblock %}
+
+        {% block related_post %}
+            {% if post.taxon %}
+                {% set taxon = post.taxon %}
+                {% set posts = vcare_get_posts_by_taxon_and_channel(taxon).setMaxPerPage(3) %}
+                {% set postId = post.id %}
+
+                {% if posts|length %}
+                    <div class="container home-content home-content__thumb">
+                        <div class="home-content--heading">
+                            <h3>{{ taxon.name }}</h3>
+                            <hr>
+                            <h4>{{ taxon.description }}</h4>
+                        </div>
+
+                        <div class="row">
+                            {% for post in posts %}
+                                {% if post.id != postId %}
+                                    <div class="col-md-6 col-xs-12">
+                                        <p class="home-content__thumb--image">
+                                            <a href="{{ path('vcare_shop_post_show', {slug: post.slug}) }}">
+                                                {{ toro_image(post.thumb|default(post.cover), 'post_medium', post.slug) }}
+                                            </a>
+                                        </p>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endif %}
+            {% endif %}
+        {% endblock %}
+    </div>
+{% endblock %}

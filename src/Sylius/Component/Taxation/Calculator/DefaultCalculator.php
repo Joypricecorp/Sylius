@@ -24,6 +24,7 @@ final class DefaultCalculator implements CalculatorInterface
      */
     public function calculate($base, TaxRateInterface $rate)
     {
+        // https://github.com/Sylius/Sylius/issues/6664
         if ($rate->isIncludedInPrice()) {
             return (int) round($base - ($base / (1 + $rate->getAmount())));
         }

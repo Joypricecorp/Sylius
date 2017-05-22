@@ -1,0 +1,25 @@
+route_shop_partial_taxon_show_by_slug:
+    path: /by-slug/{slug}
+    methods: [GET]
+    defaults:
+        _controller: sylius.controller.taxon:showAction
+        _sylius:
+            template: $template
+            repository:
+                method: findOneBySlug
+                arguments:
+                    - $slug
+    requirements:
+        slug: .+
+
+route_shop_partial_taxon_index_by_code:
+    path: /by-code/{code}
+    methods: [GET]
+    defaults:
+        _controller: sylius.controller.taxon:indexAction
+        _sylius:
+            template: $template
+            repository:
+                method: findChildrenByCode
+                arguments:
+                    - $code

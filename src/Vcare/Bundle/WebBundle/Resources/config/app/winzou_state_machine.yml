@@ -1,0 +1,36 @@
+winzou_state_machine:
+    sylius_order:
+        callbacks:
+            after:
+                vcare_cancel_order:
+                    on: ["cancel"]
+                    do: ["@vcare.email_manager.order", "sendCancelledEmail"]
+                    args: ["object"]
+                vcare_confirm_order:
+                    on: ["create"]
+                    do: ["@vcare.email_manager.order", "sendNotifyConfirmationEmail"]
+                    args: ["object"]
+    sylius_payment:
+        callbacks:
+            after:
+                vcare_payment_processing:
+                    on: ["process"]
+                    do: ["@sylius.email_manager.order", "sendConfirmationEmail"]
+                    args: ["object.getOrder()"]
+
+    sylius_order_checkout:
+        callbacks:
+            after:
+                sylius_assign_token:
+                    priority: -1
+                    on: ["create"]
+                    do: ["@sylius.unique_id_based_order_token_assigner", "assignTokenValue"]
+                    args: ["object"]
+
+    sylius_order_payment:
+        callbacks:
+            after:
+                vcare_paid_order:
+                    on: ["pay"]
+                    do: ["@sylius.email_manager.order", "sendConfirmationEmail"]
+                    args: ["object"]

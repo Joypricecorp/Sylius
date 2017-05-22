@@ -1,0 +1,74 @@
+{% import "@SyliusShop/Common/Macro/money.html.twig" as money %}
+{% from "VcareWebBundle:Product:macros.html.twig" import cart_quantity, item_tax, price_tax_item %}
+
+<div class="order-detail">
+    {% for item in order.items %}
+        <div class="row order-detail__product">
+            <div class="col-xs-11">{{ include('VcareWebBundle:Product:_variant.html.twig', {'variant': item.variant}) }}</div>
+
+            <div class="col-xs-4 order-detail__product--l">{{ 'sylius.ui.unit_price'|trans|raw }}</div>
+            <div class="col-xs-7">
+                {% if item.unitPrice != item.discountedUnitPrice %}
+                    <span class="regular-price">{{ price_tax_item(item.variant, item.unitPrice, item.taxTotal) }}</span>
+                {% endif %}
+                <span class="discounted-price">
+                    {{ price_tax_item(item.variant, item.discountedUnitPrice, item.taxTotal) }}
+                </span>
+            </div>
+
+            <div class="col-xs-4 order-detail__product--l">{{ 'sylius.ui.qty'|trans|raw }}</div>
+            <div class="col-xs-7">{{ item.quantity }}</div>
+
+            {#<div class="col-xs-4 order-detail__product--l">{{ 'sylius.ui.tax'|trans|raw }}</div>
+            <div class="col-xs-7">{{ item_tax(item.variant, item.taxTotal) }}</div>#}
+
+            <div class="col-xs-4 order-detail__product--l">{{ 'sylius.ui.total'|trans|raw }}</div>
+            <div class="col-xs-7">{{ money.convertAndFormat(item.subtotal) }}</div>
+        </div>
+    {% endfor %}
+
+    {#<div class="row order-detail__total">
+        <div class="col-xs-6 order-detail__total--l">
+            <span class="pull-right">
+                {{ 'sylius.ui.tax_total'|trans|raw }}
+            </span>
+        </div>
+        <div class="col-xs-5">
+            {{ money.convertAndFormat(order.taxTotal) }}
+        </div>
+    </div>#}
+    <div class="row order-detail__total">
+        <div class="col-xs-6 order-detail__total--l">
+            <span class="pull-right">
+                {{ 'sylius.ui.shipping_total'|trans|raw }}
+            </span>
+        </div>
+        <div class="col-xs-5">
+            {{ money.convertAndFormat(order.shippingTotal) }}
+        </div>
+    </div>
+
+    {% if order.orderPromotionTotal %}
+        <div class="row order-detail__total">
+            <div class="col-xs-6 order-detail__total--l">
+                <span class="pull-right">
+                    {{ 'sylius.ui.promotion_total'|trans|raw }}
+                </span>
+            </div>
+            <div class="col-xs-5">
+                {{ money.convertAndFormat(order.orderPromotionTotal) }}
+            </div>
+        </div>
+    {% endif %}
+
+    <div class="row order-detail__total order-detail__total--total">
+        <div class="col-xs-6 order-detail__total--l">
+            <span class="pull-right">
+                {{ 'sylius.ui.order_total'|trans|raw }}
+            </span>
+        </div>
+        <div class="col-xs-5">
+            {{ money.convertAndFormat(order.total) }}
+        </div>
+    </div>
+</div>

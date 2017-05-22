@@ -1,0 +1,47 @@
+@import "variables";
+
+// lg button size
+//$btn-padding-y-lg:         5px 12px;
+//$btn-padding-x-lg:         6px 12px;
+
+@import "../../../../node_modules/bootstrap/scss/bootstrap";
+@import "../../../../node_modules/bourbon/app/assets/stylesheets/bourbon";
+
+html body {
+    height: 100%;
+}
+
+body {
+    font: 400 1em/1.4 'Open Sans', sans-serif;
+}
+
+/**
+ * Debug mode will draw body background-color in deference colors:
+ *  - xl: transparent
+ *  - lg: red
+ *  - md: green
+ *  - sm: blue
+ *  - xs: yellow
+ **/
+$IS_DEBUG: true;
+
+@import "fonts";
+@import "base";
+@import "utils";
+@import "loader";
+@import "menu";
+@import "button";
+@import "magnify";
+@import "tpls";
+@import "component/component";
+
+// default
+@import "xl/main";
+// desktop / landscape tablet
+@import "lg/main";
+// tablet
+@import "md/main";
+// landscape phone
+@import "sm/main";
+// phone
+@import "xs/main";

@@ -1,0 +1,31 @@
+<footer class="footer">
+    <div class="footer__sitemap">
+        <div class="container">
+            <div class="row footer__sitemap--ct">
+                <div class="col-xs-12 col-md-3 col-lg-2">
+                    <h4>{{ 'T.company'|trans }}</h4>
+                    <ul>
+                        <li><a href="/about-us">{{ 'T.about_us'|trans }}</a></li>
+                        <li><a href="/contact-us">{{ 'T.contact_us'|trans }}</a></li>
+                    </ul>
+                </div>
+                <div class="col-xs-12 col-lg-3">
+                    <h4>{{ 'T.contact'|trans }}</h4>
+                    <a href="mailto:{{ cx_settings.branding('contact_email') }}">{{ cx_settings.branding('contact_email') }}</a>
+                    <div class="footer__sitemap--add">
+                        <p>{{ 'T.phone'|trans }}</p>
+                        <p>{{ 'T.opening'|trans }}</p>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-lg-3">
+                    <h4>{{ 'T.share'|trans }}</h4>
+                    <div class="footer__sitemap--social">
+                        <a href="#"><i class="fa fa-facebook"></i></a>
+                        <a href="#"><i class="fa fa-twitter"></i></a>
+                        <a href="#"><i class="fa fa-google-plus"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>

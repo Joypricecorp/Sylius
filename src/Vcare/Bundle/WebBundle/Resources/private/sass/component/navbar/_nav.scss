@@ -1,0 +1,169 @@
+.nav-main {
+    &__top {
+        background: $color-second;
+        padding: .2rem 0;
+
+        a {
+            color: #fff;
+            font-size: .8rem;
+        }
+
+        &-links {
+            .nav-item {
+                margin-right: 10px;
+            }
+        }
+
+        &-user {
+            // align box to right side
+            float: right;
+
+            img {
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+            }
+
+            .nav-link {
+                padding-right: .5rem;
+                padding-left: .5rem;
+            }
+        }
+    }
+
+    &__menu {
+        border-bottom: 1px solid #E6E7E8;
+        background: #fff;
+        line-height: 75px;
+        font-family: $font-heading;;
+
+        &-brand {
+            float: left;
+            margin-right: 2rem;
+            font-size: 1.7rem;
+
+            // prevent box width resize when we increase font-size over column width
+            overflow: hidden;
+
+            a {
+                color: $color-base !important;
+            }
+
+            img {
+                height: 75px;
+            }
+        }
+
+        &-cart {
+            text-align: right;
+
+            a {
+                color: #fff;
+            }
+        }
+
+        &-category {
+            a {
+                color: $color-second;
+                vertical-align: sub;
+
+                &:hover {
+                    color: $color-base;
+                }
+
+                + a {
+                    padding-left: 0.5rem;
+                    padding-right: 0.5rem;
+                }
+            }
+
+
+            .dropdown.taxons {
+                display: inline-block;
+                cursor: default;
+                margin-right: 1rem;
+                .dropdown-menu {
+                    border-radius: 0;
+                }
+            }
+        }
+    }
+
+    .navbar-nav {
+        .nav-item + .nav-item {
+            margin-left: 0;
+
+            // pipe (|) separate link
+            // Don't like :(
+            /*color: #fff;
+            border-radius: .2rem;
+            position: relative;
+            &:before {
+                content: "|";
+                position: absolute;
+                left: -5px;
+                top: 2px;
+            }*/
+        }
+
+        .nav-link + .nav-link {
+            margin-left: 1.5rem !important;
+        }
+
+        .dropdown-toggle {
+            cursor: default;
+        }
+
+        .dropdown-menu {
+            background: $color-second;
+            border: none;
+            border-radius: 0;
+            right: 0;
+            left: auto;
+
+            i {
+                padding-right: .2rem;
+            }
+        }
+
+        .dropdown-item {
+            padding: .3rem .8rem;
+            &:hover {
+                background: $color-second;
+                opacity: .8;
+            }
+        }
+    }
+
+    .navbar-fixed {
+        line-height: 55px;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 9999;
+        position: fixed;
+    }
+
+    .dropdown-cart {
+        display: inline-block;
+
+        .dropdown-menu {
+            border-radius: 5px;
+
+            .dropdown-item {
+                &:hover {
+                    background: none;
+                }
+            }
+        }
+        .btn {
+            &.checkout {
+                border-radius: 5px;
+            }
+            &.view-cart {
+                color: $color-second;
+                border-radius: 5px;
+            }
+        }
+    }
+}

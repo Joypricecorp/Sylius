@@ -1,0 +1,12 @@
+.nav-main {
+    &__menu {
+        &-category {
+            font-size: .85rem;
+
+            a + a {
+                padding-left: .5rem;
+                padding-right: .5rem;
+            }
+        }
+    }
+}

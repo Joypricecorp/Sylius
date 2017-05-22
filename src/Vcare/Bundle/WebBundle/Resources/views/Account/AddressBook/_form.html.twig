@@ -1,0 +1,44 @@
+<div class="row">
+    <div class="col-md-6 col-xs-6">
+        {{ form_row(form.firstName) }}
+    </div>
+    <div class="col-md-6 col-xs-6">
+        {{ form_row(form.lastName) }}
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 col-xs-12">
+        {{ form_row(form.phoneNumber, {attr: {class: 'input-number-only'}}) }}
+    </div>
+    <div class="col-md-6 col-xs-12">
+        {% if form.countryCode.vars.choices|length == 1 %}
+            {{ form_row(form.countryCode, { 'value': form.countryCode.vars.choices[0].value }) }}
+        {% else %}
+            {{ form_row(form.countryCode) }}
+        {% endif %}
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 col-xs-12">
+        <div class="form-group">
+            {{ form_row(form.street) }}
+        </div>
+    </div>
+    <div class="col-md-6 col-xs-12">
+        {{ form_row(form.city) }}
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 col-xs-12">
+        <div class="province-container" data-url="{{ path('sylius_shop_ajax_render_province_form') }}">
+            {% if form.provinceCode is defined %}
+                {{ form_row(form.provinceCode, {'attr': {'class': ''}}) }}
+            {% elseif form.provinceName is defined %}
+                {{ form_row(form.provinceName) }}
+            {% endif %}
+        </div>
+    </div>
+    <div class="col-md-6 col-xs-12">
+        {{ form_row(form.postcode, {attr: {class: 'input-number-only'}}) }}
+    </div>
+</div>

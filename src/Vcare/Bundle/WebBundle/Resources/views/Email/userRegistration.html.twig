@@ -1,0 +1,12 @@
+{% block subject %}{{ cx_settings.branding('name') }} - User registration{% endblock %}
+
+{% block body %}
+    {% autoescape %}
+        Welcome to our store!
+        <br/><br/>
+        You have just been registered.
+        <br/>
+        Thank you {{ user.username }}.
+        {{ include("VcareWebBundle:Email:_footer.html.twig") }}
+    {% endautoescape %}
+{% endblock %}

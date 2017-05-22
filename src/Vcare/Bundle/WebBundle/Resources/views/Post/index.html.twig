@@ -1,0 +1,27 @@
+{% extends 'VcareWebBundle::layout.html.twig' %}
+
+{%- block carousel %}
+    {{ render(path('toro_cms_partial_page', {slug: '_tpls/blog-featured'})) }}
+{% endblock -%}
+
+{% block content %}
+    <div class="container post-index">
+        {% block blog_products %}
+            {{ render(path('toro_cms_partial_page', {slug: '_tpls/blog-index-products'})) }}
+        {% endblock %}
+
+        {% block blog_vdos %}
+            {{ render(path('toro_cms_partial_page', {slug: '_tpls/blog-index-vdos'})) }}
+        {% endblock %}
+
+        {% block blog_generals %}
+            {{ render(path('toro_cms_partial_page', {slug: '_tpls/blog-index-generals'})) }}
+        {% endblock %}
+
+        <div class="container home-more-product">
+            <a href="{{ path('vcare_shop_post_all') }}" class="btn btn-lg btn-primary">
+                {{ "vcare.ui.all_posts"|trans }}
+            </a>
+        </div>
+    </div>
+{% endblock %}

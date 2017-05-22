@@ -1,0 +1,5 @@
+sylius_admins:
+    resource: "@SyliusAdminBundle/Resources/config/routing.yml"
+
+sylius_admin_vcare:
+    resource: "routing/vcare.yml"

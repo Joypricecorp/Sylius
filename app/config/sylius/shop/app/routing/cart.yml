@@ -1,0 +1,57 @@
+sylius_shop_cart_summary:
+    path: /
+    methods: [GET]
+    defaults:
+        _controller: sylius.controller.order:summaryAction
+        _sylius:
+            template: VcareWebBundle:Cart:summary.html.twig
+            form: Sylius\Bundle\OrderBundle\Form\Type\CartType
+
+sylius_shop_cart_save:
+    path: /
+    methods: [PUT, PATCH]
+    defaults:
+        _controller: sylius.controller.order:saveAction
+        _sylius:
+            template: VcareWebBundle:Cart:summary.html.twig
+            form: Sylius\Bundle\OrderBundle\Form\Type\CartType
+            flash: sylius.cart.save
+            redirect:
+                route: sylius_shop_cart_summary
+                parameters: {}
+
+sylius_shop_cart_clear:
+    path: /
+    methods: [DELETE]
+    defaults:
+        _controller: sylius.controller.order:clearAction
+        _sylius:
+            redirect: sylius_shop_cart_summary
+            csrf_protection: false
+
+sylius_shop_cart_item_remove:
+    path: /{id}/remove
+    defaults:
+        _controller: sylius.controller.order_item:removeAction
+        _sylius:
+            redirect: false
+            flash: sylius.cart.remove_item
+
+sylius_shop_cart_item_add:
+    path: /add
+    methods: [GET, POST]
+    defaults:
+        _controller: sylius.controller.order_item:addAction
+        _sylius:
+            factory:
+                method: createForProduct
+                arguments: [expr:service('sylius.repository.product').find($productId)]
+            form:
+                type: Sylius\Bundle\CoreBundle\Form\Type\Order\AddToCartType
+                options:
+                    product: expr:service('sylius.repository.product').find($productId)
+            template: "@VcareWeb/Product/show.html.twig"
+            redirect:
+                route: referer
+                hash: _cart-added
+            flash: sylius.cart.add_item

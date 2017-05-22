@@ -1,0 +1,27 @@
+.quantity-box {
+  @include flex-align-center();
+
+  input {
+    text-align: center;
+    margin: 0 .2rem;
+    max-width: 8rem;
+    -moz-appearance: textfield;
+
+    &::-webkit-outer-spin-button, &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  }
+
+  .btn {
+    line-height: 1.5rem;
+    font-weight: bolder;
+
+    &:hover, &:focus {
+      text-decoration: none;
+    }
+
+    &.up {
+    }
+  }
+}

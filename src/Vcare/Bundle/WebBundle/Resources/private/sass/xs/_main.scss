@@ -1,0 +1,16 @@
+@include media-breakpoint-only(xs) {
+    @import "../base-mobile";
+    @import "carousel";
+    @import "account";
+    @import "cart";
+    @import "checkout";
+    @import "footer";
+    @import "jumbotron";
+    @import "layout";
+    @import "nav";
+    @import "product";
+    @import "user";
+    @import "taxon";
+    @import "tpls";
+    @import "breadcrumb";
+}

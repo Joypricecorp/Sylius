@@ -1,0 +1,25 @@
+{% if taxons|length %}
+    {% for taxon in taxons %}
+        {{ _self.render_tree(taxon) }}
+    {% endfor %}
+    <a href="{{ path('vcare_shop_post_index') }}">{{ "vcare.ui.posts"|trans }}</a>
+{% endif %}
+
+{% macro render_tree(taxon) %}
+    {% if taxon.children|length %}
+        <div class="dropdown taxons">
+            <a data-toggle="dropdown">
+                <span>{{ taxon.name }}</span> <i class="fa fa-chevron-down"></i>
+            </a>
+            <ul class="dropdown-menu">
+                {% for taxon in taxon.children %}
+                    <li class="dropdown-item">
+                        <a href="{{ path('route_shop_product_index_taxon', {slug: taxon.slug}) }}">{{ taxon.name }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% else %}
+        <a href="{{ path('route_shop_product_index_taxon', {slug: taxon.slug}) }}">{{ taxon.name }}</a>
+    {% endif %}
+{% endmacro %}

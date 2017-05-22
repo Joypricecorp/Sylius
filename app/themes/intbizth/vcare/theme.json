@@ -1,0 +1,16 @@
+{
+  "name": "intbizth/vcare",
+  "type": "vcare-theme",
+  "description": "Theme default",
+  "authors": [
+    {
+      "name": "Ishmael"
+    }
+  ],
+  "extra": {
+    "sylius-theme": {
+      "title": "VcareAsia",
+      "description": "www.vcareasia.com"
+    }
+  }
+}

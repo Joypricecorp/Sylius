@@ -1,0 +1,26 @@
+imports:
+    - { resource: "@SyliusAdminBundle/Resources/config/app/config.yml" }
+
+liip_imagine:
+    filter_sets:
+        sylius_admin_product_tiny_thumbnail:
+            filters:
+                thumbnail: { size: [64, 64], mode: outbound }
+        sylius_admin_product_thumbnail:
+            filters:
+                thumbnail: { size: [50, 50], mode: outbound }
+sylius_grid:
+    grids:
+        sylius_admin_taxon:
+            driver:
+                name: doctrine/orm
+                options:
+                    class: "%sylius.model.taxon.class%"
+                    repository:
+                        method: createListQueryBuilderLocaled
+                        arguments: [ "%locale%", "expr:service('vcare.context.channel_settings').getProductTaxonRootContext()" ]
+            filters:
+                name:
+                    type: string
+                    options:
+                        fields: [translation.name]

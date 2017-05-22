@@ -1,0 +1,137 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="form.factory.class">Vcare\Bundle\WebBundle\Form\Factory</parameter>
+    </parameters>
+
+    <services>
+        <service id="twig.extension.intl" class="Twig_Extensions_Extension_Intl">
+            <tag name="twig.extension"/>
+        </service>
+
+        <service id="twig.extension.text" class="Twig_Extensions_Extension_Text">
+            <tag name="twig.extension"/>
+        </service>
+
+        <service id="twig.extension.taxation" class="Vcare\Bundle\WebBundle\Twig\TaxationExtension">
+            <argument type="service" id="sylius.tax_rate_resolver" />
+            <argument type="service" id="sylius.context.channel" />
+            <argument type="service" id="sylius.zone_matcher" />
+            <tag name="twig.extension"/>
+        </service>
+        <!--<service id="twig.extension.cart_form" class="Vcare\Bundle\WebBundle\Twig\CartFormExtension">
+            <argument type="service" id="sylius.templating.helper.cart"/>
+            <tag name="twig.extension"/>
+        </service>-->
+
+        <service id="twig.extension.generic" class="Vcare\Bundle\WebBundle\Twig\GenericExtension">
+            <tag name="twig.extension"/>
+        </service>
+
+        <service id="twig.extension.toro_post" class="Vcare\Bundle\WebBundle\Twig\PostExtension">
+            <argument type="service" id="toro.repository.post"/>
+            <argument type="service" id="sylius.repository.taxon"/>
+            <argument type="service" id="sylius.context.channel"/>
+            <tag name="twig.extension"/>
+        </service>
+
+        <service id="vcare.formatter.money" class="Vcare\Bundle\WebBundle\MoneyFormatter" decorates="sylius.money_formatter">
+            <argument type="service" id="vcare.formatter.money.inner"/>
+        </service>
+
+        <service id="vcare.form.product_manual" class="Vcare\Bundle\WebBundle\Form\Type\ProductManualType">
+            <argument>%sylius.model.product_manual.class%</argument>
+            <argument type="collection">
+                <argument type="string">sylius</argument>
+            </argument>
+            <tag name="form.type" />
+        </service>
+
+        <!--<service id="vcare.form.checkout.address.type" class="Vcare\Bundle\WebBundle\Form\Type\Checkout\AddressType" parent="sylius.form.type.checkout_address" decorates="sylius.form.type.checkout_address">
+            <tag name="form.type" alias="sylius_checkout_address" />
+        </service>
+
+        <service id="vcare.form.checkout.payment.type" class="Vcare\Bundle\WebBundle\Form\Type\Checkout\PaymentType" parent="sylius.form.type.checkout_payment" decorates="sylius.form.type.checkout_payment">
+            <tag name="form.type" alias="sylius_checkout_payment" />
+        </service>-->
+
+        <service id="vcare.menu_builder.shop.locale" class="Vcare\Bundle\WebBundle\Menu\LocaleMenuBuilder">
+            <argument type="service" id="knp_menu.factory" />
+            <argument type="service" id="event_dispatcher" />
+            <argument type="service" id="sylius.context.locale" />
+            <argument type="service" id="sylius.locale_provider" />
+        </service>
+
+        <service id="vcare.menu.shop.locale" class="Knp\Menu\MenuItem">
+            <factory service="vcare.menu_builder.shop.locale" method="createMenu"/>
+            <tag name="knp_menu.menu" alias="vcare.shop.locale" />
+        </service>
+
+        <service id="vcare.validator.unique.registered_user" class="Vcare\Bundle\WebBundle\Validator\Constraints\RegisteredUserValidator">
+            <argument type="service" id="sylius.repository.customer" />
+            <tag name="validator.constraint_validator" alias="vcare_registered_user_validator" />
+        </service>
+
+        <service id="vcare.email_manager.order" class="Vcare\Bundle\WebBundle\EmailManager\OrderEmailManager">
+            <argument type="service" id="sylius.email_sender" />
+            <argument type="service" id="sylius.context.channel" />
+        </service>
+
+        <service id="vcare.controller.shop.homepage" decorates="sylius.controller.shop.homepage" class="Vcare\Bundle\WebBundle\Controller\HomepageController">
+            <argument type="service" id="vcare.controller.shop.homepage.inner" />
+            <argument type="service" id="toro.controller.page" />
+        </service>
+
+        <service id="vcare.form.taxon_root_filter.type" class="Vcare\Bundle\WebBundle\Form\Type\TaxonChoiceRootFilterType">
+            <argument type="string">%sylius.model.taxon.class%</argument>
+            <argument type="collection">
+                <argument>toro</argument>
+                <argument>sylius</argument>
+            </argument>
+            <argument type="service" id="sylius.repository.taxon"/>
+            <tag name="form.type"/>
+        </service>
+
+        <service id="vcare.form.channel.extension" class="Vcare\Bundle\WebBundle\Form\Extension\ChannelExtensionType">
+            <tag name="form.type_extension" extended-type="Sylius\Bundle\ChannelBundle\Form\Type\ChannelType"/>
+        </service>
+
+        <service id="vcare.form.post.extension" class="Vcare\Bundle\WebBundle\Form\Extension\PostExtensionType">
+            <tag name="form.type_extension" extended-type="Toro\Bundle\CmsBundle\Form\Type\PostType"/>
+        </service>
+
+        <service id="vcare.form.product.extension" class="Vcare\Bundle\WebBundle\Form\Extension\ProductExtensionType">
+            <tag name="form.type_extension" extended-type="Sylius\Bundle\ProductBundle\Form\Type\ProductType"/>
+        </service>
+
+        <service id="vcare.form.product_translation.extension" class="Vcare\Bundle\WebBundle\Form\Extension\ProductTranslationExtensionType">
+            <tag name="form.type_extension" extended-type="Sylius\Bundle\ProductBundle\Form\Type\ProductTranslationType"/>
+        </service>
+
+        <service id="vcare.form.checkout_paysbuy_payment.extension" class="Vcare\Bundle\WebBundle\Form\Extension\Checkout\PaymentExtensionType">
+            <tag name="form.type_extension" extended-type="Sylius\Bundle\CoreBundle\Form\Type\Checkout\PaymentType"/>
+        </service>
+
+        <service id="vcare.context.channel_settings" class="Vcare\Bundle\WebBundle\Context\ChannelSettingsContext">
+            <argument type="service" id="sylius.context.channel"/>
+            <argument type="service" id="sylius.repository.taxon"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <service id="vcare.listener.user_enable" class="Vcare\Bundle\WebBundle\EventListener\UserAutoEnableListener">
+            <tag name="kernel.event_listener" event="sylius.customer.pre_register" method="enableUser" />
+        </service>
+
+        <service id="vcare.handler.shop_user_logout" class="Vcare\Bundle\WebBundle\EventListener\ShopUserLogoutHandler" decorates="sylius.handler.shop_user_logout">
+            <argument type="service" id="vcare.handler.shop_user_logout.inner" />
+            <argument type="service" id="sylius.context.cart" />
+            <argument type="service" id="sylius.repository.order" />
+        </service>
+    </services>
+</container>

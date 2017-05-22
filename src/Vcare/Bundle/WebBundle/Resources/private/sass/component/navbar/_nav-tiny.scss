@@ -1,0 +1,41 @@
+.nav-main {
+    &__menu {
+        &-cart {
+            text-align: left;
+        }
+
+        &-toggle {
+            text-align: center;
+            padding: 0 0.5rem;
+            .btn-hamburger {
+                background: none;
+                border: 0;
+                color: $color-base;
+                font-weight: bold;
+                cursor: pointer;
+                outline: none;
+            }
+        }
+
+        .category-toggle {
+            &__on {
+                display: block !important;
+
+                a {
+                    //display: block;
+
+                    + a {
+                        padding-left: 0;
+                        padding-right: 0;
+                    }
+                }
+            }
+        }
+
+        &.navbar-fixed {
+            .btn-primary {
+                font-size: .8rem;
+            }
+        }
+    }
+}

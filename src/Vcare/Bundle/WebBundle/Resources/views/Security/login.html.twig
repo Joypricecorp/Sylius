@@ -1,0 +1,72 @@
+{% extends 'VcareWebBundle::layout.html.twig' %}
+
+{% form_theme form 'VcareWebBundle:Form:common.html.twig' %}
+
+{% block content %}
+    <div class="container">
+        <div class="row user-login">
+            <div class="col-sm-6 col-xs-12 user-login__left">
+                <div class="page-header">{{ 'vcare.ui.social_login'|trans }}</div>
+
+                <div class="user-login__form--social">
+                    <a class="user-login__fb btn btn-fb btn-lg" href="{{ path('hwi_oauth_service_redirect', {'service': 'facebook' }) }}">
+                        <i class="fa fa-facebook-official"></i> {{ 'vcare.ui.social_facebook_login'|trans }}
+                    </a>
+                    {#<a class="user-login__ih btn btn-primary btn-lg"><i class="user-login__ih--icon"></i>{{ 'Login with iHealth'|trans }}</a>#}
+                </div>
+            </div>
+            <div class="col-sm-6 col-xs-12 user-login__right">
+                <div class="page-header">{{ 'sylius.ui.login'|trans|raw }}</div>
+
+                {% if last_error %}
+                    <div class="alert alert-danger">
+                        {{ last_error.messageKey|trans(last_error.messageData, 'security')|raw }}
+                    </div>
+                {% endif %}
+
+                {{ form_start(form, {'action': path('sylius_shop_login_check'), 'attr': {'class': 'user-login__form', 'novalidate': 'novalidate'}}) }}
+                    <div class="user-form">
+                        {{ form_row(form._username) }}
+                        {{ form_row(form._password) }}
+                    </div>
+
+                    <div class="row user-login__label">
+                        <div class="col-md-6 col-xs-12">
+                            <div class="form-group row">
+                                <div class="checkbox">
+                                    <label for="remember_me">
+                                        <input type="checkbox" id="remember_me" name="_remember_me" value="on"/>
+                                        {{ 'sylius.form.user.remember_me'|trans }}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xs-12">
+                            <div class="form-action user-login__form--buttons">
+                                <button class="btn btn-primary" type="submit">
+                                    <i class="fa fa-lock"></i>
+                                    {{ 'sylius.ui.login'|trans }}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="user-login__check">
+                                <a href="{{ path('sylius_shop_register') }}">
+                                    {{ 'sylius.ui.create_an_account'|trans }}
+                                </a>
+                                <a href="{{ path('sylius_shop_request_password_reset_token') }}">
+                                    {{ 'sylius.ui.forgot_password'|trans }}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                <input type="hidden" name="_csrf_shop_security_token" value="{{ csrf_token('shop_authenticate') }}">
+                {{ form_end(form, {'render_rest': false}) }}
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

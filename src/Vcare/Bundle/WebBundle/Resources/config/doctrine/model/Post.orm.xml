@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xmlns:gedmo="http://gediminasm.org/schemas/orm/doctrine-extensions-mapping"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                                      http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <mapped-superclass name="Vcare\Bundle\WebBundle\Model\Post" table="toro_cms_post">
+        <gedmo:reference field="thumb" identifier="thumbId" type="document" class="Symfony\Cmf\Bundle\MediaBundle\Doctrine\Phpcr\Image" reference="referenceOne"/>
+        <gedmo:reference field="featuredCover" identifier="featuredCoverId" type="document" class="Symfony\Cmf\Bundle\MediaBundle\Doctrine\Phpcr\Image" reference="referenceOne"/>
+
+        <field name="thumbId" type="string" nullable="true"/>
+        <field name="featuredCoverId" type="string" nullable="true"/>
+        <field name="featured" type="boolean" nullable="false"/>
+
+        <many-to-one field="createdBy" target-entity="Sylius\Component\Core\Model\AdminUserInterface">
+            <gedmo:blameable on="create"/>
+        </many-to-one>
+
+        <many-to-one field="updatedBy" target-entity="Sylius\Component\Core\Model\AdminUserInterface">
+            <gedmo:blameable on="update"/>
+        </many-to-one>
+
+        <many-to-one field="channel" target-entity="Sylius\Component\Channel\Model\ChannelInterface">
+            <join-column nullable="false"/>
+        </many-to-one>
+
+        <many-to-one field="taxon" target-entity="Sylius\Component\Taxonomy\Model\TaxonInterface">
+            <join-column nullable="false"/>
+        </many-to-one>
+    </mapped-superclass>
+</doctrine-mapping>

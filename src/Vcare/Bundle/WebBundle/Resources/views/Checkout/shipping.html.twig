@@ -1,0 +1,60 @@
+{% extends 'VcareWebBundle:Checkout:layout.html.twig' %}
+{% form_theme form with [_self, "VcareWebBundle:Form:common.html.twig"] %}
+
+{% block content %}
+    <div class="container">
+        <div class="checkout-step checkout-step__shipping">
+        <div class="page-header">
+            {{ 'sylius.ui.shipping_method'|trans|raw }}
+        </div>
+
+        {{ include('VcareWebBundle:Checkout:_steps.html.twig', {'active': 'select_shipping'}) }}
+
+        {{ form_start(form, {'action': path('sylius_shop_checkout_select_shipping'), 'attr': {'novalidate': 'novalidate'}}) }}
+            <input type="hidden" name="_method" value="PUT"/>
+
+            {{ form_errors(form) }}
+
+            {% for shipment in order.shipments %}
+                {% set method = form.shipments[loop.index0].method %}
+                {{ form_errors(method) }}
+                {{ form_widget(method) }}
+            {% endfor %}
+
+            <div class="form-actions">
+                <a href="{{ path('sylius_shop_checkout_address') }}" class="btn btn-secondary btn-lg">
+                    <i class="fa fa-angle-left"></i>
+                    {{ 'sylius.ui.back'|trans }}
+                </a>
+                <button type="submit" class="btn btn-primary btn-lg">
+                    {{ 'sylius.ui.next'|trans }}
+                    <i class="fa fa-angle-right"></i>
+                </button>
+            </div>
+
+            {{ form_row(form._token) }}
+        {{ form_end(form, {'render_rest': false}) }}
+    </div>
+    </div>
+{% endblock %}
+
+{% block sylius_shipping_method_choice_widget %}
+    {% form_theme form 'VcareWebBundle:Form:common.html.twig' %}
+    {% import "@SyliusShop/Common/Macro/money.html.twig" as money %}
+    <ul class="list-group">
+        {% for child in form %}
+            {% set fee = shipping_costs[child.vars.value]|default(0) %}
+            <li class="list-group-item list-group-item-action">
+                <span class="label label-lg label-info pull-xs-right">
+                    {% if fee > 0 %}
+                        {{ money.convertAndFormat(fee) }}
+                    {% else %}
+                        {{ "Free!"|trans }}
+                    {% endif %}
+                </span>
+                <h5 class="list-group-item-heading">{{ form_widget(child) }}</h5>
+                <div class="list-group-item-text">{{ child.parent.vars.data.description|default('') }}</div>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

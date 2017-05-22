@@ -227,7 +227,7 @@ class RequestConfiguration
             return $referer;
         }
 
-        return $redirect['referer'];
+        return $redirect['referer'] . $this->getRedirectHash();
     }
 
     /**

@@ -1,0 +1,29 @@
+{% from "VcareWebBundle:Product:macros.html.twig" import item_text_tax %}
+{% set product = variant.product %}
+{% set first_image = product.images.first() %}
+{% set product_picture = first_image ? first_image.path|imagine_filter('120x90') : 'http://placehold.it/120x90' %}
+{% set product_url = path('route_shop_product_show', {slug: product.slug}) %}
+
+<div class="variant-box {{ print_if('media', is_mobile_view()) }}">
+    <a class="media-center variant-box__media" href="{{ product_url }}">
+        <img class="media-object" src="{{ product_picture }}">
+    </a>
+    <div class="media-body variant-box__body">
+        <h6 class="media-heading variant-box__body-heading">
+            {{ variant.name is null ? product.name : variant.name }}
+        </h6>
+        <div class="variant-box__body-code"><strong>{{ 'sylius.ui.code'|trans }}</strong>: {{ product.code }}</div>
+        {% if product.hasOptions() %}
+            <div class="variant-box__body-options">
+                {% for optionValue in variant.optionValues %}
+                    <div class="item">
+                        {{ optionValue.value }}: {{ optionValue.value }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% elseif variant.name is not null %}
+            {{ variant.name }}
+        {% endif %}
+        {{ item_text_tax(variant, "vcare.ui.vat_is_included_in_price"|trans) }}
+    </div>
+</div>

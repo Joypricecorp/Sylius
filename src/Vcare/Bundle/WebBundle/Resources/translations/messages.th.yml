@@ -1,0 +1,81 @@
+vcare.ui.checkout_change_address: เลือกที่อยู่ในการออกบิล และส่งสินค้า
+vcare.ui.checkout_use_for_billing_address: ใช้เป็นที่อยู่ออกบิล
+vcare.ui.checkout_use_for_shipping_address: ใช้เป็นที่อยู่ส่งสินค้า
+vcare.ui.all_products: สินค้าทั้งหมด
+vcare.ui.more_products: สินค้าอื่นๆ
+vcare.ui.login_information: ข้อมูลการเข้าระบบ
+vcare.ui.register_in_the_store: กรุณาระบุรายละเอียดสำหรับการสมัครสมาชิก
+vcare.menu.shop.account.addressing: แก้ไขที่อยู่
+vcare.ui.home: "หน้าแรก"
+vcare.ui.posts: "บทความ"
+vcare.ui.all_posts: "บทความทั้งหมด"
+vcare.ui.details: "รายละเอียด"
+vcare.ui.read_more: "อ่านต่อ"
+vcare.ui.more_contents: "อ่านบทความอื่นๆ"
+vcare.ui.vat_is_included_in_price: "สินค้ารวมภาษีแล้ว"
+vcare.ui.vat_is_not_included_in_price: "สินค้ายังไม่รวมภาษี"
+vcare.ui.attributes: 'คุณสมบัติ'
+vcare.ui.previous: 'ก่อนหน้า'
+vcare.ui.next: 'ถัดไป'
+vcare.form.product.external_order_url: 'ลิงค์สั่งซื้อภายนอก'
+vcare.product.external_order: 'ลั่งซื้อ'
+vcare.ui.manual: 'คู่มือการใช้งาน'
+
+sylius.ui.browse_all_products: สินค้าทั้งหมด
+sylius.ui.manage_taxons: จัดการหมวดหมู่
+sylius.menu.admin.main.content.header: บทความและเพจ
+sylius.menu.admin.main.configuration.exchange_rates: อัตรตราแลกเปลี่ยน
+sylius.menu.admin.main.configuration.shipping_categories: หมวดหมู่การขนส่ง
+sylius.ui.exchange_rates: Exchange rates
+sylius.ui.manage_exchange_rates: Manage exchange rates
+sylius.ui.edit_exchange_rate: Edit
+sylius.form.exchange_rate.source_currency: Source currency
+sylius.form.exchange_rate.target_currency: Target currency
+sylius.form.exchange_rate.ratio: Ratio
+sylius.ui.impersonate: Impersonate
+sylius.user.reset_password_request: ส่งคำขอเปลี่ยนรหัสผ่านไปยังอีเมล์ของคุณแล้ว
+sylius.user.reset_password: รหัสผ่านของคุณถูกเปลี่ยนแล้ว
+sylius.ui.paysbuy: เพย์สบาย
+sylius.user.change_password: รหัสผ่านถูกเปลี่ยนแล้ว
+sylius.resource.add: เพิ่มรายการเรียบร้อยแล้ว
+sylius.user.verify_email: อีเมล์ของคุณได้รับการยืนยันแล้ว
+sylius.menu.admin.main.content.pages: Pages
+sylius.menu.admin.main.content.posts: Posts
+sylius.form.product.slug: Slug
+sylius.ui.criteria: เงื่อนไข
+sylius.ui.address: ที่อยู่
+sylius.ui.continue_shopping: เลือกซื้อสินค้าต่อ
+sylius.form.address.city: เขต/อำเภอ
+sylius.ui.yes_label: ใช่
+sylius.ui.no_label: ไม่ใช่
+sylius.form.variant.tracked: ตรวจสต๊อก
+sylius.form.login.username: อีเมล์
+sylius.ui.products: สินค้าทั้งหมด
+sylius.menu.admin.main.catalog.products: จัดการสินค้า
+sylius.ui.manage_users_able_to_access_administration_panel: ผู้ใช้ที่สามารถเข้าระบบบริหารจัดการข้อมูลได้
+sylius.ui.manage_your_saved_addresses: จัดการที่อยู่ที่ถูกบันทึกไว้
+sylius.email.order_cancelled.name: คำสั่งซื้อของคุณถูกยกเลิกแล้ว
+sylius.menu.shop.account.address_book: สมุดที่อยู่
+sylius.ui.manage_inventory: จัดการคลังสินค้า
+sylius.ui.greater_than: มากกว่า
+sylius.ui.less_than: น้อยกว่า
+sylius.ui.orders_statistics: สถิติการสั่งซื้อ
+sylius.ui.this_customer_has_not_placed_any_orders_yet: ยังไม่มีรายการสั่งซื้อ
+sylius.ui.overall_this_customer_has_placed_orders_across_all_channels.choice: คำสั่งซื้อทั้งหมด
+sylius.ui.total_value_of_orders: ยอดรวมการสั่งซื้อ
+
+sylius.form.product.manual: คู่มือการใช้งาน
+vcare.ui.share: แชร์
+
+vcare.ui.previous: ย้อนกลับ
+vcare.ui.next: ถัดไป
+vcare.ui.code: รหัส
+vcare.ui.you_may_also_like: สินค้าแนะนำ
+
+sylius.ui.order_total: ยอดสุทธิ <br>(รวมภาษีแล้ว)
+sylius.ui.subtotal: มูลค่าสินค้า
+
+vcare.ui.social_login: เข้าระบบด้วยบัญชีอื่นๆ
+vcare.ui.social_facebook_login: เข้าระบบด้วยบัญชี Facebook
+
+sylius.form.image.type: Type

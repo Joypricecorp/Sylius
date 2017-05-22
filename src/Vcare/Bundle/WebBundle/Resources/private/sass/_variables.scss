@@ -1,0 +1,50 @@
+$container-max-widths: (
+    sm: 100%,
+    md: 100%,
+    lg: 940px,
+    xl: 1140px
+) !default;
+
+$headings-color: #000000;
+$headings-secound-color: rgba(0, 0, 0, 0.50);
+
+// color
+$color-base: #F7941E !default;
+$color-second: #232f3e !default;
+$color-ext: lighten($color-second, 10%) !default;
+$color-basic: #ECEEEF !default;
+
+// Bootstrap variables
+$brand-primary: $color-base;
+
+$enable-flex: true;
+$enable-rounded: true;
+$enable-shadows: true;
+$enable-gradients: true;
+$enable-transitions: true;
+$enable-hover-media-query: false;
+$enable-grid-classes: true;
+
+// form
+$input-padding-y: .33rem;
+
+// border radius
+$border-radius: 30px;
+$border-radius-lg: 30px;
+$border-radius-sm: 30px;
+
+$list-group-border-radius: 0;
+$card-border-radius: 0;
+$input-border-radius: 0;
+
+// normal button size
+//$btn-padding-y: 5px 12px;
+//$btn-padding-x: 6px 24px;
+
+$btn-primary-color: #ffffff;
+$btn-primary-bg: $color-base;
+$btn-primary-border: darken($color-base, 5%);
+
+$font-heading: "Kanit", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$font-body: $font-heading;
+$font-color-ihealth: #FF5200;

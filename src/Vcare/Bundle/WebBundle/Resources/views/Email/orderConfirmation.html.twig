@@ -1,0 +1,42 @@
+{% block subject %}{{ cx_settings.branding('name') }} - {{ 'ยืนยันการสั่งซื้อสินค้า' }}{% endblock %}
+
+{% block body %}
+    {% spaceless %}
+        {% set linkOrder %}
+            <a href="{{ url('sylius_shop_order_show', {tokenValue: order.tokenValue}) }}"
+               style="display:block;height:40px;line-height:40px;border-radius:4px;text-align:center;background:#57ad68;color:#ffffff;width:200px;text-decoration:none"
+               target="_blank">{{ "sylius.ui.order_details"|trans }}</a>
+        {% endset %}
+
+        {% autoescape %}
+            <h4>ใบสั่งซื้อเลขที่ #{{ order.number }}</h4>
+
+            {% if order.paymentState is same as ('paid') %}
+                <p>
+                    <strong>เรียนคุณ {{ order.customer.fullname }}</strong><br>
+                    ขอขอบพระคุณสำหรับการสั่งซื้อสินค้า ขณะนี้ใบสั่งซื้อของคุณ <strong>ชำระเงินเรียบร้อยแล้ว</strong>
+                    สินค้าจะถูกจัดสั่งให้คุณตามที่อยู่ที่ระบุไว้ในใบสั่งซื้อสินค้า
+                </p>
+            {% else %}
+                {% set lastPayment = order.payments.last %}
+                {% if lastPayment.state is same as ('processing') %}
+                    <p>
+                        <strong>เรียนคุณ {{ order.customer.fullname }}</strong><br>
+                        ใบสั่งซื้อสินค้าของคุณอยู่ในระหว่าง <strong>รอการชำระเงิน</strong> กรุณาชำระเงินภายใน 24 ชม.
+                        หลังจากทำการสั่งซื้อสินค้า
+                        หากเลยเวลาที่กำหนด ใบสั่งซื้อสินค้าของคุณจะถูกยกเลิกอัตโนมัติ
+                    </p>
+                {% else %}
+                    <p>
+                        <strong>เรียนคุณ {{ order.customer.fullname }}</strong><br>
+                        ขอเรียนให้ทราบว่าเราได้รับใบสั่งซื้อสินค้าของท่านแล้ว
+                    </p>
+                {% endif %}
+            {% endif %}
+
+            <p>คุณสามารถดูรายละเอียดใบสั่งซื้อได้ที่ <br><br> {{ linkOrder|raw }}</p>
+
+            {{ include("VcareWebBundle:Email:_footer.html.twig") }}
+        {% endautoescape %}
+    {% endspaceless %}
+{% endblock %}

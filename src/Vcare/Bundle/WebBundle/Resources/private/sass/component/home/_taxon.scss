@@ -1,0 +1,58 @@
+.taxon-preview {
+  padding: 2.5rem 0;
+
+  &--white {
+    background: #ffffff;
+  }
+  &--supple {
+    background: #f7f7f7;
+  }
+  &--gray {
+    background: #e6e6e6;
+  }
+
+  .btn-primary {
+    border-width: 2px;
+    background: none;
+    color: $color-base;
+
+    &:hover {
+      background: darken($color-base, 10%);
+      color: #ffffff;
+    }
+  }
+
+  &__image {
+    text-align: center;
+
+    /*&--overlap {
+      img {
+        margin-top: -100px;
+      }
+    }*/
+  }
+
+  h3 {
+    color: $color-base;
+    text-transform: uppercase;
+    font-size: 2rem;
+    font-weight: bold;
+  }
+
+  p {
+    color: #717171;
+    padding: .5rem 0;
+    font-size: 1.2rem;
+  }
+
+  img {
+    max-width: 450px;
+    max-height: 290px;
+  }
+
+  .btn {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+}
+

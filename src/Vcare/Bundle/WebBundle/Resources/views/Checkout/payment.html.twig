@@ -1,0 +1,107 @@
+{% extends 'VcareWebBundle:Checkout:layout.html.twig' %}
+{% form_theme form with [_self, 'VcareWebBundle:Form:common.html.twig'] %}
+
+{% block content %}
+    <div class="container">
+        <div class="checkout-step checkout-step__payment">
+        <div class="page-header">
+            {{ 'sylius.ui.payment_method'|trans|raw }}
+        </div>
+
+        {{ include('VcareWebBundle:Checkout:_steps.html.twig', {'active': 'select_payment'}) }}
+
+        {{ form_start(form, {'action': path('sylius_shop_checkout_select_payment'), 'attr': {'class': 'ui loadable form', 'novalidate': 'novalidate'}}) }}
+        <input type="hidden" name="_method" value="PUT"/>
+
+        {{ form_errors(form) }}
+
+        {% for payment in order.payments %}
+            {% set payment_form = form.payments[loop.index0] %}
+            {{ form_errors(payment_form.method) }}
+            {{ form_widget(payment_form.paysbuy_method_check, {value: 1}) }}
+
+            <ul class="list-group">
+                {% for payment_method_choice in payment_form.method %}
+                    {% set payment_method = payment_method_choice.parent.vars.choices[loop.index0].data %}
+                    <li class="list-group-item list-group-item-action">
+                        <h5 class="list-group-item-heading payment-method">{{ form_widget(payment_method_choice) }}</h5>
+                        <div class="list-group-item-text">
+                            {% if payment_method.description is not null %}
+                                <p class="description">{{ payment_method.description }}</p>
+                            {% endif %}
+                            {% if payment_method.code is same as ('paysbuy') %}
+                                {#<strong>{{ form_label(payment_form.paysbuy_method) }}</strong>#}
+                                <div class="paysbuy-method-choices">
+                                    {{ form_widget(payment_form.paysbuy_method) }}
+                                </div>
+                            {% endif %}
+                            {% if payment_method.instructions is not null %}
+                                <p class="alert alert-block alert-info">{{ payment_method.instructions }}</p>
+                            {% endif %}
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endfor %}
+
+        <div class="form-actions">
+            <a href="{{ path('sylius_shop_checkout_select_shipping') }}" class="btn btn-secondary btn-lg">
+                <i class="fa fa-angle-left"></i>
+                {{ 'sylius.ui.back'|trans }}
+            </a>
+            <button type="submit" class="btn btn-primary btn-lg">
+                {{ 'sylius.ui.next'|trans }}
+                <i class="fa fa-angle-right"></i>
+            </button>
+        </div>
+
+        {{ form_row(form._token) }}
+        {{ form_end(form, {'render_rest': false}) }}
+    </div>
+    </div>
+
+    <style>
+        .list-group-item {
+            border: none;
+            padding: 0;
+        }
+        .list-group-item-heading.payment-method {
+            visibility: hidden;
+            position: absolute;
+        }
+        .paysbuy-method-choices label {
+            display: block;
+            padding: 50px 15px 15px 15px;
+            margin-bottom: 1rem;
+            border: 1px solid #eee;
+            font-size: 110%;
+
+            background-repeat: no-repeat;
+            background-position: 10px 0;
+        }
+        .paysbuy-method-choices input {
+            /*visibility: hidden;
+            position: absolute;*/
+        }
+
+        .paysbuy-method-choices--2 {
+            background: url("{{ asset('paysbuy-method-2.png') }}");
+        }
+
+        .paysbuy-method-choices--5 {
+            background: url("{{ asset('paysbuy-method-5.png') }}");
+        }
+
+        .paysbuy-method-choices--6 {
+            background: url("{{ asset('paysbuy-method-6.png') }}");
+        }
+    </style>
+{% endblock %}
+
+{% block _sylius_checkout_select_payment_payments_entry_paysbuy_method_entry_widget %}
+    <label class="required paysbuy-method-choices--{{ form.vars.value }}">
+        <input type="radio" id="{{ form.vars.id }}" name="{{ form.vars.full_name }}" value="{{ form.vars.value }}">
+        {{ form.vars.label|trans|raw }}
+    </label>
+    {#{{ form_widget(form) }}#}
+{% endblock %}

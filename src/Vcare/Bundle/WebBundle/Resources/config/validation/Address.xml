@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<constraint-mapping xmlns="http://symfony.com/schema/dic/constraint-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/constraint-mapping http://symfony.com/schema/dic/services/constraint-mapping-1.0.xsd">
+    <class name="Sylius\Component\Addressing\Model\Address">
+        <property name="phoneNumber">
+            <constraint name="NotBlank">
+                <option name="message">vcare.customer.phone_number.not_blank</option>
+                <option name="groups">
+                    <value>sylius_shipping_address_update</value>
+                    <value>sylius</value>
+                </option>
+            </constraint>
+            <constraint name="Type">
+                <option name="type">numeric</option>
+                <option name="message">vcare.customer.phone_number.not_numeric</option>
+                <option name="groups">
+                    <value>sylius_shipping_address_update</value>
+                    <value>sylius</value>
+                </option>
+            </constraint>
+            <constraint name="Length">
+                <option name="min">9</option>
+                <option name="max">20</option>
+                <option name="minMessage">vcare.customer.phone_number.not_valid_length</option>
+                <option name="maxMessage">vcare.customer.phone_number.not_valid_length</option>
+                <option name="groups">
+                    <value>sylius_shipping_address_update</value>
+                    <value>sylius</value>
+                </option>
+            </constraint>
+        </property>
+        <property name="postcode">
+            <constraint name="NotBlank">
+                <option name="message">sylius.address.postcode.not_blank</option>
+                <option name="groups">
+                    <value>sylius_shipping_address_update</value>
+                    <value>sylius</value>
+                </option>
+            </constraint>
+            <constraint name="Type">
+                <option name="type">numeric</option>
+                <option name="message">vcare.customer.postcode.not_numeric</option>
+                <option name="groups">
+                    <value>sylius_shipping_address_update</value>
+                    <value>sylius</value>
+                </option>
+            </constraint>
+            <constraint name="Length">
+                <option name="min">2</option>
+                <option name="max">255</option>
+                <option name="minMessage">sylius.address.postcode.min_length</option>
+                <option name="maxMessage">sylius.address.postcode.max_length</option>
+                <option name="groups">
+                    <value>sylius_shipping_address_update</value>
+                    <value>sylius</value>
+                </option>
+            </constraint>
+        </property>
+    </class>
+</constraint-mapping>

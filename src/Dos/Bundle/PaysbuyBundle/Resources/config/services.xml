@@ -1,0 +1,34 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="dos.payum.paysbuy_gateway_factory" class="Dos\Bundle\PaysbuyBundle\Payum\PaysbuyGatewayFactory">
+            <tag name="payum.gateway_factory_builder" factory="paysbuy"/>
+        </service>
+
+        <service id="dos.payum.paysbuy_currency_updater" class="Dos\Bundle\PaysbuyBundle\Importer\CurrencyImporter">
+            <argument id="sylius.manager.currency" type="service"/>
+            <argument id="sylius.factory.currency" type="service"/>
+            <argument type="collection">
+                <argument type="string" key="sandbox">%paysbuy_sandbox%</argument>
+                <argument type="string" key="biz">%paysbuy_username%</argument>
+                <argument type="string" key="psbID">%paysbuy_psb_id%</argument>
+                <argument type="string" key="secureCode">%paysbuy_secure_code%</argument>
+            </argument>
+        </service>
+
+        <service id="dos.payum_extension.complete_order_extension" class="Dos\Bundle\PaysbuyBundle\Payum\Action\ResolveNextRouteAction">
+            <argument id="translator" type="service"/>
+            <argument id="session" type="service"/>
+            <tag name="payum.action" factory="paysbuy" gateway="paysbuy" all="false"/>
+        </service>
+
+        <service id="dos.payum_action.capture_payment" class="Dos\Bundle\PaysbuyBundle\Payum\Action\ConvertPaymentAction">
+            <argument type="service" id="sylius.currency_converter" />
+            <tag name="payum.action" factory="paysbuy" gateway="paysbuy" all="false"/>
+        </service>
+    </services>
+</container>

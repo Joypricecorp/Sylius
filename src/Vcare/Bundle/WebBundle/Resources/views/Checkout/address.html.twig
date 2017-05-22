@@ -1,0 +1,58 @@
+{% extends 'VcareWebBundle:Checkout:layout.html.twig' %}
+{% form_theme form 'VcareWebBundle:Form:common.html.twig' %}
+{% set has_billing = order.billingAddress ? true : false %}
+
+{% block content %}
+    <div class="container">
+        <div class="checkout-step checkout-step__addressing">
+        <div class="page-header">
+            {{ 'sylius.ui.addressing_step'|trans|raw }}
+        </div>
+
+        {{ include('VcareWebBundle:Checkout:_steps.html.twig', {'active': 'address'}) }}
+
+        {{ form_start(form, {'action': path('sylius_shop_checkout_address'), 'attr': {'novalidate': 'novalidate'}}) }}
+        <input type="hidden" name="_method" value="PUT"/>
+
+        {{ form_errors(form) }}
+
+        <div class="row">
+            {{ render(path('sylius_shop_checkout_address_books')) }}
+
+            <div class="col-xs-12 col-md-4 address-container" id="checkout-shipping-address-container">
+                <div class="card card-block">
+                    <h5 class="card-title"><i class="fa fa-truck"></i> {{ 'sylius.ui.shipping_address'|trans }}</h5>
+                    <div class="card-text">
+                        {% include 'VcareWebBundle:Address:_form.html.twig' with {'form': form.shippingAddress} %}
+                    </div>
+                </div>
+
+                {{ form_row(form.differentBillingAddress, {checked: has_billing, 'attr': {'class': 'address-trigger'}}) }}
+            </div>
+
+            <div class="col-xs-12 col-md-4 address-container" id="checkout-billing-address-container"{% if has_billing %} style="display: block;"{% endif %}>
+                <div class="card card-block">
+                    <h5 class="card-title"><i class="fa fa-file-text-o"></i> {{ 'sylius.ui.billing_address'|trans }}</h5>
+                    <div class="card-text">
+                        {% include 'VcareWebBundle:Address:_form.html.twig' with {'form': form.billingAddress} %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-actions checkout__btn">
+            <a href="{{ path('sylius_shop_cart_summary') }}" class="btn btn-secondary btn-lg">
+                <i class="fa fa-angle-left"></i>
+                {{ 'sylius.ui.back'|trans }}
+            </a>
+            <button type="submit" class="btn btn-primary btn-lg">
+                {{ 'sylius.ui.next'|trans }}
+                <i class="fa fa-angle-right"></i>
+            </button>
+        </div>
+
+        {{ form_row(form._token) }}
+        {{ form_end(form, {'render_rest': false}) }}
+    </div>
+    </div>
+{% endblock %}

@@ -20,7 +20,8 @@ use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * @author Kamil Kokot <kamil@kokot.me>
+ * @author Kamil Kokot <kamil.kokot@lakion.com>
+ * @author Dos <nukboon@gmail.com>
  */
 final class CurrencyChoiceType extends AbstractType
 {

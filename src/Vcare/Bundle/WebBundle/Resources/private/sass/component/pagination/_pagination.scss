@@ -1,0 +1,18 @@
+.pagination-ct {
+    text-align: center;
+    padding: 3em 0;
+
+    a {
+        color: #231F20;
+        background: #D1D3D4;
+        margin: 0 .5em;
+        border: none;
+        border-radius: .2em;
+        font-weight: 500;
+
+        &:focus, &:hover {
+            text-decoration: none;
+            background: #F7941E;
+        }
+    }
+}

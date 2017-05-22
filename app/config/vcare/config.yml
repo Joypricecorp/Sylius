@@ -1,0 +1,12 @@
+parameters:
+    locked_theme: "intbizth/vcare"
+
+imports:
+    - { resource: "sylius_product.yml" }
+    - { resource: "sylius_grid.yml" }
+    - { resource: "toro_cms.yml" }
+    - { resource: "toro_tagging.yml" }
+    - { resource: "fm_elfinder.yml" }
+    - { resource: "liip_imagine.yml" }
+    - { resource: "stof_doctrine_extensions.yml" }
+    - { resource: "sylius_resource.yml" }

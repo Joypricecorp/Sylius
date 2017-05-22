@@ -1,0 +1,9 @@
+{% block subject %}{{ cx_settings.branding('name') }} - Email address verification{% endblock %}
+
+{% block body %}
+    {% set url = url('sylius_shop_user_verification', { 'token': user.emailVerificationToken}) %}
+    {% autoescape %}
+        To verify your email address - please visit {{ url|raw }}
+        {{ include("VcareWebBundle:Email:_footer.html.twig") }}
+    {% endautoescape %}
+{% endblock %}

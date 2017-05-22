@@ -1,0 +1,150 @@
+sylius_grid:
+    grids:
+        sylius_admin_order:
+            fields:
+                channel:
+                    enabled: false
+
+        toro_admin_page:
+            driver:
+                name: doctrine/orm
+                options:
+                    class: Vcare\Bundle\WebBundle\Model\Page
+            sorting:
+                createdAt: desc
+            filters:
+                title:
+                    type: string
+                    label: Title
+            fields:
+                published:
+                    type: twig
+                    label: Published
+                    options:
+                        template: SyliusAdminBundle:Grid/Field:yesNo.html.twig
+                partial:
+                    type: twig
+                    label: Partial
+                    options:
+                        template: SyliusAdminBundle:Grid/Field:yesNo.html.twig
+                title:
+                    type: string
+                    label: Title
+                slug:
+                    type: string
+                    label: Slug
+                createdAt:
+                    type: datetime
+                    label: Create at
+                    sortable: ~
+                    options:
+                        format: d-m-Y H:i
+            actions:
+                main:
+                    create:
+                        type: create
+                item:
+                    update:
+                        type: update
+                    delete:
+                        type: delete
+
+        toro_admin_post:
+            driver:
+                name: doctrine/orm
+                options:
+                    class: Vcare\Bundle\WebBundle\Model\Post
+            sorting:
+                createdAt: desc
+            filters:
+                title:
+                    type: string
+                    label: Title
+            fields:
+                published:
+                    type: twig
+                    label: Published
+                    options:
+                        template: SyliusAdminBundle:Grid/Field:yesNo.html.twig
+                featured:
+                    type: twig
+                    label: Featured
+                    options:
+                        template: SyliusAdminBundle:Grid/Field:yesNo.html.twig
+                taxon:
+                    type: string
+                    label: Taxon
+                    path: taxon.name
+                title:
+                    type: string
+                    label: Title
+                slug:
+                    type: string
+                    label: Slug
+                createdAt:
+                    type: datetime
+                    label: Create at
+                    sortable: ~
+                    options:
+                        format: d-m-Y H:i
+            actions:
+                main:
+                    create:
+                        type: create
+                item:
+                    update:
+                        type: update
+                    delete:
+                        type: delete
+
+        sylius_shop_product_index:
+            driver:
+                name: doctrine/orm
+                options:
+                    class: "%sylius.model.product.class%"
+                    repository:
+                        method: createQueryBuilderByChannelAndTaxonCodeWide
+                        arguments:
+                            channel: "expr:service('sylius.context.channel').getChannel()"
+                            taxon: "expr:service('vcare.context.channel_settings').getProductTaxonRootContext()"
+                            locale: '%locale%'
+            sorting:
+                position: asc
+            fields:
+                createdAt:
+                    type: datetime
+                    sortable: ~
+                position:
+                    type: string 
+                    sortable: taxon.position
+            filters:
+                search:
+                    type: string
+                    label: false
+                    options:
+                        type: contains
+                        fields: [translation.name]
+
+        vcare_shop_post_index:
+            driver:
+                name: doctrine/orm
+                options:
+                    class: Vcare\Bundle\WebBundle\Model\Post
+                    repository:
+                        method: createQueryBuilderByChannelAndLocale
+                        arguments:
+                            channel: "expr:service('sylius.context.channel').getChannel()"
+                            locale: '%locale%'
+            sorting:
+                createdAt: desc
+            fields:
+                createdAt:
+                    type: datetime
+                    sortable: ~
+            filters:
+                search:
+                    type: string
+                    label: false
+                    options:
+                        type: contains
+                        fields: [translation.title]

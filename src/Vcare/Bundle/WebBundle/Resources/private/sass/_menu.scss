@@ -1,0 +1,15 @@
+.btn-menu {
+    padding-left: 0;
+    padding-right: 0;
+    color: rgba(255, 255, 255, .5);
+}
+
+.nav-item.active .btn-menu {
+    color: #fff;
+}
+
+@for $i from 2 through 4 {
+    .menu-level-#{$i} {
+        padding-left: 20px + (15*($i - 1))
+    }
+}

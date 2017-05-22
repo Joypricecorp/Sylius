@@ -1,0 +1,18 @@
+{% extends 'VcareWebBundle::layout.html.twig' %}
+
+{% block content %}
+    <div class="container">
+        <div class="account">
+            {% block breadcrumbs %}{% endblock %}
+
+            <div class="row account-menu">
+                <div class="col-md-3 col-xs-12 account-menu__menu">
+                    {{ knp_menu_render('sylius.shop.account', {'template': 'VcareWebBundle:Account:menu.html.twig'}) }}
+                </div>
+                <div class="col-md-9 col-xs-12 account-menu__data">
+                    {% block subcontent %}{% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% set flashes = app.session.flashbag.all %}
+{% if flashes|length %}
+    <div class="container container-flash">
+        {% for type, flash in flashes %}
+            {% if 'error' == type %}
+                {% set result = 'danger' %}
+            {% endif %}
+
+            {% set header = 'sylius.ui.'~type %}
+
+            <div class="alert alert-{{ result|default(type) }} alert-dismissible fade in" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <strong>{{ header|trans }}</strong>
+                {% if flash is iterable %}
+                    {% for fs in flash %}
+                        {% if fs.message|default(null) %}
+                            {{ fs.message|trans(fs.parameters, 'flashes') }}
+                        {% else %}
+                            {{ fs|trans({}, 'flashes') }}
+                        {% endif %}
+                    {% endfor %}
+                {% else %}
+                    {{ flash|trans({}, 'flashes') }}
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}

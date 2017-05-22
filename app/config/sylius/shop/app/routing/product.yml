@@ -1,0 +1,65 @@
+route_shop_product_index:
+    path: /products
+    methods: [GET]
+    defaults:
+        _controller: sylius.controller.product:indexAction
+        _sylius:
+            paginate: 24
+            template: "@VcareWeb/Product/index.html.twig"
+            grid: sylius_shop_product_index
+
+route_shop_product_canonical:
+    path: /products/{id}
+    methods: [GET]
+    requirements:
+        id: \d+
+    defaults:
+        _controller: sylius.controller.product:showAction
+        _sylius:
+            template: "@VcareWeb/Product/show.html.twig"
+            repository:
+                method: findOneByIdAndChannel
+                arguments:
+                    - $id
+                    - "expr:service('sylius.context.channel').getChannel()"
+
+route_shop_product_show:
+    path: /products/{slug}
+    methods: [GET]
+    defaults:
+        _controller: sylius.controller.product:showAction
+        _sylius:
+            template: "@VcareWeb/Product/show.html.twig"
+            repository:
+                method: findOneBySlugAndChannel
+                arguments:
+                    - $slug
+                    - "expr:service('sylius.context.channel').getChannel()"
+
+route_shop_product_index_taxon_canonical:
+    path: /category/{slug}
+    methods: [GET]
+    defaults:
+        _controller: sylius.controller.product:indexAction
+        _sylius:
+            paginate: 24
+            template: '@VcareWeb/Product/taxons.html.twig'
+            grid: sylius_shop_product
+            vars:
+                taxon: "expr:service('sylius.repository.taxon').find($slug)"
+    requirements:
+        slug: \d+
+
+route_shop_product_index_taxon:
+    path: /category/{slug}
+    methods: [GET]
+    defaults:
+        locale: "%locale%"
+        _controller: sylius.controller.product:indexAction
+        _sylius:
+            template: '@VcareWeb/Product/taxons.html.twig'
+            grid: sylius_shop_product
+            vars:
+                taxon: "expr:service('sylius.repository.taxon').findOneBySlug($slug, $locale)"
+    requirements:
+        slug: .+

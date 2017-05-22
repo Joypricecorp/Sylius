@@ -1,0 +1,26 @@
+liip_imagine:
+    filter_sets:
+        local_strip:
+            filters:
+                strip: { }
+        120x90:
+            filters:
+                thumbnail: { size: [120, 90], mode: inset }
+        80x80:
+            filters:
+                thumbnail: { size: [80, 80], mode: inset }
+        90x90:
+            filters:
+                thumbnail: { size: [90, 90], mode: inset }
+        250x250:
+            filters:
+                thumbnail: { size: [250, 250], mode: inset }
+        450x450:
+            filters:
+                thumbnail: { size: [450, 450], mode: inset }
+        850x850:
+            filters:
+                thumbnail: { size: [850, 850], mode: inset }
+        1000x1000:
+            filters:
+                thumbnail: { size: [1000, 1000], mode: inset }

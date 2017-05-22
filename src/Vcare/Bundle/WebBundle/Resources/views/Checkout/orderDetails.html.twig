@@ -1,0 +1,10 @@
+{% extends 'VcareWebBundle::layout.html.twig' %}
+
+{% block content %}
+    <div class="container">
+        <h2 class="page-header" style="margin-top: 1rem">
+            {{ "sylius.ui.order_details"|trans }}
+        </h2>
+        {% include 'VcareWebBundle:Account/Order:_detail.html.twig' %}
+    </div>
+{% endblock %}

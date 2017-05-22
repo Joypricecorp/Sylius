@@ -1,0 +1,25 @@
+@import "../component/cart/cart-step-icon";
+@import "../component/cart/cart-summary-mobile";
+
+.cart-summary {
+    padding: 0;
+}
+
+.dropdown-cart {
+    .dropdown-menu {
+        position: fixed;
+        width: 100%;
+        top: 112px;
+        border-radius: 0 !important;
+        border-width: 0;
+        border-bottom-width: 1px;
+
+        .navbar-fixed & {
+            top: 56px;
+        }
+
+        td {
+            white-space: normal;
+        }
+    }
+}

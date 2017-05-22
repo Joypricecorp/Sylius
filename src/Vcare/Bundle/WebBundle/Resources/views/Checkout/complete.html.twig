@@ -1,0 +1,53 @@
+{% extends 'VcareWebBundle:Checkout:layout.html.twig' %}
+{% form_theme form 'VcareWebBundle:Form:common.html.twig' %}
+
+{% set is_mobile_view = is_mobile_view() %}
+
+{% block content %}
+    <div class="container">
+        <div class="checkout-step checkout-step__finalize">
+        <div class="page-header">
+            {{ 'sylius.ui.order_summary'|trans|raw|raw }}
+        </div>
+
+        {{ include('VcareWebBundle:Checkout:_steps.html.twig', {'active': 'complete'}) }}
+
+        {{ form_start(form, {'action': path('sylius_shop_checkout_complete'), 'attr': {'novalidate': 'novalidate'}}) }}
+            {{ form_errors(form) }}
+            <input type="hidden" name="_method" value="PUT" />
+
+            <div class="row">
+                <div class="col-md-6 col-xs-12">
+                    <div class="card addressing">
+                        <div class="card-header">{{ 'sylius.ui.shipping_address'|trans|raw }}</div>
+                        {% include 'VcareWebBundle:Address:_show.html.twig' with { 'address': order.shippingAddress } %}
+                    </div>
+                </div>
+                <div class="col-md-6 col-xs-12">
+                    <div class="card addressing">
+                        <div class="card-header">{{ 'sylius.ui.billing_address'|trans|raw }}</div>
+                        {% include 'VcareWebBundle:Address:_show.html.twig' with { 'address': order.billingAddress } %}
+                    </div>
+                </div>
+            </div>
+
+            {% if is_mobile_view %}
+                {% include 'VcareWebBundle:Checkout/Complete:_items-xs.html.twig' %}
+            {% else %}
+                {% include 'VcareWebBundle:Checkout/Complete:_items.html.twig' %}
+            {% endif %}
+
+            {{ form_row(form.notes, {'attr': {'rows': 3}}) }}
+
+            <div class="form-actions text-md-right text-xs-center">
+                <button type="submit" class="btn btn-lg btn-success">
+                    <i class="fa fa-cart-arrow-down"></i>
+                    {{ 'sylius.ui.place_order'|trans|raw }}
+                </button>
+            </div>
+
+            {{ form_row(form._token) }}
+        {{ form_end(form, {'render_rest': false}) }}
+    </div>
+    </div>
+{% endblock %}

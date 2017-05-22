@@ -1,0 +1,30 @@
+{% from "VcareWebBundle:Product:macros.html.twig" import cart_quantity, item_tax, price_tax_item %}
+{% import "@SyliusShop/Common/Macro/money.html.twig" as money %}
+
+<tr class="cart-summary__table--item">
+    <td class="variant">
+        {{ include('VcareWebBundle:Product:_variant.html.twig', {'variant': item.variant}) }}
+    </td>
+    <td class="unit-price text-align-right">
+        {% if item.unitPrice != item.discountedUnitPrice %}
+            <span class="regular-price">{{ price_tax_item(item.variant, item.unitPrice, item.taxTotal) }}</span>
+        {% endif %}
+        <span class="discounted-price">
+            {{ price_tax_item(item.variant, item.discountedUnitPrice, item.taxTotal) }}
+        </span>
+    </td>
+    <td class="quantity">
+        {{ cart_quantity(form) }}
+    </td>
+    {#<td class="tax text-align-right">
+        {{ item_tax(item.variant, item.taxTotal) }}
+    </td>#}
+    <td class="price text-align-right">
+        {{ money.convertAndFormat(item.subtotal) }}
+    </td>
+    <td class="remove">
+        <button type="button" class="btn btn-sm btn-danger-outline" data-redirect="{{ path('sylius_shop_cart_summary') }}" data-action-url="{{ path('sylius_shop_ajax_cart_item_remove', {'id': item.id}) }}" data-csrf-token="{{ csrf_token(item.id) }}">
+            <i class="fa fa-trash-o"></i>
+        </button>
+    </td>
+</tr>

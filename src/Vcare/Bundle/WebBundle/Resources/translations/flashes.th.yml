@@ -1,0 +1,3 @@
+sylius.resource.add: เพิ่มรายการเรียบร้อยแล้ว
+sylius.payment.processing: การชำระเงินยังอยู่ในระหว่างดำเนินการ
+sylius.user.verify_email: อีเมล์ของคุณได้รับการยืนยันแล้ว

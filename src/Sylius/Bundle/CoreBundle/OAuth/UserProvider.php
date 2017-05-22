@@ -23,6 +23,7 @@ use Sylius\Component\Resource\Repository\RepositoryInterface;
 use Sylius\Component\User\Canonicalizer\CanonicalizerInterface;
 use Sylius\Component\User\Model\UserOAuthInterface;
 use Sylius\Component\User\Repository\UserRepositoryInterface;
+use Symfony\Component\Security\Core\Exception\AuthenticationServiceException;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
@@ -139,10 +140,20 @@ class UserProvider extends BaseUserProvider implements AccountConnectorInterface
         // set default values taken from OAuth sign-in provider account
         if (null !== $email = $response->getEmail()) {
             $customer->setEmail($email);
+        } else {
+            throw new NotFoundAnEmailException();
         }
 
         if (null !== $realName = $response->getRealName()) {
             $customer->setFirstName($realName);
+        }
+
+        if (null !== $firstName = $response->getFirstName()) {
+            $customer->setFirstName($firstName);
+        }
+
+        if (null !== $lastName = $response->getLastName()) {
+            $customer->setLastName($lastName);
         }
 
         if (!$user->getUsername()) {
@@ -154,7 +165,11 @@ class UserProvider extends BaseUserProvider implements AccountConnectorInterface
 
         $user->setEnabled(true);
 
-        return $this->updateUserByOAuthUserResponse($user, $response);
+        try {
+            return $this->updateUserByOAuthUserResponse($user, $response);
+        } catch (\Exception $e) {
+            throw new AuthenticationServiceException();
+        }
     }
 
     /**

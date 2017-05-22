@@ -1,0 +1,125 @@
+{% macro list(products) %}
+    {% import "@SyliusShop/Common/Macro/money.html.twig" as money %}
+
+    {% for r in products %}
+        {% set product_show_url = path('route_shop_product_show', {'slug': r.slug}) %}
+        {% set product_image = r.images.first() ? r.images.first.path|imagine_filter('250x250') : 'http://placehold.it/250x250' %}
+
+        <div class="col-xl-4 col-sm-6 col-xs-12">
+            <div class="product-box">
+                <div class="product-box__picture carousel js-flickity">
+                    {% if r.images|length > 1 %}
+                        {% for img in r.images %}
+                            <div class="carousel-cell">
+                                <a href="{{ product_show_url }}" title="{{ r.name }}">
+                                    <img src="{{ img.path|imagine_filter('250x250') }}" alt="{{ r.name }}">
+                                </a>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <div class="carousel-cell">
+                            <a href="{{ product_show_url }}" title="{{ r.name }}">
+                                <img src="{{ product_image }}" alt="{{ r.name }}">
+                            </a>
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="product-box__info">
+                    <a class="product-box__info--label" href="{{ product_show_url }}">{{ r.name }}</a>
+                    <label class="product-box__info--price">
+                        {% if not r.variants.empty() %}
+                            {{ _self.price_simple(r) }}
+                        {% endif %}
+                    </label>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endmacro %}
+
+{% macro display_price(priceable) %}
+    {% import "@SyliusShop/Common/Macro/money.html.twig" as money %}
+    <div class="row">
+        <div class="col-xs-12 product-show-box__shopping--price">
+            {{ _self.price_simple(priceable) }}
+        </div>
+    </div>
+{% endmacro %}
+
+{% macro cart_quantity(form) %}
+    {% form_theme form 'VcareWebBundle:Form:common.html.twig' %}
+    <span class="quantity-box">
+        <a class="btn btn-primary quantity-box--down">-</a>
+        {{ form_widget(form.quantity, {'attr': {'empty_value': '1', 'data-cart-dirty': true}}) }}
+        <a class="btn btn-primary quantity-box--up">+</a>
+    </span>
+{% endmacro %}
+
+{% macro out_of_stock(product) %}
+    <div class="col-md-4 col-xs-12 product-show-box__shopping--price">
+        {{ _self.display_price(product) }}
+    </div>
+    <div class="col-md-6 col-xs-12 product-show-box__shopping--out-of-stock">
+        {{ "sylius.ui.out_of_stock"|trans }}
+    </div>
+{% endmacro %}
+
+{% macro add_to_cart(product) %}
+    {{ render(path('sylius_shop_partial_cart_add_item', {'template': 'VcareWebBundle:Product:add_to_cart.html.twig', 'productId': product.id})) }}
+{% endmacro %}
+
+{% macro item_tax(variant, taxTotal) %}
+    {% import "@SyliusShop/Common/Macro/money.html.twig" as money %}
+    {{ money.convertAndFormat(taxTotal) }}
+{% endmacro %}
+
+{% macro item_text_tax(variant) %}
+    {% if tax_is_included_in_price(variant) %}
+        <span class="included-vat">{{ "vcare.ui.vat_is_included_in_price"|trans }}</span>
+    {% else %}
+        <span class="not-included-vat">{{ "vcare.ui.vat_is_not_included_in_price"|trans }}</span>
+    {% endif %}
+{% endmacro %}
+
+{% macro price_simple(product) %}
+    {% import "@SyliusShop/Common/Macro/money.html.twig" as money %}
+    {{ money.calculatePrice(product|sylius_resolve_variant) }}
+{% endmacro %}
+
+{% macro price_tax_item(variant, unitPrice, taxTotal) %}
+    {% import "@SyliusShop/Common/Macro/money.html.twig" as money %}
+    {#{% if tax_is_included_in_price(variant) %}
+        {{ money.convertAndFormat(unitPrice - taxTotal) }}
+    {% else %}
+        {{ money.convertAndFormat(unitPrice) }}
+    {% endif %}#}
+    {{ money.convertAndFormat(unitPrice) }}
+{% endmacro %}
+
+{% macro variants_cart(items, img_size = '100x100') %}
+    <table class="variants-cart">
+        <tbody>
+            {% for item in items %}
+                {% set product = item.variant.product %}
+                {% set first_image = product.images.first() %}
+                {% set product_picture = first_image ? first_image.path|imagine_filter(img_size) : '//placehold.it/' ~ img_size %}
+                {% set product_url = path('route_shop_product_show', { slug: product.slug }) %}
+
+                <tr>
+                    <td class="variants-cart--img">
+                        <a href="{{ product_url }}"><img src="{{ product_picture }}" alt="{{ product.name }}"></a>
+                    </td>
+                    <td class="variants-cart--product">
+                        <h6><a href="{{ product_url }}">{{ product.name }}</a></h6>
+                        <span>{{ item.quantity }} x {{ _self.price_tax_item(item.variant, item.discountedUnitPrice, item.taxTotal) }}</span>
+                    </td>
+                    <td class="variants-cart--remove">
+                        <button type="button" class="btn btn-sm btn-danger-outline" data-action-url="{{ path('sylius_shop_ajax_cart_item_remove', {'id': item.id}) }}" data-csrf-token="{{ csrf_token(item.id) }}">
+                            <i class="fa fa-trash-o"></i>
+                        </button>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endmacro %}

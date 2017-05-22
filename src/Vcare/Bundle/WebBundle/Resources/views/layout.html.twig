@@ -1,0 +1,65 @@
+{% from '@VcareWeb/Macros/social.html.twig' import metas %}
+{% set var_timestamp = date().timestamp %}
+<!DOCTYPE html>
+<html lang="{{ app.request.locale|slice(0, 2) }}" class="{{ layout|default('layout-basic') }}">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    {% block metatags %}
+        {{ metas({
+            'url': url('route_shop_homepage'),
+            'title': cx_settings.branding('title'),
+            'description': cx_settings.branding('description'),
+            'keywords': cx_settings.branding('keywords')
+        }) }}
+    {% endblock %}
+    <title>{% block title %}{{ cx_settings.branding('title') }}{% endblock %} - {{ cx_settings.branding('name') }}</title>
+
+    {{ include('VcareWebBundle::favicons.html.twig') }}
+
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('assets/web/css/style.css') }}?{{ var_timestamp }}" type="text/css"/>
+    {% endblock %}
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+{% block navbar %}
+    {% include '@VcareWeb/Layout/navbar.html.twig' %}
+{% endblock %}
+
+{% block carousel %}{% endblock %}
+{% block breadcrumb %}{% endblock %}
+
+{% block flash %}
+    {% include '@VcareWeb/Layout/flash.html.twig' %}
+{% endblock %}
+
+{% block content %}{% endblock %}
+
+{% block jumbotron %}{% endblock %}
+
+{% block footer %}
+    {{ render(path('toro_cms_partial_page', {slug: '_tpls/main-footer'})) }}
+{% endblock %}
+
+{% block extra_scripts %}
+    {{ render(path('toro_cms_partial_page', {slug: '_tpls/extra-scripts'})) }}
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('assets/web/js/app.js') }}?{{ var_timestamp }}"></script>
+{% endblock javascripts %}
+
+{% block tpls %}
+    {% include '@VcareWeb/_tpls.html.twig' %}
+{% endblock %}
+
+</body>
+</html>

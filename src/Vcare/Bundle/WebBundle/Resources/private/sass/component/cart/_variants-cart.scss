@@ -1,0 +1,25 @@
+.variants-cart {
+  width: 100%;
+
+  td {
+    border-bottom: 1px solid $gray-lighter;
+    padding: 2px 5px;
+
+    a {
+      color: $color-second;
+
+      &:hover {
+        color: $link-hover-color;
+      }
+    }
+    span {
+      color: $headings-secound-color;
+    }
+  }
+
+  tr:last-child {
+    td {
+      border-bottom: none;
+    }
+  }
+}

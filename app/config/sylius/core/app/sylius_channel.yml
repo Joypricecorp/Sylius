@@ -1,0 +1,5 @@
+sylius_channel:
+    resources:
+        channel:
+            classes:
+                model: Vcare\Bundle\WebBundle\Model\Channel

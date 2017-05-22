@@ -1,0 +1,52 @@
+{% macro metas(params) %}
+    {% if params.title|default(false) %}
+        <meta name="twitter:title" content="{{ params.title }}">
+        <meta property="og:title" content="{{ params.title }}">
+    {% endif %}
+
+    {% if params.image|default(false) %}
+        <meta name="twitter:image" content="{{ params.image }}">
+        <meta property="og:image" content="{{ params.image }}">
+    {% endif %}
+
+    {% if params.description|default(false) %}
+        <meta name="description" content="{{ params.description }}">
+        <meta name="twitter:description" content="{{ params.description }}">
+        <meta property="og:description" content="{{ params.description }}">
+    {% endif %}
+
+    {% if params.keywords|default(false) %}
+        <meta name="keywords" content="{{ params.keywords }}">
+    {% endif %}
+
+    {% if params.url|default(false) %}
+        <link rel="canonical" href="{{ params.url }}">
+    {% endif %}
+
+    <meta property="og:site_name" content="{{ params.site_name|default(cx_settings.branding('name')) }}">
+{% endmacro %}
+
+{%- macro shares(url) -%}
+    <a href="http://www.facebook.com/sharer/sharer.php?u={{ url }}" target="_blank">
+        <i class="fa fa-facebook"></i>
+    </a>
+    <a href="{{ 'https://twitter.com/intent/tweet?' ~ {'via': cx_settings.branding('name')}|url_encode }}" target="_blank">
+        <i class="fa fa-twitter"></i>
+    </a>
+    <a href="https://plus.google.com/share?url={{ url }}" target="_blank">
+        <i class="fa fa-google-plus"></i>
+    </a>
+{%- endmacro -%}
+
+{%- macro shares_default(url) -%}
+    <div class="social-btn">
+        <div class="fb-share-button" data-href="" data-layout="button_count" data-size="small"
+             data-mobile-iframe="false">
+            <a class="fb-xfbml-parse-ignore" target="_blank">{{ 'vcare.ui.share'|trans }}</a>
+        </div>
+        <a class="twitter-share-button"
+           href="{{ 'https://twitter.com/intent/tweet?' ~ {'via': cx_settings.branding('name')}|url_encode }}">
+            {{ 'vcare.ui.tweet'|trans }}
+        </a>
+    </div>
+{%- endmacro -%}

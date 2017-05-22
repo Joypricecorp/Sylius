@@ -1,0 +1,11 @@
+.variant-box {
+  .included-vat {
+    display: none;
+  }
+  &__body {
+    &-heading {}
+    &-code {
+      color: grey;
+    }
+  }
+}

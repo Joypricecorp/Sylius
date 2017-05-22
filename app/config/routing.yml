@@ -1,16 +1,20 @@
-# This file is part of the Sylius package.
-# (c) Paweł Jędrzejewski
+sylius_ajax:
+    resource: "sylius/shop/app/routing/ajax.yml"
+    prefix: /_ajax
 
-sylius_admin:
-    resource: "@SyliusAdminBundle/Resources/config/routing.yml"
-    prefix: /admin
+sylius_admin_dashboard_redirect:
+    path: /admin
+    methods: [GET]
+    defaults:
+        _controller: FrameworkBundle:Redirect:redirect
+        route: sylius_admin_dashboard
+        permanent: true
 
-sylius_admin_api:
-    resource: "@SyliusAdminApiBundle/Resources/config/routing.yml"
-    prefix: /api
+toro_media:
+    resource: "@ToroMediaBundle/Resources/config/routing.yml"
 
 sylius_shop:
-    resource: "@SyliusShopBundle/Resources/config/routing.yml"
+    resource: "sylius/shop/app/routing.yml"
     prefix: /{_locale}
     requirements:
         _locale: ^[a-z]{2}(?:_[A-Z]{2})?$
@@ -18,8 +22,23 @@ sylius_shop:
 sylius_shop_payum:
     resource: "@SyliusShopBundle/Resources/config/routing/payum.yml"
 
+sylius_admin:
+    resource: "sylius/admin/app/routing.yml"
+    prefix: /admin
+
+sylius_admin_api:
+    resource: "@SyliusAdminApiBundle/Resources/config/routing.yml"
+    prefix: /api
+
 sylius_shop_default_locale:
     path: /
     methods: [GET]
     defaults:
         _controller: sylius.controller.shop.locale_switch:switchAction
+
+vcare_posts:
+    resource: "vcare/routing/post.yml"
+
+# must to be end of file.
+toro_cms:
+    resource: "@ToroCmsBundle/Resources/config/routing.yml"

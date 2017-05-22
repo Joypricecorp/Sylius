@@ -1,0 +1,40 @@
+{% extends '@VcareWeb/layout.html.twig' %}
+{% from '@VcareWeb/Macros/misc.html.twig' import pagination %}
+{% from '@VcareWeb/Product/macros.html.twig' import list %}
+{% from '@VcareWeb/Macros/social.html.twig' import metas, shares %}
+{% set taxon = configuration.parameters.get('vars')['taxon']|default %}
+
+{% block metatags %}
+    {% if taxon %}
+        {% set canonical = url('route_shop_product_index_taxon_canonical', { slug: taxon.id }) %}
+        {{ metas({
+            'url': canonical,
+            'title': taxon.name,
+            'description': taxon.description
+        }) }}
+    {% else %}
+        {{ metas({
+            'url': url('route_shop_product_index'),
+            'title': "sylius.ui.products"|trans,
+            'description': null
+        }) }}
+    {% endif %}
+{% endblock %}
+
+{% block title %}{{ taxon ? taxon.name : 'sylius.ui.products'|trans }}{% endblock %}
+
+{% block carousel %}
+    {{ render(path('toro_cms_partial_page', {slug: '_tpls/product-index-slide'})) }}
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="product-list">
+            <h1 class="page-header">{{ taxon ? taxon.name : 'sylius.ui.products'|trans }}</h1>
+            <div class="row">
+                {{ list(products.data) }}
+            </div>
+            {{ pagination(products.data) }}
+        </div>
+    </div>
+{% endblock %}

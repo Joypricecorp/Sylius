@@ -1,0 +1,27 @@
+ui:
+    paysbuy:
+        payment:
+            cart: Cart
+            new: New
+            processing: Processing
+            completed: Completed
+            failed: Failed
+            cancelled: Cancelled
+            void: Void
+            refunded: Refunded
+            authorized: Authorized
+            unknown: Unknown
+            payedout: Payedout
+
+        form:
+            method:
+                label: เลือกช่องทางการชำระเงิน
+
+                paysbuy: บัญชีของเพย์สบาย
+                credit_card: ชำระด้วยบัตรเครดิต
+                paypal: เพย์พาล
+                american_express: อเมริกัน เอกซ์เพรส
+                online_banking: ชำระผ่านบัญชีธนาคารออนไลน์
+                cash: ชำระด้วยเงินสด
+                smart_perse: Smart Perse
+                loan: ผ่อนชำระ

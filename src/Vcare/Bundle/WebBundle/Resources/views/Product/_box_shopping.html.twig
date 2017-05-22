@@ -1,0 +1,18 @@
+{% from "VcareWebBundle:Product:macros.html.twig" import out_of_stock, add_to_cart, display_price %}
+
+<div class="row">
+    {% if product.externalOrderUrl %}
+        {{ display_price(product) }}
+        <div class="col-xs-12">
+            <a href="{{ product.externalOrderUrl }}" class="btn btn-info" target="_blank">
+                <i class="fa fa-shopping-cart"></i> {{ 'vcare.product.external_order'|trans }}
+            </a>
+        </div>
+    {% else %}
+        {% if product.variants.empty() or product.simple and not sylius_inventory_is_available(product.variants.first) %}
+            {{ out_of_stock(product) }}
+        {% else %}
+            {{ add_to_cart(product) }}
+        {% endif %}
+    {% endif %}
+</div>

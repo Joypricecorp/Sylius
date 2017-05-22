@@ -1,0 +1,48 @@
+sylius_shop_ajax_user_check_action:
+    path: /users/check
+    methods: [GET]
+    defaults:
+        _controller: sylius.controller.shop_user:showAction
+        _format: json
+        _sylius:
+            repository:
+                method: findOneByEmail
+                arguments:
+                    email: $email
+            serialization_groups: [Secured]
+
+sylius_shop_ajax_cart_add_item:
+    path: /cart/add
+    methods: [POST]
+    defaults:
+        _controller: sylius.controller.order_item:addAction
+        _format: json
+        _sylius:
+            factory:
+                method: createForProduct
+                arguments: [expr:service('sylius.repository.product').find($productId)]
+            form:
+                type: Sylius\Bundle\CoreBundle\Form\Type\Order\AddToCartType
+                options:
+                    product: expr:service('sylius.repository.product').find($productId)
+            redirect:
+                route: sylius_shop_cart_summary
+                parameters: {}
+            flash: sylius.cart.add_item
+
+sylius_shop_ajax_cart_item_remove:
+    path: /cart/{id}/remove
+    methods: [DELETE]
+    defaults:
+        _controller: sylius.controller.order_item:removeAction
+        _format: json
+        _sylius:
+            flash: sylius.cart.remove_item
+
+sylius_shop_ajax_render_province_form:
+    path: /render-province-form
+    methods: [GET]
+    defaults:
+        _controller: sylius.controller.province:choiceOrTextFieldFormAction
+        _sylius:
+            template: "@VcareWeb/Checkout/_provinces.html.twig"

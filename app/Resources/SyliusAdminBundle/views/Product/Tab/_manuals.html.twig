@@ -1,0 +1,19 @@
+{% form_theme form 'SyliusUiBundle:Form:imagesTheme.html.twig' %}
+
+<div class="ui tab" data-tab="manuals">
+    <h3 class="ui dividing header">{{ 'Manuals' }}</h3>
+    <br>
+    <div class="ui styled fluid accordion">
+        {% for locale, translationForm in form.translations %}
+            <div data-locale="{{ locale }}">
+                <div class="title{% if 0 == loop.index0 %} active{% endif %}">
+                    <i class="dropdown icon"></i>
+                    <i class="{{ locale|slice(3, 2)|lower }} flag"></i> {{ locale|sylius_locale_name }}
+                </div>
+                <div class="ui content{% if 0 == loop.index0 %} active{% endif %}">
+                    {{ form_row(translationForm.manuals, { label: false }) }}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>

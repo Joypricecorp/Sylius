@@ -1,0 +1,31 @@
+.cart-mobile {
+  padding-bottom: 1rem;
+  padding-top: 1rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #f1f1f1;
+  background: #f5f5f5;
+
+  .variant-box {
+    padding: 0 .5rem;
+  }
+
+  .quantity-box {
+    @include flex-align-left();
+  }
+
+  table {
+    th {
+      text-align: right;
+    }
+
+    .regular-price {
+      color: red;
+      text-decoration: line-through;
+      margin-right: 5px;
+    }
+  }
+
+  &__remove {
+    text-align: center;
+  }
+}

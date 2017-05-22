@@ -1,0 +1,27 @@
+{%- macro toro_image_src(image, size, alt = '') -%}
+    {% spaceless %}
+        {% if not image %}
+            {% set src = asset('assets/web/img/g-bg.png') %}
+        {% else %}
+            {% set src = cmf_media_display_url(image, { imagine_filter: 'cmf_' ~ size }) %}
+        {% endif %}
+        {{ src }}
+    {% endspaceless %}
+{%- endmacro -%}
+
+{% macro toro_image(image, size, alt = '', class = '') %}
+    {% set alt = alt|default('Picture') %}
+    <img class="{{ class }}" src="{{ _self.toro_image_src(image, size, alt) }}" alt="{{ alt }}" />
+{% endmacro %}
+
+{% macro toro_image_strip(image, alt = '', class = '') %}
+    {{ _self.toro_image(image, 'strip', alt, class) }}
+{% endmacro %}
+
+{% macro toro_image_strip_src(image) %}
+    {{ _self.toro_image_src(image, 'strip') }}
+{% endmacro %}
+
+{% macro toro_image_cover(image, text = '') %}
+    <div class="cover-image" style="background-image: url({{ _self.toro_image_strip_src(image) }})">{% if text %}<div class="cover-image__text">{{ text }}</div>{% endif %}</div>
+{% endmacro %}

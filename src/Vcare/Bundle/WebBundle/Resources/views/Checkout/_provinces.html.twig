@@ -1,0 +1,9 @@
+{% form_theme form 'VcareWebBundle:Form:common.html.twig' %}
+<div class="form-group">
+    {{ form_label(form) }}
+    {% if form.vars.choices is defined %}
+        {{ form_widget(form, {'attr': {'class': 'select2 country-select'}}) }}
+    {% else %}
+        {{ form_widget(form) }}
+    {% endif %}
+</div>

@@ -1,0 +1,119 @@
+.account-menu {
+    padding: 1em 0;
+
+    select{
+        border: 0;
+        outline-offset:-1px;
+    }
+
+    &__list {
+        padding-bottom: 2rem;
+
+        a {
+            padding: 8px;
+        }
+    }
+
+    &__content {
+
+        &--header {
+            color: $color-base;
+        }
+
+        &--sub-header {
+            padding-bottom: 14px;
+        }
+
+        &--id, &--email, &--date, &--number {
+            padding-bottom: 4px;
+        }
+
+        &--shipment-state {
+            padding-top: 4px;
+        }
+
+        &--order {
+
+            p {
+                padding-left: 14px;
+            }
+        }
+
+        &--address-header {
+            font-weight: 500;
+            padding-bottom: 10px;
+        }
+
+        &--address-detail {
+
+            p {
+                margin-bottom: 6px;
+            }
+        }
+    }
+
+    &__order-table {
+
+        thead {
+
+            td {
+                text-align: center;
+                font-weight: bold;
+            }
+        }
+
+        tbody {
+
+            td {
+                font-size: 14px;
+            }
+        }
+
+        &--total {
+            text-align: right;
+        }
+
+        &--invoice, &--action {
+            text-align: center;
+        }
+    }
+
+    &__product-table {
+
+        .media-object {
+            float: left;
+        }
+
+        thead {
+
+            th {
+                text-align: center;
+                font-weight: 500;
+            }
+
+        }
+
+        tfoot {
+
+            th, td {
+                text-align: right;
+            }
+        }
+
+        &--product {
+
+            h4 {
+                font-size: 1rem;
+                font-weight: bold;
+            }
+        }
+
+        &--qty {
+            text-align: center !important;
+        }
+
+        &--price, &--total {
+            text-align: right;
+        }
+    }
+}

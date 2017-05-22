@@ -1,0 +1,63 @@
+{% extends 'VcareWebBundle:Account:layout.html.twig' %}
+
+{% block breadcrumbs%}
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="{{ path('route_shop_homepage') }}">{{ 'sylius.ui.home'|trans }}</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a href="{{ path('sylius_shop_account_dashboard') }}">{{ 'sylius.ui.my_account'|trans }}</a>
+        </li>
+        <li class="breadcrumb-item active">{{ 'sylius.ui.address_book'|trans }}</li>
+    </ol>
+{% endblock %}
+
+{% block subcontent %}
+    <div class="card card-block">
+        <h4 class="card-title">{{ 'sylius.ui.address_book'|trans }}</h4>
+        <p class="card-text">{{ 'sylius.ui.manage_your_saved_addresses'|trans }}</p>
+
+        <a class="btn btn-default" href="{{ path('sylius_shop_account_address_book_create') }}">
+            <i class="fa fa-plus"></i> {{ 'sylius.ui.add_address'|trans }}
+        </a>
+
+        <div class="card-text">
+            {% if addresses|length > 0 %}
+                <div class="row">
+                    {% set default_address = (sylius.customer.defaultAddress) %}
+                    {% for address in addresses %}
+                        <div class="col-md-6 col-xs-12">
+                            <div class="card card-block">
+                                {% include '@SyliusShop/Common/_address.html.twig' with {'address': address} %}
+
+                                <a class="btn btn-info btn-sm" href="{{ path('sylius_shop_account_address_book_update', {'id': address.id}) }}">
+                                    <i class="fa fa-edit"></i> {{ "sylius.ui.edit"|trans }}
+                                </a>
+
+                                <form action="{{ path('sylius_shop_account_address_book_delete', {'id': address.id}) }}"
+                                      method="post" style="display: inline">
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <button class="btn btn-danger btn-sm" type="submit" data-requires-confirmation>
+                                        <i class="fa fa-trash-o"></i> {{ "sylius.ui.delete"|trans }}
+                                    </button>
+                                </form>
+
+                                {% if default_address.id == address.id %}
+                                    <span class="btn btn-success btn-sm" style="cursor: default">
+                                        <i class="fa fa-bookmark"></i> {{ "Default"|trans }}
+                                    </span>
+                                {% else %}
+                                    {{ render(path('sylius_shop_account_address_book_set_as_default', {id: address.id})) }}
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="alert">
+                    {{ 'sylius.ui.you_have_no_addresses_defined'|trans }}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<constraint-mapping xmlns="http://symfony.com/schema/dic/constraint-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/constraint-mapping http://symfony.com/schema/dic/services/constraint-mapping-1.0.xsd">
+    <class name="Vcare\Bundle\WebBundle\Model\ProductManual">
+        <property name="title">
+            <constraint name="NotBlank">
+                <option name="message">Please enter pdf manual title</option>
+                <option name="groups">
+                    <value>sylius</value>
+                </option>
+            </constraint>
+        </property>
+        <property name="file">
+            <!--<constraint name="NotBlank">
+                <option name="message">Please insert pdf file.</option>
+                <option name="groups">
+                    <value>sylius</value>
+                </option>
+            </constraint>-->
+            <constraint name="Toro\Bundle\MediaBundle\Validator\Constraints\CmfFile">
+                <option name="mimeTypesMessage">Only PDF type is allowed (max 10M)</option>
+                <option name="maxSize">10M</option>
+                <option name="mimeTypes">
+                    <value>application/pdf</value>
+                    <value>application/x-pdf</value>
+                </option>
+                <option name="groups">
+                    <value>sylius</value>
+                </option>
+            </constraint>
+        </property>
+    </class>
+</constraint-mapping>

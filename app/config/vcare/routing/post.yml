@@ -1,0 +1,41 @@
+vcare_shop_post_index:
+    path: /posts
+    defaults:
+        _controller: FrameworkBundle:Template:template
+        template: VcareWebBundle:Post:index.html.twig
+
+vcare_shop_post_all:
+    path: /posts/all
+    defaults:
+        _controller: toro.controller.post:indexAction
+        _sylius:
+            grid: vcare_shop_post_index
+            template: VcareWebBundle:Post:all.html.twig
+
+vcare_shop_post_canonical:
+    path: /posts/{id}
+    methods: [GET]
+    requirements:
+        id: \d+
+    defaults:
+        _controller: toro.controller.post:showAction
+        _sylius:
+            template: VcareWebBundle:Post:show.html.twig
+            repository:
+                method: findOneByIdAndChannel
+                arguments:
+                    - $id
+                    - 'expr:service("sylius.context.channel").getChannel()'
+
+vcare_shop_post_show:
+    path: /posts/{slug}
+    methods: [GET]
+    defaults:
+        _controller: toro.controller.post:showAction
+        _sylius:
+            template: VcareWebBundle:Post:show.html.twig
+            repository:
+                method: findOneBySlugAndChannel
+                arguments:
+                    - $slug
+                    - 'expr:service("sylius.context.channel").getChannel()'

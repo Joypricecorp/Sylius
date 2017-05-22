@@ -1,0 +1,195 @@
+{% import "@SyliusShop/Common/Macro/money.html.twig" as money %}
+{% from "VcareWebBundle:Product:macros.html.twig" import cart_quantity, item_tax, price_tax_item %}
+{% from "VcareWebBundle:Product:macros.html.twig" import tax_price %}
+<!doctype html>
+<html>
+    <title>Vcare Asia</title>
+    <head>
+        {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('assets/web/css/style.css') }}" type="text/css"/>
+        {% endblock %}
+    </head>
+
+    <body>
+    {% if 'fulfilled' == order.state %}
+        <div class="invoice-box">
+            {% if app.request.get('printout') %}
+                <script>window.print();</script>
+            {% else %}
+                <div class="text-xs-right" style="margin-bottom: 1rem">
+                    <a class="btn btn-lg btn-secondary" target="printout" href="{{ path('sylius_shop_account_order_incoice', {number: order.number, printout: 1}) }}">
+                        <i class="fa fa-print"></i> {{ "Print" }}
+                    </a>
+                    <iframe name="printout" style="visibility: hidden;width: 0; height: 0; position: absolute;"></iframe>
+                </div>
+            {% endif %}
+
+            <table cellpadding="0" cellspacing="0">
+                <tr class="top">
+                    <td colspan="5">
+                        <table>
+                            <tr>
+                                <td class="title">
+                                    <img src="{{ asset('logo.png') }}">
+                                </td>
+                                <td>
+                                    {{ 'sylius.ui.invoice'|trans }} #{{ order.number }}<br>
+                                    {{ 'sylius.ui.placed_at'|trans }}: {{ order.createdAt|localizeddate }}<br>
+                                    {{ ('sylius.ui.' ~ order.shippingState)|trans }}
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+
+                <tr class="information">
+                    {% set address = order.shippingAddress %}
+                    <td colspan="5">
+                        <table>
+                            <tr>
+                                <td>
+                                    {% if address.company %}
+                                        <div class="account-menu__content--address-header">
+                                            {{ address.company }}
+                                        </div>
+                                    {% endif %}
+
+                                    <div class="account-menu__content--address-detail">
+                                        <p>{{ address.street }}</p>
+                                        <p>{{ address.city }}</p>
+
+                                        {% if address|sylius_province_name is not empty %}
+                                            {{ address|sylius_province_name }}<br/>
+                                        {% endif %}
+
+                                        <p>{{ address.countryCode|sylius_country_name|upper }} {{ address.postcode }}</p>
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <div class="account-menu__content--address-header">
+                                        {{ address.firstName }} {{ address.lastName }}
+                                    </div>
+
+                                    <div class="account-menu__content--address-detail">
+                                        {{ address.phoneNumber }}
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+
+                {# payment method #}
+                {% if order.payments|length %}
+                    <tr class="heading">
+                        <td colspan="4">
+                            {{ 'sylius.ui.payment_method'|trans }}
+                        </td>
+                        <td>
+                            {{ 'sylius.ui.amount'|trans }}
+                        </td>
+                    </tr>
+                    {% for payment in order.payments %}
+                        <tr class="item">
+                            <td colspan="4">
+                                {{ payment.method.code ~ ': ' ~ payment.method.gateway }}
+                            </td>
+                            <td>
+                                {{ money.format(payment.amount, payment.currencyCode) }}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                {% endif %}
+
+                {# product items #}
+                <tr class="heading">
+                    <td>#</td>
+                    <td>
+                        {{ 'sylius.ui.product'|trans }}
+                    </td>
+                    <td class="account-menu__product-table--price">
+                        {{ 'sylius.ui.price'|trans }}
+                    </td>
+                    <td class="account-menu__product-table--qty">
+                        {{ 'sylius.ui.qty'|trans }}
+                    </td>
+                    {#<td class="account-menu__product-table--tax">
+                        {{ 'sylius.ui.tax'|trans }}
+                    </td>#}
+                    <td class="account-menu__product-table--total">
+                        {{ 'sylius.ui.total'|trans }}
+                    </td>
+                </tr>
+
+                {% for item in order.items %}
+                    <tr class="item{% if loop.index == order.items|length %} last{% endif %}">
+                        <td>{{ loop.index }}.</td>
+                        <td>{{ item.product.name }}</td>
+                        <td class="account-menu__product-table--price">
+                            {% if item.unitPrice != item.discountedUnitPrice %}
+                                <span class="regular-price">{{ price_tax_item(item.variant, item.unitPrice, item.taxTotal) }}</span>
+                            {% endif %}
+                            <span class="discounted-price">
+                                {{ price_tax_item(item.variant, item.discountedUnitPrice, item.taxTotal) }}
+                            </span>
+                        </td>
+                        <td class="account-menu__product-table--qty">
+                            {{ item.quantity }}
+                        </td>
+                        {#<td class="account-menu__product-table--tax">
+                            {{ item_tax(item.variant, item.taxTotal) }}
+                        </td>#}
+                        <td class="account-menu__product-table--total">
+                            {{ money.convertAndFormat(item.subtotal) }}
+                        </td>
+                    </tr>
+                {% endfor %}
+
+                <tfoot>
+                {# tax total #}
+                {#<tr>
+                    <td colspan="5">
+                        <span class="pull-right">{{ 'sylius.ui.tax_total'|trans }} :</span>
+                    </td>
+                    <td>
+                        {{ money.convertAndFormat(order.taxTotal) }}
+                    </td>
+                </tr>#}
+
+                {# shipping total #}
+                <tr>
+                    <td colspan="4">
+                        <span class="pull-right">{{ 'sylius.ui.shipping_total'|trans }} :</span>
+                    </td>
+                    <td>
+                        {{ money.convertAndFormat(order.shippingTotal) }}
+                    </td>
+                </tr>
+
+                {% if order.orderPromotionTotal %}
+                    <tr>
+                        <td class="text-align-right" colspan="4">{{ 'sylius.ui.promotion_total'|trans }} :</td>
+                        <td>
+                            {{ money.convertAndFormat(order.orderPromotionTotal) }}
+                        </td>
+                    </tr>
+                {% endif %}
+
+                {# all total total #}
+                <tr class="total">
+                    <td colspan="4">
+                        <span class="pull-right">{{ 'sylius.ui.order_total'|trans }}:</span>
+                    </td>
+                    <td>
+                        {{ money.convertAndFormat(order.total) }}
+                    </td>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+    {% else %}
+
+    {% endif %}
+    </body>
+</html>

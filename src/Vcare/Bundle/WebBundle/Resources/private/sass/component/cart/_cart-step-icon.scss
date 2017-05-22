@@ -1,0 +1,54 @@
+$cart-step-item-background-color: $color-ext;
+$cart-step-item-text-color: lighten($cart-step-item-background-color, 15%);
+
+.cart-step {
+  text-align: center;
+  margin: 0 auto;
+  padding: 0 0 2rem 0;
+
+  ul {
+    list-style: none;
+    padding: 0;
+    display: inline-block;
+    width: auto;
+    margin: 0;
+  }
+
+  li {
+    display: inline-block;
+    text-align: center;
+    padding: inherit !important;
+
+    width: 3.5rem;
+    height: 3.5rem;
+    vertical-align: middle;
+    line-height: 4rem;
+    border-radius: 50%;
+    background: $cart-step-item-background-color;
+    margin: 0 5px;
+
+    &:after,
+    &:before {
+      display: none;
+    }
+
+    i {
+      font-size: 1.5rem;
+    }
+
+    a, span {
+      display: none;
+    }
+
+  }
+
+  &--active {
+    i {
+      font-size: 2rem !important;
+    }
+
+    background: $color-base !important;
+    color: white;
+    line-height: 4.3rem !important;
+  }
+}

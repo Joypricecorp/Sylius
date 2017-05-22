@@ -1,0 +1,21 @@
+{% extends 'VcareWebBundle::layout.html.twig' %}
+
+{% block carousel %}{% endblock %}
+
+{% block content %}
+    {%- set taxon_content = render(path('toro_cms_partial_page', {slug: '_tpls/home-taxons'})) -%}
+    {%- set product_content = render(path('toro_cms_partial_page', {slug: '_tpls/blog-index-products'})) -%}
+    {%- set general_content = render(path('toro_cms_partial_page', {slug: '_tpls/blog-index-generals'})) -%}
+
+    {{ taxon_content|raw }}
+    {{ product_content|raw }}
+    {{ general_content|raw }}
+
+    {% if product_content or general_content %}
+        <div class="container home-more-product">
+            <a href="{{ path('vcare_shop_post_index') }}" class="btn btn-lg btn-primary">
+                {{ "vcare.ui.more_contents"|trans }}
+            </a>
+        </div>
+    {% endif %}
+{% endblock %}

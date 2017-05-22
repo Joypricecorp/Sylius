@@ -1,0 +1,48 @@
+{% extends 'VcareWebBundle::layout.html.twig' %}
+{% from "VcareWebBundle:Macros:images.html.twig" import toro_image %}
+{% from 'VcareWebBundle:Macros:misc.html.twig' import pagination %}
+{%  do posts.data.setMaxPerPage(20) %}
+
+{%- block carousel %}
+    {{ render(path('toro_cms_partial_page', {slug: '_tpls/blog-featured'})) }}
+{% endblock -%}
+
+{% block content %}
+    <div class="container post-all">
+        <h2>{{ "vcare.ui.all_posts"|trans }}</h2>
+        <hr>
+
+        <div class="row">
+            {% for post in posts.data %}
+                <div class="col-md-6 col-xs-12">
+                    <div class="row home-content__box">
+                        <div class="col-md-6 col-xs-12">
+                            <p class="home-content--image">
+                                <a href="{{ path('vcare_shop_post_show', {slug: post.slug}) }}">
+                                    {{ toro_image(post.thumb|default(post.cover), 'post_small', post.slug) }}
+                                </a>
+                            </p>
+                        </div>
+                        <div class="col-md-6 col-xs-12">
+                            <h4>
+                                <a href="{{ path('vcare_shop_post_show', {slug: post.slug}) }}">
+                                {{ post.title }}
+                                </a>
+                            </h4>
+                            <h5>{{ post.description|truncate(60) }}</h5>
+                            <small class="datetime">{{ post.createdAt|localizeddate('long', 'medium') }}</small>
+                            <a class="btn btn-link" href="{{ path('vcare_shop_post_show', {slug: post.slug}) }}">
+                                <i class="fa fa-arrow-circle-o-right"></i> {{ "vcare.ui.read_more"|trans }}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {% if (0 == loop.index%2) %}
+                    {{ '</div><div class="row">' }}
+                {% endif %}
+            {% endfor %}
+        </div>
+
+        {{ pagination(posts.data) }}
+    </div>
+{% endblock %}

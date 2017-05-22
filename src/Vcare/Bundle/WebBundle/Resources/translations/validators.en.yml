@@ -1,0 +1,7 @@
+"%stockable% does not have sufficient stock.": "%stockable% เหลือไม่พอสำหรับจำนวนที่คุณสั่งซื้อ"
+
+vcare.customer.phone_number.not_blank: Please enter your phone number.
+vcare.customer.phone_number.not_numeric: Invalid phone number.
+vcare.customer.phone_number.not_valid_length: Invalid phone number.
+vcare.customer.postcode.not_numeric: Invalid postcode.
+vcare.customer.name.registered: This person is already registered.

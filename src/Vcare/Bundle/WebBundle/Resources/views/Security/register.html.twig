@@ -1,0 +1,66 @@
+{% extends 'VcareWebBundle::layout.html.twig' %}
+
+{% form_theme form 'VcareWebBundle:Form:common.html.twig' %}
+
+{% block content %}
+    <div class="container">
+        <div class="row user-register">
+            <div class="col-sm-6 col-xs-12 user-login__left">
+                <div class="page-header">{{ 'vcare.ui.social_login'|trans }}</div>
+
+                <div class="user-login__form--social">
+                    <a class="user-login__fb btn btn-fb btn-lg"
+                       href="{{ path('hwi_oauth_service_redirect', {'service': 'facebook' }) }}">
+                        <i class="fa fa-facebook-official"></i> {{ 'vcare.ui.social_facebook_login'|trans }}
+                    </a>
+                    <a class="ser-login__ih btn btn-primary btn-lg" href="{{ path('sylius_shop_login') }}">
+                        {{ 'sylius.ui.have_an_account_already'|trans }} {{ 'sylius.ui.sign_in_here'|trans }}
+                    </a>
+                    {#<a class="user-login__ih btn btn-primary btn-lg"><i class="user-login__ih--icon"></i>{{ 'Login with iHealth'|trans }}</a>#}
+                </div>
+            </div>
+            <div class="col-md-6 col-xs-12">
+                <div class="page-header">
+                    {{ 'sylius.ui.register_in_the_store'|trans|raw }}
+                    <div class="page-subheader">
+                        {{ 'vcare.ui.register_in_the_store'|trans|raw }}
+                    </div>
+                </div>
+
+                {{ form_start(form, {'action': path('sylius_shop_register'), 'attr': {'class': '', 'novalidate': 'novalidate'}}) }}
+                {{ form_errors(form)|raw }}
+
+                <div class="user-form">
+                    <div class="card">
+                        <div class="card-block">
+                            <div class="row">
+                                <div class="col-md-6 col-xs-12">{{ form_row(form.firstName) }}</div>
+                                <div class="col-md-6 col-xs-12">{{ form_row(form.lastName) }}</div>
+                            </div>
+
+                            {{ form_row(form.phoneNumber, {attr: {class: 'input-number-only'}}) }}
+
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-block">
+                            <h4 class="card-title">{{ "vcare.ui.login_information"|trans }}</h4>
+                            {{ form_row(form.email) }}
+                            {{ form_row(form.user.plainPassword) }}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+
+                    <button class="btn btn-lg btn-success pull-right" type="submit">
+                        {{ 'sylius.ui.create_an_account'|trans|raw }}
+                    </button>
+                </div>
+
+                {{ form_widget(form._token) }}
+                {{ form_end(form, {'render_rest': false}) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
