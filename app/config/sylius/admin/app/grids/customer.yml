@@ -1,0 +1,17 @@
+sylius_grid:
+    grids:
+        sylius_admin_customer:
+            actions:
+                main:
+                    export:
+                        type: links
+                        label: "Export"
+                        options:
+                            icon: "download"
+                            links:
+                                excel:
+                                    label: "Excel"
+                                    icon: "file excel outline"
+                                    route: vcare_admin_export_customers
+                                    parameters:
+                                        criteria: $criteria

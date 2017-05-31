@@ -3,3 +3,4 @@ imports:
     - { resource: "sylius_channel.yml" }
     - { resource: "sylius_mailer.yml" }
     - { resource: "sylius_order.yml" }
+    - { resource: "sylius_customer.yml" }

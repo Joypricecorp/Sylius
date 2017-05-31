@@ -1,0 +1,43 @@
+vcare_admin_export_customers:
+    path: /export/customers
+    defaults:
+        _controller: sylius.controller.customer:excelAction
+        _sylius:
+            grid: sylius_admin_customer
+        _excel:
+            creator: "VcareAsia"
+            title: "Customers"
+            columns:
+                id: true
+                firstName: true
+                lastName: true
+                phoneNumber: true
+                email: true
+                gender:
+                    - getGender
+                user:
+                    - getCustomerType
+                birthday:
+                    - getDate
+                    - [ 'd/m/Y' ]
+                createdAt:
+                    - getDate
+                    - [ 'd/m/Y H:i' ]
+
+vcare_admin_export_orders:
+    path: /export/orders
+    defaults:
+        _controller: sylius.controller.order:excelAction
+        _sylius:
+            grid: sylius_admin_order
+        _excel:
+            creator: "VcareAsia"
+            title: "Orders"
+            columns:
+                number: true
+                customer.fullName: true
+                customer.phoneNumber: true
+                customer.email: true
+                createdAt:
+                    - getDate
+                    - [ 'd/m/Y H:i' ]

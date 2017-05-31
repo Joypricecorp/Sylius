@@ -4,6 +4,9 @@ toro_admin_post:
 toro_admin_page:
     resource: "page.yml"
 
+toro_admin_export:
+    resource: "export.yml"
+
 BCCCronManagerBundle:
     resource: "@BCCCronManagerBundle/Resources/config/routing.xml"
     prefix: /crons

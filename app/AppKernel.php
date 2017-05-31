@@ -112,6 +112,7 @@ class AppKernel extends Kernel
             new \Symfony\Bundle\AsseticBundle\AsseticBundle(),
 
             new \HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
+            new \Liuggio\ExcelBundle\LiuggioExcelBundle(),
         ];
 
         return array_merge(self::getSyliusBundles(), $bundles);
