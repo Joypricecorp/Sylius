@@ -10,3 +10,4 @@ imports:
     - { resource: "liip_imagine.yml" }
     - { resource: "stof_doctrine_extensions.yml" }
     - { resource: "sylius_resource.yml" }
+    - { resource: "stfalcon_tinymce.yml" }

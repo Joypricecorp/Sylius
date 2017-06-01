@@ -8,3 +8,10 @@ sylius_resource:
                 model: Vcare\Bundle\WebBundle\Model\ProductManual
                 interface: Vcare\Bundle\WebBundle\Model\ProductManualInterface
                 repository: Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository
+
+        vcare.news_subscriber:
+            classes:
+                model: Vcare\Bundle\WebBundle\Model\NewsSubscriber
+                interface: Vcare\Bundle\WebBundle\Model\NewsSubscriberInterface
+                controller: Vcare\Bundle\WebBundle\Controller\NewsSubscriberController
+                form: Vcare\Bundle\WebBundle\Form\Type\NewsSubscriberType

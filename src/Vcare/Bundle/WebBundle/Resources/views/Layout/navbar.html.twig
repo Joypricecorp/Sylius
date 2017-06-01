@@ -38,18 +38,20 @@
                             </div>
                         </li>
                     {% else %}
-                        <li class="nav-item">
-                            <a class="nav-link navbar-user__reg" href="{{ path('sylius_shop_register') }}">
-                                <i class="fa fa-user"></i> {{ "sylius.ui.register"|trans }}
-                            </a>
-                        </li>
                         <li class="nav-item navbar-user__log">
                             <a class="nav-link" href="{{ path('sylius_shop_login') }}">
-                                <i class="fa fa-sign-in"></i>
-                                {{ "sylius.ui.login"|trans }}
+                                <i class="fa fa-user-circle-o"></i>
+                                {{ "sylius.ui.register"|trans }} / {{ "sylius.ui.login"|trans }}
                             </a>
                         </li>
                     {% endif %}
+
+                    <li class="nav-item navbar-user__contact-us">
+                        <a class="nav-link" href="{{ path('sylius_shop_login') }}">
+                            <i class="fa fa-envelope-o"></i>
+                            {{ "sylius.ui.contact_us"|trans }}
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
