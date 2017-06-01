@@ -1,0 +1,9 @@
+vcare_shop_news_subscriber_submit:
+    path: /news-subscriber/submit
+    methods: [GET, POST]
+    defaults:
+        _controller: vcare.controller.news_subscriber:createAction
+        _sylius:
+            flash: false
+            template: VcareWebBundle:NewsSubscriber:form.html.twig
+            redirect: vcare_shop_news_subscriber_submit

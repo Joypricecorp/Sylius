@@ -1,0 +1,18 @@
+{% form_theme form "VcareWebBundle:Form:common.html.twig" %}
+
+{% if app.request.query.get('id') %}
+<div class="alert alert-block alert-success">
+    {{ "vcare.ui.news_subscribers_thank_you"|trans|raw }}
+</div>
+{% else %}
+    {{ form_start(form, { method: 'POST', attr: {
+        'data-ajax-form': path('vcare_shop_news_subscriber_submit')
+    }}) }}
+    {{ form_errors(form) }}
+    {{ form_row(form.email, { attr: {
+        'placeholder': 'vcare.form.news_subscriber.email_placeholder'|trans
+    }}) }}
+
+    <button type="submit" class="btn btn-primary">{{ "Submit" }}</button>
+    {{ form_end(form) }}
+{% endif %}

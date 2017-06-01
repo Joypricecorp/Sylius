@@ -89,3 +89,6 @@ sylius.ui.updated: Updated
 sylius.ui.deleted: Deleted
 
 vcare.ui.news_subscribers: News Subscribers
+vcare.ui.news_subscribers_thank_you: <b>ขอขอบพระคุณ!</b><br>เราได้รับอีเมลของท่านแล้ว
+vcare.form.news_subscriber.email: สมัครสมาชิกรับข่าวสาร
+vcare.form.news_subscriber.email_placeholder: ระบุอีเมล

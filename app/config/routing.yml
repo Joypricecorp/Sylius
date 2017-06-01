@@ -24,6 +24,9 @@ toro_media:
 vcare_posts:
     resource: "vcare/routing/post.yml"
 
+vcare_news_subscriber:
+    resource: "vcare/routing/news_subscriber.yml"
+
 # must to be end of file.
 toro_cms:
     resource: "@ToroCmsBundle/Resources/config/routing.yml"

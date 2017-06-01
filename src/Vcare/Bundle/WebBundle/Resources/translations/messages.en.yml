@@ -89,3 +89,6 @@ sylius.ui.updated: Updated
 sylius.ui.deleted: Deleted
 
 vcare.ui.news_subscribers: News Subscribers
+vcare.ui.news_subscribers_thank_you: <b>Thanks You!</b><br>Your email was submited.
+vcare.form.news_subscriber.email: Subscribe Newsletter
+vcare.form.news_subscriber.email_placeholder: Your Email

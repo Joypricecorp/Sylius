@@ -18,21 +18,21 @@ sylius_grid:
                     sortable: ~
                     options:
                         format: d-m-Y H:i
-                enabled:
-                    type: twig
-                    label: sylius.ui.enabled
-                    sortable: ~
-                    options:
-                        template: "@SyliusUi/Grid/Field/enabled.html.twig"
+#                enabled:
+#                    type: twig
+#                    label: sylius.ui.enabled
+#                    sortable: ~
+#                    options:
+#                        template: "@SyliusUi/Grid/Field/enabled.html.twig"
             filters:
                 search:
                     type: string
                     label: sylius.ui.search
                     options:
                         fields: [email]
-                enabled:
-                    type: boolean
-                    label: sylius.ui.enabled
+#                enabled:
+#                    type: boolean
+#                    label: sylius.ui.enabled
             actions:
                 item:
                     delete:

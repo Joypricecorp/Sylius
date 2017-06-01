@@ -20,6 +20,7 @@ $(document).on('submit', 'form[data-ajax-form]', function (e) {
     });
 
     $form.find('.alert-error').hide();
+    $form.find('button').attr('disabled', true);
 
     $form
         .addClass('loading')
@@ -34,6 +35,7 @@ $(document).on('submit', 'form[data-ajax-form]', function (e) {
         processData: false, // Don't process the files
         contentType: false, // Set content type to false as jQuery will tell the server its a query string request
         success: function (res, textStatus, jqXHR) {
+            $form.find('button').attr('disabled', false);
             var $res = $(res);
 
             if ($form.data('reload')) {
@@ -54,6 +56,7 @@ $(document).on('submit', 'form[data-ajax-form]', function (e) {
             $(document).trigger('dom-node-inserted', [$res]);
         },
         error: function (jqXHR, textStatus, errorThrown) {
+            $form.find('button').attr('disabled', false);
             $form.removeClass('loading');
             if ($form.data('ajax-error')) {
                 $form

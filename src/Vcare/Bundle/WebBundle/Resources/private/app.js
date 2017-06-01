@@ -18,8 +18,12 @@
         })
     ;
 
-    $(document).on('submit', 'form', function () {
-        $('.btn').attr('disabled', true);
+    $(document).on('submit', 'form:not([data-special]):not([data-ajax-form])', function (e) {
+        e.preventDefault();
+
+        $(this).find('button, .btn').attr('disabled', true);
+
+        this.submit();
     });
 
     $(document).on('change', '.paysbuy-method-choices input', function () {

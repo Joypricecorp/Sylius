@@ -138,5 +138,13 @@
             <argument type="service" id="sylius.context.cart" />
             <argument type="service" id="sylius.repository.order" />
         </service>
+
+        <service id="vcare.form.news_subscriber.type" class="Vcare\Bundle\WebBundle\Form\Type\NewsSubscriberType">
+            <argument type="string">%vcare.model.news_subscriber.class%</argument>
+            <argument type="collection">
+                <argument type="string">vcare</argument>
+            </argument>
+            <tag name="form.type"/>
+        </service>
     </services>
 </container>

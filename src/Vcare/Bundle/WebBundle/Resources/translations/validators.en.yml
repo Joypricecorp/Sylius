@@ -5,3 +5,7 @@ vcare.customer.phone_number.not_numeric: Invalid phone number.
 vcare.customer.phone_number.not_valid_length: Invalid phone number.
 vcare.customer.postcode.not_numeric: Invalid postcode.
 vcare.customer.name.registered: This person is already registered.
+
+vcare.news_subscriber.email.aready: Thanks You! You are already has subscribed.
+vcare.news_subscriber.email.not_blank: Please enter your email.
+vcare.news_subscriber.email.invalid: Not valid email format.

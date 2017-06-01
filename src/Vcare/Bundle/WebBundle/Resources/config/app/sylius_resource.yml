@@ -5,3 +5,4 @@ sylius_resource:
                 model: Vcare\Bundle\WebBundle\Model\NewsSubscriber
                 interface: Vcare\Bundle\WebBundle\Model\NewsSubscriberInterface
                 controller: Vcare\Bundle\WebBundle\Controller\NewsSubscriberController
+                form: Vcare\Bundle\WebBundle\Form\Type\NewsSubscriberType
