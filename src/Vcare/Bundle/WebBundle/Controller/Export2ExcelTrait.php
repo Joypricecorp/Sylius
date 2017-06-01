@@ -60,9 +60,9 @@ trait Export2ExcelTrait
 
                 if (is_array($columnValue)) {
                     if (isset($columnValue[1])) {
-                        $data = call_user_func_array([$this, $columnValue[0]], array_merge([$data], $columnValue[1]));
+                        $data = call_user_func_array([$this, $columnValue[0]], array_merge([$data], $columnValue[1], [$resource]));
                     } else {
-                        $data = call_user_func_array([$this, $columnValue[0]], [$data]);
+                        $data = call_user_func_array([$this, $columnValue[0]], [$data, $resource]);
                     }
                 }
 

@@ -13,6 +13,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 class OrderController extends BaseOrderController
 {
     use Export2ExcelTrait;
+    use ExcelRenderer\OrderTrait;
 
     /**
      * @param CustomerInterface $customer

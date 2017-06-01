@@ -35,9 +35,20 @@ vcare_admin_export_orders:
             title: "Orders"
             columns:
                 number: true
+                checkoutCompletedAt:
+                    - getDate
+                    - [ 'd/m/Y H:i' ]
                 customer.fullName: true
                 customer.phoneNumber: true
                 customer.email: true
-                createdAt:
-                    - getDate
-                    - [ 'd/m/Y H:i' ]
+                state:
+                    - getState
+                paymentState:
+                    - getState
+                shippingState:
+                    - getState
+                total:
+                    - getMoney
+                currencyCode: true
+                items:
+                    - getProducts
