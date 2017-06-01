@@ -44,13 +44,16 @@
     <ul class="list-group">
         {% for child in form %}
             {% set fee = shipping_costs[child.vars.value]|default(0) %}
+            {% set hint = choices[child.vars.name].data.description %}
             <li class="list-group-item list-group-item-action">
                 <h5 class="list-group-item-heading">
                     {{ form_widget(child, {
                         label: child.vars.label ~ " " ~ (fee > 0 ? ("+ " ~ money.convertAndFormat(fee)) : 'vcare.ui.free'|trans)
                     }) }}
                 </h5>
-                <div class="list-group-item-text">{{ child.parent.vars.data.description|default('') }}</div>
+                {% if hint %}
+                    <div class="list-group-item-text m-l-2">{{ hint|raw }}</div>
+                {% endif %}
             </li>
         {% endfor %}
     </ul>
