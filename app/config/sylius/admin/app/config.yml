@@ -3,6 +3,7 @@ imports:
     - { resource: "grids/customer.yml" }
     - { resource: "grids/taxon.yml" }
     - { resource: "grids/order.yml" }
+    - { resource: "grids/news_subscriber.yml" }
 
 liip_imagine:
     filter_sets:

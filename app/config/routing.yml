@@ -1,7 +1,3 @@
-sylius_admin:
-    resource: "sylius/admin/app/routing.yml"
-    prefix: /admin
-
 sylius_shop:
     resource: "sylius/shop/app/routing.yml"
 

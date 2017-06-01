@@ -1,0 +1,52 @@
+sylius_grid:
+    grids:
+        vcare_admin_news_subscriber:
+            driver:
+                name: doctrine/orm
+                options:
+                    class: "%vcare.model.news_subscriber.class%"
+            sorting:
+                createdAt: desc
+            fields:
+                email:
+                    type: string
+                    label: sylius.ui.email
+                    sortable: ~
+                createdAt:
+                    type: datetime
+                    label: sylius.ui.created_at
+                    sortable: ~
+                    options:
+                        format: d-m-Y H:i
+                enabled:
+                    type: twig
+                    label: sylius.ui.enabled
+                    sortable: ~
+                    options:
+                        template: "@SyliusUi/Grid/Field/enabled.html.twig"
+            filters:
+                search:
+                    type: string
+                    label: sylius.ui.search
+                    options:
+                        fields: [email]
+                enabled:
+                    type: boolean
+                    label: sylius.ui.enabled
+            actions:
+                item:
+                    delete:
+                        type: delete
+                main:
+                    export:
+                        type: links
+                        label: "Export"
+                        options:
+                            icon: "download"
+                            links:
+                                excel:
+                                    label: "Excel"
+                                    icon: "file excel outline"
+                                    route: vcare_admin_export_news_subscribers
+                                    parameters:
+                                        criteria: $criteria

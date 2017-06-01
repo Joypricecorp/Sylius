@@ -52,3 +52,19 @@ vcare_admin_export_orders:
                 currencyCode: true
                 items:
                     - getProducts
+
+vcare_admin_export_news_subscribers:
+    path: /export/news-subscribers
+    defaults:
+        _controller: vcare.controller.news_subscribers:excelAction
+        _sylius:
+            grid: vcare_admin_news_subscriber
+        _excel:
+            creator: "VcareAsia"
+            title: "News Subscribers"
+            columns:
+                id: true
+                email: true
+                createdAt:
+                    - getDate
+                    - [ 'd/m/Y H:i' ]

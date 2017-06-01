@@ -8,7 +8,7 @@ use Doctrine\DBAL\Schema\Schema;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-class Version20170518123056 extends AbstractMigration
+class Version20170601123242 extends AbstractMigration
 {
     /**
      * @param Schema $schema
@@ -18,7 +18,7 @@ class Version20170518123056 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE sylius_address_log_entries CHANGE loggedat logged_at DATETIME NOT NULL, CHANGE objectid object_id VARCHAR(64) DEFAULT NULL, CHANGE objectclass object_class VARCHAR(255) NOT NULL');
+        $this->addSql('ALTER TABLE vcare_news_subscriber ADD enabled TINYINT(1) DEFAULT NULL');
     }
 
     /**
@@ -29,6 +29,6 @@ class Version20170518123056 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE sylius_address_log_entries CHANGE logged_at loggedAt DATETIME NOT NULL, CHANGE object_id objectId VARCHAR(64) DEFAULT NULL COLLATE utf8_unicode_ci, CHANGE object_class objectClass VARCHAR(255) NOT NULL COLLATE utf8_unicode_ci');
+        $this->addSql('ALTER TABLE vcare_news_subscriber DROP enabled');
     }
 }

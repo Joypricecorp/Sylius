@@ -1,3 +1,4 @@
 imports:
     - { resource: "@VcareWebBundle/Resources/config/app/liip_imagine.yml" }
     - { resource: "@VcareWebBundle/Resources/config/app/winzou_state_machine.yml" }
+    - { resource: "@VcareWebBundle/Resources/config/app/sylius_resource.yml" }

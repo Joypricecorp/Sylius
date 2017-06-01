@@ -86,6 +86,7 @@ final class MainMenuBuilder
             ->setLabelAttribute('icon', 'cube')
         ;
 
+        // FIXME: use event system
         /*$catalog
             ->addChild('inventory', ['route' => 'sylius_admin_inventory_index'])
             ->setLabel('sylius.menu.admin.main.catalog.inventory')
@@ -177,6 +178,12 @@ final class MainMenuBuilder
             ->addChild('posts', ['route' => 'toro_admin_post_index'])
             ->setLabel('sylius.menu.admin.main.content.posts')
             ->setLabelAttribute('icon', 'file')
+        ;
+
+        $content
+            ->addChild('news_subscriber', ['route' => 'vcare_admin_news_subscriber_index'])
+            ->setLabel('News Subscribers')
+            ->setLabelAttribute('icon', 'mail')
         ;
     }
 

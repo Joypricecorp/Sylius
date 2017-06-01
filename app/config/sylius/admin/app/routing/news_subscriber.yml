@@ -1,0 +1,12 @@
+toro_admin_news_subscriber:
+    resource: |
+        alias: vcare.news_subscriber
+        section: admin
+        templates: SyliusAdminBundle:Crud
+        except: ['show', 'create', 'update']
+        redirect: index
+        grid: vcare_admin_news_subscriber
+        vars:
+          index:
+            icon: ti-book
+    type: sylius.resource
