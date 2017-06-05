@@ -1,5 +1,6 @@
 parameters:
     locked_theme: "intbizth/vcare"
+    hwi_oauth.authentication.provider.oauth.class: Vcare\Bundle\WebBundle\OAuth\OAuthProvider
 
 imports:
     - { resource: "sylius_product.yml" }
