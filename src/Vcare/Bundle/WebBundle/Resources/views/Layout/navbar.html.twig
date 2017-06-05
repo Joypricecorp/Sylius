@@ -8,9 +8,10 @@
                         {% set user = app.user %}
                         <li class="nav-item nav-item-user">
                             <div class="dropdown">
-                                <a class="dropdown-toggle" id="dropdownUser" data-toggle="dropdown" aria-haspopup="true"
+                                <a class="nav-link dropdown-toggle" id="dropdownUser" data-toggle="dropdown"
+                                   aria-haspopup="true"
                                    aria-expanded="false">
-                                    <img src="{{ asset('assets/web/img/avatar.png') }}">
+                                    <i class="fa fa-user-circle"></i>
                                     <span>{{ user.customer ? user.customer.fullname : user.username }}</span>
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownUser">
@@ -63,35 +64,50 @@
     <div class="nav-main__menu row">
         <div class="col-xs-12">
             <div class="container">
-                <div class="row">
-                    <div class="col-md-9 hidden-sm-down">
-                        <div itemscope class="nav-main__menu-brand">
-                            <a itemprop="url" href="{{ path('route_shop_homepage') }}">
-                                {% if cx_settings.branding('logo')|default(null) %}
-                                    <img itemprop="logo" id="site-logo" src="{{ cx_settings.branding('logo') }}" alt="{{ cx_settings.branding('name') }}">
-                                {% else %}
-                                    {{ cx_settings.branding('name') }}
-                                {% endif %}
+                {% if is_mobile_view() %}
+                    <div class="row">
+                        <div class="col-xs-3 nav-main__menu-logo">
+                            <img itemprop="logo" id="site-logo" src="{{ cx_settings.branding('logo') }}"
+                                 alt="{{ cx_settings.branding('name') }}">
+                        </div>
+                        <div class="col-xs-7 nav-main__menu-cart">
+                            {{ include("@VcareWeb/Layout/nav-cart.html.twig") }}
+                            <a class="btn btn-primary" href="{{ path('route_shop_product_index') }}">
+                                {{ "vcare.ui.all_products"|trans }}
                             </a>
                         </div>
-                        <div class="nav-main__menu-category">{{ categories|raw }}</div>
+                        <div class="col-xs-2 nav-main__menu-toggle">
+                            <button class="btn btn-hamburger"><i class="fa fa-navicon"></i></button>
+                        </div>
                     </div>
-                    <div class="col-xs-2 nav-main__menu-logo hidden-md-up">
-                        <img itemprop="logo" id="site-logo" src="{{ cx_settings.branding('logo') }}" alt="{{ cx_settings.branding('name') }}">
+                    <div class="row">
+                        <div class="col-xs-12 nav-main__menu-category category-toggle hidden-md-up hidden-sm-down">
+                            {{ categories|raw }}
+                        </div>
                     </div>
-                    <div class="col-md-3 col-xs-7 nav-main__menu-cart">
-                        {{ include("@VcareWeb/Layout/nav-cart.html.twig") }}
-                        <a class="btn btn-primary" href="{{ path('route_shop_product_index') }}">
-                            {{ "vcare.ui.all_products"|trans }}
-                        </a>
+                {% else %}
+                    <div class="row">
+                        <div class="col-md-9">
+                            <div itemscope class="nav-main__menu-brand">
+                                <a itemprop="url" href="{{ path('route_shop_homepage') }}">
+                                    {% if cx_settings.branding('logo')|default(null) %}
+                                        <img itemprop="logo" id="site-logo" src="{{ cx_settings.branding('logo') }}"
+                                             alt="{{ cx_settings.branding('name') }}">
+                                    {% else %}
+                                        {{ cx_settings.branding('name') }}
+                                    {% endif %}
+                                </a>
+                            </div>
+                            <div class="nav-main__menu-category">{{ categories|raw }}</div>
+                        </div>
+                        <div class="col-md-3 col-xs-7 nav-main__menu-cart">
+                            {{ include("@VcareWeb/Layout/nav-cart.html.twig") }}
+                            <a class="btn btn-primary" href="{{ path('route_shop_product_index') }}">
+                                {{ "vcare.ui.all_products"|trans }}
+                            </a>
+                        </div>
                     </div>
-                    <div class="col-xs-2 nav-main__menu-toggle hidden-md-up">
-                        <button class="btn btn-hamburger"><i class="fa fa-navicon"></i></button>
-                    </div>
-                    <div class="col-xs-12 nav-main__menu-category category-toggle hidden-md-up hidden-sm-down">
-                        {{ categories|raw }}
-                    </div>
-                </div>
+                {% endif %}
             </div>
         </div>
     </div>

@@ -1,4 +1,15 @@
 .nav-main {
+    &__top {
+        text-align: left;
+
+        .container {
+            background: $color-base;
+        }
+
+        .nav-link {
+            font-size: .7rem;
+        }
+    }
     &__menu {
         &-cart {
             text-align: center;
@@ -6,7 +17,7 @@
 
         &-logo {
             img {
-                width: 65px;
+                width: 100%;
             }
         }
 
@@ -16,10 +27,15 @@
             .btn-hamburger {
                 background: none;
                 border: 0;
+                padding: 0;
                 color: $color-base;
                 font-weight: bold;
                 cursor: pointer;
                 outline: none;
+
+                .fa {
+                    font-size: 1.5rem;
+                }
             }
         }
 

@@ -3,6 +3,7 @@
     h1, h2, h3, h4,
     .taxon-preview h3,
     .btn-link, a,
+    .btn-hamburger,
     .page-header {
         color: $s8-color;
     }
@@ -131,6 +132,18 @@
     .cart-step--completed {
         a {
             color: #ffffff;
+        }
+    }
+}
+
+@include media-breakpoint-only(xs) {
+    .s8 {
+        .nav-main {
+            &__top {
+                .container {
+                    background: $s8-color;
+                }
+            }
         }
     }
 }
