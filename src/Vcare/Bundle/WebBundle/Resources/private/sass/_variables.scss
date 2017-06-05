@@ -9,7 +9,7 @@ $headings-color: #000000;
 $headings-secound-color: rgba(0, 0, 0, 0.50);
 
 // color
-$color-base: #F7941E !default;
+$color-base: #FF5200 !default;
 $color-second: #232f3e !default;
 $color-ext: lighten($color-second, 10%) !default;
 $color-basic: #ECEEEF !default;
@@ -49,7 +49,7 @@ $btn-primary-border: darken($color-base, 5%);
 
 $font-heading: "Prompt", "Helvetica Neue", Helvetica, Arial, sans-serif;
 $font-body: $font-heading;
-$font-color-ihealth: #FF5200;
+$font-color-ihealth: $color-base;
 
 $facebook-color:            #3b5998;
 $twitter-color:             #1da1f2;
@@ -57,4 +57,16 @@ $instagram-color:           #ED4A55;
 $google-plus-color:         #d34836;
 $youtube-color:              #bb0000;
 $line-color:                #00b900;
-$snail8-color:                #993366;
+$s8-color:                #993366;
+
+$btn-fb-color: #ffffff;
+$btn-fb-bg: #36609F;
+$btn-fb-border: #30589F;
+
+$btn-ok-color: #ffffff;
+$btn-ok-bg: $font-color-ihealth;
+$btn-ok-border: $font-color-ihealth;
+
+$btn-s8-color: #ffffff;
+$btn-s8-bg: $s8-color;
+$btn-s8-border: $s8-color;

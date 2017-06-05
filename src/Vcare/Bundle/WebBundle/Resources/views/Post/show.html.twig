@@ -15,14 +15,16 @@
 {% endblock %}
 
 {% block breadcrumb %}
-    <ol class="breadcrumb breadcrumb-top">
-        <li class="breadcrumb-item">
-            <a href="/">{{ "vcare.ui.home"|trans }}</a>
-        </li>
-        <li class="breadcrumb-item"><a href="{{ path('vcare_shop_post_index') }}">{{ "vcare.ui.posts"|trans }}</a></li>
-        <li class="breadcrumb-item"><a href="{{ path('vcare_shop_post_all') }}">{{ "vcare.ui.all_posts"|trans }}</a></li>
-        <li class="breadcrumb-item active">{{ post.title }}</li>
-    </ol>
+    <div class="container">
+        <ol class="breadcrumb breadcrumb-top">
+            <li class="breadcrumb-item">
+                <a href="/">{{ "vcare.ui.home"|trans }}</a>
+            </li>
+            <li class="breadcrumb-item"><a href="{{ path('vcare_shop_post_index') }}">{{ "vcare.ui.posts"|trans }}</a></li>
+            <li class="breadcrumb-item"><a href="{{ path('vcare_shop_post_all') }}">{{ "vcare.ui.all_posts"|trans }}</a></li>
+            <li class="breadcrumb-item active">{{ post.title }}</li>
+        </ol>
+    </div>
 {% endblock %}
 
 {% block content %}

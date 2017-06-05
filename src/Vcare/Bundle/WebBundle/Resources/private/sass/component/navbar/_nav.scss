@@ -1,10 +1,25 @@
 .nav-main {
     &__top {
-        background: #ffffff;
-        padding: .2rem 0;
+        text-align: right;
+
+        background: lighten($color-base, 45%); /* Old browsers */
+        background: -moz-linear-gradient(left, lighten($color-base, 45%) 50%, $color-base 50%, $color-base 50%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(left, lighten($color-base, 45%) 50%, $color-base 50%, $color-base 50%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to right, lighten($color-base, 45%) 50%, $color-base 50%, $color-base 50%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=lighten($color-base, 45%), endColorstr=$color-base, GradientType=1); /* IE6-9 */
+
+        .container {
+            padding-top: 5px;
+            background: lighten($color-base, 45%);
+            background: -moz-linear-gradient(45deg, lighten($color-base, 45%) 0%, lighten($color-base, 45%) 15%, $color-base 15%, $color-base 100%);
+            background: -webkit-linear-gradient(45deg, lighten($color-base, 45%) 0%, lighten($color-base, 45%) 15%, $color-base 15%, $color-base 100%);
+            background: linear-gradient(45deg, lighten($color-base, 45%) 0%, lighten($color-base, 45%) 15%, $color-base 15%, $color-base 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=lighten($color-base, 45%), endColorstr=$color-base, GradientType=1);
+        }
 
         a {
             font-size: .8rem;
+            color: #ffffff;
         }
 
         &-links {
@@ -14,8 +29,7 @@
         }
 
         &-user {
-            // align box to right side
-            float: right;
+            display: inline-block;
 
             img {
                 width: 30px;
@@ -32,13 +46,13 @@
 
     &__menu {
         border-bottom: 1px solid #E6E7E8;
-        background: rgba(#fff, .7);
+        background: lighten($color-base, 45%);
         line-height: 75px;
         font-family: $font-heading;;
 
         &-brand {
             float: left;
-            margin-right: 2rem;
+            margin-right: 4rem;
             font-size: 1.7rem;
 
             // prevent box width resize when we increase font-size over column width

@@ -1,3 +1,8 @@
+{% set taxon = product.mainTaxon %}
+{% if taxon.code matches '|sc|i' or taxon.slug matches '|snail8|' %}
+    {% set layout = 'layout-basic s8' %}
+{% endif %}
+
 {% extends '@VcareWeb/layout.html.twig' %}
 {% from '@VcareWeb/Product/macros.html.twig' import list %}
 {% from '@VcareWeb/Macros/images.html.twig' import toro_image, toro_image_src %}
@@ -24,22 +29,24 @@
 {% endblock %}
 
 {% block breadcrumb %}
-    <ol class="breadcrumb breadcrumb-top">
-        <li class="breadcrumb-item">
-            <a href="{{ path('route_shop_homepage') }}">{{ "vcare.ui.home"|trans }}</a>
-        </li>
-        <li class="breadcrumb-item">
-            <a href="{{ path('route_shop_product_index') }}">{{ "vcare.ui.all_products"|trans }}</a>
-        </li>
-        {% if product.mainTaxon %}
+    <div class="container">
+        <ol class="breadcrumb breadcrumb-top">
             <li class="breadcrumb-item">
-                <a href="{{ path('route_shop_product_index_taxon', { slug: product.mainTaxon.slug }) }}">
-                    {{ product.mainTaxon.name }}
-                </a>
+                <a href="{{ path('route_shop_homepage') }}">{{ "vcare.ui.home"|trans }}</a>
             </li>
-        {% endif %}
-        <li class="breadcrumb-item active">{{ product.name }}</li>
-    </ol>
+            <li class="breadcrumb-item">
+                <a href="{{ path('route_shop_product_index') }}">{{ "vcare.ui.all_products"|trans }}</a>
+            </li>
+            {% if product.mainTaxon %}
+                <li class="breadcrumb-item">
+                    <a href="{{ path('route_shop_product_index_taxon', { slug: product.mainTaxon.slug }) }}">
+                        {{ product.mainTaxon.name }}
+                    </a>
+                </li>
+            {% endif %}
+            <li class="breadcrumb-item active">{{ product.name }}</li>
+        </ol>
+    </div>
 {% endblock %}
 
 {% block content %}

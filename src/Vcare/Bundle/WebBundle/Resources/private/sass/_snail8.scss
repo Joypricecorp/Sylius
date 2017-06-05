@@ -1,0 +1,136 @@
+.s8 {
+    // color
+    h1, h2, h3, h4,
+    .taxon-preview h3,
+    .btn-link, a,
+    .page-header {
+        color: $s8-color;
+    }
+
+    a, .btn-link {
+        &:hover {
+            color: darken($s8-color, 10%);
+        }
+    }
+
+    .nav-main__top {
+        background: lighten($s8-color, 55%); /* Old browsers */
+        background: -moz-linear-gradient(left, lighten($s8-color, 55%) 50%, $s8-color 50%, $s8-color 50%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(left, lighten($s8-color, 55%) 50%, $s8-color 50%, $s8-color 50%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to right, lighten($s8-color, 55%) 50%, $s8-color 50%, $s8-color 50%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=lighten($s8-color, 55%), endColorstr=$s8-color, GradientType=1); /* IE6-9 */
+        .container {
+            background: lighten($s8-color, 55%);
+            background: -moz-linear-gradient(45deg, lighten($s8-color, 55%) 0%, lighten($s8-color, 55%) 15%, $s8-color 15%, $s8-color 100%);
+            background: -webkit-linear-gradient(45deg, lighten($s8-color, 55%) 0%, lighten($s8-color, 55%) 15%, $s8-color 15%, $s8-color 100%);
+            background: linear-gradient(45deg, lighten($s8-color, 55%) 0%, lighten($s8-color, 55%) 15%, $s8-color 15%, $s8-color 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=lighten($s8-color, 55%), endColorstr=$s8-color, GradientType=1);
+        }
+
+        a {
+            color: #ffffff;
+
+            &:hover {
+                opacity: .8;
+            }
+        }
+    }
+
+    .nav-main__menu {
+        background: lighten($s8-color, 55%);
+        border-bottom: 1px solid lighten($s8-color, 50%);
+    }
+
+    .product-box__info--price, .product-show-box__shopping--price {
+        color: $s8-color;
+    }
+
+    .page-item.active .page-link,
+    .page-item.active .page-link:focus,
+    .page-item.active .page-link:hover {
+        background-color: $s8-color;
+        border-color: $s8-color;
+    }
+
+    .nav-tabs .nav-item .nav-link {
+        background-color: rgba($s8-color, 0.15);
+        border-bottom: 4px solid rgba($s8-color, 0.15);
+
+        &.active {
+            background-color: rgba($s8-color, 0.75);
+            border-bottom: 4px solid $s8-color;
+        }
+
+    }
+    .footer__sitemap {
+        background: darken($s8-color, 10%);
+
+        h4 {
+            color: #ffffff;
+        }
+    }
+
+    .btn-primary, .btn-ok {
+        color: #ffffff;
+        background-color: $s8-color;
+        border-color: darken($s8-color, 5%);
+
+        &:hover {
+            color: #ffffff;
+            background: darken($s8-color, 10%);
+        }
+    }
+
+    .btn-primary-outline, .btn-ok-outline, .btn-s8-outline {
+        color: $s8-color;
+        background: none;
+        border-color: darken($s8-color, 5%);
+
+        &:hover {
+            color: #ffffff;
+            background: $s8-color;
+        }
+    }
+
+    .btn-primary.disabled:focus,
+    .btn-primary:disabled:focus,
+    .btn-ok.disabled:focus,
+    .btn-ok:disabled:focus,
+    .btn-s8:disabled:focus,
+    .btn-s8.disabled:focus,
+    .btn-primary.disabled:hover,
+    .btn-primary:disabled:hover,
+    .btn-ok.disabled:hover,
+    .btn-ok:disabled:hover,
+    .btn-s8:disabled:hover,
+    .btn-s8.disabled:hover {
+        background-color: $s8-color;
+        border-color: $s8-color;
+    }
+
+    a.btn-secondary {
+        color: inherit;
+    }
+
+    .btn-fb,
+    .btn-success {
+        color: #ffffff;
+        &:hover {
+            color: #ffffff;
+        }
+    }
+
+    .cart-step--active {
+        background: $s8-color !important;
+
+        &:after {
+            border-color: transparent transparent transparent $s8-color !important;
+        }
+    }
+
+    .cart-step--completed {
+        a {
+            color: #ffffff;
+        }
+    }
+}

@@ -1,3 +1,8 @@
+{% set taxon = configuration.parameters.get('vars')['taxon']|default %}
+{% if taxon.code matches '|sc|i' or taxon.slug matches '|snail8|' %}
+    {% set layout = 'layout-basic s8' %}
+{% endif %}
+
 {% extends '@VcareWeb/Product/index.html.twig' %}
 
 {% block carousel %}

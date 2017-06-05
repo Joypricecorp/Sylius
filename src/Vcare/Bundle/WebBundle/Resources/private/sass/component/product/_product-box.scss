@@ -74,8 +74,7 @@
                 background-color: #a5d05e;
                 opacity: 0;
 
-                @include transform(translateY(-50%));
-
+                transform: translateY(-50%);
                 -webkit-transition: width 0.2s 0s, opacity 0s 0.2s;
                 -moz-transition: width 0.2s 0s, opacity 0s 0.2s;
                 transition: width 0.2s 0s, opacity 0s 0.2s;
@@ -96,7 +95,7 @@
             color: #e76363;
             opacity: 0;
 
-            @include transform(translateX(5px));
+            transform: translateX(5px);
 
             -webkit-transition: -webkit-transform 0.2s, opacity 0.2s;
             -moz-transition: -moz-transform 0.2s, opacity 0.2s;
@@ -104,7 +103,7 @@
 
             &.is-visible {
                 opacity: 1;
-                @include transform(translateX(0));
+                transform: translateX(0);
             }
         }
     }
@@ -117,7 +116,7 @@
         padding: .2em;
         margin: 0;
 
-        @include transform(translateX(-50%));
+        transform: translateX(-50%);
 
         &::after {
             clear: both;

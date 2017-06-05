@@ -14,19 +14,19 @@
 
             &.focus-on-left {
                 /* class added to the .selected and .move-right items when user hovers over the .move-left item (item preview on the left) */
-                @include transform(translateX(3%) scale(1.25));
+                transform: translateX(3%) scale(1.25);
 
                 &.move-right {
-                    @include transform(translateX(103%) scale(0.7));
+                    transform: translateX(103%) scale(0.7);
                 }
             }
 
             &.focus-on-right {
                 /* class added to the .selected and .move-left items when user hovers over the .move-right item (item preview on the right) */
-                @include transform(translateX(-3%) scale(1.25));
+                transform: translateX(-3%) scale(1.25);
 
                 &.move-left {
-                    @include transform(translateX(-103%) scale(0.7));
+                    transform: translateX(-103%) scale(0.7);
                 }
             }
 
@@ -35,11 +35,11 @@
                 opacity: 1 !important;
 
                 &.move-left {
-                    @include transform(translateX(-97%) scale(0.75));
+                    transform: translateX(-97%) scale(0.75);
                 }
 
                 &.move-right {
-                    @include transform(translateX(97%) scale(0.75));
+                    transform: translateX(97%) scale(0.75);
                 }
             }
         }

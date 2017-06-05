@@ -3,29 +3,20 @@
     border-radius: 0 !important;
 }
 
-$btn-fb-color: #ffffff;
-$btn-fb-bg: #36609F;
-$btn-fb-border: #30589F;
-
 .btn-fb {
     @include button-variant($btn-fb-color, $btn-fb-bg, $btn-fb-border);
 }
-
-$btn-ok-color: #ffffff;
-$btn-ok-bg: $font-color-ihealth;
-$btn-ok-border: $font-color-ihealth;
 
 .btn-ok {
     @include button-variant($btn-ok-color, $btn-ok-bg, $btn-ok-border);
 }
 
+.btn-s8 {
+    @include button-variant($btn-s8-color, $btn-s8-bg, $btn-s8-border);
+}
 
-$btn-snail8-color: #ffffff;
-$btn-snail8-bg: $snail8-color;
-$btn-snail8-border: $snail8-color;
-
-.btn-snail8 {
-    @include button-variant($btn-ok-color, $btn-ok-bg, $btn-ok-border);
+.btn-s8-outline {
+    @include button-outline-variant($btn-s8-bg);
 }
 
 .btn {

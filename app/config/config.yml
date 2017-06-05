@@ -3,14 +3,14 @@
 
 imports:
     - { resource: "@SyliusCoreBundle/Resources/config/app/config.yml" }
-    - { resource: "sylius/core/app/config.yml" }
-    - { resource: "sylius/admin/app/config.yml" }
     - { resource: "@SyliusShopBundle/Resources/config/app/config.yml" }
     - { resource: "@SyliusAdminApiBundle/Resources/config/app/config.yml" }
     - { resource: "@DosPaysbuyBundle/Resources/config/app/main.yml" }
     - { resource: "@VcareWebBundle/Resources/config/app.yml" }
     - { resource: "@ToroMediaBundle/Resources/config/app.yml" }
     - { resource: "@ToroCmsBundle/Resources/config/app/main.yml" }
+    - { resource: "sylius/admin/app/config.yml" }
+    - { resource: "sylius/core/app/config.yml" }
     - { resource: "vcare/config.yml" }
 
     - { resource: "parameters.yml" }
