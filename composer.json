@@ -84,6 +84,12 @@
         "liuggio/excelbundle": "^2.1",
         "stefandoorn/sitemap-plugin": "dev-master"
     },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/liverbool/sitemap-plugin.git"
+        }
+    ],
     "require-dev": {
         "liil/kint": "^1.0",
         "deployer/deployer": "^3.2",

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "23f5ab3076194610f3598327d45c710b",
+    "content-hash": "4c73fd1cb6815f4308472dc6bc64ff83",
     "packages": [
         {
             "name": "aptoma/twig-markdown",
@@ -5859,18 +5859,17 @@
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/stefandoorn/sitemap-plugin.git",
-                "reference": "dea917c3f5615670fa1e6d9ca0fcfc0669d871c1"
+                "url": "https://github.com/liverbool/sitemap-plugin.git",
+                "reference": "cc3ecde70c642be16b8cbced41b8e9b0403e20fe"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/stefandoorn/sitemap-plugin/zipball/dea917c3f5615670fa1e6d9ca0fcfc0669d871c1",
-                "reference": "dea917c3f5615670fa1e6d9ca0fcfc0669d871c1",
+                "url": "https://api.github.com/repos/liverbool/sitemap-plugin/zipball/cc3ecde70c642be16b8cbced41b8e9b0403e20fe",
+                "reference": "cc3ecde70c642be16b8cbced41b8e9b0403e20fe",
                 "shasum": ""
             },
             "require": {
                 "php": "^5.6|^7.0",
-                "sylius/sylius": "^1.0@beta",
                 "symfony/symfony": "3.2.*"
             },
             "require-dev": {
@@ -5886,12 +5885,19 @@
                     "SitemapPlugin\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "autoload-dev": {
+                "psr-4": {
+                    "Tests\\SitemapPlugin\\": "tests/"
+                }
+            },
             "license": [
                 "MIT"
             ],
             "description": "Sitemap Plugin for Sylius",
-            "time": "2017-06-01 12:46:47"
+            "support": {
+                "source": "https://github.com/liverbool/sitemap-plugin/tree/master"
+            },
+            "time": "2017-06-05 16:38:10"
         },
         {
             "name": "stfalcon/tinymce-bundle",
