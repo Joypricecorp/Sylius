@@ -113,6 +113,7 @@ class AppKernel extends Kernel
 
             new \HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
             new \Liuggio\ExcelBundle\LiuggioExcelBundle(),
+            new \SitemapPlugin\SitemapPlugin(),
         ];
 
         return array_merge(self::getSyliusBundles(), $bundles);

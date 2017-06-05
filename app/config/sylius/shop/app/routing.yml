@@ -12,6 +12,9 @@ sylius_shop_homepage:
     defaults:
         _controller: sylius.controller.shop.homepage:indexAction
 
+sylius_shop_sitemap:
+    resource: "routing/sitemap.yml"
+
 sylius_shop_security:
     resource: "routing/security.yml"
 

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "ba1e7416972113b9f5bdf0b059f2353a",
+    "content-hash": "23f5ab3076194610f3598327d45c710b",
     "packages": [
         {
             "name": "aptoma/twig-markdown",
@@ -5855,6 +5855,45 @@
             "time": "2017-01-17T11:04:35+00:00"
         },
         {
+            "name": "stefandoorn/sitemap-plugin",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/stefandoorn/sitemap-plugin.git",
+                "reference": "dea917c3f5615670fa1e6d9ca0fcfc0669d871c1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/stefandoorn/sitemap-plugin/zipball/dea917c3f5615670fa1e6d9ca0fcfc0669d871c1",
+                "reference": "dea917c3f5615670fa1e6d9ca0fcfc0669d871c1",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.6|^7.0",
+                "sylius/sylius": "^1.0@beta",
+                "symfony/symfony": "3.2.*"
+            },
+            "require-dev": {
+                "lakion/api-test-case": "^1.1",
+                "matthiasnoback/symfony-dependency-injection-test": "^1.1",
+                "phpspec/phpspec": "^3.2",
+                "phpunit/phpunit": "^5.0",
+                "raveren/kint": "^1.1"
+            },
+            "type": "sylius-plugin",
+            "autoload": {
+                "psr-4": {
+                    "SitemapPlugin\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Sitemap Plugin for Sylius",
+            "time": "2017-06-01 12:46:47"
+        },
+        {
             "name": "stfalcon/tinymce-bundle",
             "version": "v2.1",
             "target-dir": "Stfalcon/Bundle/TinymceBundle",
@@ -9950,16 +9989,16 @@
         },
         {
             "name": "phpseclib/phpseclib",
-            "version": "2.0.5",
+            "version": "2.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpseclib/phpseclib.git",
-                "reference": "f8dd0e18d2328c447dd4190fecd11ef52680d968"
+                "reference": "34a7699e6f31b1ef4035ee36444407cecf9f56aa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/f8dd0e18d2328c447dd4190fecd11ef52680d968",
-                "reference": "f8dd0e18d2328c447dd4190fecd11ef52680d968",
+                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/34a7699e6f31b1ef4035ee36444407cecf9f56aa",
+                "reference": "34a7699e6f31b1ef4035ee36444407cecf9f56aa",
                 "shasum": ""
             },
             "require": {
@@ -10038,7 +10077,7 @@
                 "x.509",
                 "x509"
             ],
-            "time": "2017-05-08T05:58:35+00:00"
+            "time": "2017-06-05T06:31:10+00:00"
         },
         {
             "name": "phpspec/php-diff",
@@ -11901,7 +11940,8 @@
         "toro/cms-bundle": 20,
         "toro/tagging-bundle": 20,
         "toro/media-bundle": 20,
-        "toro/fixture-bundle": 20
+        "toro/fixture-bundle": 20,
+        "stefandoorn/sitemap-plugin": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
