@@ -149,7 +149,7 @@
 
         <!--<service id="vcare.shop.locale_switcher" class="Vcare\Bundle\WebBundle\Locale\StorageBasedLocaleSwitcher" public="false" decorates="sylius.shop.locale_switcher">
             <argument type="service" id="sylius.storage.locale" />
-            <argument type="service" id="sylius.context.channel" />-->
-        </service>
+            <argument type="service" id="sylius.context.channel" />
+        </service>-->
     </services>
 </container>
