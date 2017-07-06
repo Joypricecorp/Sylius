@@ -34,7 +34,8 @@
     {% endfor %}
 {% endmacro %}
 
-<a href="{{ path('sylius_admin_taxon_create') }}" class="ui large fluid labeled icon primary button">
+{# FIXME: hardcodd #}
+<a href="{{ path('sylius_admin_taxon_create_for_parent', { id: 12 }) }}" class="ui large fluid labeled icon primary button">
     <i class="plus icon"></i>
     {{ 'sylius.ui.create'|trans }}
 </a>
