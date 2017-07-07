@@ -93,7 +93,7 @@ class ImpersonateUserController
 
         $this->addFlash($request, $username);
 
-        return new RedirectResponse($request->headers->get('referer'));
+        return new RedirectResponse($this->router->generate('sylius_admin_dashboard'));
     }
 
     /**
