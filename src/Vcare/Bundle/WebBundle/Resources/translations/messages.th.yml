@@ -18,6 +18,7 @@ vcare.ui.attributes: 'คุณสมบัติ'
 vcare.ui.previous: 'ก่อนหน้า'
 vcare.ui.next: 'ถัดไป'
 vcare.form.product.external_order_url: 'ลิงค์สั่งซื้อภายนอก'
+vcare.form.product.special_price: 'ราคาพิเศษ'
 vcare.product.external_order: 'ลั่งซื้อ'
 vcare.ui.manual: 'คู่มือการใช้งาน'
 

@@ -15,4 +15,14 @@ interface ProductInterface extends BaseProductInterface, ProductTranslationInter
      * @param string $externalOrderUrl
      */
     public function setExternalOrderUrl($externalOrderUrl);
+
+    /**
+     * @return string
+     */
+    public function getSpecialPrice();
+
+    /**
+     * @param string $specialPrice
+     */
+    public function setSpecialPrice($specialPrice);
 }

@@ -18,6 +18,7 @@ vcare.ui.attributes: 'Attributes'
 vcare.ui.previous: 'Previous'
 vcare.ui.next: 'Next'
 vcare.form.product.external_order_url: 'External Order Url'
+vcare.form.product.special_price: 'Special Price'
 vcare.product.external_order: 'Order'
 vcare.ui.manual: 'Manual'
 

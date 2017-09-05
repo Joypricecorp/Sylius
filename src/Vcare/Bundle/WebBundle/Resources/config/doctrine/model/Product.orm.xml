@@ -7,5 +7,6 @@
 
     <mapped-superclass name="Vcare\Bundle\WebBundle\Model\Product" table="sylius_product">
         <field name="externalOrderUrl" type="string" nullable="true"/>
+        <field name="specialPrice" type="string" nullable="true"/>
     </mapped-superclass>
 </doctrine-mapping>

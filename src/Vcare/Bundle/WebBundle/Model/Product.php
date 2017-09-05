@@ -12,6 +12,11 @@ class Product extends BaseProduct implements ProductInterface
     private $externalOrderUrl;
 
     /**
+     * @var string
+     */
+    private $specialPrice;
+
+    /**
      * {@inheritdoc}
      */
     public function getAttribute()
@@ -75,6 +80,25 @@ class Product extends BaseProduct implements ProductInterface
         $this->externalOrderUrl = $externalOrderUrl;
     }
 
+    /**
+     * {@inheritdoc}
+     */
+    public function getSpecialPrice()
+    {
+        return $this->specialPrice;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setSpecialPrice($specialPrice)
+    {
+        $this->specialPrice = $specialPrice;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getManuals()
     {
         return $this->getTranslation()->getManuals();

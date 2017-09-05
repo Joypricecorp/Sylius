@@ -10,6 +10,7 @@
             <div class="ui segment">
                 {{ form_row(form.code) }}
                 {{ form_row(form.externalOrderUrl) }}
+                {{ form_row(form.specialPrice) }}
                 {{ form_row(form.enabled) }}
                 {% if product.simple %}
                     {{ form_row(form.variant.onHand) }}

@@ -8,6 +8,8 @@
                 <i class="fa fa-shopping-cart"></i> {{ 'vcare.product.external_order'|trans }}
             </a>
         </div>
+    {% elseif product.specialPrice %}
+        {{ display_price(product) }}
     {% else %}
         {% if product.variants.empty() or product.simple and not sylius_inventory_is_available(product.variants.first) %}
             {{ out_of_stock(product) }}

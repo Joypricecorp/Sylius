@@ -4,11 +4,12 @@
     {% for r in products %}
         {% set product_show_url = path('route_shop_product_show', {'slug': r.slug}) %}
         {% set product_image = r.images.first() ? r.images.first.path|imagine_filter('250x250') : 'http://placehold.it/250x250' %}
+        {% set len = r.images|length %}
 
         <div class="col-xl-4 col-sm-6 col-xs-12">
             <div class="product-box">
-                <div class="product-box__picture carousel js-flickity">
-                    {% if r.images|length > 1 %}
+                <div class="product-box__picture carousel{% if len > 1 %} js-flickity{% endif %}">
+                    {% if len > 1 %}
                         {% for img in r.images %}
                             <div class="carousel-cell">
                                 <a href="{{ product_show_url }}" title="{{ r.name }}">
@@ -82,8 +83,12 @@
 {% endmacro %}
 
 {% macro price_simple(product) %}
-    {% import "@SyliusShop/Common/Macro/money.html.twig" as money %}
-    {{ money.calculatePrice(product|sylius_resolve_variant) }}
+    {% if product.specialPrice %}
+        <span class="product-special-price">{{ product.specialPrice }}</span>
+    {% else %}
+        {% import "@SyliusShop/Common/Macro/money.html.twig" as money %}
+        {{ money.calculatePrice(product|sylius_resolve_variant) }}
+    {% endif %}
 {% endmacro %}
 
 {% macro price_tax_item(variant, unitPrice, taxTotal) %}

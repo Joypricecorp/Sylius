@@ -4,6 +4,7 @@ namespace Vcare\Bundle\WebBundle\Form\Extension;
 
 use Sylius\Bundle\ProductBundle\Form\Type\ProductType;
 use Symfony\Component\Form\AbstractTypeExtension;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
 
@@ -17,6 +18,10 @@ class ProductExtensionType extends AbstractTypeExtension
         $builder
             ->add('externalOrderUrl', UrlType::class, [
                 'label' => 'vcare.form.product.external_order_url',
+                'required' => false,
+            ])
+            ->add('specialPrice', TextType::class, [
+                'label' => 'vcare.form.product.special_price',
                 'required' => false,
             ])
         ;
