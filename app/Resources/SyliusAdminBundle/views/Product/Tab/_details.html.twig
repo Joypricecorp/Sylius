@@ -33,6 +33,7 @@
             {% if product.simple %}
                 <h4 class="ui dividing header">{{ 'sylius.ui.pricing'|trans }}</h4>
                 {{ form_row(form.variant.channelPricings, {'label': false}) }}
+                {{ form_row(form.variant.taxCategory) }}
             {% endif %}
 
         </div>
@@ -74,7 +75,7 @@
             <div class="column">
                 <div class="ui segment">
                     <h4 class="ui dividing header">{{ 'sylius.ui.taxes'|trans }}</h4>
-                    {{ form_row(form.variant.taxCategory) }}
+                    {#{{ form_row(form.variant.taxCategory) }}#}
                 </div>
             </div>
         </div>
