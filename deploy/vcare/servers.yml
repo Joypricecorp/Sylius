@@ -1,8 +1,8 @@
 v00:
-    host: 139.162.61.107
+    host: 203.150.228.140
     port: 25252
     user: root
-    #password: zohxoh9Nin9xaiphi4ziech8
+    password: BCC2zPY0rFSw/26yJDI=
     forward_agent: ~
     identity_file: ~
     stage: production
@@ -10,21 +10,27 @@ v00:
     branch: vcare
     config:
         base_parameters: ./app/config/parameters.yml
-        redis_password: aiwe4Eewae8ciek3ro6Waire
-        supervisor_password: aengayah5aim3ohru3uawaiT
+        redis_password: oobi1omieBoh9eej8aeb3sha
+        supervisor_password: Oodu0oow0fum5ahYeixi1ePe
     parameters:
+        locale: th_TH
+        currency: THB
+        secret: af61d9e3e5f8b57435bfe7cde10ca1faea63fe76
+        sylius.user.resetting.token_ttl: P1D
+
         mailer_transport: gmail
         mailer_host: ~
         mailer_user: "vcareasia.thailand@gmail.com"
         mailer_password: aeth3ieb4yooBeesahhiThae
+        database_driver: pdo_mysql
         database_host: localhost
         database_port: 7890
         database_name: vcare_shop
         database_user: root
-        database_password: we2atheiz2pe9ohxo6kie4Ai
-        redis_monolog_dns: 'redis://dummy:ohnaicahn4ug9gaquaSh3Tha@localhost:1234/0'
-        redis_session_dns: 'redis://dummy:ohnaicahn4ug9gaquaSh3Tha@localhost:1234/1'
-        redis_swiftmailer_dns: 'redis://dummy:ohnaicahn4ug9gaquaSh3Tha@localhost:1234/2'
+        database_password: ii5Ubeicaiphi4ohChohcaej
+        redis_monolog_dns: 'redis://root:oobi1omieBoh9eej8aeb3sha@localhost:1234/0'
+        redis_session_dns: 'redis://root:oobi1omieBoh9eej8aeb3sha@localhost:1234/1'
+        redis_swiftmailer_dns: 'redis://root:oobi1omieBoh9eej8aeb3sha@localhost:1234/2'
         paysbuy_sandbox: false
         paysbuy_psb_id: 8316121652
         paysbuy_username: triwitt@eforl.co.th

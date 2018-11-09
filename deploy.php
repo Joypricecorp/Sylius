@@ -30,4 +30,4 @@ env('timezone', 'Asia/Bangkok');
 
 serverList('deploy/vcare/servers.yml');
 
-set('repository', 'git@github.com:Joypricecorp/Sylius.git');
+set('repository', 'https://github.com/Joypricecorp/Sylius.git');
