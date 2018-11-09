@@ -17,7 +17,7 @@ parameters:
 
     secret: EDITME
     locale: th_TH
-    currency: USD
+    currency: THB
 
     sylius.user.resetting.token_ttl: P1D
 
