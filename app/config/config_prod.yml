@@ -6,9 +6,10 @@ imports:
 
 monolog:
     handlers:
-        type: service
-        id: snc_redis.monolog.handler
-        level: error
+        main:
+            type: service
+            id: snc_redis.monolog.handler
+            level: error
 
 snc_redis:
     clients:
