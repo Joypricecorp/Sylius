@@ -6,11 +6,19 @@ imports:
 
 monolog:
     handlers:
-        main:
-            type: fingers_crossed
-            action_level: error
-            handler: nested
-        nested:
-            type: stream
-            path: "%kernel.logs_dir%/%kernel.environment%.log"
-            level: debug
+        type: service
+        id: snc_redis.monolog.handler
+        level: error
+
+snc_redis:
+    clients:
+        monolog:
+            type: phpredis
+            alias: monolog
+            dsn: '%redis_monolog_dns%'
+            logging: false
+            options:
+                connection_persistent: true
+    monolog:
+        client: monolog
+        key: monolog

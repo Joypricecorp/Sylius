@@ -84,6 +84,10 @@ class AppKernel extends Kernel
             $bundles[] = new \Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
         }
 
+        if (in_array($this->environment, ['prod'], true)) {
+            $bundles[] = new \Snc\RedisBundle\SncRedisBundle();
+        }
+
         return $bundles;
     }
 

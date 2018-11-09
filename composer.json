@@ -82,7 +82,8 @@
         "zendframework/zend-stdlib": "^3.1",
         "hwi/oauth-bundle": "^0.5",
         "liuggio/excelbundle": "^2.1",
-        "stefandoorn/sitemap-plugin": "dev-master"
+        "stefandoorn/sitemap-plugin": "dev-master",
+        "snc/redis-bundle": "^2.1"
     },
     "repositories": [
         {
